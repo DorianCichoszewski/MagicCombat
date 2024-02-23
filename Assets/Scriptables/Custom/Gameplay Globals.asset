@@ -14,8 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockManager:
     dynamicClock:
+      currentSpeed: 1
       currentTime: 0
-      currentTimers: []
+      currentTimers:
+      - name: Projectile
+        totalTime: 20
+        remainingTime: 6.0306745
+      - name: Projectile
+        totalTime: 20
+        remainingTime: 10.018298
+      - name: Projectile
+        totalTime: 20
+        remainingTime: 12.80526
     fixedClock:
+      currentSpeed: 1
       currentTime: 0
       currentTimers: []

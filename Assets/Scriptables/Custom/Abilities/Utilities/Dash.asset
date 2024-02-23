@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005317f48f4c4ec1b798f0ea625f0366, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 2d7ad304774442b4dbfaad8f652bcf74, type: 3}
+  isMultiClick: 0
+  defaultIcon: {fileID: 21300000, guid: 2d7ad304774442b4dbfaad8f652bcf74, type: 3}
   limiterProvider:
     limiterType: 0
     limiterData:
@@ -25,4 +26,6 @@ MonoBehaviour:
     - rid: 4698927118580973737
       type: {class: CooldownLimiter, ns: Gameplay.Limiters, asm: Assembly-CSharp}
       data:
+        gameplayGlobals: {fileID: 11400000, guid: 607e759f7816377448b8396ae0d0f760,
+          type: 2}
         duration: 1
