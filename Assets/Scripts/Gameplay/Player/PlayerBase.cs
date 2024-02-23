@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Gameplay.Player.Ability;
 using Gameplay.Player.Basic;
 using UnityEngine;
@@ -22,13 +21,29 @@ namespace Gameplay.Player
 		public AbilityCaster skill2;
 		public AbilityCaster skill3;
 
+		private GameplayManager gameplayManager;
+
 		public MovementController MovementController => movement;
 
-		public void SetData(StartData.PlayerInit initData)
+		public GameplayGlobals GameplayGlobals => gameplayManager.GameplayGlobals;
+
+		public void Init(StartData.PlayerInit initData, GameplayManager manager)
 		{
+			gameplayManager = manager;
 			data = initData;
 			skin.SetSkin(data);
 			transform.position = data.spawnPos;
+			movement.Init(manager.GameplayGlobals);
+			
+			utility.Init(this);
+			skill1.Init(this);
+			skill2.Init(this);
+			skill3.Init(this);
+		}
+
+		public void Hit()
+		{
+			gameplayManager.OnPlayerDeath(this);
 		}
 	}
 }

@@ -21,7 +21,12 @@ namespace Gameplay
 		{
 			var otherPlayer = other.GetComponentInParent<PlayerBase>();
 
-			if (otherPlayer == caster) return;
+			if (otherPlayer != null)
+			{
+				if (otherPlayer == caster) return;
+				
+				otherPlayer.Hit();
+			}
 
 			Explode();
 		}
@@ -33,7 +38,7 @@ namespace Gameplay
 
 			rb.velocity = direction.ToVec3().normalized * speed;
 
-			timer = new Timer("Projectile", duration, Explode);
+			timer = new Timer("Projectile", duration, Explode, caster.GameplayGlobals.clockManager);
 		}
 
 		private void Explode()

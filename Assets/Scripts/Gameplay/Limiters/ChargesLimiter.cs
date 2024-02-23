@@ -13,7 +13,7 @@ namespace Gameplay.Limiters
 			throw new NotImplementedException();
 		}
 
-		public bool TryPerform()
+		public void Start()
 		{
 			throw new NotImplementedException();
 		}

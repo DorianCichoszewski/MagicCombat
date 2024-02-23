@@ -1,5 +1,4 @@
 using Extension;
-using Gameplay.Time;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,26 +11,31 @@ namespace Gameplay.Player.Basic
 		[Header("Collisions")]
 		[SerializeField]
 		private LayerMask collisionLayerMask;
-
 		[SerializeField]
 		private int collisionRayCount = 12;
-
 		[SerializeField]
 		private float characterColliderSize = 1;
 
 		[Header("Debug")]
 		public float targetRotationAngle;
 
+		
 		public Vector2 lastMoveDirection;
 		public Vector2 moveValue;
 
 		private IMovement currentMovement;
 
-		private void Start()
+		public bool Enabled { get; set; } = true;
+		
+		public GameplayGlobals GameplayGlobals { get; private set; }
+
+		public void Init(GameplayGlobals gameplayGlobals)
 		{
 			ResetMovement();
 
-			ClockManager.instance.FixedClock.ClockUpdate += HandleMovement;
+			GameplayGlobals = gameplayGlobals;
+
+			gameplayGlobals.clockManager.FixedClock.ClockUpdate += HandleMovement;
 		}
 
 		public void Move(InputAction.CallbackContext ctx)
@@ -55,13 +59,16 @@ namespace Gameplay.Player.Basic
 
 		private void HandleMovement(float deltaTime)
 		{
+			if (!Enabled)
+			{
+				AvoidObstacles();
+				return;
+			}
+			
 			var targetRotation = Quaternion.Euler(0f, targetRotationAngle, 0f);
 			transform.rotation = targetRotation;
 
 			currentMovement.Update(deltaTime);
-
-			// Expect that current movement script will try to move
-			//AvoidObstacles();
 		}
 
 		private void AvoidObstacles()
@@ -77,7 +84,7 @@ namespace Gameplay.Player.Basic
 				offset += -direction * (characterColliderSize - hit.distance);
 			}
 
-			offset *= 0.3f;
+			offset /= collisionRayCount / 2f;
 			transform.Translate(offset, Space.World);
 		}
 

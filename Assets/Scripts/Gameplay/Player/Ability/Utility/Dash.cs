@@ -9,9 +9,12 @@ namespace Gameplay.Player.Utility
 		public float speedMultiplier = 5;
 		public float duration = .3f;
 
-		public override void Perform(PlayerBase caster)
+		public override Sprite GUIIcon => defaultIcon;
+
+		public override void Perform(PlayerBase caster, AbilityState state)
 		{
 			caster.MovementController.Dash(speedMultiplier, duration);
+			state.onFinished?.Invoke();
 		}
 	}
 }

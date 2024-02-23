@@ -6,8 +6,6 @@ namespace Gameplay.Time
 	[Serializable]
 	public class ClockManager
 	{
-		public static ClockManager instance;
-
 		[SerializeField]
 		private Clock dynamicClock;
 
@@ -17,7 +15,11 @@ namespace Gameplay.Time
 		public Clock DynamicClock => dynamicClock;
 		public Clock FixedClock => fixedClock;
 
-		public void Init() { }
+		public void Init()
+		{
+			dynamicClock.Reset();
+			fixedClock.Reset();
+		}
 
 		public Clock GetClock(ClockType type)
 		{

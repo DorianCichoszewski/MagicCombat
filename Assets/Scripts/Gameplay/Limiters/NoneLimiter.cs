@@ -10,10 +10,7 @@ namespace Gameplay.Limiters
 			return true;
 		}
 
-		public bool TryPerform()
-		{
-			return true;
-		}
+		public void Start() { }
 
 		public void Reset() { }
 

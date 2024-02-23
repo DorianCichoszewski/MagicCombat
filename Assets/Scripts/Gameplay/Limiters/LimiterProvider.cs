@@ -32,9 +32,9 @@ namespace Gameplay.Limiters
 			return limiterData.CanPerform();
 		}
 
-		public bool TryToPerform()
+		public void Start()
 		{
-			return limiterData.TryPerform();
+			limiterData.Start();
 		}
 
 		public void Reset()
@@ -91,8 +91,11 @@ namespace Gameplay.Limiters
 			});
 			element.Add(limiterTypeField);
 
-			var limiterField = new PropertyField(limiterProperty);
-			element.Add(limiterField);
+			if (currentType != LimiterType.None)
+			{
+				var limiterField = new PropertyField(limiterProperty);
+				element.Add(limiterField);
+			}
 
 			return element;
 		}

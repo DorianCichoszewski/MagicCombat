@@ -7,5 +7,10 @@ namespace Gameplay
 	public class GameplayGlobals : ScriptableObject
 	{
 		public ClockManager clockManager;
+
+		public void Init()
+		{
+			clockManager.Init();
+		}
 	}
 }

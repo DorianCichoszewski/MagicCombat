@@ -27,10 +27,10 @@ namespace Gameplay.Time
 
 		public event Action callback;
 
-		public Timer(float time, Action callback, ClockType clockUpdateType = ClockType.Dynamic) : this(
-			time.ToString(CultureInfo.InvariantCulture), time, callback, clockUpdateType) { }
+		public Timer(float time, Action callback, ClockManager manager, ClockType clockUpdateType = ClockType.Dynamic) : this(
+			time.ToString(CultureInfo.InvariantCulture), time, callback, manager, clockUpdateType) { }
 
-		public Timer(string name, float time, Action callback, ClockType clockUpdateType = ClockType.Dynamic)
+		public Timer(string name, float time, Action callback, ClockManager manager,ClockType clockUpdateType = ClockType.Dynamic)
 		{
 			this.name = name;
 			totalTime = time;
@@ -38,7 +38,7 @@ namespace Gameplay.Time
 			this.callback += callback;
 			clockType = clockUpdateType;
 
-			ClockManager.instance.GetClock(clockType).AddTimer(this);
+			manager.GetClock(clockType).AddTimer(this);
 		}
 
 		public void Update(float deltaTime)

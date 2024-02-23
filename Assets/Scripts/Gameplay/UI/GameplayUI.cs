@@ -8,7 +8,12 @@ namespace Gameplay.UI
 	{
 		[SerializeField]
 		private List<PlayerUI> playersUI = new ();
-		
+
+		private void Awake()
+		{
+			gameObject.SetActive(true);
+		}
+
 		public void PlayerSetup(PlayerBase player, int index)
 		{
 			playersUI[index].Init(player);

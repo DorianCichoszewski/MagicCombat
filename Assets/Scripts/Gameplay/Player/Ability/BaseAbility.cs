@@ -8,10 +8,17 @@ namespace Gameplay.Player.Ability
 		public const string AbilitiesPath = "Abilities/";
 		public const string UtilitiesPath = "Abilities/Utilities/";
 
-		public Sprite icon;
+		[SerializeField]
+		private bool isMultiClick;
+
+		[SerializeField]
+		protected Sprite defaultIcon;
+		
+		public bool IsMultiClick => isMultiClick;
+		public abstract Sprite GUIIcon { get; }
 
 		public LimiterProvider limiterProvider;
 
-		public abstract void Perform(PlayerBase caster);
+		public abstract void Perform(PlayerBase caster, AbilityState state);
 	}
 }

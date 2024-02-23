@@ -8,15 +8,15 @@ namespace Gameplay.Player.Basic
 		private Vector2 dashDirection;
 		private float durationLeft;
 		private MovementController movementController;
+		private Timer timer;
 
 		private readonly float speedMultiplier;
-		private readonly Timer timer;
+		private readonly float duration;
 
 		public DashMovement(float speedMultiplier, float duration)
 		{
 			this.speedMultiplier = speedMultiplier;
-
-			timer = new Timer(duration, EndDash);
+			this.duration = duration;
 		}
 
 		public void Init(MovementController controller)
@@ -24,6 +24,8 @@ namespace Gameplay.Player.Basic
 			movementController = controller;
 
 			dashDirection = movementController.lastMoveDirection;
+			
+			timer = new Timer(duration, EndDash, movementController.GameplayGlobals.clockManager);
 		}
 
 		public void Update(float deltaTime)

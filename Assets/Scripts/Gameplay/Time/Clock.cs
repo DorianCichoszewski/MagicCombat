@@ -8,10 +8,20 @@ namespace Gameplay.Time
 	public class Clock
 	{
 		[SerializeField]
-		private float currentTime;
+		private float currentSpeed = 1;
+		[SerializeField]
+		private float currentTime = 0;
 
 		[SerializeField]
 		private List<Timer> currentTimers = new();
+
+		public float CurrentSpeed
+		{
+			get => currentSpeed;
+			set => currentSpeed = value;
+		}
+
+		public float CurrentTime => currentTime;
 
 		public event Action<float> ClockUpdate;
 
@@ -27,6 +37,9 @@ namespace Gameplay.Time
 
 		public void UpdateClock(float deltaTime)
 		{
+			deltaTime *= currentSpeed;
+			
+			// Inverse order to enable removal
 			for (int index = currentTimers.Count - 1; index >= 0; index--)
 			{
 				var timer = currentTimers[index];
@@ -51,6 +64,7 @@ namespace Gameplay.Time
 		{
 			currentTimers.Clear();
 			currentTime = 0f;
+			currentSpeed = 1f;
 			ClockUpdate = null;
 		}
 	}

@@ -19,11 +19,12 @@ namespace Gameplay.UI.Ability
 		
 		public void SetupAbilityCaster(AbilityCaster caster)
 		{
-			caster.TriedPerform += inputFeedback.AbilityTriedPerform;
+			caster.State.onPerform += inputFeedback.AbilityPerformed;
+			caster.State.onFailedPerform += inputFeedback.AbilityFailedPerformed;
 			
 			var ability = caster.ability;
 
-			abilityIcon.sprite = ability.icon;
+			abilityIcon.sprite = ability.GUIIcon;
 			
 			inputFeedback.SetupTweens();
 			SetupLimiterIndicator(ability.limiterProvider.limiterType, caster.Limiter);

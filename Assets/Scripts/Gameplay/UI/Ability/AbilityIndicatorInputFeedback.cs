@@ -37,17 +37,15 @@ namespace Gameplay.UI.Ability
 			successfulPerformTween = ringImage.DOColor(succesfulTweenColor, succesfulTweenDuration).OnComplete(() => ringImage.color = Color.white).SetLoops(2, LoopType.Yoyo).SetAutoKill(false).Pause().Done();
 			failedPerformTween = shakeableElement.DOShakePosition(failedTweenDuration, new Vector3(failedTweenStrength, 0), failedTweenVibrato).SetAutoKill(false).Pause().Done();
 		}
-
-		public void AbilityTriedPerform(bool successful)
+		
+		public void AbilityPerformed()
 		{
-			if (successful)
-			{
-				successfulPerformTween.Restart();
-			}
-			else
-			{
-				failedPerformTween.Restart();
-			}
+			successfulPerformTween.Restart();
+		}
+		
+		public void AbilityFailedPerformed()
+		{
+			failedPerformTween.Restart();
 		}
 	}
 }

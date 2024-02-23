@@ -1,4 +1,3 @@
-using System;
 using Gameplay.Limiters;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,12 +9,16 @@ namespace Gameplay.Player.Ability
 		[SerializeField]
 		private PlayerBase caster;
 
+		// TMP public
 		public BaseAbility ability;
-
-		public event Action<bool> TriedPerform;
-
 		private ILimiter limiter;
+		private PlayerBase player;
 
+		private AbilityState abilityState;
+
+		public PlayerBase Player => player;
+
+		public AbilityState State => abilityState;
 		public ILimiter Limiter
 		{
 			get
@@ -25,8 +28,11 @@ namespace Gameplay.Player.Ability
 			}
 		}
 
-		public void Awake()
+		public void Init(PlayerBase player)
 		{
+			this.player = player;
+			abilityState = new();
+			limiter = null;
 			SetupLimiter();
 		}
 
@@ -35,6 +41,7 @@ namespace Gameplay.Player.Ability
 			if (limiter != null) return;
 			limiter = ability.limiterProvider.Limiter;
 			limiter.Reset();
+			abilityState.onFinished += limiter.Start;
 		}
 
 		public void PerformFromInput(InputAction.CallbackContext ctx)
@@ -46,14 +53,14 @@ namespace Gameplay.Player.Ability
 
 		public void TryToCast()
 		{
-			if (limiter.TryPerform())
+			if (limiter.CanPerform())
 			{
-				ability.Perform(caster);
-				TriedPerform?.Invoke(true);
+				ability.Perform(caster, abilityState);
+				abilityState.onPerform?.Invoke();
 			}
 			else
 			{
-				TriedPerform?.Invoke(false);
+				abilityState.onFailedPerform?.Invoke();
 			}
 		}
 	}

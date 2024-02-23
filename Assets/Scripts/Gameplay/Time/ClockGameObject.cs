@@ -4,30 +4,21 @@ namespace Gameplay.Time
 {
 	public class ClockGameObject : MonoBehaviour
 	{
-		[SerializeField]
-		private GameplayGlobals globals;
+		private ClockManager clockManager;
 
-		private void Awake()
+		public void Init(ClockManager manager)
 		{
-			if (ClockManager.instance != null)
-			{
-				Destroy(gameObject);
-				return;
-			}
-
-			ClockManager.instance = globals.clockManager;
-
-			DontDestroyOnLoad(gameObject);
+			clockManager = manager;
 		}
 
 		private void Update()
 		{
-			globals.clockManager.DynamicClock.UpdateClock(UnityEngine.Time.deltaTime);
+			clockManager?.DynamicClock.UpdateClock(UnityEngine.Time.deltaTime);
 		}
 
 		private void FixedUpdate()
 		{
-			globals.clockManager.FixedClock.UpdateClock(UnityEngine.Time.fixedDeltaTime);
+			clockManager?.FixedClock.UpdateClock(UnityEngine.Time.fixedDeltaTime);
 		}
 	}
 }

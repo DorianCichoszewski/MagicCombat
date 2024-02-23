@@ -4,7 +4,7 @@ namespace Gameplay.Limiters
 	{
 		public bool CanPerform();
 
-		public bool TryPerform();
+		public void Start();
 
 		public void Reset();
 
