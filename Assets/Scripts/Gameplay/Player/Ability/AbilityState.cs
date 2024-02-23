@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace Gameplay.Player.Ability
 {
@@ -7,12 +6,14 @@ namespace Gameplay.Player.Ability
 	{
 		public bool isActive;
 
-		public Func<Transform> getSpellTransform;
-
-		public Action onPerform;
+		public Action<AbilityState> onStateChanged;
 
 		public Action onFailedPerform;
 
 		public Action onFinished;
+
+		public Action onPerform;
+
+		public Action onNextClick;
 	}
 }

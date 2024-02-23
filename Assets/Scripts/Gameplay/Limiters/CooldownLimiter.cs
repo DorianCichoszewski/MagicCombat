@@ -9,28 +9,27 @@ namespace Gameplay.Limiters
 	{
 		[SerializeField]
 		private GameplayGlobals gameplayGlobals;
+
 		public float duration;
 
-		private Timer timer;
+		public Timer Timer { get; private set; }
 
-		public Timer Timer => timer;
-
-		public float RemainingTime => timer?.RemainingTime ?? 0f;
-		public float RemainingPercent => timer?.RemainingPercent ?? 0f;
+		public float RemainingTime => Timer?.RemainingTime ?? 0f;
+		public float RemainingPercent => Timer?.RemainingPercent ?? 0f;
 
 		public bool CanPerform()
 		{
-			return timer == null || timer.Completed;
+			return Timer == null || Timer.Completed;
 		}
 
 		public void Start()
 		{
-			timer = new Timer(duration, EndCooldown, gameplayGlobals.clockManager);
+			Timer = new Timer(duration, EndCooldown, gameplayGlobals.clockManager);
 		}
 
 		public void Reset()
 		{
-			timer = null;
+			Timer = null;
 		}
 
 		public ILimiter Copy()
@@ -38,7 +37,7 @@ namespace Gameplay.Limiters
 			return new CooldownLimiter
 			{
 				duration = duration,
-				gameplayGlobals = gameplayGlobals,
+				gameplayGlobals = gameplayGlobals
 			};
 		}
 

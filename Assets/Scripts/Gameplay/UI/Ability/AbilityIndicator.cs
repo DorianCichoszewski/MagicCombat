@@ -1,4 +1,5 @@
 using System;
+using Gameplay.Abilities;
 using Gameplay.Limiters;
 using Gameplay.Player.Ability;
 using UnityEngine;
@@ -10,22 +11,26 @@ namespace Gameplay.UI.Ability
 	{
 		[SerializeField]
 		public Image abilityIcon;
+
 		[SerializeField]
 		private AbilityIndicatorInputFeedback inputFeedback;
-		
-		[Space]
+
+		[Header("limiter Indicators")]
 		[SerializeField]
 		private CooldownLimiterIndicator cooldownLimiterIndicator;
-		
+
+		private BaseAbility ability;
+
 		public void SetupAbilityCaster(AbilityCaster caster)
 		{
 			caster.State.onPerform += inputFeedback.AbilityPerformed;
 			caster.State.onFailedPerform += inputFeedback.AbilityFailedPerformed;
-			
-			var ability = caster.ability;
+			caster.State.onStateChanged += OnStateChanged;
 
-			abilityIcon.sprite = ability.GUIIcon;
-			
+			ability = caster.ability;
+
+			abilityIcon.sprite = ability.GetIcon(caster.State);
+
 			inputFeedback.SetupTweens();
 			SetupLimiterIndicator(ability.limiterProvider.limiterType, caster.Limiter);
 		}
@@ -45,6 +50,11 @@ namespace Gameplay.UI.Ability
 				default:
 					throw new ArgumentOutOfRangeException(nameof(type), type, null);
 			}
+		}
+
+		private void OnStateChanged(AbilityState state)
+		{
+			abilityIcon.sprite = ability.GetIcon(state);
 		}
 	}
 }

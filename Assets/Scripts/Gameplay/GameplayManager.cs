@@ -18,11 +18,11 @@ namespace Gameplay
 
 		[SerializeField]
 		private ClockGameObject clockGO;
-		
+
 		[SerializeField]
 		private GameplayUI gameplayUI;
-		
-		private List<PlayerBase> currentPlayers = new ();
+
+		private readonly List<PlayerBase> currentPlayers = new();
 
 		public GameplayGlobals GameplayGlobals => gameplayGlobals;
 

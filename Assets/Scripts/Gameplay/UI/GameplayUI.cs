@@ -7,7 +7,7 @@ namespace Gameplay.UI
 	public class GameplayUI : MonoBehaviour
 	{
 		[SerializeField]
-		private List<PlayerUI> playersUI = new ();
+		private List<PlayerUI> playersUI = new();
 
 		private void Awake()
 		{

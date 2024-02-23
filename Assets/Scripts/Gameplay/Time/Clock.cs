@@ -9,8 +9,9 @@ namespace Gameplay.Time
 	{
 		[SerializeField]
 		private float currentSpeed = 1;
+
 		[SerializeField]
-		private float currentTime = 0;
+		private float currentTime;
 
 		[SerializeField]
 		private List<Timer> currentTimers = new();
@@ -38,7 +39,7 @@ namespace Gameplay.Time
 		public void UpdateClock(float deltaTime)
 		{
 			deltaTime *= currentSpeed;
-			
+
 			// Inverse order to enable removal
 			for (int index = currentTimers.Count - 1; index >= 0; index--)
 			{

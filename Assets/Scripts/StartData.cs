@@ -12,5 +12,6 @@ public class StartData : ScriptableObject
 	{
 		public Material material;
 		public Vector3 spawnPos;
+		public string name;
 	}
 }

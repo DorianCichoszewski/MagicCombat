@@ -18,19 +18,13 @@ namespace Gameplay.Time
 
 		// debug
 		private ClockType clockType;
-		
-		public string Name => name;
-		public float TotalTime => totalTime;
-		public float RemainingTime => remainingTime;
-		public float RemainingPercent => remainingTime / totalTime;
-		public bool Completed => remainingTime <= 0;
 
-		public event Action callback;
-
-		public Timer(float time, Action callback, ClockManager manager, ClockType clockUpdateType = ClockType.Dynamic) : this(
+		public Timer(float time, Action callback, ClockManager manager,
+			ClockType clockUpdateType = ClockType.Dynamic) : this(
 			time.ToString(CultureInfo.InvariantCulture), time, callback, manager, clockUpdateType) { }
 
-		public Timer(string name, float time, Action callback, ClockManager manager,ClockType clockUpdateType = ClockType.Dynamic)
+		public Timer(string name, float time, Action callback, ClockManager manager,
+			ClockType clockUpdateType = ClockType.Dynamic)
 		{
 			this.name = name;
 			totalTime = time;
@@ -40,6 +34,14 @@ namespace Gameplay.Time
 
 			manager.GetClock(clockType).AddTimer(this);
 		}
+
+		public string Name => name;
+		public float TotalTime => totalTime;
+		public float RemainingTime => remainingTime;
+		public float RemainingPercent => remainingTime / totalTime;
+		public bool Completed => remainingTime <= 0;
+
+		public event Action callback;
 
 		public void Update(float deltaTime)
 		{

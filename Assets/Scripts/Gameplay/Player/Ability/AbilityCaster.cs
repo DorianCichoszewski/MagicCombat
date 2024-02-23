@@ -1,3 +1,4 @@
+using Gameplay.Abilities;
 using Gameplay.Limiters;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,14 +12,13 @@ namespace Gameplay.Player.Ability
 
 		// TMP public
 		public BaseAbility ability;
+
 		private ILimiter limiter;
-		private PlayerBase player;
 
-		private AbilityState abilityState;
+		public PlayerBase Player { get; private set; }
 
-		public PlayerBase Player => player;
+		public AbilityState State { get; private set; }
 
-		public AbilityState State => abilityState;
 		public ILimiter Limiter
 		{
 			get
@@ -30,8 +30,8 @@ namespace Gameplay.Player.Ability
 
 		public void Init(PlayerBase player)
 		{
-			this.player = player;
-			abilityState = new();
+			this.Player = player;
+			State = new AbilityState();
 			limiter = null;
 			SetupLimiter();
 		}
@@ -41,13 +41,13 @@ namespace Gameplay.Player.Ability
 			if (limiter != null) return;
 			limiter = ability.limiterProvider.Limiter;
 			limiter.Reset();
-			abilityState.onFinished += limiter.Start;
+			State.onFinished += limiter.Start;
 		}
 
 		public void PerformFromInput(InputAction.CallbackContext ctx)
 		{
 			if (!ctx.performed) return;
-			
+
 			TryToCast();
 		}
 
@@ -55,12 +55,14 @@ namespace Gameplay.Player.Ability
 		{
 			if (limiter.CanPerform())
 			{
-				ability.Perform(caster, abilityState);
-				abilityState.onPerform?.Invoke();
+				if (State.isActive)
+					State.onNextClick();
+				else
+					ability.Perform(caster, State);
 			}
 			else
 			{
-				abilityState.onFailedPerform?.Invoke();
+				State.onFailedPerform?.Invoke();
 			}
 		}
 	}

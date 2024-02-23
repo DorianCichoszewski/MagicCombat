@@ -11,23 +11,28 @@ namespace Gameplay.Player.Basic
 		[Header("Collisions")]
 		[SerializeField]
 		private LayerMask collisionLayerMask;
+
 		[SerializeField]
 		private int collisionRayCount = 12;
+
 		[SerializeField]
 		private float characterColliderSize = 1;
-
-		[Header("Debug")]
-		public float targetRotationAngle;
-
 		
+		[Header("Debug")]
 		public Vector2 lastMoveDirection;
 		public Vector2 moveValue;
+		
+		private float targetRotationAngle;
+		private Vector2 rotationInput;
+		private bool useStickRotation;
 
 		private IMovement currentMovement;
 
 		public bool Enabled { get; set; } = true;
-		
+
 		public GameplayGlobals GameplayGlobals { get; private set; }
+
+		public Vector2 LookDirection => rotationInput != Vector2.zero ? rotationInput : lastMoveDirection;
 
 		public void Init(GameplayGlobals gameplayGlobals)
 		{
@@ -46,9 +51,16 @@ namespace Gameplay.Player.Basic
 
 		public void Rotate(InputAction.CallbackContext ctx)
 		{
-			var stickInput = ctx.ReadValue<Vector2>();
-			if (stickInput == Vector2.zero) return;
-			targetRotationAngle = Mathf.Rad2Deg * Mathf.Atan2(stickInput.x, stickInput.y);
+			rotationInput = ctx.ReadValue<Vector2>();
+			if (rotationInput != Vector2.zero)
+			{
+				useStickRotation = true;
+				targetRotationAngle = Mathf.Rad2Deg * Mathf.Atan2(rotationInput.x, rotationInput.y);
+			}
+			else
+			{
+				useStickRotation = false;
+			}
 		}
 
 		public void Dash(float speedMultiplier, float duration)
@@ -65,6 +77,9 @@ namespace Gameplay.Player.Basic
 				return;
 			}
 			
+			if (!useStickRotation)
+				targetRotationAngle = Mathf.Rad2Deg * Mathf.Atan2(lastMoveDirection.x, lastMoveDirection.y);
+
 			var targetRotation = Quaternion.Euler(0f, targetRotationAngle, 0f);
 			transform.rotation = targetRotation;
 
@@ -91,7 +106,7 @@ namespace Gameplay.Player.Basic
 		public void ApplyMovement(Vector2 targetMovement)
 		{
 			// Split big movements to better check collision
-			int movementSegmentCount = (int)(targetMovement.magnitude / (characterColliderSize * 0.8)) + 1;
+			int movementSegmentCount = (int)(targetMovement.magnitude / (characterColliderSize * 0.5)) + 1;
 			var movementSegment = targetMovement * (1.0f / movementSegmentCount);
 
 			for (int i = 0; i < movementSegmentCount; i++)

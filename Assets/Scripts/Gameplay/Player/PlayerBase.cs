@@ -17,6 +17,7 @@ namespace Gameplay.Player
 
 		[Space]
 		public AbilityCaster utility;
+
 		public AbilityCaster skill1;
 		public AbilityCaster skill2;
 		public AbilityCaster skill3;
@@ -34,7 +35,7 @@ namespace Gameplay.Player
 			skin.SetSkin(data);
 			transform.position = data.spawnPos;
 			movement.Init(manager.GameplayGlobals);
-			
+
 			utility.Init(this);
 			skill1.Init(this);
 			skill2.Init(this);

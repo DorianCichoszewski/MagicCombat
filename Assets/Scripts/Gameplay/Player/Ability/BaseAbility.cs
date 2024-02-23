@@ -1,7 +1,9 @@
 using Gameplay.Limiters;
+using Gameplay.Player;
+using Gameplay.Player.Ability;
 using UnityEngine;
 
-namespace Gameplay.Player.Ability
+namespace Gameplay.Abilities
 {
 	public abstract class BaseAbility : ScriptableObject
 	{
@@ -13,11 +15,15 @@ namespace Gameplay.Player.Ability
 
 		[SerializeField]
 		protected Sprite defaultIcon;
-		
-		public bool IsMultiClick => isMultiClick;
-		public abstract Sprite GUIIcon { get; }
 
 		public LimiterProvider limiterProvider;
+
+		public bool IsMultiClick => isMultiClick;
+
+		public virtual Sprite GetIcon(AbilityState state)
+		{
+			return defaultIcon;
+		}
 
 		public abstract void Perform(PlayerBase caster, AbilityState state);
 	}

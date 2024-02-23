@@ -6,11 +6,6 @@ namespace Gameplay.Time
 	{
 		private ClockManager clockManager;
 
-		public void Init(ClockManager manager)
-		{
-			clockManager = manager;
-		}
-
 		private void Update()
 		{
 			clockManager?.DynamicClock.UpdateClock(UnityEngine.Time.deltaTime);
@@ -19,6 +14,11 @@ namespace Gameplay.Time
 		private void FixedUpdate()
 		{
 			clockManager?.FixedClock.UpdateClock(UnityEngine.Time.fixedDeltaTime);
+		}
+
+		public void Init(ClockManager manager)
+		{
+			clockManager = manager;
 		}
 	}
 }
