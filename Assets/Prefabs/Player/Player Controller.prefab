@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148121adedd64a98bee23183bed72dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startData: {fileID: 11400000, guid: 658883a6bf0329b42b9d1a1aaeda4cb6, type: 2}
   avatarPrefab: {fileID: 8962357724235189018, guid: 4f6425c4858c4ff4c84014377a0ab781,
     type: 3}
   input: {fileID: 37862505883009145}

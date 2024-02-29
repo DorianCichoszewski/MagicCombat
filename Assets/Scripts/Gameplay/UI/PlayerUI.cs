@@ -1,5 +1,6 @@
 using Gameplay.Player;
 using Gameplay.UI.Ability;
+using Player;
 using UnityEngine;
 
 namespace Gameplay.UI

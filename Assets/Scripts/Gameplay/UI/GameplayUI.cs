@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Gameplay.Player;
+using Player;
 using UnityEngine;
 
 namespace Gameplay.UI
@@ -15,7 +16,7 @@ namespace Gameplay.UI
 		private void Awake()
 		{
 			gameObject.SetActive(false);
-			gameplayManager.AddedPlayer += PlayerSetup;
+			//gameplayManager.AddedPlayer += PlayerSetup;
 			gameplayManager.GameStarted += GameStarted;
 		}
 

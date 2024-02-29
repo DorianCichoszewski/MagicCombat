@@ -1,6 +1,7 @@
 using Gameplay.Abilities;
 using Gameplay.Player.Ability;
 using Gameplay.Player.Basic;
+using Player;
 using UnityEngine;
 
 namespace Gameplay.Player

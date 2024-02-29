@@ -10,8 +10,9 @@ public class StartData : ScriptableObject
 	[Serializable]
 	public class PlayerInit
 	{
-		public Material material;
-		public Vector3 spawnPos;
 		public string name;
+		public Material material;
+		public Color color;
+		public Vector3 spawnPos;
 	}
 }

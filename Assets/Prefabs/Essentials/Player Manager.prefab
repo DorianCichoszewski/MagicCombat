@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4528007423074153529}
   - component: {fileID: 7024302257302569899}
-  - component: {fileID: 1079169737246440461}
+  - component: {fileID: 4183613940911826937}
   m_Layer: 0
   m_Name: Player Manager
   m_TagString: Untagged
@@ -46,25 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 3
   m_MaxPlayerCount: 2
   m_AllowJoining: 1
   m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1079169737246440461}
-        m_TargetAssemblyTypeName: Gameplay.GameplayManager, Assembly-CSharp
-        m_MethodName: OnAddPlayer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -92,7 +80,7 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &1079169737246440461
+--- !u!114 &4183613940911826937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,14 +89,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5277119817312339916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b079a2528e84b0c8f6d91e9d5814edd, type: 3}
+  m_Script: {fileID: 11500000, guid: e1f3370e09344fe7ab0871a3470dba47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startData: {fileID: 11400000, guid: 658883a6bf0329b42b9d1a1aaeda4cb6, type: 2}
-  gameplayGlobals: {fileID: 11400000, guid: 607e759f7816377448b8396ae0d0f760, type: 2}
-  clockGO: {fileID: 2529649853499252882}
-  gameplayUI: {fileID: 0}
-  gameStartUI: {fileID: 0}
+  runtimeScriptable: {fileID: 11400000, guid: f6146a3121d1a5f42b694bc897662674, type: 2}
+  players: []
 --- !u!1 &7451171534156050875
 GameObject:
   m_ObjectHideFlags: 0
