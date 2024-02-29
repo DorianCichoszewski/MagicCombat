@@ -27,6 +27,7 @@ namespace Gameplay.Player.Basic
 		private bool useStickRotation;
 
 		private IMovement currentMovement;
+		private MovementExternalController externalController;
 
 		public bool Enabled { get; set; } = true;
 
@@ -37,6 +38,7 @@ namespace Gameplay.Player.Basic
 		public void Init(GameplayGlobals gameplayGlobals)
 		{
 			ResetMovement();
+			externalController = new MovementExternalController();
 
 			GameplayGlobals = gameplayGlobals;
 
@@ -62,47 +64,7 @@ namespace Gameplay.Player.Basic
 				useStickRotation = false;
 			}
 		}
-
-		public void Dash(float speedMultiplier, float duration)
-		{
-			var dash = new DashMovement(speedMultiplier, duration);
-			SetMovement(dash);
-		}
-
-		private void HandleMovement(float deltaTime)
-		{
-			if (!Enabled)
-			{
-				AvoidObstacles();
-				return;
-			}
-			
-			if (!useStickRotation)
-				targetRotationAngle = Mathf.Rad2Deg * Mathf.Atan2(lastMoveDirection.x, lastMoveDirection.y);
-
-			var targetRotation = Quaternion.Euler(0f, targetRotationAngle, 0f);
-			transform.rotation = targetRotation;
-
-			currentMovement.Update(deltaTime);
-		}
-
-		private void AvoidObstacles()
-		{
-			var offset = Vector3.zero;
-			for (int i = 0; i < collisionRayCount; i++)
-			{
-				float angle = i * 360f / collisionRayCount;
-				var direction = Quaternion.Euler(0, angle, 0) * transform.forward;
-
-				if (!Physics.Raycast(transform.position, direction, out var hit, characterColliderSize,
-						collisionLayerMask)) continue;
-				offset += -direction * (characterColliderSize - hit.distance);
-			}
-
-			offset /= collisionRayCount / 2f;
-			transform.Translate(offset, Space.World);
-		}
-
+		
 		public void ApplyMovement(Vector2 targetMovement)
 		{
 			// Split big movements to better check collision
@@ -126,6 +88,49 @@ namespace Gameplay.Player.Basic
 		public void ResetMovement()
 		{
 			SetMovement(new DefaultMovement());
+		}
+
+		public void AddForce(MovementForce force)
+		{
+			externalController.AddForce(force);
+		}
+		
+		private void HandleMovement(float deltaTime)
+		{
+			if (!Enabled)
+			{
+				AvoidObstacles();
+				return;
+			}
+			
+			if (!useStickRotation)
+				targetRotationAngle = Mathf.Rad2Deg * Mathf.Atan2(lastMoveDirection.x, lastMoveDirection.y);
+
+			var targetRotation = Quaternion.Euler(0f, targetRotationAngle, 0f);
+			transform.rotation = targetRotation;
+
+			Vector2 movement;
+			movement = currentMovement.Update(deltaTime);
+			movement += externalController.Update(deltaTime);
+			
+			ApplyMovement(movement);
+		}
+
+		private void AvoidObstacles()
+		{
+			var offset = Vector3.zero;
+			for (int i = 0; i < collisionRayCount; i++)
+			{
+				float angle = i * 360f / collisionRayCount;
+				var direction = Quaternion.Euler(0, angle, 0) * transform.forward;
+
+				if (!Physics.Raycast(transform.position, direction, out var hit, characterColliderSize,
+						collisionLayerMask)) continue;
+				offset += -direction * (characterColliderSize - hit.distance);
+			}
+
+			offset /= collisionRayCount / 2f;
+			transform.Translate(offset, Space.World);
 		}
 	}
 }

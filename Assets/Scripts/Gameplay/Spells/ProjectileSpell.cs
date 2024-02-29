@@ -14,20 +14,20 @@ namespace Gameplay.Spells
 		[SerializeField]
 		private new MeshRenderer renderer;
 
-		private PlayerBase caster;
+		private PlayerAvatar caster;
 
 		private Timer timer;
 
 		public Transform Transform => transform;
 
-		public event Action<PlayerBase> onPlayerHit;
+		public event Action<PlayerAvatar> onPlayerHit;
 		public event Action<GameObject> onNonPlayerHit;
 		public event Action onTimerEnd;
 
-		public void Init(PlayerBase caster, Vector2 direction, float speed, float duration)
+		public void Init(PlayerAvatar caster, Vector2 direction, float speed, float duration)
 		{
 			this.caster = caster;
-			renderer.material = caster.data.material;
+			renderer.material = caster.PlayerController.Data.material;
 
 			rb.velocity = direction.ToVec3().normalized * speed;
 
@@ -36,7 +36,7 @@ namespace Gameplay.Spells
 		
 		private void OnTriggerEnter(Collider other)
 		{
-			var otherPlayer = other.GetComponentInParent<PlayerBase>();
+			var otherPlayer = other.GetComponentInParent<PlayerAvatar>();
 
 			if (otherPlayer != null)
 			{

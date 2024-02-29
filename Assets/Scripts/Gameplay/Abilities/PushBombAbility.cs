@@ -1,6 +1,7 @@
 using Extension;
 using Gameplay.Player;
 using Gameplay.Player.Ability;
+using Gameplay.Player.Basic;
 using Gameplay.Spells;
 using UnityEngine;
 
@@ -24,17 +25,19 @@ namespace Gameplay.Abilities
 		public float projectileSpeed = 20;
 		public float projectileDuration = 3;
 
+		[Space]
 		public float explosionRange = 5f;
 
 		public float explosionMaxStrength = 10f;
 		public float explosionMinStrength = 3f;
+		public MovementForce explosionForce;
 
 		public override Sprite GetIcon(AbilityState state)
 		{
 			return state.isActive ? travelingProjectileSprite : defaultIcon;
 		}
 
-		public override void Perform(PlayerBase caster, AbilityState state)
+		public override void Perform(PlayerAvatar caster, AbilityState state)
 		{
 			var casterTransform = caster.transform;
 			var direction = caster.MovementController.LookDirection;
@@ -51,7 +54,7 @@ namespace Gameplay.Abilities
 			state.onPerform?.Invoke();
 		}
 
-		private void MakeExplosion(ProjectileSpell projectile, PlayerBase caster, AbilityState state)
+		private void MakeExplosion(ProjectileSpell projectile, PlayerAvatar caster, AbilityState state)
 		{
 			var explosion = Instantiate(explosionPrefab, projectile.transform.position, projectile.transform.rotation);
 
@@ -62,7 +65,8 @@ namespace Gameplay.Abilities
 			{
 				float distancePercent = Mathf.InverseLerp(0, explosionRange, distance.magnitude);
 				float strength = Mathf.Lerp(explosionMaxStrength, explosionMinStrength, distancePercent);
-				Debug.Log($"Player {player.data.name} caught in explosion of strength {strength}");
+				Vector2 direction = (player.transform.position - explosion.transform.position).ToVec2().normalized;
+				player.MovementController.AddForce(explosionForce.GetNew(direction * strength));
 			});
 			state.isActive = false;
 			state.onStateChanged?.Invoke(state);

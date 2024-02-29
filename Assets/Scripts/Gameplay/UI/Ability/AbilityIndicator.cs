@@ -27,7 +27,7 @@ namespace Gameplay.UI.Ability
 			caster.State.onFailedPerform += inputFeedback.AbilityFailedPerformed;
 			caster.State.onStateChanged += OnStateChanged;
 
-			ability = caster.ability;
+			ability = caster.Ability;
 
 			abilityIcon.sprite = ability.GetIcon(caster.State);
 

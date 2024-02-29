@@ -25,6 +25,6 @@ namespace Gameplay.Abilities
 			return defaultIcon;
 		}
 
-		public abstract void Perform(PlayerBase caster, AbilityState state);
+		public abstract void Perform(PlayerAvatar caster, AbilityState state);
 	}
 }

@@ -18,17 +18,26 @@ namespace Gameplay.UI
 		[SerializeField]
 		private AbilityIndicator skill3Indicator;
 
+		private PlayerController player;
+
 		private void Awake()
 		{
 			gameObject.SetActive(false);
 		}
 
-		public void Init(PlayerBase player)
+		public void SetPlayer(PlayerController player)
 		{
-			utilityIndicator.SetupAbilityCaster(player.utility);
-			skill1Indicator.SetupAbilityCaster(player.skill1);
-			skill2Indicator.SetupAbilityCaster(player.skill2);
-			skill3Indicator.SetupAbilityCaster(player.skill3);
+			this.player = player;
+		}
+
+		public void Init()
+		{
+			if (player == null) return;
+			
+			utilityIndicator.SetupAbilityCaster(player.Avatar.utility);
+			skill1Indicator.SetupAbilityCaster(player.Avatar.skill1);
+			skill2Indicator.SetupAbilityCaster(player.Avatar.skill2);
+			skill3Indicator.SetupAbilityCaster(player.Avatar.skill3);
 
 			gameObject.SetActive(true);
 		}

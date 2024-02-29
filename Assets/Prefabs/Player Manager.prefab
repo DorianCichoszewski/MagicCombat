@@ -81,7 +81,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 3344732327343044904, guid: d368503575b066945aeb1ef3f42713f5,
       type: 3}
-  m_PlayerPrefab: {fileID: 8806382431648914429, guid: 4f6425c4858c4ff4c84014377a0ab781,
+  m_PlayerPrefab: {fileID: 3026820925650153144, guid: c9a99cdb7ed1d13459e554678cfa1e4b,
     type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   gameplayGlobals: {fileID: 11400000, guid: 607e759f7816377448b8396ae0d0f760, type: 2}
   clockGO: {fileID: 2529649853499252882}
   gameplayUI: {fileID: 0}
+  gameStartUI: {fileID: 0}
 --- !u!1 &7451171534156050875
 GameObject:
   m_ObjectHideFlags: 0

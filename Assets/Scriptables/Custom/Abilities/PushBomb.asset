@@ -24,11 +24,14 @@ MonoBehaviour:
     type: 3}
   travelingProjectileSprite: {fileID: 21300000, guid: 140d7567aa3fa0046a5ff15c0185ca42,
     type: 3}
-  projectileSpeed: 20
+  projectileSpeed: 40
   projectileDuration: 3
-  explosionRange: 15
-  explosionMaxStrength: 10
-  explosionMinStrength: 3
+  explosionRange: 25
+  explosionMaxStrength: 100
+  explosionMinStrength: 30
+  explosionForce:
+    duration: 0.3
+    type: 1
   references:
     version: 2
     RefIds:

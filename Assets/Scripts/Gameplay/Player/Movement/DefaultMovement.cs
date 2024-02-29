@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Gameplay.Player.Basic
 {
 	public class DefaultMovement : IMovement
@@ -9,9 +11,9 @@ namespace Gameplay.Player.Basic
 			movementController = controller;
 		}
 
-		public void Update(float deltaTime)
+		public Vector2 Update(float deltaTime)
 		{
-			movementController.ApplyMovement(movementController.moveValue * movementController.speed * deltaTime);
+			return movementController.moveValue * (movementController.speed * deltaTime);
 		}
 
 		public void ChangeMovement() { }

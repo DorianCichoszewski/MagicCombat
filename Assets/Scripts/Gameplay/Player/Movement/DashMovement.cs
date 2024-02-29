@@ -28,11 +28,11 @@ namespace Gameplay.Player.Basic
 			timer = new Timer(duration, EndDash, movementController.GameplayGlobals.clockManager);
 		}
 
-		public void Update(float deltaTime)
+		public Vector2 Update(float deltaTime)
 		{
 			float speed = movementController.speed * speedMultiplier;
 
-			movementController.ApplyMovement(speed * deltaTime * dashDirection);
+			return speed * deltaTime * dashDirection;
 		}
 
 		public void ChangeMovement()

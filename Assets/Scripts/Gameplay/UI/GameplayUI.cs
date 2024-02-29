@@ -9,14 +9,29 @@ namespace Gameplay.UI
 		[SerializeField]
 		private List<PlayerUI> playersUI = new();
 
+		[SerializeField]
+		private GameplayManager gameplayManager;
+
 		private void Awake()
 		{
-			gameObject.SetActive(true);
+			gameObject.SetActive(false);
+			gameplayManager.AddedPlayer += PlayerSetup;
+			gameplayManager.GameStarted += GameStarted;
 		}
 
-		public void PlayerSetup(PlayerBase player, int index)
+		private void PlayerSetup(PlayerController player)
 		{
-			playersUI[index].Init(player);
+			playersUI[player.Index].SetPlayer(player);
+		}
+
+		private void GameStarted()
+		{
+			foreach (var playerUI in playersUI)
+			{
+				playerUI.Init();
+			}
+			
+			gameObject.SetActive(true);
 		}
 	}
 }

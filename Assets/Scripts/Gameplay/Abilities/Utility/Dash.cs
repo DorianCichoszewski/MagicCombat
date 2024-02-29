@@ -1,5 +1,6 @@
 using Gameplay.Player;
 using Gameplay.Player.Ability;
+using Gameplay.Player.Basic;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Utility
@@ -10,9 +11,10 @@ namespace Gameplay.Abilities.Utility
 		public float speedMultiplier = 5;
 		public float duration = .3f;
 
-		public override void Perform(PlayerBase caster, AbilityState state)
+		public override void Perform(PlayerAvatar caster, AbilityState state)
 		{
-			caster.MovementController.Dash(speedMultiplier, duration);
+			var dash = new DashMovement(speedMultiplier, duration);
+			caster.MovementController.SetMovement(dash);
 			state.onPerform?.Invoke();
 			state.onFinished?.Invoke();
 		}
