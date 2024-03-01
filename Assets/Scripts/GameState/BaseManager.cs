@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GameState
 {
-	public abstract class BaseState : MonoBehaviour
+	public abstract class BaseManager : MonoBehaviour
 	{
 		[SerializeField]
 		protected RuntimeScriptable runtimeScriptable;

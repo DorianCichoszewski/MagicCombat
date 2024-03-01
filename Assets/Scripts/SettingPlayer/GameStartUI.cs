@@ -15,7 +15,7 @@ namespace SettingPlayer
 
 		[Space]
 		[SerializeField]
-		private SettingPlayerState stateManager;
+		private SettingPlayerManager manager;
 		[SerializeField]
 		private Button nextButton;
 		
@@ -24,19 +24,19 @@ namespace SettingPlayer
 		private void Start()
 		{
 			nextButton.gameObject.SetActive(false);
-			nextButton.onClick.AddListener(stateManager.ConfirmPlayers);
+			nextButton.onClick.AddListener(manager.ConfirmPlayers);
 			SetCallbacks();
 		}
 		
 		private void SetCallbacks()
 		{
-			stateManager.RuntimeScriptable.Essentials.playersManager.onPlayerJoined += SetPlayer;
-			stateManager.RuntimeScriptable.Essentials.playersManager.onPlayerLeft += SetPlayer;
+			manager.RuntimeScriptable.Essentials.playersManager.onPlayerJoined += SetPlayer;
+			manager.RuntimeScriptable.Essentials.playersManager.onPlayerLeft += SetPlayer;
 		}
 
 		private void SetPlayer(PlayerController player)
 		{
-			var datas = stateManager.RuntimeScriptable.playersData;
+			var datas = manager.RuntimeScriptable.playersData;
 			
 			// Get correct number of windows
 			while (playerConfigWindows.Count < datas.Count)
@@ -57,7 +57,7 @@ namespace SettingPlayer
 				window.SetPlayer(datas[i].playerController);
 			}
 
-			if (datas.Count >= stateManager.MinPlayers && datas.Count <= stateManager.MaxPlayers)
+			if (datas.Count >= manager.MinPlayers && datas.Count <= manager.MaxPlayers)
 			{
 				nextButton.gameObject.SetActiveCached(true);
 				nextButton.Select();

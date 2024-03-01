@@ -5,8 +5,7 @@ namespace GameState
 {
 	public class GlobalState : MonoBehaviour
 	{
-		[SerializeField]
-		private ProjectScenes projectScenes;
+		public ProjectScenes projectScenes;
 		
 		public PlayersManager playersManager;
 		

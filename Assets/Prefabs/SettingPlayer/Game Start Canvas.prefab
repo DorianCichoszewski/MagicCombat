@@ -351,7 +351,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3192452709384299742}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -376,7 +376,7 @@ MonoBehaviour:
   windowPrefab: {fileID: 7133162682346967229, guid: 9b1bed64f55756e419170664824d65ad,
     type: 3}
   windowParent: {fileID: 511570132333590112}
-  stateManager: {fileID: 0}
+  manager: {fileID: 0}
   nextButton: {fileID: 6679009544823482039}
 --- !u!1 &5422753285937053391
 GameObject:
@@ -431,7 +431,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1

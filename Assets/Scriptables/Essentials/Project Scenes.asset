@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac58c8aae65c48358c7ec236cde439c6, type: 3}
   m_Name: Project Scenes
   m_EditorClassIdentifier: 
-  settingPlayers: {fileID: 102900000, guid: 0fe8a933eec00b04da85b187150845f2, type: 3}
-  settingAbilities: {fileID: 0}
+  settingPlayers: {fileID: 102900000, guid: 28ca8f5aa20f41a42b951bc24baf287f, type: 3}
+  settingAbilities: {fileID: 102900000, guid: 0fe8a933eec00b04da85b187150845f2, type: 3}
   gameplay: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-  settingPlayersName: AddingPlayers
-  settingAbilitiesName: 
+  settingPlayersName: SettingPlayers
+  settingAbilitiesName: SettingAbilities
   gameplayName: Gameplay

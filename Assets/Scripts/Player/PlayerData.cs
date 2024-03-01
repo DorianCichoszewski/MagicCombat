@@ -18,10 +18,10 @@ namespace Player
 		{
 			playerController = controller;
 				
-			utility = null;
-			skill1 = null;
-			skill2 = null;
-			skill3 = null;
+			utility = controller.Data.startUtility;
+			skill1 = controller.Data.startSkill1;
+			skill2 = controller.Data.startSkill2;
+			skill3 = controller.Data.startSkill3;
 		}
 	}
 }

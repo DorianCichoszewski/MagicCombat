@@ -51,6 +51,8 @@ namespace Player
 			var controller = input.GetComponent<PlayerController>();
 			runtimeScriptable.playersData.Add(new PlayerData(controller));
 			players.Add(controller);
+			controller.Init();
+			input.transform.SetParent(transform);
 			onPlayerJoined?.Invoke(controller);
 		}
 		

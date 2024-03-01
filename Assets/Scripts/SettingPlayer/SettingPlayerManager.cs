@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SettingPlayer
 {
-	public class SettingPlayerState : BaseState
+	public class SettingPlayerManager : BaseManager
 	{
 		[SerializeField]
 		private int minPlayers = 2;
@@ -15,7 +15,8 @@ namespace SettingPlayer
 
 		public void ConfirmPlayers()
 		{
-			Debug.Log("GONext");
+			Debug.Log("Finished Setting Players");
+			runtimeScriptable.Essentials.projectScenes.GoToSettingAbilities();
 		}
 	}
 }
