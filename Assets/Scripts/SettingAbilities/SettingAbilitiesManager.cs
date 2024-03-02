@@ -12,5 +12,11 @@ namespace SettingAbilities
 		{
 			ui.Init();
 		}
+
+		public void Next()
+		{
+			Debug.Log("Finished abilities setup");
+			runtimeScriptable.Essentials.projectScenes.GoToGameplay();
+		}
 	}
 }

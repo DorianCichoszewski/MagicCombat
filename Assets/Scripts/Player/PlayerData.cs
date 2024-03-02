@@ -4,7 +4,7 @@ using Gameplay.Abilities;
 namespace Player
 {
 	[Serializable]
-	public struct PlayerData
+	public class PlayerData
 	{
 		public PlayerController playerController;
 		

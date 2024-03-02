@@ -1,3 +1,4 @@
+using System;
 using Gameplay;
 using Gameplay.Player;
 using UnityEngine;
@@ -38,9 +39,19 @@ namespace Player
 		public void Reset()
 		{
 			eventSystem.playerRoot = null;
+			eventSystem.firstSelectedGameObject = null;
 			eventSystem.SetSelectedGameObject(null);
 		}
-		
+
+		private void Update()
+		{
+			if (eventSystem.playerRoot != null)
+			{
+				if (eventSystem.currentSelectedGameObject == null)
+					eventSystem.SetSelectedGameObject(eventSystem.firstSelectedGameObject);
+			}
+		}
+
 		public bool EnableInput
 		{
 			get => enableInput && avatar != null;

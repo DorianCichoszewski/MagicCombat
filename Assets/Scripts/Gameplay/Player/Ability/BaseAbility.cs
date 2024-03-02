@@ -20,6 +20,8 @@ namespace Gameplay.Abilities
 
 		public bool IsMultiClick => isMultiClick;
 
+		public virtual Sprite SelectionIcon => defaultIcon;
+
 		public virtual Sprite GetIcon(AbilityState state)
 		{
 			return defaultIcon;

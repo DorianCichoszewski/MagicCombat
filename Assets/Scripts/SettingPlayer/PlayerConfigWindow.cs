@@ -1,5 +1,6 @@
 using Player;
 using TMPro;
+using UI;
 using UnityEngine;
 
 namespace SettingPlayer
@@ -7,16 +8,29 @@ namespace SettingPlayer
 	public class PlayerConfigWindow : MonoBehaviour
 	{
 		[SerializeField]
-		private TMP_Text header;
+		private GameObject firstElement;
+		
+		[SerializeField]
+		private PlayerHeader header;
 		[SerializeField]
 		private TMP_Text controllerType;
 
-		public void SetPlayer(PlayerController player)
+		[SerializeField]
+		private ReadyToggle readyToggle;
+		
+		public bool IsReady => readyToggle.isOn;
+
+		public void SetPlayer(PlayerController player, GameStartUI ui)
 		{
-			var data = player.Data;
-			header.text = data.name;
-			header.color = data.color;
+			header.Init(player.Data);
 			controllerType.text = player.Input.devices[0].name;
+			
+			var eventSystem = player.EventSystem;
+			eventSystem.playerRoot = gameObject;
+			eventSystem.firstSelectedGameObject = firstElement;
+			eventSystem.SetSelectedGameObject(firstElement);
+			
+			readyToggle.onValueChanged.AddListener(_ => ui.OnPlayerReady());
 		}
 	}
 }

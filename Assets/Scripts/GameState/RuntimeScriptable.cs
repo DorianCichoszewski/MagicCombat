@@ -33,5 +33,10 @@ namespace GameState
 		#endregion
 		
 		public List<PlayerData> playersData = new();
+
+		public PlayerData GetPlayerData(PlayerController playerController)
+		{
+			return playersData[playerController.Index];
+		}
 	}
 }

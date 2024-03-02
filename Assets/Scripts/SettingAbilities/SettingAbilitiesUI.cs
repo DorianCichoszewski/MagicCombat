@@ -23,9 +23,21 @@ namespace SettingAbilities
 			{
 				var data = playersData[i];
 				var window = Instantiate(windowPrefab, windowsParent);
-				window.Init(data.playerController, manager.RuntimeScriptable);
+				window.Init(data.playerController, this, manager.RuntimeScriptable);
 				spawnedWindows.Add(window);
 			}
+		}
+
+		public void OnPlayerReady()
+		{
+			bool allReady = true;
+			foreach (var window in spawnedWindows)
+			{
+				allReady &= window.IsReady;
+			}
+			
+			if (allReady)
+				manager.Next();
 		}
 	}
 }

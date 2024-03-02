@@ -1,27 +1,53 @@
 using GameState;
 using Player;
+using UI;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace SettingAbilities
 {
 	public class AbilitiesPlayerWindow : MonoBehaviour
 	{
 		[SerializeField]
-		private Selectable firstElement;
+		private GameObject firstElement;
+		[SerializeField]
+		private ReadyToggle readyToggle;
 
-		private RuntimeScriptable runtimeScriptable;
-		private PlayerController assignedPlayer;
+		[SerializeField]
+		private AbilityPicker skill1Picker;
+		[SerializeField]
+		private AbilityPicker skill2Picker;
+		[SerializeField]
+		private AbilityPicker skill3Picker;
 
-		private GameObject PlayerRoot => gameObject;
+		private SettingAbilitiesUI settingAbilitiesUI;
 
-		public void Init(PlayerController controller, RuntimeScriptable scriptable)
+		public bool IsReady => readyToggle.isOn;
+
+		public void Init(PlayerController controller, SettingAbilitiesUI ui, RuntimeScriptable runtimeScriptable)
 		{
-			runtimeScriptable = scriptable;
-			assignedPlayer = controller;
+			settingAbilitiesUI = ui;
 			var eventSystem = controller.EventSystem;
-			eventSystem.SetSelectedGameObject(firstElement.gameObject);
-			eventSystem.playerRoot = PlayerRoot;
+			eventSystem.playerRoot = gameObject;
+			eventSystem.firstSelectedGameObject = firstElement;
+			eventSystem.SetSelectedGameObject(firstElement);
+
+			readyToggle.onValueChanged.AddListener(_ => ui.OnPlayerReady());
+
+			skill1Picker.Init(newSkill => runtimeScriptable.GetPlayerData(controller).skill1 = newSkill,
+				runtimeScriptable.GetPlayerData(controller).skill1);
+			skill2Picker.Init(newSkill => runtimeScriptable.GetPlayerData(controller).skill2 = newSkill,
+				runtimeScriptable.GetPlayerData(controller).skill2);
+			skill3Picker.Init(newSkill => runtimeScriptable.GetPlayerData(controller).skill3 = newSkill,
+				runtimeScriptable.GetPlayerData(controller).skill3);
+		}
+		
+		public void VerifyWindowData(bool isReady)
+		{
+			if (!isReady) return;
+			
+			
+
+			settingAbilitiesUI.OnPlayerReady();
 		}
 	}
 }

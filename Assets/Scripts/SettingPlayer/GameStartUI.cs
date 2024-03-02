@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using Extension;
 using Player;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace SettingPlayer
 {
@@ -16,19 +14,10 @@ namespace SettingPlayer
 		[Space]
 		[SerializeField]
 		private SettingPlayerManager manager;
-		[SerializeField]
-		private Button nextButton;
 		
 		private List<PlayerConfigWindow> playerConfigWindows = new ();
 
 		private void Start()
-		{
-			nextButton.gameObject.SetActive(false);
-			nextButton.onClick.AddListener(manager.ConfirmPlayers);
-			SetCallbacks();
-		}
-		
-		private void SetCallbacks()
 		{
 			manager.RuntimeScriptable.Essentials.playersManager.onPlayerJoined += SetPlayer;
 			manager.RuntimeScriptable.Essentials.playersManager.onPlayerLeft += SetPlayer;
@@ -54,18 +43,20 @@ namespace SettingPlayer
 			for (int i = 0; i < playerConfigWindows.Count; i++)
 			{
 				var window = playerConfigWindows[i];
-				window.SetPlayer(datas[i].playerController);
+				window.SetPlayer(datas[i].playerController, this);
 			}
+		}
 
-			if (datas.Count >= manager.MinPlayers && datas.Count <= manager.MaxPlayers)
+		public void OnPlayerReady()
+		{
+			bool allReady = true;
+			foreach (var window in playerConfigWindows)
 			{
-				nextButton.gameObject.SetActiveCached(true);
-				nextButton.Select();
+				allReady &= window.IsReady;
 			}
-			else
-			{
-				nextButton.gameObject.SetActiveCached(false);
-			}
+			
+			if (allReady)
+				manager.ConfirmPlayers();
 		}
 	}
 }
