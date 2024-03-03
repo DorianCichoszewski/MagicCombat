@@ -10,11 +10,12 @@ namespace SettingPlayer
 		[SerializeField]
 		private int maxPlayers = 4;
 
-		public int MinPlayers => minPlayers;
-		public int MaxPlayers => maxPlayers;
-
 		public void ConfirmPlayers()
 		{
+			int currentPlayers = runtimeScriptable.playersData.Count;
+			if (currentPlayers < minPlayers || currentPlayers > maxPlayers)
+				return;
+			
 			Debug.Log("Finished Setting Players");
 			runtimeScriptable.Essentials.projectScenes.GoToSettingAbilities();
 		}
