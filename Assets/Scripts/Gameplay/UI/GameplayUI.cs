@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Gameplay.Player;
-using Player;
 using UnityEngine;
 
 namespace Gameplay.UI
@@ -16,22 +14,19 @@ namespace Gameplay.UI
 		private void Awake()
 		{
 			gameObject.SetActive(false);
-			//gameplayManager.AddedPlayer += PlayerSetup;
 			gameplayManager.GameStarted += GameStarted;
-		}
-
-		private void PlayerSetup(PlayerController player)
-		{
-			playersUI[player.Index].SetPlayer(player);
 		}
 
 		private void GameStarted()
 		{
-			foreach (var playerUI in playersUI)
+			for (int i = 0; i < gameplayManager.RuntimeScriptable.playersData.Count; i++)
 			{
+				var playerUI = playersUI[i];
+				var playerData = gameplayManager.RuntimeScriptable.playersData[i];
+				playerUI.SetPlayer(playerData.playerController);
 				playerUI.Init();
 			}
-			
+
 			gameObject.SetActive(true);
 		}
 	}

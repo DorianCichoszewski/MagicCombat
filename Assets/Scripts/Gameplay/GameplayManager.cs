@@ -2,15 +2,14 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Gameplay.Time;
+using GameState;
 using Player;
 using UnityEngine;
 
 namespace Gameplay
 {
-	public class GameplayManager : MonoBehaviour
+	public class GameplayManager : BaseManager
 	{
-		[SerializeField]
-		private StartData startData;
 		[SerializeField]
 		private GameplayGlobals gameplayGlobals;
 		[SerializeField]
@@ -22,19 +21,21 @@ namespace Gameplay
 		
 		public event Action GameStarted;
 
-		private void OnEnable()
+		protected override void OnAwake()
 		{
 			gameplayGlobals.Init();
 			clockGO.Init(gameplayGlobals.clockManager);
+			
+			StartGame();
 		}
 
-		public void StartGame()
+		private void StartGame()
 		{
-			for (int i = 0; i < currentPlayers.Count; i++)
+			foreach (var player in runtimeScriptable.playersData)
 			{
-				var player = currentPlayers[i];
-				player.StartGame();
+				player.playerController.CreateAvatar(this);
 			}
+
 			GameStarted?.Invoke();
 		}
 

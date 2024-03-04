@@ -10,6 +10,8 @@ namespace SettingAbilities
 		[SerializeField]
 		private GameObject firstElement;
 		[SerializeField]
+		private PlayerHeader header;
+		[SerializeField]
 		private ReadyToggle readyToggle;
 
 		[SerializeField]
@@ -31,7 +33,8 @@ namespace SettingAbilities
 			eventSystem.firstSelectedGameObject = firstElement;
 			eventSystem.SetSelectedGameObject(firstElement);
 
-			readyToggle.onValueChanged.AddListener(_ => ui.OnPlayerReady());
+			header.Init(controller.Data);
+			readyToggle.onValueChanged.AddListener(VerifyWindowData);
 
 			skill1Picker.Init(newSkill => runtimeScriptable.GetPlayerData(controller).skill1 = newSkill,
 				runtimeScriptable.GetPlayerData(controller).skill1);

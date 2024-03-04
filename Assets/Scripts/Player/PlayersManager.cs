@@ -22,7 +22,6 @@ namespace Player
 
 		public void Init()
 		{
-			runtimeScriptable.playersData.Clear();
 			inputManager = GetComponent<PlayerInputManager>();
 			inputManager.onPlayerJoined += PlayerJoined;
 			inputManager.onPlayerLeft += PlayerLeft;

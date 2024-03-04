@@ -1,4 +1,3 @@
-using System;
 using Gameplay;
 using Gameplay.Player;
 using UnityEngine;
@@ -22,7 +21,6 @@ namespace Player
 		[SerializeField]
 		private bool enableInput = true;
 		
-		private GameplayManager gameplayManager;
 		private PlayerAvatar avatar;
 
 		public PlayerInput Input => input;
@@ -58,10 +56,10 @@ namespace Player
 			set => enableInput = value;
 		}
 
-		public void StartGame()
+		public void CreateAvatar(GameplayManager manager)
 		{
 			avatar = Instantiate(avatarPrefab, Data.spawnPos, Quaternion.identity);
-			avatar.Init(this, gameplayManager);
+			avatar.Init(this, manager);
 		}
 	}
 }

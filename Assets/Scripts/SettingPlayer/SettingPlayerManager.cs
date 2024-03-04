@@ -10,6 +10,11 @@ namespace SettingPlayer
 		[SerializeField]
 		private int maxPlayers = 4;
 
+		protected override void OnAwake()
+		{
+			runtimeScriptable.playersData.Clear();
+		}
+
 		public void ConfirmPlayers()
 		{
 			int currentPlayers = runtimeScriptable.playersData.Count;

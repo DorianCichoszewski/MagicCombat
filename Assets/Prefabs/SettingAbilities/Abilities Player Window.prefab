@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstElement: {fileID: 3796941489869420034}
+  header: {fileID: 5326277097553331178}
   readyToggle: {fileID: 550005858041894018}
   skill1Picker: {fileID: 7902634609411004126}
   skill2Picker: {fileID: 4932032694321734440}
@@ -359,6 +360,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 680945807867035063}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5326277097553331178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4654901594352238173, guid: 6f1592bbf54258d439af7efaf71720b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 680945807867035063}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ebe3d88da3457c85f9bd54be77a02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &749044000122867486
 PrefabInstance:
   m_ObjectHideFlags: 0
