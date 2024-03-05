@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,13 +12,11 @@ namespace Gameplay.Limiters
 	[Serializable]
 	public class LimiterProvider
 	{
-		public const string LimiterTypeName = nameof(limiterType);
-		public const string LimiterName = nameof(limiterData);
-
+		[OnValueChanged("@limiterData = GetLimiterFromType($value)")]
 		public LimiterType limiterType;
-
+		
 		[SerializeReference]
-		private ILimiter limiterData = new CooldownLimiter();
+		private ILimiter limiterData;
 
 		public ILimiter Limiter => limiterData.Copy();
 
@@ -61,44 +60,4 @@ namespace Gameplay.Limiters
 		Charges,
 		None
 	}
-
-#if UNITY_EDITOR
-	[CustomPropertyDrawer(typeof(LimiterProvider))]
-	public class LimiterProviderPropertyDrawer : PropertyDrawer
-	{
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var element = new VisualElement
-			{
-				name = "LimiterPropertyDrawer",
-				style = { flexGrow = 1f }
-			};
-
-			var limiterTypeProperty = property.FindPropertyRelative(LimiterProvider.LimiterTypeName);
-			var limiterProperty = property.FindPropertyRelative(LimiterProvider.LimiterName);
-
-			var currentType = (LimiterType)limiterTypeProperty.enumValueIndex;
-
-			var limiterTypeField = new EnumField(property.displayName, currentType);
-			limiterTypeField.BindProperty(limiterTypeProperty);
-			limiterTypeField.RegisterValueChangedCallback(x =>
-			{
-				if (x.newValue != null)
-				{
-					limiterProperty.boxedValue = LimiterProvider.GetLimiterFromType((LimiterType)x.newValue);
-					property.serializedObject.ApplyModifiedProperties();
-				}
-			});
-			element.Add(limiterTypeField);
-
-			if (currentType != LimiterType.None)
-			{
-				var limiterField = new PropertyField(limiterProperty);
-				element.Add(limiterField);
-			}
-
-			return element;
-		}
-	}
-#endif
 }

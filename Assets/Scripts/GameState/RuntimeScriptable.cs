@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Player;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace GameState
@@ -9,7 +10,7 @@ namespace GameState
 	{
 		#region Essentials
 
-		[SerializeField]
+		[SerializeField, AssetsOnly]
 		private GlobalState essentialsPrefab;
 
 		private GlobalState createdEssentials;

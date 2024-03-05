@@ -105,7 +105,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
 --- !u!114 &4601728441124512337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   - {fileID: 1387803524781858963}
   - {fileID: 4846768224813456307}
   - {fileID: 1240611171229804487}
+  gameplayManager: {fileID: 0}
 --- !u!1001 &332173815118996761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -539,20 +540,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7126898951198122187}
     m_Modifications:
-    - target: {fileID: 122225394080369005, guid: cd447e3f09b46c043913658d77b98cde,
-        type: 3}
-      propertyPath: m_ShowMaskGraphic
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 581821551852951684, guid: cd447e3f09b46c043913658d77b98cde,
         type: 3}
       propertyPath: m_Name
       value: Player 2 UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 2022692416400510642, guid: cd447e3f09b46c043913658d77b98cde,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9058975880554301365, guid: cd447e3f09b46c043913658d77b98cde,
         type: 3}
