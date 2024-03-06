@@ -43,7 +43,7 @@ namespace SettingPlayer
 			for (int i = 0; i < playerConfigWindows.Count; i++)
 			{
 				var window = playerConfigWindows[i];
-				window.SetPlayer(datas[i].playerController, this);
+				window.SetPlayer(datas[i].controller, this);
 			}
 		}
 

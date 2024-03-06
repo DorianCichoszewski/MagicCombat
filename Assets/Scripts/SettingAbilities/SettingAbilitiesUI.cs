@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace SettingAbilities
@@ -19,11 +20,10 @@ namespace SettingAbilities
 		public void Init()
 		{
 			var playersData = manager.RuntimeScriptable.playersData;
-			for (var i = 0; i < playersData.Count; i++)
+			foreach (var data in playersData)
 			{
-				var data = playersData[i];
 				var window = Instantiate(windowPrefab, windowsParent);
-				window.Init(data.playerController, this, manager.RuntimeScriptable);
+				window.Init(data.controller, this, manager.RuntimeScriptable);
 				spawnedWindows.Add(window);
 			}
 		}

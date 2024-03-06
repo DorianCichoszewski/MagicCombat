@@ -1,7 +1,7 @@
 using Gameplay.Time;
 using UnityEngine;
 
-namespace Gameplay.Player.Basic
+namespace Gameplay.Player.Movement
 {
 	public class DashMovement : IMovement
 	{
@@ -25,7 +25,7 @@ namespace Gameplay.Player.Basic
 
 			dashDirection = movementController.lastMoveDirection;
 
-			timer = new Timer(duration, EndDash, movementController.GameplayGlobals.clockManager);
+			timer = new Timer("Dash", duration, EndDash, movementController.GameplayGlobals.clockManager);
 		}
 
 		public Vector2 Update(float deltaTime)

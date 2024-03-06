@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Gameplay.Player.Basic
+namespace Gameplay.Player.Movement
 {
 	[Serializable]
 	public class MovementForce

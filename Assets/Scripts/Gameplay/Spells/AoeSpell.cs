@@ -21,7 +21,7 @@ namespace Gameplay.Spells
 		public void Init(PlayerAvatar caster, float range, float duration = 0)
 		{
 			transform.localScale = new Vector3(range, range, range);
-			renderer.material = caster.PlayerController.Data.material;
+			renderer.material = caster.PlayerController.InitData.material;
 			this.range = range;
 
 			if (duration > 0)

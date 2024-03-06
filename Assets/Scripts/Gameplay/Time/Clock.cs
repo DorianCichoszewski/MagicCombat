@@ -47,13 +47,13 @@ namespace Gameplay.Time
 				try
 				{
 					timer.Update(deltaTime);
-					if (timer.Completed)
-						currentTimers.Remove(timer);
 				}
 				catch (Exception e)
 				{
 					Debug.LogError(e);
 				}
+				if (timer.Completed)
+					currentTimers.Remove(timer);
 			}
 
 			currentTime += deltaTime;

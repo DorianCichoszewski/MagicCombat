@@ -33,7 +33,7 @@ namespace SettingAbilities
 			eventSystem.firstSelectedGameObject = firstElement;
 			eventSystem.SetSelectedGameObject(firstElement);
 
-			header.Init(controller.Data);
+			header.Init(controller.InitData);
 			readyToggle.onValueChanged.AddListener(VerifyWindowData);
 
 			skill1Picker.Init(newSkill => runtimeScriptable.GetPlayerData(controller).skill1 = newSkill,

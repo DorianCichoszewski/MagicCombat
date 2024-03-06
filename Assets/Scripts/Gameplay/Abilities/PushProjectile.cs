@@ -2,6 +2,7 @@ using Extension;
 using Gameplay.Player;
 using Gameplay.Player.Ability;
 using Gameplay.Player.Basic;
+using Gameplay.Player.Movement;
 using Gameplay.Spells;
 using UnityEngine;
 
@@ -30,8 +31,8 @@ namespace Gameplay.Abilities
 			var createPosition = casterTransform.position + direction.ToVec3() * createOffset + Vector3.up * createOffset;
 
 			var spell = Instantiate(projectile, createPosition, casterTransform.rotation);
+			spell.gameObject.name = Name;
 			spell.gameObject.transform.localScale = new Vector3(scale, scale, scale);
-			spell.Init(caster, direction, speed, duration);
 			spell.onPlayerHit += player =>
 			{
 				Vector2 pushDirection = (player.transform.position - spell.transform.position).ToVec2().normalized;
@@ -40,6 +41,7 @@ namespace Gameplay.Abilities
 			};
 			spell.onNonPlayerHit += _ => spell.Destroy();
 			spell.onTimerEnd += spell.Destroy;
+			spell.Init(caster, direction, speed, duration);
 			state.onPerform?.Invoke();
 			state.onFinished?.Invoke();
 		}

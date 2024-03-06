@@ -14,10 +14,10 @@ namespace Gameplay
 		private GameplayGlobals gameplayGlobals;
 		[SerializeField]
 		private ClockGameObject clockGO;
-
-		private readonly List<PlayerController> currentPlayers = new();
-
+		
 		public GameplayGlobals GameplayGlobals => gameplayGlobals;
+		
+		private List<PlayerController> deadPlayers;
 		
 		public event Action GameStarted;
 
@@ -31,15 +31,34 @@ namespace Gameplay
 
 		private void StartGame()
 		{
-			foreach (var player in runtimeScriptable.playersData)
+			deadPlayers = new();
+			foreach (var playerData in runtimeScriptable.playersData)
 			{
-				player.playerController.CreateAvatar(this);
+				if (playerData.controller == null) continue;
+				playerData.controller.CreateAvatar(this, playerData);
 			}
+
+			runtimeScriptable.Essentials.playersManager.onPlayerJoined += p => p.CreateAvatar(this, runtimeScriptable.GetPlayerData(p));
 
 			GameStarted?.Invoke();
 		}
 
 		public void OnPlayerDeath(PlayerController player)
+		{
+			deadPlayers.Add(player);
+			player.EnableInput = false;
+			
+			if (deadPlayers.Count < runtimeScriptable.playersData.Count - 1) return;
+			
+			foreach (var playerData in runtimeScriptable.playersData)
+			{
+				playerData.controller.EnableInput = false;
+			}
+			
+			EndGameAnimation();
+		}
+
+		private void EndGameAnimation()
 		{
 			gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = 0f;
 			gameplayGlobals.clockManager.FixedClock.CurrentSpeed = 0f;

@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Gameplay.Time
@@ -15,13 +16,9 @@ namespace Gameplay.Time
 
 		[SerializeField]
 		private float remainingTime;
-
-		// debug
+		
+		[ReadOnly]
 		private ClockType clockType;
-
-		public Timer(float time, Action callback, ClockManager manager,
-			ClockType clockUpdateType = ClockType.Dynamic) : this(
-			time.ToString(CultureInfo.InvariantCulture), time, callback, manager, clockUpdateType) { }
 
 		public Timer(string name, float time, Action callback, ClockManager manager,
 			ClockType clockUpdateType = ClockType.Dynamic)
@@ -36,7 +33,6 @@ namespace Gameplay.Time
 		}
 
 		public string Name => name;
-		public float TotalTime => totalTime;
 		public float RemainingTime => remainingTime;
 		public float RemainingPercent => remainingTime / totalTime;
 		public bool Completed => remainingTime <= 0;

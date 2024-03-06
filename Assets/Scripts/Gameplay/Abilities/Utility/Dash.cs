@@ -1,6 +1,6 @@
 using Gameplay.Player;
 using Gameplay.Player.Ability;
-using Gameplay.Player.Basic;
+using Gameplay.Player.Movement;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Utility

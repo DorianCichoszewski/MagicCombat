@@ -24,7 +24,7 @@ namespace Gameplay.Limiters
 
 		public void Start()
 		{
-			Timer = new Timer(duration, EndCooldown, gameplayGlobals.clockManager);
+			Timer = new Timer($"Cooldown {duration}s", duration, EndCooldown, gameplayGlobals.clockManager);
 		}
 
 		public void Reset()

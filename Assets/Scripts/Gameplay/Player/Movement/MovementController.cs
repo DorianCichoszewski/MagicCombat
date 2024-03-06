@@ -2,7 +2,7 @@ using Extension;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Gameplay.Player.Basic
+namespace Gameplay.Player.Movement
 {
 	public class MovementController : MonoBehaviour
 	{
@@ -28,8 +28,6 @@ namespace Gameplay.Player.Basic
 
 		private IMovement currentMovement;
 		private MovementExternalController externalController;
-
-		public bool Enabled { get; set; } = true;
 
 		public GameplayGlobals GameplayGlobals { get; private set; }
 
@@ -97,7 +95,7 @@ namespace Gameplay.Player.Basic
 		
 		private void HandleMovement(float deltaTime)
 		{
-			if (!Enabled)
+			if (!enabled)
 			{
 				AvoidObstacles();
 				return;

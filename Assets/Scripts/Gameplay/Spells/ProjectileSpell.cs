@@ -27,7 +27,7 @@ namespace Gameplay.Spells
 		public void Init(PlayerAvatar caster, Vector2 direction, float speed, float duration)
 		{
 			this.caster = caster;
-			renderer.material = caster.PlayerController.Data.material;
+			renderer.material = caster.PlayerController.InitData.material;
 
 			rb.velocity = direction.ToVec3().normalized * speed;
 
@@ -52,6 +52,7 @@ namespace Gameplay.Spells
 
 		public void Destroy()
 		{
+			timer.Cancel();
 			Destroy(gameObject);
 		}
 	}

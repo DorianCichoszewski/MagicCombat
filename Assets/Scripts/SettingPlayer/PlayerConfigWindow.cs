@@ -22,7 +22,7 @@ namespace SettingPlayer
 
 		public void SetPlayer(PlayerController player, GameStartUI ui)
 		{
-			header.Init(player.Data);
+			header.Init(player.InitData);
 			controllerType.text = player.Input.devices[0].name;
 			
 			var eventSystem = player.EventSystem;

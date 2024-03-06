@@ -6,7 +6,7 @@ namespace Player
 	[Serializable]
 	public class PlayerData
 	{
-		public PlayerController playerController;
+		public PlayerController controller;
 		
 		// Current Abilities
 		public BaseAbility utility;
@@ -16,12 +16,12 @@ namespace Player
 
 		public PlayerData(PlayerController controller)
 		{
-			playerController = controller;
+			this.controller = controller;
 				
-			utility = controller.Data.startUtility;
-			skill1 = controller.Data.startSkill1;
-			skill2 = controller.Data.startSkill2;
-			skill3 = controller.Data.startSkill3;
+			utility = controller.StartData.startUtility;
+			skill1 = controller.StartData.startSkill1;
+			skill2 = controller.StartData.startSkill2;
+			skill3 = controller.StartData.startSkill3;
 		}
 	}
 }

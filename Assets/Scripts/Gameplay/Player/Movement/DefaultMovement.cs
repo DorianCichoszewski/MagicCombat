@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Player.Basic
+namespace Gameplay.Player.Movement
 {
 	public class DefaultMovement : IMovement
 	{

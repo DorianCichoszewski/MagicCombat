@@ -25,13 +25,14 @@ namespace Player
 
 		public PlayerInput Input => input;
 		public MultiplayerEventSystem EventSystem => eventSystem;
-		public StartData.PlayerInit Data => startData.playerInitList[Index];
+		public StartData.PlayerInit InitData => startData.playerInitList[Index];
+		public StartData StartData => startData;
 		public PlayerAvatar Avatar => avatar;
 		public int Index => input.playerIndex;
 
 		public void Init()
 		{
-			gameObject.name = Data.name;
+			gameObject.name = InitData.name;
 		}
 
 		public void Reset()
@@ -56,10 +57,11 @@ namespace Player
 			set => enableInput = value;
 		}
 
-		public void CreateAvatar(GameplayManager manager)
+		public void CreateAvatar(GameplayManager manager, PlayerData data)
 		{
-			avatar = Instantiate(avatarPrefab, Data.spawnPos, Quaternion.identity);
-			avatar.Init(this, manager);
+			avatar = Instantiate(avatarPrefab, InitData.spawnPos, Quaternion.identity);
+			avatar.Init(data, manager);
+			enableInput = true;
 		}
 	}
 }

@@ -1,7 +1,9 @@
 using Gameplay.Abilities;
 using Gameplay.Player.Ability;
 using Gameplay.Player.Basic;
+using Gameplay.Player.Movement;
 using Player;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Gameplay.Player
@@ -13,16 +15,9 @@ namespace Gameplay.Player
 
 		[SerializeField]
 		private SkinController skin;
-
-		[Space]
-		[SerializeField]
-		private BaseAbility utilityDef;
-		[SerializeField]
-		private BaseAbility skill1Def;
-		[SerializeField]
-		private BaseAbility skill2Def;
-		[SerializeField]
-		private BaseAbility skill3Def;
+		
+		[SerializeField, ReadOnly]
+		private bool alive = true;
 		
 		public AbilityCaster utility;
 		public AbilityCaster skill1;
@@ -37,23 +32,28 @@ namespace Gameplay.Player
 
 		public GameplayGlobals GameplayGlobals => gameplayManager.GameplayGlobals;
 
-		public void Init(PlayerController controller, GameplayManager manager)
+		public void Init(PlayerData playerData, GameplayManager manager)
 		{
 			gameplayManager = manager;
-			playerController = controller;
-			skin.SetSkin(controller.Data);
+			playerController = playerData.controller;
+			skin.SetSkin(playerController.InitData);
 			movement.Init(manager.GameplayGlobals);
 			
-			movement.Enabled = true;
+			movement.enabled = true;
 			
-			utility = new AbilityCaster(this, utilityDef);
-			skill1 = new AbilityCaster(this, skill1Def);
-			skill2 = new AbilityCaster(this, skill2Def);
-			skill3 = new AbilityCaster(this, skill3Def);
+			utility = new AbilityCaster(this, playerData.utility);
+			skill1 = new AbilityCaster(this, playerData.skill1);
+			skill2 = new AbilityCaster(this, playerData.skill2);
+			skill3 = new AbilityCaster(this, playerData.skill3);
 		}
 
-		public void Hit()
+		public void Kill()
 		{
+			if (!alive) return;
+
+			alive = false;
+			movement.enabled = false;
+			playerController.EnableInput = false;
 			gameplayManager.OnPlayerDeath(playerController);
 		}
 	}

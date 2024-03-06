@@ -17,31 +17,19 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: 0bf284a12f0fafd43adc5205658370df, type: 2}
     color: {r: 0.26666668, g: 0.20392157, b: 0.79607844, a: 1}
     spawnPos: {x: -15, y: 0, z: 0}
-    startUtility: {fileID: 11400000, guid: da91ce824bdcca144836a29515f90772, type: 2}
-    startSkill1: {fileID: 0}
-    startSkill2: {fileID: 0}
-    startSkill3: {fileID: 0}
   - name: Player 2
     material: {fileID: 2100000, guid: 9ad7a8999c267794caceb395233b033f, type: 2}
     color: {r: 0.19215687, g: 0.8627451, b: 0.2509804, a: 1}
     spawnPos: {x: 15, y: 0, z: 0}
-    startUtility: {fileID: 11400000, guid: da91ce824bdcca144836a29515f90772, type: 2}
-    startSkill1: {fileID: 0}
-    startSkill2: {fileID: 0}
-    startSkill3: {fileID: 0}
   - name: Player 3
     material: {fileID: 2100000, guid: 561cc6ffa58218e4ca8c99a79616d200, type: 2}
     color: {r: 0.8509804, g: 0.8627451, b: 0.19215687, a: 1}
-    spawnPos: {x: 0, y: 15, z: 0}
-    startUtility: {fileID: 11400000, guid: da91ce824bdcca144836a29515f90772, type: 2}
-    startSkill1: {fileID: 0}
-    startSkill2: {fileID: 0}
-    startSkill3: {fileID: 0}
+    spawnPos: {x: 0, y: 0, z: 15}
   - name: Player 4
     material: {fileID: 2100000, guid: 0de3a0e325633d945973a223f1a95d82, type: 2}
     color: {r: 0.19215687, g: 0.79607844, b: 0.8627451, a: 1}
-    spawnPos: {x: 0, y: -15, z: 0}
-    startUtility: {fileID: 11400000, guid: da91ce824bdcca144836a29515f90772, type: 2}
-    startSkill1: {fileID: 0}
-    startSkill2: {fileID: 0}
-    startSkill3: {fileID: 0}
+    spawnPos: {x: 0, y: 0, z: -15}
+  startUtility: {fileID: 11400000, guid: da91ce824bdcca144836a29515f90772, type: 2}
+  startSkill1: {fileID: 11400000, guid: 420efe0fa05164741bf1b076bf91283e, type: 2}
+  startSkill2: {fileID: 11400000, guid: b2b64fec8bb3f1d4283515b59b9c1ccd, type: 2}
+  startSkill3: {fileID: 11400000, guid: 64b497548e296e947960e9aaa22e9fda, type: 2}

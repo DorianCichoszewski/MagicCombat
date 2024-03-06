@@ -48,7 +48,7 @@ namespace Player
 		private void PlayerJoined(PlayerInput input)
 		{
 			var controller = input.GetComponent<PlayerController>();
-			runtimeScriptable.playersData.Add(new PlayerData(controller));
+			runtimeScriptable.AddPlayerData(controller);
 			players.Add(controller);
 			controller.Init();
 			input.transform.SetParent(transform);

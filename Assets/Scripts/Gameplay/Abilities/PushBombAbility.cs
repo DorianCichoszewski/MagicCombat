@@ -2,6 +2,7 @@ using Extension;
 using Gameplay.Player;
 using Gameplay.Player.Ability;
 using Gameplay.Player.Basic;
+using Gameplay.Player.Movement;
 using Gameplay.Spells;
 using UnityEngine;
 
@@ -44,10 +45,12 @@ namespace Gameplay.Abilities
 			var createPosition = casterTransform.position + (direction.ToVec3() + Vector3.up) * 2;
 
 			var projectile = Instantiate(projectilePrefab, createPosition, casterTransform.rotation);
-			projectile.Init(caster, direction, projectileSpeed, projectileDuration);
+			projectile.gameObject.name = Name;
 			projectile.onPlayerHit += _ => MakeExplosion(projectile, caster, state);
 			projectile.onNonPlayerHit += _ => MakeExplosion(projectile, caster, state);
 			projectile.onTimerEnd += () => MakeExplosion(projectile, caster, state);
+			projectile.Init(caster, direction, projectileSpeed, projectileDuration);
+
 			state.isActive = true;
 			state.onNextClick = () => MakeExplosion(projectile, caster, state);
 			state.onStateChanged?.Invoke(state);

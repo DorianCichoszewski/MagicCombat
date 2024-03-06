@@ -18,8 +18,8 @@ namespace Gameplay.Other
 		private void KillPlayer(PlayerAvatar player)
 		{
 			if (player == null) return;
-			player.Hit();
-			Debug.Log("Hit");
+			player.Kill();
+			Debug.Log($"Killed {player.PlayerController.name}");
 		}
 	}
 }

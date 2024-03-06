@@ -34,6 +34,19 @@ namespace GameState
 		#endregion
 		
 		public List<PlayerData> playersData = new();
+		
+		public void AddPlayerData(PlayerController playerController)
+		{
+			foreach (var playerData in playersData)
+			{
+				if (playerData.controller == null)
+				{
+					playerData.controller = playerController;
+					return;
+				}
+			}
+			playersData.Add(new PlayerData(playerController));
+		}
 
 		public PlayerData GetPlayerData(PlayerController playerController)
 		{

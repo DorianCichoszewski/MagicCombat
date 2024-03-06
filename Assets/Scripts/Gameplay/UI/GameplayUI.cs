@@ -23,7 +23,7 @@ namespace Gameplay.UI
 			{
 				var playerUI = playersUI[i];
 				var playerData = gameplayManager.RuntimeScriptable.playersData[i];
-				playerUI.SetPlayer(playerData.playerController);
+				playerUI.SetPlayer(playerData.controller);
 				playerUI.Init();
 			}
 
