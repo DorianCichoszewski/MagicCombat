@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Player.Movement
+namespace MagicCombat.Gameplay.Player.Movement
 {
 	public interface IMovement
 	{

@@ -1,7 +1,7 @@
-using Gameplay.Time;
+using MagicCombat.Gameplay.Time;
 using UnityEngine;
 
-namespace Gameplay.Player.Movement
+namespace MagicCombat.Gameplay.Player.Movement
 {
 	public class DashMovement : IMovement
 	{

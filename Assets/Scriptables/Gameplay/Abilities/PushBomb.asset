@@ -17,7 +17,7 @@ MonoBehaviour:
   limiterProvider:
     limiterType: 0
     limiterData:
-      rid: 4698927299786440765
+      rid: 2317702510099562550
   projectilePrefab: {fileID: 7864215322948004282, guid: af95a7ed65af6394fb7a507b805cf7db,
     type: 3}
   explosionPrefab: {fileID: 8316813131058781692, guid: 427e659cb00f4204fb92c1d2fa751a25,
@@ -35,9 +35,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4698927299786440765
-      type: {class: CooldownLimiter, ns: Gameplay.Limiters, asm: Assembly-CSharp}
+    - rid: 2317702510099562550
+      type: {class: CooldownLimiter, ns: MagicCombat.Gameplay.Limiters, asm: MagicCombat}
       data:
-        gameplayGlobals: {fileID: 11400000, guid: 607e759f7816377448b8396ae0d0f760,
-          type: 2}
         duration: 2

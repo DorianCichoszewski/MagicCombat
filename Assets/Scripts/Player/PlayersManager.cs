@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using GameState;
+using MagicCombat.GameState;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace MagicCombat.Player
 {
 	[RequireComponent(typeof(PlayerInputManager))]
 	public class PlayersManager : MonoBehaviour
@@ -14,7 +14,7 @@ namespace Player
 
 		[SerializeField]
 		private List<PlayerController> players;
-		
+
 		private PlayerInputManager inputManager;
 
 		public event Action<PlayerController> onPlayerJoined;
@@ -26,7 +26,7 @@ namespace Player
 			inputManager.onPlayerJoined += PlayerJoined;
 			inputManager.onPlayerLeft += PlayerLeft;
 		}
-		
+
 		public void ClearEvents()
 		{
 			onPlayerJoined = null;
@@ -36,13 +36,9 @@ namespace Player
 		public void SetJoining(bool value)
 		{
 			if (value)
-			{
 				inputManager.EnableJoining();
-			}
 			else
-			{
 				inputManager.DisableJoining();
-			}
 		}
 
 		private void PlayerJoined(PlayerInput input)
@@ -54,7 +50,7 @@ namespace Player
 			input.transform.SetParent(transform);
 			onPlayerJoined?.Invoke(controller);
 		}
-		
+
 		private void PlayerLeft(PlayerInput input)
 		{
 			var controller = input.GetComponent<PlayerController>();

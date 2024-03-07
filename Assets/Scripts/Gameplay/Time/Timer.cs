@@ -1,9 +1,8 @@
 using System;
-using System.Globalization;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Gameplay.Time
+namespace MagicCombat.Gameplay.Time
 {
 	[Serializable]
 	public class Timer
@@ -16,7 +15,7 @@ namespace Gameplay.Time
 
 		[SerializeField]
 		private float remainingTime;
-		
+
 		[ReadOnly]
 		private ClockType clockType;
 

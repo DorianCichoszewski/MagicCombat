@@ -1,8 +1,9 @@
-using Extension;
+using Gameplay.Player.Movement;
+using MagicCombat.Extension;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Gameplay.Player.Movement
+namespace MagicCombat.Gameplay.Player.Movement
 {
 	public class MovementController : MonoBehaviour
 	{
@@ -17,17 +18,18 @@ namespace Gameplay.Player.Movement
 
 		[SerializeField]
 		private float characterColliderSize = 1;
-		
+
 		[Header("Debug")]
 		public Vector2 lastMoveDirection;
+
 		public Vector2 moveValue;
-		
-		private float targetRotationAngle;
-		private Vector2 rotationInput;
-		private bool useStickRotation;
 
 		private IMovement currentMovement;
 		private MovementExternalController externalController;
+		private Vector2 rotationInput;
+
+		private float targetRotationAngle;
+		private bool useStickRotation;
 
 		public GameplayGlobals GameplayGlobals { get; private set; }
 
@@ -62,7 +64,7 @@ namespace Gameplay.Player.Movement
 				useStickRotation = false;
 			}
 		}
-		
+
 		public void ApplyMovement(Vector2 targetMovement)
 		{
 			// Split big movements to better check collision
@@ -92,7 +94,7 @@ namespace Gameplay.Player.Movement
 		{
 			externalController.AddForce(force);
 		}
-		
+
 		private void HandleMovement(float deltaTime)
 		{
 			if (!enabled)
@@ -100,7 +102,7 @@ namespace Gameplay.Player.Movement
 				AvoidObstacles();
 				return;
 			}
-			
+
 			if (!useStickRotation)
 				targetRotationAngle = Mathf.Rad2Deg * Mathf.Atan2(lastMoveDirection.x, lastMoveDirection.y);
 
@@ -110,7 +112,7 @@ namespace Gameplay.Player.Movement
 			Vector2 movement;
 			movement = currentMovement.Update(deltaTime);
 			movement += externalController.Update(deltaTime);
-			
+
 			ApplyMovement(movement);
 		}
 

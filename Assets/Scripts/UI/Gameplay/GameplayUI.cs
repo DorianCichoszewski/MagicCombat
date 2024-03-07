@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using MagicCombat.Gameplay;
 using UnityEngine;
 
-namespace Gameplay.UI
+namespace MagicCombat.UI.Gameplay
 {
 	public class GameplayUI : MonoBehaviour
 	{
@@ -11,11 +12,12 @@ namespace Gameplay.UI
 		[SerializeField]
 		private GameplayManager gameplayManager;
 
-		private void Awake()
+		private void Start()
 		{
 			gameObject.SetActive(false);
 			gameplayManager.GameStarted += RefreshUI;
 			gameplayManager.AvatarsChanged += RefreshUI;
+			RefreshUI();
 		}
 
 		private void RefreshUI()

@@ -1,24 +1,22 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-#endif
 
-namespace Gameplay.Limiters
+namespace MagicCombat.Gameplay.Limiters
 {
 	[Serializable]
 	public class LimiterProvider
 	{
 		[OnValueChanged("@limiterData = GetLimiterFromType($value)")]
 		public LimiterType limiterType;
-		
+
 		[SerializeReference]
 		private ILimiter limiterData;
 
-		public ILimiter Limiter => limiterData.Copy();
+		public ILimiter Limiter(GameplayGlobals gameplayGlobals)
+		{
+			return limiterData.Copy(gameplayGlobals);
+		}
 
 		public void Init()
 		{

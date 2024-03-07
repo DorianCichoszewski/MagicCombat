@@ -1,12 +1,11 @@
-using Gameplay.Abilities;
-using Gameplay.Player.Ability;
-using Gameplay.Player.Basic;
-using Gameplay.Player.Movement;
-using Player;
+using MagicCombat.Gameplay.Player.Ability;
+using MagicCombat.Gameplay.Player.Basic;
+using MagicCombat.Gameplay.Player.Movement;
+using MagicCombat.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Gameplay.Player
+namespace MagicCombat.Gameplay.Player
 {
 	public class PlayerAvatar : MonoBehaviour
 	{
@@ -15,37 +14,38 @@ namespace Gameplay.Player
 
 		[SerializeField]
 		private SkinController skin;
-		
-		[SerializeField, ReadOnly]
+
+		[SerializeField]
+		[ReadOnly]
 		private bool alive = true;
-		
-		public AbilityCaster utility;
+
+		private GameplayManager gameplayManager;
 		public AbilityCaster skill1;
 		public AbilityCaster skill2;
 		public AbilityCaster skill3;
 
-		private GameplayManager gameplayManager;
-		private PlayerController playerController;
+		public AbilityCaster utility;
 
 		public MovementController MovementController => movement;
-		public PlayerController PlayerController => playerController;
+		public PlayerController PlayerController { get; private set; }
+
 		public bool Alive => alive;
 
 		public GameplayGlobals GameplayGlobals => gameplayManager.GameplayGlobals;
 
-		public void Init(PlayerData playerData, GameplayManager manager)
+		public void Init(PlayerData playerData, GameplayManager manager, GameplayGlobals globals)
 		{
 			gameplayManager = manager;
-			playerController = playerData.controller;
-			skin.SetSkin(playerController.InitData);
+			PlayerController = playerData.controller;
+			skin.SetSkin(PlayerController.InitData);
 			movement.Init(manager.GameplayGlobals);
-			
+
 			movement.enabled = true;
-			
-			utility = new AbilityCaster(this, playerData.utility);
-			skill1 = new AbilityCaster(this, playerData.skill1);
-			skill2 = new AbilityCaster(this, playerData.skill2);
-			skill3 = new AbilityCaster(this, playerData.skill3);
+
+			utility = new AbilityCaster(this, playerData.utility, globals);
+			skill1 = new AbilityCaster(this, playerData.skill1, globals);
+			skill2 = new AbilityCaster(this, playerData.skill2, globals);
+			skill3 = new AbilityCaster(this, playerData.skill3, globals);
 		}
 
 		public void Kill()
@@ -54,8 +54,8 @@ namespace Gameplay.Player
 
 			alive = false;
 			movement.enabled = false;
-			playerController.EnableInput = false;
-			gameplayManager.OnPlayerDeath(playerController);
+			PlayerController.EnableInput = false;
+			gameplayManager.OnPlayerDeath(PlayerController);
 		}
 	}
 }

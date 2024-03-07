@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Gameplay.UI.Ability
+namespace MagicCombat.UI.Gameplay.Ability
 {
 	public class AbilityIndicatorInputFeedback : MonoBehaviour
 	{

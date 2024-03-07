@@ -1,9 +1,8 @@
-using Gameplay.Player;
-using Gameplay.UI.Ability;
-using Player;
+using MagicCombat.Player;
+using MagicCombat.UI.Gameplay.Ability;
 using UnityEngine;
 
-namespace Gameplay.UI
+namespace MagicCombat.UI.Gameplay
 {
 	public class PlayerUI : MonoBehaviour
 	{
@@ -33,8 +32,8 @@ namespace Gameplay.UI
 
 		public void Init()
 		{
-			if (player == null) return;
-			
+			if (player == null || player.Avatar == null) return;
+
 			utilityIndicator.SetupAbilityCaster(player.Avatar.utility);
 			skill1Indicator.SetupAbilityCaster(player.Avatar.skill1);
 			skill2Indicator.SetupAbilityCaster(player.Avatar.skill2);

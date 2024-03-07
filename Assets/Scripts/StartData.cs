@@ -10,6 +10,7 @@ public class StartData : ScriptableObject
 
 	[Header("Start Abilities")]
 	public BaseAbility startUtility;
+
 	public BaseAbility startSkill1;
 	public BaseAbility startSkill2;
 	public BaseAbility startSkill3;

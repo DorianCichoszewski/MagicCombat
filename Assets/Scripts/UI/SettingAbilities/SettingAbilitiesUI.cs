@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using MagicCombat.SettingAbilities;
 using UnityEngine;
 
-namespace SettingAbilities
+namespace MagicCombat.UI.SettingAbilities
 {
 	public class SettingAbilitiesUI : MonoBehaviour
 	{
@@ -14,8 +15,8 @@ namespace SettingAbilities
 		[SerializeField]
 		private SettingAbilitiesManager manager;
 
-		private List<AbilitiesPlayerWindow> spawnedWindows = new();
-		
+		private readonly List<AbilitiesPlayerWindow> spawnedWindows = new();
+
 		public void Start()
 		{
 			var playersData = manager.RuntimeScriptable.playersData;
@@ -34,7 +35,7 @@ namespace SettingAbilities
 			{
 				allReady &= window.IsReady;
 			}
-			
+
 			if (allReady)
 				manager.Next();
 		}

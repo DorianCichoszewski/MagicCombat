@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Gameplay.Time
+namespace MagicCombat.Gameplay.Time
 {
 	[Serializable]
 	public class ClockManager

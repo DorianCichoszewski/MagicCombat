@@ -1,11 +1,11 @@
 using System;
 using Gameplay.Abilities;
-using Gameplay.Limiters;
-using Gameplay.Player.Ability;
+using MagicCombat.Gameplay.Limiters;
+using MagicCombat.Gameplay.Player.Ability;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Gameplay.UI.Ability
+namespace MagicCombat.UI.Gameplay.Ability
 {
 	public class AbilityIndicator : MonoBehaviour
 	{

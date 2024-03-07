@@ -1,7 +1,7 @@
-using Gameplay.Time;
+using MagicCombat.Gameplay.Time;
 using UnityEngine;
 
-namespace Gameplay
+namespace MagicCombat.Gameplay
 {
 	[CreateAssetMenu(menuName = "Magic Combat/Gameplay Globals")]
 	public class GameplayGlobals : ScriptableObject

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Time
+namespace MagicCombat.Gameplay.Time
 {
 	public class ClockGameObject : MonoBehaviour
 	{

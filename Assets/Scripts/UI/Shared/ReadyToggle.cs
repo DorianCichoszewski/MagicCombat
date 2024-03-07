@@ -1,7 +1,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace UI
+namespace MagicCombat.UI.Shared
 {
 	public class ReadyToggle : Toggle
 	{

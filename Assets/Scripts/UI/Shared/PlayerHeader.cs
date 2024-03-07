@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace UI
+namespace MagicCombat.UI.Shared
 {
 	public class PlayerHeader : MonoBehaviour
 	{

@@ -1,16 +1,39 @@
 using System.Collections.Generic;
-using Player;
+using MagicCombat.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace GameState
+namespace MagicCombat.GameState
 {
 	[CreateAssetMenu(menuName = "Magic Combat/Runtime Scriptable", fileName = "Runtime Scriptable")]
 	public class RuntimeScriptable : ScriptableObject
 	{
+		public List<PlayerData> playersData = new();
+
+		public void AddPlayerData(PlayerController playerController)
+		{
+			foreach (var playerData in playersData)
+			{
+				if (playerData.controller == null)
+				{
+					playerData.controller = playerController;
+					return;
+				}
+			}
+
+			playersData.Add(new PlayerData(playerController));
+		}
+
+		public PlayerData GetPlayerData(PlayerController playerController)
+		{
+			return playersData[playerController.Index];
+		}
+
 		#region Essentials
 
-		[SerializeField, AssetsOnly, Required]
+		[SerializeField]
+		[AssetsOnly]
+		[Required]
 		private GlobalState essentialsPrefab;
 
 		private GlobalState createdEssentials;
@@ -35,25 +58,5 @@ namespace GameState
 		}
 
 		#endregion
-		
-		public List<PlayerData> playersData = new();
-		
-		public void AddPlayerData(PlayerController playerController)
-		{
-			foreach (var playerData in playersData)
-			{
-				if (playerData.controller == null)
-				{
-					playerData.controller = playerController;
-					return;
-				}
-			}
-			playersData.Add(new PlayerData(playerController));
-		}
-
-		public PlayerData GetPlayerData(PlayerController playerController)
-		{
-			return playersData[playerController.Index];
-		}
 	}
 }

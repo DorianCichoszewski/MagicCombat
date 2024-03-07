@@ -1,6 +1,6 @@
 using System;
 
-namespace Gameplay.Limiters
+namespace MagicCombat.Gameplay.Limiters
 {
 	[Serializable]
 	public class ChargesLimiter : ILimiter
@@ -23,7 +23,7 @@ namespace Gameplay.Limiters
 			throw new NotImplementedException();
 		}
 
-		public ILimiter Copy()
+		public ILimiter Copy(GameplayGlobals gameplayGlobals)
 		{
 			return new ChargesLimiter
 			{

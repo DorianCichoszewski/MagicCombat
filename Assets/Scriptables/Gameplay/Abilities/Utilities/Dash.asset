@@ -17,15 +17,13 @@ MonoBehaviour:
   limiterProvider:
     limiterType: 0
     limiterData:
-      rid: 4698927118580973737
+      rid: 2317702510099562540
   speedMultiplier: 8
   duration: 0.1
   references:
     version: 2
     RefIds:
-    - rid: 4698927118580973737
-      type: {class: CooldownLimiter, ns: Gameplay.Limiters, asm: Assembly-CSharp}
+    - rid: 2317702510099562540
+      type: {class: CooldownLimiter, ns: MagicCombat.Gameplay.Limiters, asm: MagicCombat}
       data:
-        gameplayGlobals: {fileID: 11400000, guid: 607e759f7816377448b8396ae0d0f760,
-          type: 2}
         duration: 1

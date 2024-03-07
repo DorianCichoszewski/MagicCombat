@@ -1,9 +1,10 @@
-using Gameplay.Player;
-using Gameplay.Player.Ability;
-using Gameplay.Player.Movement;
+using Gameplay.Abilities;
+using MagicCombat.Gameplay.Player;
+using MagicCombat.Gameplay.Player.Ability;
+using MagicCombat.Gameplay.Player.Movement;
 using UnityEngine;
 
-namespace Gameplay.Abilities.Utility
+namespace MagicCombat.Gameplay.Abilities.Utility
 {
 	[CreateAssetMenu(menuName = UtilitiesPath + "Dash")]
 	public class Dash : BaseAbility

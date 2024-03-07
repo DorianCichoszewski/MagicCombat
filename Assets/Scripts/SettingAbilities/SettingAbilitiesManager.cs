@@ -1,7 +1,7 @@
-using GameState;
+using MagicCombat.GameState;
 using UnityEngine;
 
-namespace SettingAbilities
+namespace MagicCombat.SettingAbilities
 {
 	public class SettingAbilitiesManager : BaseManager
 	{

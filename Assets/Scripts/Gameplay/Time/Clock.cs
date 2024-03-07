@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gameplay.Time
+namespace MagicCombat.Gameplay.Time
 {
 	[Serializable]
 	public class Clock
@@ -52,6 +52,7 @@ namespace Gameplay.Time
 				{
 					Debug.LogError(e);
 				}
+
 				if (timer.Completed)
 					currentTimers.Remove(timer);
 			}

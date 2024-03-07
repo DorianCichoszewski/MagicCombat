@@ -1,7 +1,7 @@
-using Gameplay.Player;
+using MagicCombat.Gameplay.Player;
 using UnityEngine;
 
-namespace Gameplay.Other
+namespace MagicCombat.Gameplay.Other
 {
 	public class KillZone : MonoBehaviour
 	{

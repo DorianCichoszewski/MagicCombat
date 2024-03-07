@@ -1,14 +1,14 @@
-using Gameplay.Limiters;
-using Gameplay.Player;
-using Gameplay.Player.Ability;
+using MagicCombat.Gameplay.Limiters;
+using MagicCombat.Gameplay.Player;
+using MagicCombat.Gameplay.Player.Ability;
 using UnityEngine;
 
 namespace Gameplay.Abilities
 {
 	public abstract class BaseAbility : ScriptableObject
 	{
-		public const string AbilitiesPath = "Abilities/";
-		public const string UtilitiesPath = "Abilities/Utilities/";
+		protected const string AbilitiesPath = "Abilities/";
+		protected const string UtilitiesPath = "Abilities/Utilities/";
 
 		[SerializeField]
 		private bool isMultiClick;

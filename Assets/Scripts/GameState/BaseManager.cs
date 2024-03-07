@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameState
+namespace MagicCombat.GameState
 {
 	public abstract class BaseManager : MonoBehaviour
 	{

@@ -1,18 +1,18 @@
-using Extension;
-using Gameplay.Player;
-using Gameplay.Player.Ability;
-using Gameplay.Player.Basic;
+using Gameplay.Abilities;
 using Gameplay.Player.Movement;
-using Gameplay.Spells;
+using MagicCombat.Extension;
+using MagicCombat.Gameplay.Player;
+using MagicCombat.Gameplay.Player.Ability;
+using MagicCombat.Gameplay.Spells;
 using UnityEngine;
 
-namespace Gameplay.Abilities
+namespace MagicCombat.Gameplay.Abilities
 {
 	[CreateAssetMenu(menuName = AbilitiesPath + Name, fileName = Name)]
 	public class PushProjectile : BaseAbility
 	{
-		const string Name = "Push Projectile";
-		
+		private const string Name = "Push Projectile";
+
 		[Space]
 		public ProjectileSpell projectile;
 
@@ -28,14 +28,15 @@ namespace Gameplay.Abilities
 		{
 			var casterTransform = caster.transform;
 			var direction = caster.MovementController.LookDirection;
-			var createPosition = casterTransform.position + direction.ToVec3() * createOffset + Vector3.up * createOffset;
+			var createPosition = casterTransform.position + direction.ToVec3() * createOffset +
+								 Vector3.up * createOffset;
 
 			var spell = Instantiate(projectile, createPosition, casterTransform.rotation);
 			spell.gameObject.name = Name;
 			spell.gameObject.transform.localScale = new Vector3(scale, scale, scale);
 			spell.onPlayerHit += player =>
 			{
-				Vector2 pushDirection = (player.transform.position - spell.transform.position).ToVec2().normalized;
+				var pushDirection = (player.transform.position - spell.transform.position).ToVec2().normalized;
 				player.MovementController.AddForce(pushForce.GetNew(pushDirection * pushStrength));
 				spell.Destroy();
 			};

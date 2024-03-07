@@ -1,9 +1,9 @@
 using System;
-using Extension;
-using Gameplay.Player;
+using MagicCombat.Extension;
+using MagicCombat.Gameplay.Player;
 using UnityEngine;
 
-namespace Gameplay.Spells
+namespace MagicCombat.Gameplay.Spells
 {
 	public class AoeSpell : MonoBehaviour
 	{

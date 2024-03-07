@@ -1,9 +1,9 @@
-using Extension;
-using Gameplay.Limiters;
+using MagicCombat.Extension;
+using MagicCombat.Gameplay.Limiters;
 using TMPro;
 using UnityEngine;
 
-namespace Gameplay.UI.Ability
+namespace MagicCombat.UI.Gameplay.Ability
 {
 	public class CooldownLimiterIndicator : MonoBehaviour
 	{

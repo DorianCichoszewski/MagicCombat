@@ -1,16 +1,17 @@
-using Extension;
-using Gameplay.Player;
-using Gameplay.Player.Ability;
-using Gameplay.Spells;
+using Gameplay.Abilities;
+using MagicCombat.Extension;
+using MagicCombat.Gameplay.Player;
+using MagicCombat.Gameplay.Player.Ability;
+using MagicCombat.Gameplay.Spells;
 using UnityEngine;
 
-namespace Gameplay.Abilities
+namespace MagicCombat.Gameplay.Abilities
 {
 	[CreateAssetMenu(menuName = AbilitiesPath + Name, fileName = Name)]
 	public class FireballAbility : BaseAbility
 	{
-		const string Name = "Fireball";
-		
+		private const string Name = "Fireball";
+
 		[Space]
 		public ProjectileSpell projectile;
 
@@ -24,7 +25,8 @@ namespace Gameplay.Abilities
 		{
 			var casterTransform = caster.transform;
 			var direction = caster.MovementController.LookDirection;
-			var createPosition = casterTransform.position + direction.ToVec3() * createOffset + Vector3.up * createOffset;
+			var createPosition = casterTransform.position + direction.ToVec3() * createOffset +
+								 Vector3.up * createOffset;
 
 			var spell = Instantiate(projectile, createPosition, casterTransform.rotation);
 			spell.gameObject.name = Name;

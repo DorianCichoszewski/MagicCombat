@@ -1,26 +1,27 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Gameplay.Time;
-using GameState;
-using Player;
+using MagicCombat.Gameplay.Time;
+using MagicCombat.GameState;
+using MagicCombat.Player;
 using UnityEngine;
 
-namespace Gameplay
+namespace MagicCombat.Gameplay
 {
 	public class GameplayManager : BaseManager
 	{
 		[SerializeField]
 		private GameplayGlobals gameplayGlobals;
+
 		[SerializeField]
 		private ClockGameObject clockGO;
-		
-		public GameplayGlobals GameplayGlobals => gameplayGlobals;
-		
+
 		private List<PlayerController> deadPlayers;
 
-		private bool isPlaying = false;
-		
+		private bool isPlaying;
+
+		public GameplayGlobals GameplayGlobals => gameplayGlobals;
+
 		public event Action GameStarted;
 
 		public event Action AvatarsChanged;
@@ -29,13 +30,13 @@ namespace Gameplay
 		{
 			gameplayGlobals.Init();
 			clockGO.Init(gameplayGlobals.clockManager);
-			
+
 			StartGame();
 		}
 
 		private void StartGame()
 		{
-			deadPlayers = new();
+			deadPlayers = new List<PlayerController>();
 			foreach (var playerData in runtimeScriptable.playersData)
 			{
 				if (playerData.controller == null) continue;
@@ -59,18 +60,15 @@ namespace Gameplay
 			isPlaying = false;
 			deadPlayers.Add(player);
 			player.EnableInput = false;
-			
+
 			if (deadPlayers.Count < runtimeScriptable.playersData.Count - 1) return;
-			
+
 			foreach (var playerData in runtimeScriptable.playersData)
 			{
 				//playerData.controller.EnableInput = false;
-				if (playerData.controller.Avatar.Alive)
-				{
-					playerData.points++;
-				}
+				if (playerData.controller.Avatar.Alive) playerData.points++;
 			}
-			
+
 			EndGameAnimation();
 		}
 
@@ -79,8 +77,8 @@ namespace Gameplay
 			gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = 0f;
 			gameplayGlobals.clockManager.FixedClock.CurrentSpeed = 0f;
 
-			Sequence s = DOTween.Sequence();
-			
+			var s = DOTween.Sequence();
+
 			s.Append(DOTween.To(() => gameplayGlobals.clockManager.DynamicClock.CurrentSpeed,
 				x => gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = x,
 				1f, 2f).SetEase(Ease.InCubic).Done());

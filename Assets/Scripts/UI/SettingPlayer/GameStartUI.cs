@@ -1,21 +1,23 @@
 using System.Collections.Generic;
-using Player;
+using MagicCombat.Player;
+using MagicCombat.SettingPlayer;
 using UnityEngine;
 
-namespace SettingPlayer
+namespace MagicCombat.UI.SettingPlayer
 {
 	public class GameStartUI : MonoBehaviour
 	{
 		[SerializeField]
 		private PlayerConfigWindow windowPrefab;
+
 		[SerializeField]
 		private Transform windowParent;
 
 		[Space]
 		[SerializeField]
 		private SettingPlayerManager manager;
-		
-		private List<PlayerConfigWindow> playerConfigWindows = new ();
+
+		private readonly List<PlayerConfigWindow> playerConfigWindows = new();
 
 		private void Start()
 		{
@@ -26,19 +28,17 @@ namespace SettingPlayer
 		private void SetPlayer(PlayerController player)
 		{
 			var datas = manager.RuntimeScriptable.playersData;
-			
+
 			// Get correct number of windows
 			while (playerConfigWindows.Count < datas.Count)
-			{
 				playerConfigWindows.Add(Instantiate(windowPrefab, windowParent));
-			}
 			while (playerConfigWindows.Count > datas.Count)
 			{
 				var window = playerConfigWindows[0];
 				playerConfigWindows.RemoveAt(0);
 				Destroy(window.gameObject);
 			}
-			
+
 			// Set player
 			for (int i = 0; i < playerConfigWindows.Count; i++)
 			{
@@ -54,7 +54,7 @@ namespace SettingPlayer
 			{
 				allReady &= window.IsReady;
 			}
-			
+
 			if (allReady)
 				manager.ConfirmPlayers();
 		}

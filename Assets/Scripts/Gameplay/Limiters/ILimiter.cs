@@ -1,4 +1,4 @@
-namespace Gameplay.Limiters
+namespace MagicCombat.Gameplay.Limiters
 {
 	public interface ILimiter
 	{
@@ -8,6 +8,6 @@ namespace Gameplay.Limiters
 
 		public void Reset();
 
-		public ILimiter Copy();
+		public ILimiter Copy(GameplayGlobals gameplayGlobals);
 	}
 }

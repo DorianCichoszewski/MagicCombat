@@ -16,16 +16,7 @@ MonoBehaviour:
     dynamicClock:
       currentSpeed: 1
       currentTime: 0
-      currentTimers:
-      - name: Projectile
-        totalTime: 20
-        remainingTime: 6.0306745
-      - name: Projectile
-        totalTime: 20
-        remainingTime: 10.018298
-      - name: Projectile
-        totalTime: 20
-        remainingTime: 12.80526
+      currentTimers: []
     fixedClock:
       currentSpeed: 1
       currentTime: 0

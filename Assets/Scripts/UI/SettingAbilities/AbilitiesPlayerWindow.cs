@@ -1,31 +1,42 @@
-using System;
-using GameState;
-using Player;
+using MagicCombat.GameState;
+using MagicCombat.Player;
+using MagicCombat.UI.Shared;
 using Sirenix.OdinInspector;
 using TMPro;
-using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SettingAbilities
+namespace MagicCombat.UI.SettingAbilities
 {
 	public class AbilitiesPlayerWindow : MonoBehaviour
 	{
-		[SerializeField, Required]
+		[SerializeField]
+		[Required]
 		private Selectable firstElement;
-		[SerializeField, Required]
+
+		[SerializeField]
+		[Required]
 		private PlayerHeader header;
-		[SerializeField, Required]
+
+		[SerializeField]
+		[Required]
 		private ReadyToggle readyToggle;
-		[SerializeField, Required]
+
+		[SerializeField]
+		[Required]
 		private TMP_Text pointsText;
 
 		[Header("Skills")]
-		[SerializeField, Required]
+		[SerializeField]
+		[Required]
 		private AbilityPicker skill1Picker;
-		[SerializeField, Required]
+
+		[SerializeField]
+		[Required]
 		private AbilityPicker skill2Picker;
-		[SerializeField, Required]
+
+		[SerializeField]
+		[Required]
 		private AbilityPicker skill3Picker;
 
 		private SettingAbilitiesUI settingAbilitiesUI;
@@ -44,17 +55,17 @@ namespace SettingAbilities
 			header.Init(controller.InitData);
 			readyToggle.onValueChanged.AddListener(VerifyWindowData);
 			var playerData = runtimeScriptable.GetPlayerData(controller);
-			pointsText.text = playerData.points > 0 ? $"Current points: {playerData.points}" : String.Empty;
+			pointsText.text = playerData.points > 0 ? $"Current points: {playerData.points}" : string.Empty;
 
 			skill1Picker.Init(newSkill => playerData.skill1 = newSkill, playerData.skill1);
 			skill2Picker.Init(newSkill => playerData.skill2 = newSkill, playerData.skill2);
 			skill3Picker.Init(newSkill => playerData.skill3 = newSkill, playerData.skill3);
 		}
-		
+
 		private void VerifyWindowData(bool isReady)
 		{
 			if (!isReady) return;
-			
+
 			// TODO: Check for empty / null skills
 
 			settingAbilitiesUI.OnPlayerReady();

@@ -1,6 +1,6 @@
 using System;
 
-namespace Gameplay.Limiters
+namespace MagicCombat.Gameplay.Limiters
 {
 	[Serializable]
 	public class NoneLimiter : ILimiter
@@ -14,7 +14,7 @@ namespace Gameplay.Limiters
 
 		public void Reset() { }
 
-		public ILimiter Copy()
+		public ILimiter Copy(GameplayGlobals gameplayGlobals)
 		{
 			return new NoneLimiter();
 		}

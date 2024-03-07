@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Abilities;
+using MagicCombat.Gameplay.Abilities;
 using TMPro;
 using UnityEngine;
 
-namespace SettingAbilities
+namespace MagicCombat.UI.SettingAbilities
 {
 	public class AbilityPicker : MonoBehaviour
 	{
@@ -13,12 +14,12 @@ namespace SettingAbilities
 
 		[SerializeField]
 		private AbilitiesGroup abilitiesGroup;
-		
+
 		public void Init(Action<BaseAbility> onAbilityChanged, BaseAbility startAbility = null)
 		{
 			dropdown.options = AbilitiesOptions(abilitiesGroup);
 			dropdown.SetValueWithoutNotify(abilitiesGroup.Abilities.IndexOf(startAbility));
-			
+
 			dropdown.onValueChanged.AddListener(index => onAbilityChanged(abilitiesGroup.Abilities[index]));
 		}
 

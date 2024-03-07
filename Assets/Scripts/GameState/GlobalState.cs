@@ -1,19 +1,19 @@
-using Player;
+using MagicCombat.Player;
 using UnityEngine;
 
-namespace GameState
+namespace MagicCombat.GameState
 {
 	public class GlobalState : MonoBehaviour
 	{
 		public ProjectScenes projectScenes;
-		
+
 		public PlayersManager playersManager;
-		
+
 		public void Init()
 		{
 			DontDestroyOnLoad(gameObject);
 			playersManager.Init();
-			
+
 			projectScenes.onSceneChanged += ClearCallbacks;
 		}
 

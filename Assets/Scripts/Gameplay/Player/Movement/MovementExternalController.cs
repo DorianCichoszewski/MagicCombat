@@ -5,7 +5,7 @@ namespace Gameplay.Player.Movement
 {
 	public class MovementExternalController
 	{
-		private List<MovementForce> currentForces = new ();
+		private readonly List<MovementForce> currentForces = new();
 
 		public void AddForce(MovementForce newForce)
 		{
@@ -19,8 +19,8 @@ namespace Gameplay.Player.Movement
 				if (!currentForces[i].IsActive)
 					currentForces.RemoveAt(i);
 			}
-			
-			Vector2 finalMovement = Vector2.zero;
+
+			var finalMovement = Vector2.zero;
 
 			foreach (var force in currentForces)
 			{

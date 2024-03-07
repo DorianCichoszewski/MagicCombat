@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Player.Basic
+namespace MagicCombat.Gameplay.Player.Basic
 {
 	public class SkinController : MonoBehaviour
 	{

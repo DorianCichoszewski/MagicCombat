@@ -17,7 +17,7 @@ MonoBehaviour:
   limiterProvider:
     limiterType: 0
     limiterData:
-      rid: 4698927118580973739
+      rid: 2317702510099562544
   projectile: {fileID: 7864215322948004282, guid: af95a7ed65af6394fb7a507b805cf7db,
     type: 3}
   createOffset: 1
@@ -27,9 +27,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4698927118580973739
-      type: {class: CooldownLimiter, ns: Gameplay.Limiters, asm: Assembly-CSharp}
+    - rid: 2317702510099562544
+      type: {class: CooldownLimiter, ns: MagicCombat.Gameplay.Limiters, asm: MagicCombat}
       data:
-        gameplayGlobals: {fileID: 11400000, guid: 607e759f7816377448b8396ae0d0f760,
-          type: 2}
         duration: 0.7

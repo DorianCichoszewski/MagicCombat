@@ -1,32 +1,31 @@
 using Gameplay.Abilities;
-using Gameplay.Limiters;
+using MagicCombat.Gameplay.Limiters;
 using UnityEngine.InputSystem;
 
-namespace Gameplay.Player.Ability
+namespace MagicCombat.Gameplay.Player.Ability
 {
 	public class AbilityCaster
 	{
 		private readonly PlayerAvatar caster;
-		private readonly BaseAbility ability;
-		private readonly ILimiter limiter;
-		private readonly AbilityState state;
 
-		public BaseAbility Ability => ability;
-		public AbilityState State => state;
-		public ILimiter Limiter => limiter;
-
-		public AbilityCaster(PlayerAvatar player, BaseAbility ability)
+		public AbilityCaster(PlayerAvatar player, BaseAbility ability, GameplayGlobals gameplayGlobals)
 		{
 			caster = player;
-			this.ability = ability;
-			state = new AbilityState();
-			limiter = null;
-			
-			limiter = ability.limiterProvider.Limiter;
-			limiter.Reset();
-			State.onFinished += limiter.Start;
+			Ability = ability;
+			State = new AbilityState();
+			Limiter = null;
+
+			Limiter = ability.limiterProvider.Limiter(gameplayGlobals);
+			Limiter.Reset();
+			State.onFinished += Limiter.Start;
 		}
-		
+
+		public BaseAbility Ability { get; }
+
+		public AbilityState State { get; }
+
+		public ILimiter Limiter { get; }
+
 		public void PerformFromInput(InputAction.CallbackContext ctx)
 		{
 			if (!ctx.performed) return;
@@ -36,12 +35,12 @@ namespace Gameplay.Player.Ability
 
 		private void TryToPerform()
 		{
-			if (limiter.CanPerform())
+			if (Limiter.CanPerform())
 			{
 				if (State.isActive)
 					State.onNextClick();
 				else
-					ability.Perform(caster, State);
+					Ability.Perform(caster, State);
 			}
 			else
 			{

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Extension
+namespace MagicCombat.Extension
 {
 	public static class GameObjectExtensions
 	{

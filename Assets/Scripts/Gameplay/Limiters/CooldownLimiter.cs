@@ -1,16 +1,14 @@
 using System;
-using Gameplay.Time;
-using UnityEngine;
+using MagicCombat.Gameplay.Time;
 
-namespace Gameplay.Limiters
+namespace MagicCombat.Gameplay.Limiters
 {
 	[Serializable]
 	public class CooldownLimiter : ILimiter
 	{
-		[SerializeField]
-		private GameplayGlobals gameplayGlobals;
+		public float duration = 1f;
 
-		public float duration;
+		private GameplayGlobals gameplayGlobals;
 
 		public Timer Timer { get; private set; }
 
@@ -32,7 +30,7 @@ namespace Gameplay.Limiters
 			Timer = null;
 		}
 
-		public ILimiter Copy()
+		public ILimiter Copy(GameplayGlobals gameplayGlobals)
 		{
 			return new CooldownLimiter
 			{

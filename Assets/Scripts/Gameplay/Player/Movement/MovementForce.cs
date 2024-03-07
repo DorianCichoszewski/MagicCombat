@@ -12,6 +12,8 @@ namespace Gameplay.Player.Movement
 		private Vector2 forceVector;
 		private float remainingDuration;
 
+		public bool IsActive => remainingDuration > 0;
+
 		public MovementForce GetNew(Vector2 forceVector)
 		{
 			return new MovementForce
@@ -19,16 +21,14 @@ namespace Gameplay.Player.Movement
 				duration = duration,
 				type = type,
 				forceVector = forceVector,
-				remainingDuration = duration,
+				remainingDuration = duration
 			};
 		}
-
-		public bool IsActive => remainingDuration > 0;
 
 		public Vector2 GetForce(float deltaTime)
 		{
 			deltaTime = Mathf.Min(deltaTime, remainingDuration);
-			Vector2 ret = deltaTime * forceVector;
+			var ret = deltaTime * forceVector;
 			ret *= type switch
 			{
 				MovementForceType.Constant => 1,
@@ -43,6 +43,6 @@ namespace Gameplay.Player.Movement
 	public enum MovementForceType
 	{
 		Constant,
-		Linear,
+		Linear
 	}
 }
