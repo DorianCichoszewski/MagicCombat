@@ -29,6 +29,7 @@ namespace Gameplay.Player
 
 		public MovementController MovementController => movement;
 		public PlayerController PlayerController => playerController;
+		public bool Alive => alive;
 
 		public GameplayGlobals GameplayGlobals => gameplayManager.GameplayGlobals;
 

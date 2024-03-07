@@ -14,10 +14,11 @@ namespace Gameplay.UI
 		private void Awake()
 		{
 			gameObject.SetActive(false);
-			gameplayManager.GameStarted += GameStarted;
+			gameplayManager.GameStarted += RefreshUI;
+			gameplayManager.AvatarsChanged += RefreshUI;
 		}
 
-		private void GameStarted()
+		private void RefreshUI()
 		{
 			for (int i = 0; i < gameplayManager.RuntimeScriptable.playersData.Count; i++)
 			{

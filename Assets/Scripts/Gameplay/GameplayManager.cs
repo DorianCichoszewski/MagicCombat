@@ -18,8 +18,12 @@ namespace Gameplay
 		public GameplayGlobals GameplayGlobals => gameplayGlobals;
 		
 		private List<PlayerController> deadPlayers;
+
+		private bool isPlaying = false;
 		
 		public event Action GameStarted;
+
+		public event Action AvatarsChanged;
 
 		protected override void OnAwake()
 		{
@@ -38,13 +42,21 @@ namespace Gameplay
 				playerData.controller.CreateAvatar(this, playerData);
 			}
 
-			runtimeScriptable.Essentials.playersManager.onPlayerJoined += p => p.CreateAvatar(this, runtimeScriptable.GetPlayerData(p));
+			runtimeScriptable.Essentials.playersManager.onPlayerJoined += p =>
+			{
+				p.CreateAvatar(this, runtimeScriptable.GetPlayerData(p));
+				AvatarsChanged?.Invoke();
+			};
+
+			isPlaying = true;
 
 			GameStarted?.Invoke();
 		}
 
 		public void OnPlayerDeath(PlayerController player)
 		{
+			if (!isPlaying) return;
+			isPlaying = false;
 			deadPlayers.Add(player);
 			player.EnableInput = false;
 			
@@ -52,7 +64,11 @@ namespace Gameplay
 			
 			foreach (var playerData in runtimeScriptable.playersData)
 			{
-				playerData.controller.EnableInput = false;
+				//playerData.controller.EnableInput = false;
+				if (playerData.controller.Avatar.Alive)
+				{
+					playerData.points++;
+				}
 			}
 			
 			EndGameAnimation();
@@ -63,12 +79,27 @@ namespace Gameplay
 			gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = 0f;
 			gameplayGlobals.clockManager.FixedClock.CurrentSpeed = 0f;
 
-			DOTween.To(() => gameplayGlobals.clockManager.DynamicClock.CurrentSpeed,
+			Sequence s = DOTween.Sequence();
+			
+			s.Append(DOTween.To(() => gameplayGlobals.clockManager.DynamicClock.CurrentSpeed,
 				x => gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = x,
-				1f, 3f).SetEase(Ease.InCubic).Done().Play();
-			DOTween.To(() => gameplayGlobals.clockManager.FixedClock.CurrentSpeed,
-				x => gameplayGlobals.clockManager.FixedClock.CurrentSpeed = x,
-				1f, 3f).SetEase(Ease.InCubic).Done().Play();
+				1f, 2f).SetEase(Ease.InCubic).Done());
+			s.Join(DOTween.To(() => gameplayGlobals.clockManager.FixedClock.CurrentSpeed,
+					x => gameplayGlobals.clockManager.FixedClock.CurrentSpeed = x,
+					1f, 2f)
+				.SetEase(Ease.InCubic).Done());
+
+			s.AppendInterval(1f);
+
+			s.OnComplete(() =>
+			{
+				gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = 1f;
+				gameplayGlobals.clockManager.FixedClock.CurrentSpeed = 1f;
+
+				runtimeScriptable.ProjectScenes.GoToSettingAbilities();
+			});
+
+			s.Play();
 		}
 	}
 }

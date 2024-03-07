@@ -1,28 +1,36 @@
+using System;
 using GameState;
 using Player;
+using Sirenix.OdinInspector;
+using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SettingAbilities
 {
 	public class AbilitiesPlayerWindow : MonoBehaviour
 	{
-		[SerializeField]
-		private GameObject firstElement;
-		[SerializeField]
+		[SerializeField, Required]
+		private Selectable firstElement;
+		[SerializeField, Required]
 		private PlayerHeader header;
-		[SerializeField]
+		[SerializeField, Required]
 		private ReadyToggle readyToggle;
+		[SerializeField, Required]
+		private TMP_Text pointsText;
 
-		[SerializeField]
+		[Header("Skills")]
+		[SerializeField, Required]
 		private AbilityPicker skill1Picker;
-		[SerializeField]
+		[SerializeField, Required]
 		private AbilityPicker skill2Picker;
-		[SerializeField]
+		[SerializeField, Required]
 		private AbilityPicker skill3Picker;
 
 		private SettingAbilitiesUI settingAbilitiesUI;
 
+		public GameObject FirstElement => firstElement.gameObject;
 		public bool IsReady => readyToggle.isOn;
 
 		public void Init(PlayerController controller, SettingAbilitiesUI ui, RuntimeScriptable runtimeScriptable)
@@ -30,25 +38,24 @@ namespace SettingAbilities
 			settingAbilitiesUI = ui;
 			var eventSystem = controller.EventSystem;
 			eventSystem.playerRoot = gameObject;
-			eventSystem.firstSelectedGameObject = firstElement;
-			eventSystem.SetSelectedGameObject(firstElement);
+			eventSystem.firstSelectedGameObject = FirstElement;
+			eventSystem.SetSelectedGameObject(FirstElement);
 
 			header.Init(controller.InitData);
 			readyToggle.onValueChanged.AddListener(VerifyWindowData);
+			var playerData = runtimeScriptable.GetPlayerData(controller);
+			pointsText.text = playerData.points > 0 ? $"Current points: {playerData.points}" : String.Empty;
 
-			skill1Picker.Init(newSkill => runtimeScriptable.GetPlayerData(controller).skill1 = newSkill,
-				runtimeScriptable.GetPlayerData(controller).skill1);
-			skill2Picker.Init(newSkill => runtimeScriptable.GetPlayerData(controller).skill2 = newSkill,
-				runtimeScriptable.GetPlayerData(controller).skill2);
-			skill3Picker.Init(newSkill => runtimeScriptable.GetPlayerData(controller).skill3 = newSkill,
-				runtimeScriptable.GetPlayerData(controller).skill3);
+			skill1Picker.Init(newSkill => playerData.skill1 = newSkill, playerData.skill1);
+			skill2Picker.Init(newSkill => playerData.skill2 = newSkill, playerData.skill2);
+			skill3Picker.Init(newSkill => playerData.skill3 = newSkill, playerData.skill3);
 		}
 		
-		public void VerifyWindowData(bool isReady)
+		private void VerifyWindowData(bool isReady)
 		{
 			if (!isReady) return;
 			
-			
+			// TODO: Check for empty / null skills
 
 			settingAbilitiesUI.OnPlayerReady();
 		}

@@ -10,7 +10,7 @@ namespace GameState
 	{
 		#region Essentials
 
-		[SerializeField, AssetsOnly]
+		[SerializeField, AssetsOnly, Required]
 		private GlobalState essentialsPrefab;
 
 		private GlobalState createdEssentials;
@@ -23,6 +23,9 @@ namespace GameState
 				return createdEssentials;
 			}
 		}
+
+		public PlayersManager PlayersManager => Essentials.playersManager;
+		public ProjectScenes ProjectScenes => Essentials.projectScenes;
 
 		public void EnsureEssentials()
 		{

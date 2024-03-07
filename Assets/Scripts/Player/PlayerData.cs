@@ -1,11 +1,13 @@
 using System;
 using Gameplay.Abilities;
+using Sirenix.OdinInspector;
 
 namespace Player
 {
 	[Serializable]
 	public class PlayerData
 	{
+		[ReadOnly]
 		public PlayerController controller;
 		
 		// Current Abilities
@@ -13,6 +15,8 @@ namespace Player
 		public BaseAbility skill1;
 		public BaseAbility skill2;
 		public BaseAbility skill3;
+
+		public int points = 0;
 
 		public PlayerData(PlayerController controller)
 		{

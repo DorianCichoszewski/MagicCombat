@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Player;
 using UnityEngine;
 
 namespace SettingAbilities
@@ -17,7 +16,7 @@ namespace SettingAbilities
 
 		private List<AbilitiesPlayerWindow> spawnedWindows = new();
 		
-		public void Init()
+		public void Start()
 		{
 			var playersData = manager.RuntimeScriptable.playersData;
 			foreach (var data in playersData)
