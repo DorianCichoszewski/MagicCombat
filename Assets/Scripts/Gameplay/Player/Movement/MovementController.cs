@@ -57,7 +57,7 @@ namespace MagicCombat.Gameplay.Player.Movement
 			if (rotationInput != Vector2.zero)
 			{
 				useStickRotation = true;
-				targetRotationAngle = Mathf.Rad2Deg * Mathf.Atan2(rotationInput.x, rotationInput.y);
+				targetRotationAngle = rotationInput.ToAngleRotation();
 			}
 			else
 			{
@@ -65,7 +65,7 @@ namespace MagicCombat.Gameplay.Player.Movement
 			}
 		}
 
-		public void ApplyMovement(Vector2 targetMovement)
+		private void ApplyMovement(Vector2 targetMovement)
 		{
 			// Split big movements to better check collision
 			int movementSegmentCount = (int)(targetMovement.magnitude / (characterColliderSize * 0.5)) + 1;
@@ -78,7 +78,6 @@ namespace MagicCombat.Gameplay.Player.Movement
 			}
 		}
 
-		// Public for i.e. root
 		public void SetMovement<T>(T movement) where T : IMovement
 		{
 			currentMovement = movement;
@@ -104,13 +103,12 @@ namespace MagicCombat.Gameplay.Player.Movement
 			}
 
 			if (!useStickRotation)
-				targetRotationAngle = Mathf.Rad2Deg * Mathf.Atan2(lastMoveDirection.x, lastMoveDirection.y);
+				targetRotationAngle = lastMoveDirection.ToAngleRotation();
 
 			var targetRotation = Quaternion.Euler(0f, targetRotationAngle, 0f);
 			transform.rotation = targetRotation;
 
-			Vector2 movement;
-			movement = currentMovement.Update(deltaTime);
+			var movement = currentMovement.Update(deltaTime);
 			movement += externalController.Update(deltaTime);
 
 			ApplyMovement(movement);
