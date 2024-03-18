@@ -1,5 +1,9 @@
+using Sirenix.OdinInspector;
+
 namespace MagicCombat.Gameplay.Limiters
 {
+	[InlineProperty]
+	[HideLabel]
 	public interface ILimiter
 	{
 		public bool CanPerform();

@@ -5,13 +5,14 @@ using UnityEngine;
 namespace MagicCombat.Gameplay.Limiters
 {
 	[Serializable]
+	[InlineProperty]
 	public class LimiterProvider
 	{
 		[OnValueChanged("@limiterData = GetLimiterFromType($value)")]
-		public LimiterType limiterType;
+		public LimiterType limiterType = LimiterType.None;
 
 		[SerializeReference]
-		private ILimiter limiterData;
+		private ILimiter limiterData = new NoneLimiter();
 
 		public ILimiter Limiter(GameplayGlobals gameplayGlobals)
 		{
