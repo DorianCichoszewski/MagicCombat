@@ -18,7 +18,6 @@ namespace MagicCombat.Gameplay.Abilities
 		[SerializeField]
 		private float offset = 2f;
 
-
 		public override void Perform(PlayerAvatar caster, AbilityState state)
 		{
 			var spellData = new SpellData
@@ -28,11 +27,11 @@ namespace MagicCombat.Gameplay.Abilities
 				direction = caster.MovementController.LookDirection,
 				position = caster.transform.position
 			};
-
+			
 			spellData.position += (spellData.direction * offset).ToVec3();
-
-			fireballPrototype.CreateNew(spellData);
-
+			
+			caster.GameplayGlobals.spellCrafter.CreateNew(fireballPrototype, spellData);
+			
 			state.onPerform?.Invoke();
 			state.onFinished?.Invoke();
 		}

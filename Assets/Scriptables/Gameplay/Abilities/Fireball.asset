@@ -17,13 +17,13 @@ MonoBehaviour:
   limiterProvider:
     limiterType: 0
     limiterData:
-      rid: 2317702762373316665
+      rid: 2317702804819410988
   fireballPrototype: {fileID: 11400000, guid: aebd83e5edad9214d9256a7af9438eab, type: 2}
   offset: 5
   references:
     version: 2
     RefIds:
-    - rid: 2317702762373316665
+    - rid: 2317702804819410988
       type: {class: CooldownLimiter, ns: MagicCombat.Gameplay.Limiters, asm: MagicCombat}
       data:
         duration: 1

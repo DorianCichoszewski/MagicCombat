@@ -1,4 +1,5 @@
 using MagicCombat.Gameplay.Time;
+using MagicCombat.Spell;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay
@@ -7,6 +8,8 @@ namespace MagicCombat.Gameplay
 	public class GameplayGlobals : ScriptableObject
 	{
 		public ClockManager clockManager;
+
+		public SpellCrafter spellCrafter;
 
 		public void Init()
 		{

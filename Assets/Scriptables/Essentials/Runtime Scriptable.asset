@@ -15,15 +15,9 @@ MonoBehaviour:
   playersData:
   - controller: {fileID: 0}
     utility: {fileID: 11400000, guid: da91ce824bdcca144836a29515f90772, type: 2}
-    skill1: {fileID: 11400000, guid: 00ef4f2be0d6964449696f9d82ad4f56, type: 2}
+    skill1: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
     skill2: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
-    skill3: {fileID: 11400000, guid: 64b497548e296e947960e9aaa22e9fda, type: 2}
-    points: 0
-  - controller: {fileID: 0}
-    utility: {fileID: 11400000, guid: da91ce824bdcca144836a29515f90772, type: 2}
-    skill1: {fileID: 11400000, guid: 420efe0fa05164741bf1b076bf91283e, type: 2}
-    skill2: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
-    skill3: {fileID: 11400000, guid: b2b64fec8bb3f1d4283515b59b9c1ccd, type: 2}
+    skill3: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
     points: 0
   essentialsPrefab: {fileID: 2917655620817472049, guid: 96ac924e040bcee488d907b36797d2fe,
     type: 3}

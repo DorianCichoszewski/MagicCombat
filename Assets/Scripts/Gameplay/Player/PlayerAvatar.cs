@@ -2,12 +2,13 @@ using MagicCombat.Gameplay.Player.Ability;
 using MagicCombat.Gameplay.Player.Basic;
 using MagicCombat.Gameplay.Player.Movement;
 using MagicCombat.Player;
+using MagicCombat.Spell;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Player
 {
-	public class PlayerAvatar : MonoBehaviour
+	public class PlayerAvatar : MonoBehaviour, ISpellTarget
 	{
 		[SerializeField]
 		private MovementController movement;

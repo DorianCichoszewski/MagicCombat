@@ -30,6 +30,6 @@ MonoBehaviour:
     color: {r: 0.19215687, g: 0.79607844, b: 0.8627451, a: 1}
     spawnPos: {x: 0, y: 0, z: -15}
   startUtility: {fileID: 11400000, guid: da91ce824bdcca144836a29515f90772, type: 2}
-  startSkill1: {fileID: 11400000, guid: 420efe0fa05164741bf1b076bf91283e, type: 2}
+  startSkill1: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
   startSkill2: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
-  startSkill3: {fileID: 11400000, guid: 64b497548e296e947960e9aaa22e9fda, type: 2}
+  startSkill3: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}

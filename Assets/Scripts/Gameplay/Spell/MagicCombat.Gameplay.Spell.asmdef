@@ -1,11 +1,8 @@
 {
-    "name": "MagicCombat",
-    "rootNamespace": "MagicCombat",
+    "name": "MagicCombat.Gameplay.Spell",
+    "rootNamespace": "",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:0fecd374fc586fb44b12fd5eca5ba499",
-        "GUID:8ee6834b5a184c79add6a6e5616f95c8",
-        "GUID:f21fe9db6bb845f4a20621dda9e8edb3",
+        "GUID:6787e0c66a9da37408e53f2e2525ad62",
         "GUID:7ce8a2ade5632614ca5355e62d497d27"
     ],
     "includePlatforms": [],
