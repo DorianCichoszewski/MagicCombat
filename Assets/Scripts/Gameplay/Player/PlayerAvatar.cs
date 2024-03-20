@@ -20,10 +20,10 @@ namespace MagicCombat.Gameplay.Player
 		private bool alive = true;
 
 		private GameplayManager gameplayManager;
+
 		public AbilityCaster skill1;
 		public AbilityCaster skill2;
 		public AbilityCaster skill3;
-
 		public AbilityCaster utility;
 
 		public MovementController MovementController => movement;

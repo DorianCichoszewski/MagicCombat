@@ -11,37 +11,41 @@ namespace MagicCombat.Spell
 	public class SpellPrototype : SerializedScriptableObject
 	{
 		public PropertyGroup properties = new();
-
+		
+		[Space(20)]
 		[Title("Fragments")]
 		[AssetsOnly]
 		public List<GameObject> graphicalFragments = new();
 
 		public List<SpellVisualFragment> visualFragments = new();
+		
+		public List<SpellLogicalFragment> logicalFragments = new();
 
+		[Space(20)]
 		[Title("Events")]
 		public bool useTimers;
 
 		[ShowIf(nameof(useTimers))]
 		public List<SpellTimer> timers = new();
 
+		[Space]
 		public bool useDestroyEvents;
-
-		[EnumToggleButtons]
-		public SpellHitEvent hitEventsType = SpellHitEvent.None;
-
-		[ShowIf(nameof(UseAllHitEvents))]
-		public List<ISpellEventHit> allHitEvents = new();
-
+		
 		[ShowIf(nameof(useDestroyEvents))]
 		public List<ISpellEventGeneric> destroyEvents = new();
 
-		public List<SpellLogicalFragment> logicalFragments = new();
+		[Space]
+		[EnumToggleButtons]
+		public SpellHitEvent hitEventsType = SpellHitEvent.None;
+		
+		[ShowIf(nameof(UsePlayerHitEvents))]
+		public List<ISpellEventPlayerHit> playerHitEvents = new();
 
 		[ShowIf(nameof(UseOtherHitEvents))]
 		public List<ISpellEventHit> otherHitEvents = new();
 
-		[ShowIf(nameof(UsePlayerHitEvents))]
-		public List<ISpellEventPlayerHit> playerHitEvents = new();
+		[ShowIf(nameof(UseAllHitEvents))]
+		public List<ISpellEventHit> allHitEvents = new();
 
 		private List<PropertyId> CombinedProperties
 		{

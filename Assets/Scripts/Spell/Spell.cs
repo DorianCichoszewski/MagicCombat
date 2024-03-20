@@ -70,6 +70,7 @@ namespace MagicCombat.Spell
 			rb.freezeRotation = false;
 			rb.drag = 0;
 			rb.angularDrag = 0;
+			rb.isKinematic = true;
 			gameObject.layer = LayerMask.NameToLayer("Ethereal");
 		}
 

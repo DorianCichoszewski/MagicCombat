@@ -1,8 +1,8 @@
 using System;
 using MagicCombat.Extension;
 using MagicCombat.Gameplay.Player;
+using MagicCombat.Gameplay.Time;
 using UnityEngine;
-using Timer = MagicCombat.Gameplay.Time.Timer;
 
 namespace MagicCombat.Gameplay.Spells
 {

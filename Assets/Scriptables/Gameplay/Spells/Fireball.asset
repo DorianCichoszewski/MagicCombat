@@ -21,12 +21,116 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: destroyEvents
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[MagicCombat.Spell.ISpellEventGeneric,
+        MagicCombat]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: logicalFragments
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[MagicCombat.Spell.SpellLogicalFragment,
+        MagicCombat]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 2|MagicCombat.Spell.LogicalFragment.StraightMoveSpellFragment, MagicCombat
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|MagicCombat.Spell.LogicalFragment.ScaleSpellFragment, MagicCombat
+    - Name: scale
+      Entry: 7
+      Data: MagicCombat.Spell.SpellBuilderValue, MagicCombat
+    - Name: useProperty
+      Entry: 5
+      Data: true
+    - Name: property
+      Entry: 3
+      Data: 7
+    - Name: value
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: playerHitEvents
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[MagicCombat.Spell.ISpellEventPlayerHit,
+        MagicCombat]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 5|MagicCombat.Spell.Event.DestroyOtherSpellEvent, MagicCombat
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: otherHitEvents
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[MagicCombat.Spell.ISpellEventHit,
+        MagicCombat]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: allHitEvents
+      Entry: 7
+      Data: 7|System.Collections.Generic.List`1[[MagicCombat.Spell.ISpellEventHit,
+        MagicCombat]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 8|MagicCombat.Spell.Event.SelfDestroySpellEvent, MagicCombat
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: properties
       Entry: 7
-      Data: 0|MagicCombat.Spell.PropertyGroup, MagicCombat
+      Data: 9|MagicCombat.Spell.PropertyGroup, MagicCombat
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MagicCombat.Spell.PropertyId,
+      Data: 10|System.Collections.Generic.EnumEqualityComparer`1[[MagicCombat.Spell.PropertyId,
         MagicCombat]], mscorlib
     - Name: 
       Entry: 12
@@ -82,113 +186,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: logicalFragments
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[MagicCombat.Spell.SpellLogicalFragment,
-        MagicCombat]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 3|MagicCombat.Spell.LogicalFragment.StraightMoveSpellFragment, MagicCombat
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 4|MagicCombat.Spell.LogicalFragment.ScaleSpellFragment, MagicCombat
-    - Name: scale
-      Entry: 7
-      Data: MagicCombat.Spell.SpellBuilderValue, MagicCombat
-    - Name: useProperty
-      Entry: 5
-      Data: true
-    - Name: property
-      Entry: 3
-      Data: 7
-    - Name: value
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: destroyEvents
-      Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[MagicCombat.Spell.ISpellEventGeneric,
-        MagicCombat]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: playerHitEvents
-      Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[MagicCombat.Spell.ISpellEventPlayerHit,
-        MagicCombat]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 7|MagicCombat.Spell.Event.DestroyOtherSpellEvent, MagicCombat
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: otherHitEvents
-      Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[MagicCombat.Spell.ISpellEventHit,
-        MagicCombat]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: allHitEvents
-      Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[MagicCombat.Spell.ISpellEventHit,
-        MagicCombat]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 10|MagicCombat.Spell.Event.SelfDestroySpellEvent, MagicCombat
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  graphicalFragments:
-  - {fileID: 9053559233389476299, guid: 4a3cd23ab4a2ce04db4b204131f126bd, type: 3}
-  visualFragments: []
+  graphicalFragments: []
+  visualFragments:
+  - {fileID: 2045157204249671539, guid: 4a3cd23ab4a2ce04db4b204131f126bd, type: 3}
   useTimers: 1
   timers:
   - duration:
@@ -196,9 +196,9 @@ MonoBehaviour:
       property: 2
       value: 5
     clockType: 0
+    name: 
     events:
     - rid: 2317702762373316652
-    name: 
   useDestroyEvents: 0
   hitEventsType: 5
   references:
