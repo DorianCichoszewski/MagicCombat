@@ -1,4 +1,8 @@
-using MagicCombat.GameState;
+using System;
+using System.Collections.Generic;
+using MagicCombat.Player;
+using MagicCombat.Shared.GameState;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.SettingPlayer
@@ -10,20 +14,26 @@ namespace MagicCombat.SettingPlayer
 
 		[SerializeField]
 		private int maxPlayers = 4;
+		
+		public event Action OnRefreshPlayers;
 
-		protected override void OnAwake()
+		[ReadOnly]
+		public List<PlayerData> playersData;
+
+		public void RefreshPlayers(List<PlayerData> newPlayersData)
 		{
-			runtimeScriptable.playersData.Clear();
+			playersData = newPlayersData;
+			OnRefreshPlayers?.Invoke();
 		}
 
 		public void ConfirmPlayers()
 		{
-			int currentPlayers = runtimeScriptable.playersData.Count;
+			int currentPlayers = playersData.Count;
 			if (currentPlayers < minPlayers || currentPlayers > maxPlayers)
 				return;
 
 			Debug.Log("Finished Setting Players");
-			runtimeScriptable.Essentials.projectScenes.GoToSettingAbilities();
+			sharedScriptable.ProjectScenes.GoToSettingAbilities();
 		}
 	}
 }

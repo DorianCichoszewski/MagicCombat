@@ -1,9 +1,14 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using MagicCombat.Gameplay.Time;
-using MagicCombat.GameState;
-using MagicCombat.Player;
+using MagicCombat.Gameplay.Abilities;
+using MagicCombat.Gameplay.Player;
+using MagicCombat.Shared.Data;
+using MagicCombat.Shared.Extension;
+using MagicCombat.Shared.GameState;
+using MagicCombat.Shared.Interfaces;
+using MagicCombat.Shared.Time;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay
@@ -11,79 +16,69 @@ namespace MagicCombat.Gameplay
 	public class GameplayManager : BaseManager
 	{
 		[SerializeField]
-		private GameplayGlobals gameplayGlobals;
+		private GameplayContext gameplayContext;
 
 		[SerializeField]
 		private ClockGameObject clockGO;
 
-		private List<PlayerController> deadPlayers;
-
+		[ShowInInspector]
+		[ReadOnly]
 		private bool isPlaying;
+		[ShowInInspector]
+		[ReadOnly]
+		private List<PlayerAvatar> alivePlayers = new();
 
-		public GameplayGlobals GameplayGlobals => gameplayGlobals;
+		public event Action OnGameStarted;
+		public event Action<PlayerAvatar> OnPlayerDeath;
+		public event Action<PlayerAvatar> OnGameEnd;
+		
+		public AbilitiesContext AbilitiesContext => gameplayContext.AbilitiesContext;
 
-		public event Action GameStarted;
+		public GameplayContext GameplayContext => gameplayContext;
 
-		public event Action AvatarsChanged;
+		public List<PlayerAvatar> AlivePlayers => alivePlayers;
 
 		protected override void OnAwake()
 		{
-			gameplayGlobals.Init();
-			clockGO.Init(gameplayGlobals.clockManager);
-
-			StartGame();
+			gameplayContext.Init();
 		}
 
-		private void StartGame()
+		public void StartGame()
 		{
-			deadPlayers = new List<PlayerController>();
-			foreach (var playerData in runtimeScriptable.playersData)
-			{
-				if (playerData.controller == null) continue;
-				playerData.controller.CreateAvatar(this, playerData);
-			}
-
-			runtimeScriptable.Essentials.playersManager.onPlayerJoined += p =>
-			{
-				p.CreateAvatar(this, runtimeScriptable.GetPlayerData(p));
-				AvatarsChanged?.Invoke();
-			};
-
+			clockGO.Init(AbilitiesContext.clockManager);
 			isPlaying = true;
-
-			GameStarted?.Invoke();
+			OnGameStarted?.Invoke();
 		}
 
-		public void OnPlayerDeath(PlayerController player)
+		public void PlayerDeath(PlayerAvatar player)
 		{
 			if (!isPlaying) return;
+			if (!alivePlayers.Contains(player)) return;
+			
+			alivePlayers.Remove(player);
+			OnPlayerDeath?.Invoke(player);
+
+			if (alivePlayers.Count > 2) return;
+
+			// End game
+			player.Controller.EnabledInput = false;
 			isPlaying = false;
-			deadPlayers.Add(player);
-			player.EnableInput = false;
-
-			if (deadPlayers.Count < runtimeScriptable.playersData.Count - 1) return;
-
-			foreach (var playerData in runtimeScriptable.playersData)
-			{
-				//playerData.controller.EnableInput = false;
-				if (playerData.controller.Avatar.Alive) playerData.points++;
-			}
-
-			EndGameAnimation();
+			EndGameAnimation(alivePlayers[0]);
 		}
 
-		private void EndGameAnimation()
+		private void EndGameAnimation(PlayerAvatar winner)
 		{
-			gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = 0f;
-			gameplayGlobals.clockManager.FixedClock.CurrentSpeed = 0f;
+			var clockManager = AbilitiesContext.clockManager;
+			clockManager.DynamicClock.CurrentSpeed = 0f;
+			clockManager.FixedClock.CurrentSpeed = 0f;
 
 			var s = DOTween.Sequence();
 
-			s.Append(DOTween.To(() => gameplayGlobals.clockManager.DynamicClock.CurrentSpeed,
-				x => gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = x,
+			s.Append(DOTween.To(() => clockManager.DynamicClock.CurrentSpeed,
+				x => clockManager.DynamicClock.CurrentSpeed = x,
 				1f, 2f).SetEase(Ease.InCubic).Done());
-			s.Join(DOTween.To(() => gameplayGlobals.clockManager.FixedClock.CurrentSpeed,
-					x => gameplayGlobals.clockManager.FixedClock.CurrentSpeed = x,
+			s.Join(DOTween.To(() => clockManager.FixedClock.CurrentSpeed,
+					x => clockManager.FixedClock.CurrentSpeed = x,
 					1f, 2f)
 				.SetEase(Ease.InCubic).Done());
 
@@ -91,13 +86,21 @@ namespace MagicCombat.Gameplay
 
 			s.OnComplete(() =>
 			{
-				gameplayGlobals.clockManager.DynamicClock.CurrentSpeed = 1f;
-				gameplayGlobals.clockManager.FixedClock.CurrentSpeed = 1f;
+				clockManager.DynamicClock.CurrentSpeed = 1f;
+				clockManager.FixedClock.CurrentSpeed = 1f;
 
-				runtimeScriptable.ProjectScenes.GoToSettingAbilities();
+				OnGameEnd?.Invoke(winner);
 			});
 
 			s.Play();
+		}
+
+		public void CreatePlayer(GameplayPlayerData gameplayPlayerData, StaticPlayerData staticData, IGameplayInputController input, int id)
+		{
+			var playerPrefab = gameplayContext.PlayerPrefab;
+			var player = Instantiate(playerPrefab, staticData.spawnPos.ToVec3(), Quaternion.identity);
+			player.Init(gameplayPlayerData, staticData,this, input, id);
+			alivePlayers.Add(player);
 		}
 	}
 }

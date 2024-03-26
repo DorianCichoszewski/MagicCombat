@@ -2,11 +2,9 @@
     "name": "MagicCombat",
     "rootNamespace": "MagicCombat",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:0fecd374fc586fb44b12fd5eca5ba499",
-        "GUID:8ee6834b5a184c79add6a6e5616f95c8",
-        "GUID:f21fe9db6bb845f4a20621dda9e8edb3",
-        "GUID:7ce8a2ade5632614ca5355e62d497d27"
+        "GUID:d3ed4218b71c6ac4ca1453d909438b66",
+        "GUID:160c7fb2d7398304d82de73b5373cac0",
+        "GUID:451832fb1b705eb4db90f9c50ca3793c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

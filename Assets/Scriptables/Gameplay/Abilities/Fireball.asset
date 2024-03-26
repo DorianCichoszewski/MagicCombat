@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248f144765b94627b52685d0d14b22e1, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  isMultiClick: 0
   defaultIcon: {fileID: 21300000, guid: 581ca0c781bb7b74995ef7e8f4d74b32, type: 3}
   limiterProvider:
-    limiterType: 0
     limiterData:
-      rid: 2317702804819410988
-  fireballPrototype: {fileID: 11400000, guid: aebd83e5edad9214d9256a7af9438eab, type: 2}
-  offset: 5
+      rid: 2317702896371105835
+  spellPrototype: {fileID: 11400000, guid: c14e10c601b44f644a25b58b5c73401b, type: 2}
+  offset: 2
+  singleCast: 1
   references:
     version: 2
     RefIds:
-    - rid: 2317702804819410988
-      type: {class: CooldownLimiter, ns: MagicCombat.Gameplay.Limiters, asm: MagicCombat}
+    - rid: 2317702896371105835
+      type: {class: CooldownLimiter, ns: MagicCombat.Gameplay.Abilities.Limiters,
+        asm: MagicCombat.Gameplay.Abilities}
       data:
         duration: 1

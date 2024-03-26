@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708d587fb820452fa6680628b2ef1aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstElement: {fileID: 6720823075303865498}
+  firstElement: {fileID: 3600074897000130886}
   header: {fileID: 4071385610478425627}
   controllerType: {fileID: 2267218476911390736}
   readyToggle: {fileID: 3600074897000130886}
@@ -326,18 +326,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4337294018933224154}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6720823075303865498}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdbe2eb6e3ea4585bebfc6b228e0a237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6720823075303865498 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7022238907161693760, guid: 20d38105a2d1df64b826a3c2b4c57a47,
-    type: 3}
-  m_PrefabInstance: {fileID: 4337294018933224154}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8654229574285502534
 PrefabInstance:
   m_ObjectHideFlags: 0

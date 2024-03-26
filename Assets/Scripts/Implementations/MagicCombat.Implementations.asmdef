@@ -1,0 +1,19 @@
+{
+    "name": "MagicCombat.Implementations",
+    "rootNamespace": "MagicCombat",
+    "references": [
+        "GUID:7ce8a2ade5632614ca5355e62d497d27",
+        "GUID:326ba6f5505b9b04fa8e663c29f933d8",
+        "GUID:816ea2aae01a3d84285ffd0ed78d360c",
+        "GUID:d3ed4218b71c6ac4ca1453d909438b66"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

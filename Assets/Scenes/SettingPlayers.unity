@@ -200,7 +200,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.043268036, g: 0.1295615, b: 0.22264141, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -285,9 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcfe76121c44c979decbb072108c134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeScriptable: {fileID: 11400000, guid: f6146a3121d1a5f42b694bc897662674, type: 2}
+  sharedScriptable: {fileID: 11400000, guid: f6146a3121d1a5f42b694bc897662674, type: 2}
   minPlayers: 2
   maxPlayers: 4
+  playersData: []
 --- !u!4 &675237666
 Transform:
   m_ObjectHideFlags: 0

@@ -1,8 +1,9 @@
-using MagicCombat.Gameplay.Player.Ability;
-using MagicCombat.Gameplay.Player.Basic;
-using MagicCombat.Gameplay.Player.Movement;
-using MagicCombat.Player;
-using MagicCombat.Spell;
+using System;
+using MagicCombat.Gameplay.Abilities.Base;
+using MagicCombat.Gameplay.Avatar;
+using MagicCombat.Gameplay.Avatar.Movement;
+using MagicCombat.Shared.Data;
+using MagicCombat.Shared.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,14 +12,7 @@ namespace MagicCombat.Gameplay.Player
 	public class PlayerAvatar : MonoBehaviour, ISpellTarget
 	{
 		[SerializeField]
-		private MovementController movement;
-
-		[SerializeField]
-		private SkinController skin;
-
-		[SerializeField]
-		[ReadOnly]
-		private bool alive = true;
+		private BaseAvatar avatar;
 
 		private GameplayManager gameplayManager;
 
@@ -26,37 +20,48 @@ namespace MagicCombat.Gameplay.Player
 		public AbilityCaster skill2;
 		public AbilityCaster skill3;
 		public AbilityCaster utility;
+		
+		public PlayerController Controller { get; private set; }
+		[ReadOnly]
+		public int Id;
 
-		public MovementController MovementController => movement;
-		public PlayerController PlayerController { get; private set; }
+		public MovementController MovementController => avatar.MovementController;
 
-		public bool Alive => alive;
+		public bool Alive => avatar.Alive;
 
-		public GameplayGlobals GameplayGlobals => gameplayManager.GameplayGlobals;
+		public event Action Death;
 
-		public void Init(PlayerData playerData, GameplayManager manager, GameplayGlobals globals)
+		public void Init(GameplayPlayerData gameplayPlayerData, StaticPlayerData staticData, GameplayManager manager, IGameplayInputController input, int id)
 		{
 			gameplayManager = manager;
-			PlayerController = playerData.controller;
-			skin.SetSkin(PlayerController.InitData);
-			movement.Init(manager.GameplayGlobals);
+			Id = id;
+			avatar.Init(staticData, gameplayManager.AbilitiesContext.clockManager);
+			
+			var abilitiesData = gameplayManager.AbilitiesContext;
 
-			movement.enabled = true;
+			var abilitiesGroup = gameplayManager.GameplayContext.AbilitiesGroup;
 
-			utility = new AbilityCaster(this, playerData.utility, globals);
-			skill1 = new AbilityCaster(this, playerData.skill1, globals);
-			skill2 = new AbilityCaster(this, playerData.skill2, globals);
-			skill3 = new AbilityCaster(this, playerData.skill3, globals);
+			utility = new AbilityCaster(avatar, abilitiesGroup.GetAbility(gameplayPlayerData.UtilityIndex), abilitiesData);
+			skill1 = new AbilityCaster(avatar, abilitiesGroup.GetAbility(gameplayPlayerData.Skill1Index), abilitiesData);
+			skill2 = new AbilityCaster(avatar, abilitiesGroup.GetAbility(gameplayPlayerData.Skill2Index), abilitiesData);
+			skill3 = new AbilityCaster(avatar, abilitiesGroup.GetAbility(gameplayPlayerData.Skill3Index), abilitiesData);
+
+			Controller = new PlayerController(this, input)
+			{
+				EnabledInput = true
+			};
+		}
+
+		private void OnAvatarDeath()
+		{
+			Death?.Invoke();
+			gameplayManager.PlayerDeath(this);
 		}
 
 		public void Kill()
 		{
-			if (!alive) return;
-
-			alive = false;
-			movement.enabled = false;
-			PlayerController.EnableInput = false;
-			gameplayManager.OnPlayerDeath(PlayerController);
+			avatar.Kill();
+			OnAvatarDeath();
 		}
 	}
 }

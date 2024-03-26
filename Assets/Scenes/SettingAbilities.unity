@@ -163,8 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b357fc869e43e3adee2b57333f9634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeScriptable: {fileID: 11400000, guid: f6146a3121d1a5f42b694bc897662674, type: 2}
-  ui: {fileID: 449096242258930881}
+  sharedScriptable: {fileID: 11400000, guid: f6146a3121d1a5f42b694bc897662674, type: 2}
+  startAbilities: {fileID: 11400000, guid: c4d40fdcf3cdc864688e86aec07ff31e, type: 2}
+  playerData: []
 --- !u!1 &961983596
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +247,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.06445369, g: 0.20754719, b: 0.05756497, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -425,18 +426,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d1bd9961b859be4f83b8400c176e295, type: 3}
---- !u!114 &449096242258930881 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3046318360519485148, guid: 7d1bd9961b859be4f83b8400c176e295,
-    type: 3}
-  m_PrefabInstance: {fileID: 449096242258930880}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c727a049014f428514a72a0dc66a99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

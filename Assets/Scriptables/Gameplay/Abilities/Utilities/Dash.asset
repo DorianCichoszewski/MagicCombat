@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005317f48f4c4ec1b798f0ea625f0366, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  isMultiClick: 0
   defaultIcon: {fileID: 21300000, guid: 2d7ad304774442b4dbfaad8f652bcf74, type: 3}
   limiterProvider:
-    limiterType: 0
     limiterData:
-      rid: 2317702510099562540
-  speedMultiplier: 8
-  duration: 0.1
+      rid: 2317702941611130924
+  speedMultiplier: 5
+  duration: 0.3
   references:
     version: 2
     RefIds:
-    - rid: 2317702510099562540
-      type: {class: CooldownLimiter, ns: MagicCombat.Gameplay.Limiters, asm: MagicCombat}
+    - rid: 2317702941611130924
+      type: {class: CooldownLimiter, ns: MagicCombat.Gameplay.Abilities.Limiters,
+        asm: MagicCombat.Gameplay.Abilities}
       data:
         duration: 1

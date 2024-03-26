@@ -1,0 +1,18 @@
+{
+    "name": "MagicCombat.Gameplay.Abilities",
+    "rootNamespace": "MagicCombat",
+    "references": [
+        "GUID:326ba6f5505b9b04fa8e663c29f933d8",
+        "GUID:d3ed4218b71c6ac4ca1453d909438b66",
+        "GUID:7ce8a2ade5632614ca5355e62d497d27"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

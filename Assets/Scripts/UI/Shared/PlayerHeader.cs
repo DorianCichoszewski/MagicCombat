@@ -1,3 +1,4 @@
+using MagicCombat.Shared.Data;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace MagicCombat.UI.Shared
 		[SerializeField]
 		private TMP_Text text;
 
-		public void Init(StartData.PlayerInit data)
+		public void Init(StaticPlayerData data)
 		{
 			text.text = data.name;
 			text.color = data.color;

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a34b35d2ac343449ef6fd8658ae1611, type: 3}
+  m_Name: Gameplay Context
+  m_EditorClassIdentifier: 
+  abilitiesContext:
+    clockManager:
+      dynamicClock:
+        currentSpeed: 1
+        currentTime: 14.669393
+        currentTimers: []
+      fixedClock:
+        currentSpeed: 1
+        currentTime: 14.660145
+        currentTimers: []
+    spellCrafter:
+      spellPrototype: {fileID: -3462427614092873681, guid: af95a7ed65af6394fb7a507b805cf7db,
+        type: 3}
+  playerPrefab: {fileID: 8962357724235189018, guid: 4f6425c4858c4ff4c84014377a0ab781,
+    type: 3}
+  startAbilitiesData: {fileID: 11400000, guid: c4d40fdcf3cdc864688e86aec07ff31e, type: 2}

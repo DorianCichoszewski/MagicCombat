@@ -1,0 +1,16 @@
+{
+    "name": "MagicCombat.Gameplay.Avatar",
+    "rootNamespace": "MagicCombat",
+    "references": [
+        "GUID:d3ed4218b71c6ac4ca1453d909438b66"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

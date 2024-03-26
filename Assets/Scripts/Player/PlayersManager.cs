@@ -1,26 +1,32 @@
 using System;
 using System.Collections.Generic;
-using MagicCombat.GameState;
+using MagicCombat.Shared.GameState;
+using MagicCombat.Shared.Interfaces;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace MagicCombat.Player
 {
 	[RequireComponent(typeof(PlayerInputManager))]
-	public class PlayersManager : MonoBehaviour
+	public class PlayersManager : MonoBehaviour, IEssentialScript
 	{
 		[SerializeField]
-		private RuntimeScriptable runtimeScriptable;
+		[Required]
+		private StaticPlayerDataGroup dataGroup;
 
 		[SerializeField]
-		private List<PlayerController> players;
+		[ReadOnly]
+		private List<PlayerInputController> players;
 
 		private PlayerInputManager inputManager;
 
-		public event Action<PlayerController> onPlayerJoined;
-		public event Action<PlayerController> onPlayerLeft;
+		public List<PlayerInputController> Players => players;
 
-		public void Init()
+		public event Action<PlayerInputController> onPlayerJoined;
+		public event Action<PlayerInputController> onPlayerLeft;
+		
+		public void Init(GlobalState globalState)
 		{
 			inputManager = GetComponent<PlayerInputManager>();
 			inputManager.onPlayerJoined += PlayerJoined;
@@ -43,20 +49,24 @@ namespace MagicCombat.Player
 
 		private void PlayerJoined(PlayerInput input)
 		{
-			var controller = input.GetComponent<PlayerController>();
-			runtimeScriptable.AddPlayerData(controller);
-			players.Add(controller);
-			controller.Init();
+			var controller = input.GetComponent<PlayerInputController>();
+			var data = controller.Init(dataGroup.staticPlayerDatas[players.Count]);
+			players.Insert(data.id, controller);
 			input.transform.SetParent(transform);
 			onPlayerJoined?.Invoke(controller);
 		}
 
 		private void PlayerLeft(PlayerInput input)
 		{
-			var controller = input.GetComponent<PlayerController>();
-			runtimeScriptable.playersData.Remove(new PlayerData(controller));
+			var controller = input.GetComponent<PlayerInputController>();
 			players.Remove(controller);
 			onPlayerLeft?.Invoke(controller);
+		}
+
+		
+
+		public void Validate()
+		{
 		}
 	}
 }

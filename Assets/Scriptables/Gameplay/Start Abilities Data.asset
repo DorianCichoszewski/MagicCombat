@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc059093102ad443a6b5334458ebe03, type: 3}
+  m_Name: Start Abilities Data
+  m_EditorClassIdentifier: 
+  abilitiesGroup: {fileID: 11400000, guid: e4207bd62a6e49c4b9c0234be04d7ce6, type: 2}
+  startUtility: {fileID: 11400000, guid: 253ec5697a280e94bafe6f8ad4693ea1, type: 2}
+  startSkill1: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
+  startSkill2: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
+  startSkill3: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}

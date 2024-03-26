@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.Abilities;
+using MagicCombat.Gameplay.Abilities.Base;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Abilities
@@ -11,5 +11,10 @@ namespace MagicCombat.Gameplay.Abilities
 		private List<BaseAbility> abilities = new();
 
 		public List<BaseAbility> Abilities => abilities;
+		
+		public BaseAbility GetAbility(int index)
+		{
+			return abilities[index];
+		}
 	}
 }
