@@ -28,9 +28,21 @@ namespace MagicCombat.Gameplay.Spell.Property
 		[HideIf(nameof(useProperty))]
 		public float value;
 
+		public SpellBuilderValue(bool useProperty, PropertyId id = PropertyId.Speed)
+		{
+			this.useProperty = useProperty;
+			property = id;
+			value = 0;
+		}
+
 		public float Evaluate(PropertyGroup propertyGroup)
 		{
 			return useProperty ? propertyGroup[property] : value;
+		}
+
+		public float Evaluate(SpellObject spellObject)
+		{
+			return Evaluate(spellObject.Properties);
 		}
 	}
 }

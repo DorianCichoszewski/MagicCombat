@@ -1,19 +1,31 @@
 using System.Collections.Generic;
 using System.Linq;
+using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MagicCombat.Gameplay.Spell.VisualFragment
+namespace MagicCombat.Implementations.Spell.VisualFragment
 {
 	internal class VisualFragmentsCombiner : SpellVisualFragment
 	{
 		[SerializeField]
 		private List<SpellVisualFragment> visualFragments = new();
 
-		public override List<PropertyId> RequiredProperties => visualFragments
-			.SelectMany(fragment => fragment.RequiredProperties ?? Enumerable.Empty<PropertyId>()).ToList();
+		public override PropertyIdList RequiredProperties
+		{
+			get
+			{
+				var ret = new PropertyIdList();
+				foreach (var fragment in visualFragments)
+				{
+					ret.Add(fragment);
+				}
+
+				return ret;
+			}
+		}
 
 		public override void Init(SpellObject spell)
 		{

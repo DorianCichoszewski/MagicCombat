@@ -18,7 +18,7 @@ namespace MagicCombat.Gameplay.Spell
 		public PropertyGroup Properties => Prototype.properties;
 		public SpellPrototype Prototype { get; private set; }
 
-		public object Data => data;
+		public ISpellData Data => data;
 
 		private void OnCollisionEnter(Collision other)
 		{
@@ -36,7 +36,7 @@ namespace MagicCombat.Gameplay.Spell
 			data = spellData;
 			clockManager = clock;
 			gameObject.name = Prototype.Name;
-			
+
 			InitFragments();
 			InitTimers();
 
@@ -69,7 +69,7 @@ namespace MagicCombat.Gameplay.Spell
 		private void InitFragments()
 		{
 			var cachedTransform = transform;
-			
+
 			foreach (var simpleFragment in Prototype.graphicalFragments)
 			{
 				Instantiate(simpleFragment, cachedTransform.position, Quaternion.identity, cachedTransform);
@@ -113,6 +113,9 @@ namespace MagicCombat.Gameplay.Spell
 		private void HitEvent(GameObject other)
 		{
 			var otherAvatar = other.GetComponentInParent<ISpellTarget>();
+			
+			if (otherAvatar == Data.CasterSpellTarget && Prototype.ignoreCaster) return;
+			
 			if (otherAvatar != null)
 			{
 				if (Prototype.UsePlayerHitEvents)
@@ -138,6 +141,11 @@ namespace MagicCombat.Gameplay.Spell
 					hitEvent.Perform(this, other);
 				}
 			}
+		}
+
+		public float GetProperty(PropertyId property)
+		{
+			return Properties[property];
 		}
 	}
 }

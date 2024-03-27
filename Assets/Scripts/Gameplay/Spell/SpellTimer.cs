@@ -33,16 +33,7 @@ namespace MagicCombat.Gameplay.Spell
 			set => name = value;
 		}
 
-		public List<PropertyId> RequiredProperties
-		{
-			get
-			{
-				var properties = new List<PropertyId>();
-				if (duration.useProperty)
-					properties.Add(duration.property);
-				return properties;
-			}
-		}
+		public PropertyIdList RequiredProperties => new PropertyIdList().Add(duration);
 
 		public Timer Start(SpellObject spell, ClockManager clockManager)
 		{

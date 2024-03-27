@@ -1,5 +1,6 @@
 using MagicCombat.Gameplay.Abilities.Base;
 using MagicCombat.Gameplay.Spell.Interface;
+using MagicCombat.Shared.Interfaces;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Abilities
@@ -13,6 +14,7 @@ namespace MagicCombat.Gameplay.Abilities
 
 		public Vector2 Direction => direction;
 		public Vector3 Position => position;
+		public ISpellTarget CasterSpellTarget => caster.Avatar;
 
 		public ISpellData Copy()
 		{

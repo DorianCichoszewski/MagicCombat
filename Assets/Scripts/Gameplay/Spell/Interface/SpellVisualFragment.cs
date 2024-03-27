@@ -6,7 +6,7 @@ namespace MagicCombat.Gameplay.Spell.Interface
 {
 	public abstract class SpellVisualFragment : MonoBehaviour, ISpellFragment
 	{
-		public abstract List<PropertyId> RequiredProperties { get; }
+		public abstract PropertyIdList RequiredProperties { get; }
 
 		public abstract void Init(SpellObject spell);
 

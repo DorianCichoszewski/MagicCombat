@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using MagicCombat.Gameplay.Spell.Property;
 using Sirenix.OdinInspector;
 
@@ -9,8 +8,9 @@ namespace MagicCombat.Gameplay.Spell.Interface
 	public abstract class SpellLogicalFragment : ISpellFragment
 	{
 		[ShowInInspector]
+		[HideLabel]
 		[ListDrawerSettings(DefaultExpandedState = true)]
-		public abstract List<PropertyId> RequiredProperties { get; }
+		public abstract PropertyIdList RequiredProperties { get; }
 
 		public abstract void Init(SpellObject spell);
 

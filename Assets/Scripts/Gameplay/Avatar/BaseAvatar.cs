@@ -1,5 +1,6 @@
 using MagicCombat.Gameplay.Avatar.Movement;
 using MagicCombat.Shared.Data;
+using MagicCombat.Shared.Extension;
 using MagicCombat.Shared.Interfaces;
 using MagicCombat.Shared.Time;
 using Sirenix.OdinInspector;
@@ -21,6 +22,8 @@ namespace MagicCombat.Gameplay.Avatar
 
 		public MovementController MovementController => movement;
 
+		public Vector2 Position => transform.position.ToVec2();
+
 		public ClockManager ClockManager { get; private set; }
 		public StaticPlayerData InitData { get; private set; }
 
@@ -41,6 +44,16 @@ namespace MagicCombat.Gameplay.Avatar
 
 			Alive = false;
 			movement.enabled = false;
+		}
+
+		public void AddForce(Vector2 force, float forceDuration = 0)
+		{
+			var movementForce = new MovementForce()
+			{
+				duration = forceDuration,
+				type = MovementForceType.Constant,
+			};
+			MovementController.AddForce(movementForce.GetNew(force));
 		}
 	}
 }

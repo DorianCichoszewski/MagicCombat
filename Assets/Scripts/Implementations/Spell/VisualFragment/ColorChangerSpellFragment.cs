@@ -1,17 +1,17 @@
-using System.Collections.Generic;
 using MagicCombat.Gameplay.Abilities;
+using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
 using UnityEngine;
 
-namespace MagicCombat.Gameplay.Spell.VisualFragment
+namespace MagicCombat.Implementations.Spell.VisualFragment
 {
 	internal class ColorChangerSpellFragment : SpellVisualFragment
 	{
 		[SerializeField]
 		private new MeshRenderer renderer;
 
-		public override List<PropertyId> RequiredProperties => null;
+		public override PropertyIdList RequiredProperties => null;
 
 		public override void Init(SpellObject spell)
 		{

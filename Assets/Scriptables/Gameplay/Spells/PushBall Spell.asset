@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce32b3f56d0e4631a38e7022d581a4c6, type: 3}
-  m_Name: Fireball Spell
+  m_Name: PushBall Spell
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -39,7 +39,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -73,6 +73,18 @@ MonoBehaviour:
     - Name: $v
       Entry: 4
       Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 4
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -144,7 +156,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 8|MagicCombat.Implementations.Spell.Event.DestroyOtherSpellEvent, MagicCombat.Implementations
+      Data: 8|MagicCombat.Implementations.Spell.Event.PushOtherEvent, MagicCombat.Implementations
+    - Name: directionType
+      Entry: 3
+      Data: 0
+    - Name: duration
+      Entry: 4
+      Data: 0.5
     - Name: 
       Entry: 8
       Data: 

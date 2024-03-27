@@ -26,6 +26,7 @@ namespace MagicCombat.Gameplay.Player
 		public int Id;
 
 		public MovementController MovementController => avatar.MovementController;
+		public Vector2 Position => avatar.Position;
 
 		public bool Alive => avatar.Alive;
 
@@ -62,6 +63,11 @@ namespace MagicCombat.Gameplay.Player
 		{
 			avatar.Kill();
 			OnAvatarDeath();
+		}
+
+		public void AddForce(Vector2 force, float forceDuration = 0)
+		{
+			avatar.AddForce(force, forceDuration);
 		}
 	}
 }

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using MagicCombat.Gameplay.Abilities.Limiters;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -14,7 +13,6 @@ namespace MagicCombat.Gameplay.Abilities.Base
 		[HorizontalGroup(Width = 100)]
 		[PreviewField(ObjectFieldAlignment.Left, Height = 80)]
 		[HideLabel]
-		[OnValueChanged(nameof(SetIcon))]
 		protected Sprite defaultIcon;
 
 		[HorizontalGroup(Gap = 0)]
@@ -24,16 +22,5 @@ namespace MagicCombat.Gameplay.Abilities.Base
 		public Sprite DefaultIcon => defaultIcon;
 
 		public abstract void Perform(AbilityCaster caster, AbilityState state);
-
-		[Button]
-		[Conditional("UNITY_EDITOR")]
-		void SetIcon()
-		{
-			if (defaultIcon != null)
-			{
-				UnityEditor.EditorGUIUtility.SetIconForObject(this, defaultIcon.texture);
-				UnityEditor.EditorUtility.SetDirty(this);
-			}
-		}
 	}
 }

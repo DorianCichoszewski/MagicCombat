@@ -1,18 +1,20 @@
-using System.Collections.Generic;
+using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
 
-namespace MagicCombat.Gameplay.Spell.LogicalFragment
+namespace MagicCombat.Implementations.Spell.LogicalFragment
 {
 	internal class StraightMoveSpellFragment : SpellLogicalFragment
 	{
-		public override List<PropertyId> RequiredProperties => new() { PropertyId.Speed };
+		private const PropertyId Speed = PropertyId.Speed;
+
+		public override PropertyIdList RequiredProperties => new(Speed);
 		public override void Init(SpellObject spell) { }
 
 		public override void Tick(SpellObject spell, float deltaTime)
 		{
 			var transform = spell.transform;
-			transform.position += spell.Properties[PropertyId.Speed] * deltaTime * transform.forward;
+			transform.position += spell.GetProperty(Speed) * deltaTime * transform.forward;
 		}
 
 		public override void OnDestroyEvent(SpellObject spell) { }

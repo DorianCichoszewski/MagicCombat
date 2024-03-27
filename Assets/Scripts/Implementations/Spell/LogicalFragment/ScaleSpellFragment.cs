@@ -1,29 +1,19 @@
-using System.Collections.Generic;
+using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
 using UnityEngine;
 
-namespace MagicCombat.Gameplay.Spell.LogicalFragment
+namespace MagicCombat.Implementations.Spell.LogicalFragment
 {
 	internal class ScaleSpellFragment : SpellLogicalFragment
 	{
-		[SerializeField]
-		private SpellBuilderValue scale;
+		private const PropertyId Size = PropertyId.Size;
 
-		public override List<PropertyId> RequiredProperties
-		{
-			get
-			{
-				var properties = new List<PropertyId>();
-				if (scale.useProperty)
-					properties.Add(scale.property);
-				return properties;
-			}
-		}
+		public override PropertyIdList RequiredProperties => new(Size);
 
 		public override void Init(SpellObject spell)
 		{
-			float scaleFloat = scale.Evaluate(spell.Properties);
+			float scaleFloat = spell.GetProperty(Size);
 			spell.transform.localScale = new Vector3(scaleFloat, scaleFloat, scaleFloat);
 		}
 

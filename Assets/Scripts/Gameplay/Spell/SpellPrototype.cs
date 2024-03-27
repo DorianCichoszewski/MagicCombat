@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
 using Sirenix.OdinInspector;
@@ -58,23 +57,14 @@ namespace MagicCombat.Gameplay.Spell
 		[ShowIf(nameof(UseAllHitEvents))]
 		public List<ISpellEventHit> allHitEvents = new();
 
-		private List<PropertyId> CombinedProperties
-		{
-			get
-			{
-				return visualFragments
-					.Concat<ISpellPropertiesUser>(logicalFragments)
-					.Concat(timers)
-					.Concat(destroyEvents)
-					.Concat(playerHitEvents)
-					.Concat(otherHitEvents)
-					.Concat(allHitEvents)
-					.Where(user => user is { RequiredProperties: not null })
-					.SelectMany(user => user.RequiredProperties)
-					.Distinct()
-					.ToList();
-			}
-		}
+		private PropertyIdList CombinedProperties =>
+			new PropertyIdList().Add(logicalFragments)
+				.Add(timers)
+				.Add(destroyEvents)
+				.Add(playerHitEvents)
+				.Add(otherHitEvents)
+				.Add(allHitEvents)
+				.Add(visualFragments);
 
 		public bool UsePlayerHitEvents => hitEventsType.HasFlag(SpellHitEvent.Player);
 		public bool UseOtherHitEvents => hitEventsType.HasFlag(SpellHitEvent.Other);

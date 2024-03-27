@@ -1,10 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using MagicCombat.Gameplay.Abilities;
+using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
 
-namespace MagicCombat.Gameplay.Spell.Event
+namespace MagicCombat.Implementations.Spell.Event
 {
 	internal class CreateSpellEvent : ISpellEventGeneric
 	{
@@ -17,6 +16,6 @@ namespace MagicCombat.Gameplay.Spell.Event
 			spellData.AbilitiesContext.spellCrafter.CreateNew(prototype, newData);
 		}
 
-		public List<PropertyId> RequiredProperties => prototype.properties.Select(x => x.Key).ToList();
+		public PropertyIdList RequiredProperties => new(prototype.properties);
 	}
 }
