@@ -57,14 +57,13 @@ namespace MagicCombat.Shared.GameState
 			OnPostSceneChanged?.Invoke();
 		}
 		
-		[Conditional("UNITY_EDITOR")]
 		public void Validate()
 		{
+#if UNITY_EDITOR
 			settingPlayersName = settingPlayers != null ? settingPlayers.name : "";
 			settingAbilitiesName = settingAbilities != null ? settingAbilities.name : "";
 			gameplayName = gameplay != null ? gameplay.name : "";
+#endif
 		}
-		
-
 	}
 }

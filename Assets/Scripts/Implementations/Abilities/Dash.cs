@@ -2,7 +2,7 @@ using MagicCombat.Gameplay.Abilities.Base;
 using MagicCombat.Gameplay.Avatar.Movement;
 using UnityEngine;
 
-namespace MagicCombat.Gameplay.Abilities.Utility
+namespace MagicCombat.Implementations.Abilities
 {
 	[CreateAssetMenu(menuName = UtilitiesPath + "Dash")]
 	public class Dash : BaseAbility

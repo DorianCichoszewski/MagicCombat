@@ -1,10 +1,11 @@
+using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Abilities.Base;
 using MagicCombat.Gameplay.Spell;
 using MagicCombat.Shared.Extension;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MagicCombat.Gameplay.Abilities
+namespace MagicCombat.Implementations.Abilities
 {
 	[CreateAssetMenu(menuName = AbilitiesPath + Name, fileName = Name)]
 	public class SpellAbility : BaseAbility

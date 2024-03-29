@@ -16,9 +16,9 @@ MonoBehaviour:
   limiterProvider:
     limiterData:
       rid: 2317702896371105835
-  spellPrototype: {fileID: 11400000, guid: c14e10c601b44f644a25b58b5c73401b, type: 2}
   offset: 2
   singleCast: 1
+  spellPrototype: {fileID: 11400000, guid: 3e043ee6935045d408a2b90390905a83, type: 2}
   references:
     version: 2
     RefIds:

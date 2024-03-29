@@ -1,10 +1,12 @@
 using System;
 using MagicCombat.Gameplay.Spell.Property;
 using Sirenix.OdinInspector;
+using UnityEngine.Scripting;
 
 namespace MagicCombat.Gameplay.Spell.Interface
 {
 	[Serializable]
+	[Preserve]
 	public abstract class SpellLogicalFragment : ISpellFragment
 	{
 		[ShowInInspector]

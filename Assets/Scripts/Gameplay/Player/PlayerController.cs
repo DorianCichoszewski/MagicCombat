@@ -8,9 +8,11 @@ namespace MagicCombat.Gameplay.Player
 		public bool EnabledInput { get; set; } = true;
 
 		private readonly PlayerAvatar player;
+		private IGameplayInputController input;
 
 		public PlayerController(PlayerAvatar player, IGameplayInputController input)
 		{
+			this.input = input;
 			this.player = player;
 			
 			input.OnMove += Move;
@@ -19,6 +21,11 @@ namespace MagicCombat.Gameplay.Player
 			input.OnSkill1 += Skill1;
 			input.OnSkill2 += Skill2;
 			input.OnSkill3 += Skill3;
+		}
+
+		public void Clear()
+		{
+			input.Clear();
 		}
 		
 		private void Move(Vector2 value)

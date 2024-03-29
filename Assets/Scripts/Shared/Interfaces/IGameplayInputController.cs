@@ -12,5 +12,7 @@ namespace MagicCombat.Shared.Interfaces
 		public event Action OnSkill1;
 		public event Action OnSkill2;
 		public event Action OnSkill3;
+
+		public void Clear();
 	}
 }

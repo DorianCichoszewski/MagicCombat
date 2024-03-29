@@ -56,6 +56,7 @@ namespace MagicCombat.Gameplay.Player
 		private void OnAvatarDeath()
 		{
 			Death?.Invoke();
+			Controller.Clear();
 			gameplayManager.PlayerDeath(this);
 		}
 

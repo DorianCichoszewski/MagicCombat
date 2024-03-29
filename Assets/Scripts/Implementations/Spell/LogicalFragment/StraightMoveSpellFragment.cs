@@ -1,9 +1,11 @@
 using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
+using UnityEngine.Scripting;
 
 namespace MagicCombat.Implementations.Spell.LogicalFragment
 {
+	[Preserve]
 	internal class StraightMoveSpellFragment : SpellLogicalFragment
 	{
 		private const PropertyId Speed = PropertyId.Speed;

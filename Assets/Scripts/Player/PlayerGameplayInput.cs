@@ -16,6 +16,15 @@ namespace MagicCombat.Player
 		public event Action OnSkill1;
 		public event Action OnSkill2;
 		public event Action OnSkill3;
+		public void Clear()
+		{
+			OnMove = null;
+			OnRotate = null;
+			OnUtility = null;
+			OnSkill1 = null;
+			OnSkill2 = null;
+			OnSkill3 = null;
+		}
 
 		public void Move(InputAction.CallbackContext ctx)
 		{

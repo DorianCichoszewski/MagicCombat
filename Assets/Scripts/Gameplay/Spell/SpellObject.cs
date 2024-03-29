@@ -77,12 +77,13 @@ namespace MagicCombat.Gameplay.Spell
 
 			foreach (var visualFragment in Prototype.visualFragments)
 			{
-				Instantiate(visualFragment, cachedTransform.position, Quaternion.identity, cachedTransform);
-				createdFragments.Add(visualFragment);
+				var createdFragment = Instantiate(visualFragment, cachedTransform.position, Quaternion.identity, cachedTransform);
+				createdFragments.Add(createdFragment);
 			}
 
 			foreach (var logicalFragment in Prototype.logicalFragments)
 			{
+				// using shared script with prototype
 				createdFragments.Add(logicalFragment);
 			}
 

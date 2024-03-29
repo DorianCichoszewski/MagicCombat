@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using MagicCombat.Gameplay.Spell.Property;
 using UnityEngine;
 
