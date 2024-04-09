@@ -1,18 +1,17 @@
 {
-    "name": "MagicCombat.Player",
-    "rootNamespace": "MagicCombat",
-    "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:d3ed4218b71c6ac4ca1453d909438b66",
-        "GUID:160c7fb2d7398304d82de73b5373cac0"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "MagicCombat.Player",
+  "rootNamespace": "MagicCombat",
+  "references": [
+    "GUID:75469ad4d38634e559750d17036d5f7c",
+    "GUID:d3ed4218b71c6ac4ca1453d909438b66"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

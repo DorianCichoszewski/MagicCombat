@@ -1,4 +1,3 @@
-using System.Linq;
 using MagicCombat.Player;
 using MagicCombat.SettingPlayer;
 using MagicCombat.Shared.GameState;
@@ -10,19 +9,19 @@ namespace MagicCombat.Directors
 		private PlayersManager playersManager;
 		private SettingPlayerManager settingPlayerManager;
 
-		public void Run(BaseManager manager, GlobalState globalState)
+		public void Run(BaseManager manager, SharedScriptable sharedScriptable)
 		{
 			settingPlayerManager = (SettingPlayerManager)manager;
-			
-			playersManager = globalState.gameObject.GetComponentInChildren<PlayersManager>();
-			
+
+			playersManager = sharedScriptable.Essentials.gameObject.GetComponentInChildren<PlayersManager>();
+
 			playersManager.onPlayerJoined += OnAddedPlayer;
 			playersManager.onPlayerLeft += OnAddedPlayer;
 		}
 
 		private void OnAddedPlayer(PlayerInputController player)
 		{
-			settingPlayerManager.RefreshPlayers(playersManager.Players.Select(p => p.Data).ToList());
+			settingPlayerManager.RefreshPlayers();
 		}
 
 		public void OnExit() { }

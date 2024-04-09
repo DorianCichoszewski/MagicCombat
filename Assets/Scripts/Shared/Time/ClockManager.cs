@@ -15,7 +15,7 @@ namespace MagicCombat.Shared.Time
 		public Clock DynamicClock => dynamicClock;
 		public Clock FixedClock => fixedClock;
 
-		public void Init()
+		public void Reset()
 		{
 			dynamicClock.Reset();
 			fixedClock.Reset();

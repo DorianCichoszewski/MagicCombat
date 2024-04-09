@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using MagicCombat.Gameplay;
-using MagicCombat.Player;
 using MagicCombat.Shared.GameState;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,18 +9,17 @@ namespace MagicCombat.SettingAbilities
 	{
 		[Required]
 		public StartAbilitiesData startAbilities;
-		[ReadOnly]
-		public List<PlayerData> playersData;
-		
-		public void Init(List<PlayerData> playersData)
+
+		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.GameModeData;
+
+		public void Init()
 		{
-			this.playersData = playersData;
-			foreach (var data in playersData)
+			foreach (int playerId in sharedScriptable.PlayerProvider.PlayersIdEnumerator)
 			{
-				data.gameplay ??= new GameplayPlayerData(startAbilities);
+				GameModeData.playerData.Create(playerId, new GameplayPlayerData(startAbilities));
 			}
 		}
-		
+
 		public void Next()
 		{
 			Debug.Log("Finished abilities setup");

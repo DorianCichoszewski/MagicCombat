@@ -1,3 +1,5 @@
+using System;
+using MagicCombat.Shared.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -8,27 +10,45 @@ namespace MagicCombat.Shared.GameState
 	{
 		[SerializeField]
 		[AssetsOnly]
-		private GlobalState essentialsPrefab;
-		
+		private EssentialsObject essentialsPrefab;
+
 		[SerializeField]
 		[AssetsOnly]
 		private ProjectScenes projectScenes;
 
-		private GlobalState createdEssentials;
+		[ShowInInspector]
+		[ReadOnly]
+		private IPlayerProvider playerProvider;
+
+		[ShowInInspector]
+		[ReadOnly]
+		private AbstractGameModeData gameModeData;
+
+		public event Action<BaseManager> OnNewRegisteredManager;
 
 		public ProjectScenes ProjectScenes => projectScenes;
-		public GlobalState Essentials => createdEssentials;
-		
+		public EssentialsObject Essentials { get; private set; }
+
+		public IPlayerProvider PlayerProvider => playerProvider;
+		public AbstractGameModeData GameModeData => gameModeData;
+
+
 		public void EnsureEssentials()
 		{
-			if (createdEssentials != null) return;
-			createdEssentials = Instantiate(essentialsPrefab);
-			createdEssentials.Init(this);
+			if (Essentials != null) return;
+			Essentials = Instantiate(essentialsPrefab);
+			Essentials.Init(this);
+			playerProvider = Essentials.GetComponentInChildren<IPlayerProvider>();
 		}
 
 		public void RegisterNewManager(BaseManager manager)
 		{
-			Essentials.RegisterNewManager(manager);
+			if (OnNewRegisteredManager == null) Debug.LogError("No script to run with manager. Game won't progress");
+
+			if (gameModeData == null || gameModeData.GetType() != manager.ExpectedGameMode.GetType())
+				gameModeData = manager.ExpectedGameMode;
+
+			OnNewRegisteredManager?.Invoke(manager);
 		}
 
 		public void OnValidate()

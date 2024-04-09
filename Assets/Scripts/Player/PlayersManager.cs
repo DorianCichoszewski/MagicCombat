@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace MagicCombat.Player
 {
-	[RequireComponent(typeof(PlayerInputManager))]
+	[RequireComponent(typeof(PlayerInputManager), typeof(PlayerProvider))]
 	public class PlayersManager : MonoBehaviour, IEssentialScript
 	{
 		[SerializeField]
@@ -20,15 +20,17 @@ namespace MagicCombat.Player
 		private List<PlayerInputController> players;
 
 		private PlayerInputManager inputManager;
+		private PlayerProvider playerProvider;
 
 		public List<PlayerInputController> Players => players;
 
 		public event Action<PlayerInputController> onPlayerJoined;
 		public event Action<PlayerInputController> onPlayerLeft;
-		
-		public void Init(GlobalState globalState)
+
+		public void Init(SharedScriptable sharedScriptable)
 		{
 			inputManager = GetComponent<PlayerInputManager>();
+			playerProvider = GetComponent<PlayerProvider>();
 			inputManager.onPlayerJoined += PlayerJoined;
 			inputManager.onPlayerLeft += PlayerLeft;
 		}
@@ -50,8 +52,8 @@ namespace MagicCombat.Player
 		private void PlayerJoined(PlayerInput input)
 		{
 			var controller = input.GetComponent<PlayerInputController>();
-			var data = controller.Init(dataGroup.staticPlayerDatas[players.Count]);
-			players.Insert(data.id, controller);
+			players.Insert(controller.Index, controller);
+			playerProvider.AddNewPlayer(controller);
 			input.transform.SetParent(transform);
 			onPlayerJoined?.Invoke(controller);
 		}
@@ -60,13 +62,8 @@ namespace MagicCombat.Player
 		{
 			var controller = input.GetComponent<PlayerInputController>();
 			players.Remove(controller);
+			playerProvider.RemovePlayer(controller.Index);
 			onPlayerLeft?.Invoke(controller);
-		}
-
-		
-
-		public void Validate()
-		{
 		}
 	}
 }

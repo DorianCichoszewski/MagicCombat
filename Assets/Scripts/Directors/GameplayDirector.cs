@@ -1,28 +1,26 @@
-using System.Linq;
 using MagicCombat.Gameplay;
 using MagicCombat.Gameplay.Player;
-using MagicCombat.Player;
 using MagicCombat.Shared.GameState;
 
 namespace MagicCombat.Directors
 {
 	public class GameplayDirector : IDirector
 	{
-		private PlayersManager playersManager;
-		private GlobalState globalState;
+		private SharedScriptable sharedScriptable;
 
-		public void Run(BaseManager manager, GlobalState globalState)
+		private GameplayManager gameplayManager;
+
+		public void Run(BaseManager manager, SharedScriptable sharedScriptable)
 		{
-			this.globalState = globalState;
-			var gameplayManager = (GameplayManager)manager;
+			this.sharedScriptable = sharedScriptable;
+			gameplayManager = (GameplayManager)manager;
 
-			playersManager = globalState.gameObject.GetComponentInChildren<PlayersManager>();
+			var playerProvider = sharedScriptable.PlayerProvider;
 
-			foreach (var inputController in playersManager.Players)
+			foreach (int index in playerProvider.PlayersIdEnumerator)
 			{
-				var data = inputController.Data;
-
-				gameplayManager.CreatePlayer(data.gameplay, data.staticData, data.gameplayInput, data.id);
+				gameplayManager.CreatePlayer(playerProvider.StaticData(index),
+					playerProvider.GameplayInputController(index), index);
 			}
 
 			gameplayManager.OnGameEnd += OnGameEnd;
@@ -33,8 +31,8 @@ namespace MagicCombat.Directors
 
 		private void OnGameEnd(PlayerAvatar winner)
 		{
-			playersManager.Players.First(player => player.Data.id == winner.Id).Data.points++;
-			globalState.SharedScriptable.ProjectScenes.GoToSettingAbilities();
+			gameplayManager.GameModeData.points[winner.Id]++;
+			sharedScriptable.ProjectScenes.GoToSettingAbilities();
 		}
 	}
 }

@@ -1,4 +1,4 @@
-using MagicCombat.Player;
+using MagicCombat.Shared.Interfaces;
 using MagicCombat.UI.Shared;
 using TMPro;
 using UnityEngine;
@@ -22,12 +22,13 @@ namespace MagicCombat.SettingPlayer.UI
 
 		public bool IsReady => readyToggle.isOn;
 
-		public void SetPlayer(PlayerData playerData, SettingPlayersUI ui)
+		public void SetPlayer(IPlayerProvider playerProvider, int id, SettingPlayersUI ui)
 		{
-			header.Init(playerData.staticData);
-			controllerType.text = playerData.staticData.name;
-			
-			playerData.playerInputController.SetUIFocus(gameObject, firstElement.gameObject);
+			var staticData = playerProvider.StaticData(id);
+			header.Init(staticData);
+			controllerType.text = staticData.name;
+
+			playerProvider.InputController(id).SetUIFocus(gameObject, firstElement.gameObject);
 
 			readyToggle.onValueChanged.AddListener(_ => ui.OnPlayerReady());
 		}

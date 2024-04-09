@@ -24,22 +24,25 @@ namespace MagicCombat.SettingPlayer.UI
 
 		private void SetPlayers()
 		{
-			var datas = manager.playersData;
+			var playerProvider = manager.SharedScriptable.PlayerProvider;
+
 			// Get correct number of windows
-			while (playerConfigWindows.Count < datas.Count)
+			while (playerConfigWindows.Count < playerProvider.PlayersCount)
 				playerConfigWindows.Add(Instantiate(windowPrefab, windowParent));
-			while (playerConfigWindows.Count > datas.Count)
+			while (playerConfigWindows.Count > playerProvider.PlayersCount)
 			{
-				var window = playerConfigWindows[0];
-				playerConfigWindows.RemoveAt(0);
+				var window = playerConfigWindows[^1];
+				playerConfigWindows.RemoveAt(playerConfigWindows.Count - 1);
 				Destroy(window.gameObject);
 			}
 
 			// Set player
-			for (int i = 0; i < playerConfigWindows.Count; i++)
+			int windowIndex = 0;
+			foreach (int id in playerProvider.PlayersIdEnumerator)
 			{
-				var window = playerConfigWindows[i];
-				window.SetPlayer(datas[i], this);
+				var window = playerConfigWindows[windowIndex];
+				window.SetPlayer(playerProvider, id, this);
+				windowIndex++;
 			}
 		}
 

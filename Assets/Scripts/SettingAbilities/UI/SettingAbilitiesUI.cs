@@ -18,11 +18,11 @@ namespace MagicCombat.SettingAbilities.UI
 
 		public void Start()
 		{
-			var playersData = manager.playersData;
-			foreach (var data in playersData)
+			var playerProvider = manager.SharedScriptable.PlayerProvider;
+			foreach (int id in playerProvider.PlayersIdEnumerator)
 			{
 				var window = Instantiate(windowPrefab, windowsParent);
-				window.Init(data, this);
+				window.Init(playerProvider, manager.GameModeData, id, this);
 				spawnedWindows.Add(window);
 			}
 		}

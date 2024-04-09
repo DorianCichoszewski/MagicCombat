@@ -13,9 +13,9 @@ namespace MagicCombat.Gameplay.Abilities
 		[AssetsOnly]
 		public SpellCrafter spellCrafter;
 
-		public void Init()
+		public void Reset()
 		{
-			clockManager.Init();
+			clockManager.Reset();
 		}
 	}
 }

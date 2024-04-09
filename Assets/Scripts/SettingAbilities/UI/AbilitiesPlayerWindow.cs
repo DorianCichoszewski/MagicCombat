@@ -1,4 +1,5 @@
-using MagicCombat.Player;
+using MagicCombat.Gameplay;
+using MagicCombat.Shared.Interfaces;
 using MagicCombat.UI.Shared;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -39,24 +40,30 @@ namespace MagicCombat.SettingAbilities.UI
 		private AbilityPicker skill3Picker;
 
 		private SettingAbilitiesUI settingAbilitiesUI;
-		
+
 		public bool IsReady => readyToggle.isOn;
 
-		public void Init(PlayerData playerData, SettingAbilitiesUI ui)
+		public void Init(IPlayerProvider playerProvider, GameplayRuntimeData gameplayData, int id,
+			SettingAbilitiesUI ui)
 		{
 			settingAbilitiesUI = ui;
-			playerData.playerInputController.SetUIFocus(gameObject, firstElement.gameObject);
-			
-			header.Init(playerData.staticData);
-			readyToggle.onValueChanged.AddListener(VerifyWindowData);
-			
-			pointsText.text = playerData.points > 0 ? $"Current points: {playerData.points}" : string.Empty;
+			var inputController = playerProvider.InputController(id);
+			inputController.SetUIFocus(gameObject, firstElement.gameObject);
 
-			var abilitiesGroup = playerData.gameplay.AbilitiesGroup;
-			var gameplayData = playerData.gameplay;
-			skill1Picker.Init(abilitiesGroup, newSkill => gameplayData.Skill1Index = newSkill, gameplayData.Skill1Index);
-			skill2Picker.Init(abilitiesGroup, newSkill => gameplayData.Skill2Index = newSkill, gameplayData.Skill2Index);
-			skill3Picker.Init(abilitiesGroup, newSkill => gameplayData.Skill3Index = newSkill, gameplayData.Skill3Index);
+			header.Init(playerProvider.StaticData(id));
+			readyToggle.onValueChanged.AddListener(VerifyWindowData);
+
+			int points = gameplayData.points.GetOrCreate(id);
+
+			pointsText.text = points > 0 ? $"Current points: {points}" : string.Empty;
+
+			var playerData = gameplayData.playerData.GetOrCreate(id);
+			skill1Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill1Index = newSkill,
+				playerData.Skill1Index);
+			skill2Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill2Index = newSkill,
+				playerData.Skill2Index);
+			skill3Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill3Index = newSkill,
+				playerData.Skill3Index);
 		}
 
 		private void VerifyWindowData(bool isReady)

@@ -14,32 +14,30 @@ namespace MagicCombat.Directors
 	{
 		private Dictionary<Type, IDirector> directors;
 
-		private GlobalState globalState;
+		private SharedScriptable sharedScriptable;
 		private IDirector currentDirector;
 
 		[ShowInInspector]
 		private string CurrentDirectorName => currentDirector?.GetType().Name ?? "";
-		
-		public void Init(GlobalState globalState)
+
+		public void Init(SharedScriptable sharedScriptable)
 		{
-			this.globalState = globalState;
-			directors = new()
+			this.sharedScriptable = sharedScriptable;
+			directors = new Dictionary<Type, IDirector>
 			{
 				{ typeof(SettingPlayerManager), new SettingPlayerDirector() },
 				{ typeof(SettingAbilitiesManager), new SettingAbilitiesDirector() },
 				{ typeof(GameplayManager), new GameplayDirector() }
 			};
 
-			globalState.OnNewRegisteredManager += NewManager;
+			sharedScriptable.OnNewRegisteredManager += NewManager;
 		}
 
-		public void Validate()
-		{
-		}
+		public void Validate() { }
 
 		private void NewManager(BaseManager manager)
 		{
-			directors[manager.GetType()].Run(manager, globalState);
+			directors[manager.GetType()].Run(manager, sharedScriptable);
 		}
 	}
 }

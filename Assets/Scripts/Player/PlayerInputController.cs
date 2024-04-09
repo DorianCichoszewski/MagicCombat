@@ -1,11 +1,11 @@
-using MagicCombat.Shared.Data;
+using MagicCombat.Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 
 namespace MagicCombat.Player
 {
-	public class PlayerInputController : MonoBehaviour
+	public class PlayerInputController : MonoBehaviour, IPlayerInputController
 	{
 		[SerializeField]
 		private PlayerInput input;
@@ -15,24 +15,10 @@ namespace MagicCombat.Player
 
 		[SerializeField]
 		private MultiplayerEventSystem eventSystem;
-		
-		private PlayerData data;
-		
-		public PlayerData Data => data;
 
 		public int Index => input.playerIndex;
-
-		public PlayerData Init(StaticPlayerData staticData)
-		{
-			data = new PlayerData()
-			{
-				staticData = staticData,
-				gameplayInput = playerGameplayInput,
-				playerInputController = this,
-				id = Index
-			};
-			return data;
-		}
+		public IGameplayInputController GameplayInputController => playerGameplayInput;
+		public string InputName => input.devices[0].name;
 
 		public void Reset()
 		{

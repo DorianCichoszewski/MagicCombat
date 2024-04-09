@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
-using MagicCombat.Player;
+using MagicCombat.Gameplay;
 using MagicCombat.Shared.GameState;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.SettingPlayer
@@ -14,21 +12,24 @@ namespace MagicCombat.SettingPlayer
 
 		[SerializeField]
 		private int maxPlayers = 4;
-		
+
+		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.GameModeData;
+
 		public event Action OnRefreshPlayers;
 
-		[ReadOnly]
-		public List<PlayerData> playersData;
-
-		public void RefreshPlayers(List<PlayerData> newPlayersData)
+		protected override void OnAwake()
 		{
-			playersData = newPlayersData;
+			GameModeData?.Reset();
+		}
+
+		public void RefreshPlayers()
+		{
 			OnRefreshPlayers?.Invoke();
 		}
 
 		public void ConfirmPlayers()
 		{
-			int currentPlayers = playersData.Count;
+			int currentPlayers = sharedScriptable.PlayerProvider.PlayersCount;
 			if (currentPlayers < minPlayers || currentPlayers > maxPlayers)
 				return;
 

@@ -1,16 +1,15 @@
 using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Player;
+using MagicCombat.Shared.Data;
+using MagicCombat.Shared.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay
 {
-	[CreateAssetMenu(menuName = "Magic Combat/Gameplay Context")]
-	public class GameplayContext : ScriptableObject
+	[CreateAssetMenu(menuName = "Magic Combat/GameplayRuntimeData", fileName = "GameplayRuntimeData")]
+	public class GameplayRuntimeData : AbstractGameModeData
 	{
-		[SerializeField]
-		private AbilitiesContext abilitiesContext;
-
 		[SerializeField]
 		[Required]
 		private PlayerAvatar playerPrefab;
@@ -18,15 +17,25 @@ namespace MagicCombat.Gameplay
 		[SerializeField]
 		[Required]
 		private StartAbilitiesData startAbilitiesData;
+		
+		[Space]
+		public PerPlayerData<GameplayPlayerData> playerData = new();
+		public PerPlayerData<int> points = new();
+		
+		[SerializeField]
+		private AbilitiesContext abilitiesContext;
 
 		public AbilitiesContext AbilitiesContext => abilitiesContext;
 		public PlayerAvatar PlayerPrefab => playerPrefab;
 
 		public AbilitiesGroup AbilitiesGroup => startAbilitiesData.AbilitiesGroup;
 
-		public void Init()
+		public void Reset()
 		{
-			abilitiesContext.Init();
+			abilitiesContext.Reset();
+			
+			playerData.Reset();
+			points.Reset();
 		}
 	}
 }
