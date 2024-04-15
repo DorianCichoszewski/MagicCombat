@@ -1,5 +1,6 @@
 using MagicCombat.Player;
 using MagicCombat.SettingPlayer;
+using MagicCombat.Shared.Data;
 using MagicCombat.Shared.GameState;
 
 namespace MagicCombat.Directors
@@ -13,13 +14,10 @@ namespace MagicCombat.Directors
 		{
 			settingPlayerManager = (SettingPlayerManager)manager;
 
-			playersManager = sharedScriptable.Essentials.gameObject.GetComponentInChildren<PlayersManager>();
-
-			playersManager.onPlayerJoined += OnAddedPlayer;
-			playersManager.onPlayerLeft += OnAddedPlayer;
+			sharedScriptable.PlayerProvider.OnPlayerChanged += OnAddedPlayer;
 		}
 
-		private void OnAddedPlayer(PlayerInputController player)
+		private void OnAddedPlayer(PlayerId player)
 		{
 			settingPlayerManager.RefreshPlayers();
 		}

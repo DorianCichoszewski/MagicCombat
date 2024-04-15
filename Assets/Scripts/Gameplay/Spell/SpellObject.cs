@@ -12,13 +12,12 @@ namespace MagicCombat.Gameplay.Spell
 		private readonly List<ISpellFragment> createdFragments = new();
 
 		private readonly List<Timer> usedTimers = new();
-		private ISpellData data;
 		private ClockManager clockManager;
 
 		public PropertyGroup Properties => Prototype.properties;
 		public SpellPrototype Prototype { get; private set; }
 
-		public ISpellData Data => data;
+		public ISpellData Data { get; private set; }
 
 		private void OnCollisionEnter(Collision other)
 		{
@@ -33,7 +32,7 @@ namespace MagicCombat.Gameplay.Spell
 		public void Init(SpellPrototype spellPrototype, ISpellData spellData, ClockManager clock)
 		{
 			Prototype = spellPrototype;
-			data = spellData;
+			Data = spellData;
 			clockManager = clock;
 			gameObject.name = Prototype.Name;
 
@@ -77,7 +76,8 @@ namespace MagicCombat.Gameplay.Spell
 
 			foreach (var visualFragment in Prototype.visualFragments)
 			{
-				var createdFragment = Instantiate(visualFragment, cachedTransform.position, Quaternion.identity, cachedTransform);
+				var createdFragment = Instantiate(visualFragment, cachedTransform.position, Quaternion.identity,
+					cachedTransform);
 				createdFragments.Add(createdFragment);
 			}
 
@@ -114,18 +114,16 @@ namespace MagicCombat.Gameplay.Spell
 		private void HitEvent(GameObject other)
 		{
 			var otherAvatar = other.GetComponentInParent<ISpellTarget>();
-			
+
 			if (otherAvatar == Data.CasterSpellTarget && Prototype.ignoreCaster) return;
-			
+
 			if (otherAvatar != null)
 			{
 				if (Prototype.UsePlayerHitEvents)
-				{
 					foreach (var hitEvent in Prototype.playerHitEvents)
 					{
 						hitEvent.Perform(this, otherAvatar);
 					}
-				}
 			}
 			else if (Prototype.UseOtherHitEvents)
 			{
@@ -136,12 +134,10 @@ namespace MagicCombat.Gameplay.Spell
 			}
 
 			if (Prototype.UseAllHitEvents)
-			{
 				foreach (var hitEvent in Prototype.allHitEvents)
 				{
 					hitEvent.Perform(this, other);
 				}
-			}
 		}
 
 		public float GetProperty(PropertyId property)

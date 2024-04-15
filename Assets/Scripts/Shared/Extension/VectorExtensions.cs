@@ -23,7 +23,7 @@ namespace MagicCombat.Shared.Extension
 		{
 			return Quaternion.Euler(0, vec.ToAngleRotation(), 0);
 		}
-		
+
 		public static float ToAngleRotation(this Vector2 vec)
 		{
 			var normalized = vec.normalized;

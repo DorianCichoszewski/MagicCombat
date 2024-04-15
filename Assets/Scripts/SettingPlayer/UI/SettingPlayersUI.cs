@@ -38,7 +38,7 @@ namespace MagicCombat.SettingPlayer.UI
 
 			// Set player
 			int windowIndex = 0;
-			foreach (int id in playerProvider.PlayersIdEnumerator)
+			foreach (var id in playerProvider.PlayersEnumerator)
 			{
 				var window = playerConfigWindows[windowIndex];
 				window.SetPlayer(playerProvider, id, this);

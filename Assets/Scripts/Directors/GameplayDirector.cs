@@ -15,14 +15,6 @@ namespace MagicCombat.Directors
 			this.sharedScriptable = sharedScriptable;
 			gameplayManager = (GameplayManager)manager;
 
-			var playerProvider = sharedScriptable.PlayerProvider;
-
-			foreach (int index in playerProvider.PlayersIdEnumerator)
-			{
-				gameplayManager.CreatePlayer(playerProvider.StaticData(index),
-					playerProvider.GameplayInputController(index), index);
-			}
-
 			gameplayManager.OnGameEnd += OnGameEnd;
 			gameplayManager.StartGame();
 		}

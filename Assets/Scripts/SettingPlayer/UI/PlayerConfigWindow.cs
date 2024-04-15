@@ -1,3 +1,4 @@
+using MagicCombat.Shared.Data;
 using MagicCombat.Shared.Interfaces;
 using MagicCombat.UI.Shared;
 using TMPro;
@@ -22,7 +23,7 @@ namespace MagicCombat.SettingPlayer.UI
 
 		public bool IsReady => readyToggle.isOn;
 
-		public void SetPlayer(IPlayerProvider playerProvider, int id, SettingPlayersUI ui)
+		public void SetPlayer(IPlayerProvider playerProvider, PlayerId id, SettingPlayersUI ui)
 		{
 			var staticData = playerProvider.StaticData(id);
 			header.Init(staticData);

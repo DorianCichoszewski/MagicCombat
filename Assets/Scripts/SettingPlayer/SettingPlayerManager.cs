@@ -33,7 +33,6 @@ namespace MagicCombat.SettingPlayer
 			if (currentPlayers < minPlayers || currentPlayers > maxPlayers)
 				return;
 
-			Debug.Log("Finished Setting Players");
 			sharedScriptable.ProjectScenes.GoToSettingAbilities();
 		}
 	}

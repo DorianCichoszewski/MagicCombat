@@ -1,3 +1,4 @@
+using MagicCombat.Shared.Data;
 using MagicCombat.Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,11 +17,17 @@ namespace MagicCombat.Player
 		[SerializeField]
 		private MultiplayerEventSystem eventSystem;
 
-		public int Index => input.playerIndex;
+		public PlayerId Id { get; private set; }
 		public IGameplayInputController GameplayInputController => playerGameplayInput;
 		public string InputName => input.devices[0].name;
 
-		public void Reset()
+		public void SetId(PlayerId playerId)
+		{
+			Id = playerId;
+			playerId.ChangeControllerStatus(true);
+		}
+
+		public void ResetSelection()
 		{
 			eventSystem.playerRoot = null;
 			eventSystem.firstSelectedGameObject = null;

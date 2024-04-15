@@ -36,9 +36,13 @@ namespace MagicCombat.Shared.GameState
 		public void EnsureEssentials()
 		{
 			if (Essentials != null) return;
+
 			Essentials = Instantiate(essentialsPrefab);
 			Essentials.Init(this);
+
 			playerProvider = Essentials.GetComponentInChildren<IPlayerProvider>();
+
+			projectScenes.OnPreSceneChanged += playerProvider.ClearCallbacks;
 		}
 
 		public void RegisterNewManager(BaseManager manager)

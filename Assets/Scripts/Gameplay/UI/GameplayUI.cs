@@ -22,7 +22,7 @@ namespace MagicCombat.Gameplay.UI
 		{
 			foreach (var player in gameplayManager.AlivePlayers)
 			{
-				var playerUI = playersUI[player.Id];
+				var playerUI = playersUI[player.Id.OrderedId];
 				playerUI.Init(player);
 			}
 

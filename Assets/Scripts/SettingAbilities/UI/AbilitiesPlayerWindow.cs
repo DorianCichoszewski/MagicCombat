@@ -1,4 +1,5 @@
 using MagicCombat.Gameplay;
+using MagicCombat.Shared.Data;
 using MagicCombat.Shared.Interfaces;
 using MagicCombat.UI.Shared;
 using Sirenix.OdinInspector;
@@ -43,7 +44,7 @@ namespace MagicCombat.SettingAbilities.UI
 
 		public bool IsReady => readyToggle.isOn;
 
-		public void Init(IPlayerProvider playerProvider, GameplayRuntimeData gameplayData, int id,
+		public void Init(IPlayerProvider playerProvider, GameplayRuntimeData gameplayData, PlayerId id,
 			SettingAbilitiesUI ui)
 		{
 			settingAbilitiesUI = ui;

@@ -17,7 +17,7 @@ namespace MagicCombat.Implementations.Abilities
 
 		[SerializeField]
 		private bool singleCast = true;
-		
+
 		[SerializeField]
 		[Required]
 		[InlineEditor]

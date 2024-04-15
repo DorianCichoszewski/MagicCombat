@@ -39,6 +39,14 @@ namespace MagicCombat.Gameplay
 			clockGO.Init(AbilitiesContext.clockManager);
 			isPlaying = true;
 			OnGameStarted?.Invoke();
+
+			var playerProvider = sharedScriptable.PlayerProvider;
+
+			foreach (var index in playerProvider.PlayersEnumerator)
+			{
+				CreatePlayer(playerProvider.StaticData(index),
+					playerProvider.GameplayInputController(index), index);
+			}
 		}
 
 		public void PlayerDeath(PlayerAvatar player)
@@ -52,7 +60,6 @@ namespace MagicCombat.Gameplay
 			if (alivePlayers.Count > 2) return;
 
 			// End game
-			player.Controller.EnabledInput = false;
 			isPlaying = false;
 			EndGameAnimation(alivePlayers[0]);
 		}
@@ -86,7 +93,7 @@ namespace MagicCombat.Gameplay
 			s.Play();
 		}
 
-		public void CreatePlayer(StaticPlayerData staticData, IGameplayInputController input, int id)
+		public void CreatePlayer(StaticPlayerData staticData, IGameplayInputController input, PlayerId id)
 		{
 			var playerPrefab = GameModeData.PlayerPrefab;
 			var player = Instantiate(playerPrefab, staticData.spawnPos.ToVec3(), Quaternion.identity);

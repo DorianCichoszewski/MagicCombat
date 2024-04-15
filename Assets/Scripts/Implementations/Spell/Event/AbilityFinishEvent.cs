@@ -11,6 +11,7 @@ namespace MagicCombat.Implementations.Spell.Event
 	internal class AbilityFinishEvent : ISpellEventPlayerHit, ISpellEventGeneric
 	{
 		public PropertyIdList RequiredProperties => null;
+
 		public void Perform(SpellObject spell)
 		{
 			((SpellData)spell.Data).caster.State.onFinished?.Invoke();

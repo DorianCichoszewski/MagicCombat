@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -20,7 +19,7 @@ namespace MagicCombat.Shared.GameState
 		[SerializeField]
 		private SceneAsset gameplay;
 #endif
-		
+
 		[SerializeField]
 		[ReadOnly]
 		private string settingPlayersName;
@@ -56,7 +55,7 @@ namespace MagicCombat.Shared.GameState
 			SceneManager.LoadScene(gameplayName, LoadSceneMode.Single);
 			OnPostSceneChanged?.Invoke();
 		}
-		
+
 		public void Validate()
 		{
 #if UNITY_EDITOR

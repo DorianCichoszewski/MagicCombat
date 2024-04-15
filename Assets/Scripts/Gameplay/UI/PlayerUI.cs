@@ -36,7 +36,7 @@ namespace MagicCombat.Gameplay.UI
 
 			gameObject.SetActive(true);
 
-			player.Death += PlayerDeath;
+			player.OnDeath += PlayerDeath;
 		}
 
 		private void PlayerDeath()

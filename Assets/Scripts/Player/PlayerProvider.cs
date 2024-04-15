@@ -14,32 +14,40 @@ namespace MagicCombat.Player
 		[Required]
 		private StaticPlayerDataGroup defaultStaticData;
 
-		private Dictionary<int, IPlayerInputController> inputControllers = new();
-		
+		private Dictionary<PlayerId, IPlayerInputController> inputControllers = new();
+
 		public void AddNewPlayer(PlayerInputController inputController)
 		{
-			inputControllers.TryAdd(inputController.Index, inputController);
+			inputControllers.TryAdd(inputController.Id, inputController);
+			OnPlayerChanged?.Invoke(inputController.Id);
 		}
 
-		public void RemovePlayer(int id)
+		public void RemovePlayer(PlayerId id)
 		{
-			inputControllers.Remove(id); 
+			inputControllers.Remove(id);
+			OnPlayerChanged?.Invoke(id);
 		}
 
 		public int PlayersCount => inputControllers.Count;
-		public IEnumerable<int> PlayersIdEnumerator => inputControllers.Keys;
+		public event Action<PlayerId> OnPlayerChanged;
+		public IEnumerable<PlayerId> PlayersEnumerator => inputControllers.Keys;
 
-		public StaticPlayerData StaticData(int id)
+		public void ClearCallbacks()
 		{
-			return defaultStaticData.staticPlayerDatas[id];
+			OnPlayerChanged = null;
 		}
 
-		public IPlayerInputController InputController(int id)
+		public StaticPlayerData StaticData(PlayerId id)
+		{
+			return defaultStaticData.staticPlayerDatas[id.OrderedId];
+		}
+
+		public IPlayerInputController InputController(PlayerId id)
 		{
 			return inputControllers[id];
 		}
 
-		public IGameplayInputController GameplayInputController(int id)
+		public IGameplayInputController GameplayInputController(PlayerId id)
 		{
 			return inputControllers[id].GameplayInputController;
 		}

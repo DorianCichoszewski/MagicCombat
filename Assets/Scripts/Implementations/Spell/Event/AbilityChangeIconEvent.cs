@@ -13,9 +13,9 @@ namespace MagicCombat.Implementations.Spell.Event
 	{
 		[SerializeField]
 		private Sprite icon;
-		
+
 		public PropertyIdList RequiredProperties => null;
-		
+
 		public void Perform(SpellObject spell, ISpellTarget target)
 		{
 			((SpellData)spell.Data).caster.State.icon = icon;

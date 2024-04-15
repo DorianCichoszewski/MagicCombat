@@ -7,7 +7,7 @@ namespace MagicCombat.Shared.Interfaces
 	{
 		public event Action<Vector2> OnMove;
 		public event Action<Vector2> OnRotate;
-		
+
 		public event Action OnUtility;
 		public event Action OnSkill1;
 		public event Action OnSkill2;

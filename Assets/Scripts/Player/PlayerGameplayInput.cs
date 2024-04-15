@@ -9,13 +9,14 @@ namespace MagicCombat.Player
 	{
 		[SerializeField]
 		private PlayerInputController controller;
-		
+
 		public event Action<Vector2> OnMove;
 		public event Action<Vector2> OnRotate;
 		public event Action OnUtility;
 		public event Action OnSkill1;
 		public event Action OnSkill2;
 		public event Action OnSkill3;
+
 		public void Clear()
 		{
 			OnMove = null;
@@ -28,14 +29,14 @@ namespace MagicCombat.Player
 
 		public void Move(InputAction.CallbackContext ctx)
 		{
-			Vector2 value = ctx.ReadValue<Vector2>();
+			var value = ctx.ReadValue<Vector2>();
 
 			OnMove?.Invoke(value);
 		}
 
 		public void Rotate(InputAction.CallbackContext ctx)
 		{
-			Vector2 value = ctx.ReadValue<Vector2>();
+			var value = ctx.ReadValue<Vector2>();
 
 			OnRotate?.Invoke(value);
 		}

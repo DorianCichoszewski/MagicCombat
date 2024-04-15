@@ -9,10 +9,14 @@ using UnityEngine;
 
 namespace MagicCombat.Gameplay.Player
 {
-	public class PlayerAvatar : MonoBehaviour, ISpellTarget
+	public class PlayerAvatar : MonoBehaviour
 	{
 		[SerializeField]
 		private BaseAvatar avatar;
+
+		[ReadOnly]
+		[ShowInInspector]
+		public PlayerId Id { get; private set; }
 
 		private GameplayManager gameplayManager;
 
@@ -23,22 +27,20 @@ namespace MagicCombat.Gameplay.Player
 
 		public PlayerController Controller { get; private set; }
 
-		[ReadOnly]
-		public int Id;
-
 		public MovementController MovementController => avatar.MovementController;
 		public Vector2 Position => avatar.Position;
 
 		public bool Alive => avatar.Alive;
 
-		public event Action Death;
+		public event Action OnDeath;
 
 		public void Init(GameplayPlayerData gameplayPlayerData, StaticPlayerData staticData, GameplayManager manager,
-			IGameplayInputController input, int id)
+			IGameplayInputController input, PlayerId id)
 		{
 			gameplayManager = manager;
 			Id = id;
 			avatar.Init(staticData, gameplayManager.AbilitiesContext.clockManager);
+			avatar.OnDeath += OnAvatarDeath;
 
 			var abilitiesData = gameplayManager.AbilitiesContext;
 
@@ -61,8 +63,8 @@ namespace MagicCombat.Gameplay.Player
 
 		private void OnAvatarDeath()
 		{
-			Death?.Invoke();
-			Controller.Clear();
+			OnDeath?.Invoke();
+			Controller = null;
 			gameplayManager.PlayerDeath(this);
 		}
 

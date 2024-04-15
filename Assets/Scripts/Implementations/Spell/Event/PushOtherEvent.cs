@@ -17,6 +17,7 @@ namespace MagicCombat.Implementations.Spell.Event
 			FromSpell,
 			FromCaster
 		}
+
 		private const PropertyId Force = PropertyId.Force;
 
 		[SerializeField]
@@ -24,11 +25,12 @@ namespace MagicCombat.Implementations.Spell.Event
 
 		[SerializeField]
 		private float duration;
-		
+
 		public PropertyIdList RequiredProperties => new PropertyIdList().Add(Force);
+
 		public void Perform(SpellObject spell, ISpellTarget target)
 		{
-			Vector2 direction = directionType switch
+			var direction = directionType switch
 			{
 				Type.FromDirection => spell.Data.Direction,
 				Type.FromSpell => target.Position - spell.transform.position.ToVec2(),
@@ -36,7 +38,7 @@ namespace MagicCombat.Implementations.Spell.Event
 				_ => throw new ArgumentOutOfRangeException()
 			};
 			direction.Normalize();
-			
+
 			target.AddForce(spell.GetProperty(Force) * direction, duration);
 		}
 	}

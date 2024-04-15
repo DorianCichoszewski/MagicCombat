@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MagicCombat.Shared.Data;
 
@@ -7,12 +8,16 @@ namespace MagicCombat.Shared.Interfaces
 	{
 		public int PlayersCount { get; }
 
-		public IEnumerable<int> PlayersIdEnumerator { get; }
-		
-		public StaticPlayerData StaticData(int id);
-		
-		public IPlayerInputController InputController(int id);
-		
-		public IGameplayInputController GameplayInputController(int id);
+		public event Action<PlayerId> OnPlayerChanged;
+
+		public void ClearCallbacks();
+
+		public IEnumerable<PlayerId> PlayersEnumerator { get; }
+
+		public StaticPlayerData StaticData(PlayerId id);
+
+		public IPlayerInputController InputController(PlayerId id);
+
+		public IGameplayInputController GameplayInputController(PlayerId id);
 	}
 }

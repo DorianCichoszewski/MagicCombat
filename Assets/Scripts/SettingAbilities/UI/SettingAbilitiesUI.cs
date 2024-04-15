@@ -19,7 +19,7 @@ namespace MagicCombat.SettingAbilities.UI
 		public void Start()
 		{
 			var playerProvider = manager.SharedScriptable.PlayerProvider;
-			foreach (int id in playerProvider.PlayersIdEnumerator)
+			foreach (var id in playerProvider.PlayersEnumerator)
 			{
 				var window = Instantiate(windowPrefab, windowsParent);
 				window.Init(playerProvider, manager.GameModeData, id, this);

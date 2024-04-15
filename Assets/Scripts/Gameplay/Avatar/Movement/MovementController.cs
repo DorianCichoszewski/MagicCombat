@@ -43,7 +43,7 @@ namespace MagicCombat.Gameplay.Avatar.Movement
 
 			clockManager.FixedClock.ClockUpdate += HandleMovement;
 		}
-		
+
 		public void Move(Vector2 value)
 		{
 			moveValue = value;

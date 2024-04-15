@@ -11,9 +11,9 @@ namespace MagicCombat.Shared.Data
 		public T defaultData;
 
 		[ShowInInspector]
-		private Dictionary<int, T> createdData = new ();
+		private Dictionary<int, T> createdData = new();
 
-		public T this[int id]
+		public T this[PlayerId id]
 		{
 			get => createdData[id];
 			set => createdData[id] = value;
@@ -25,28 +25,25 @@ namespace MagicCombat.Shared.Data
 
 			return createdData[id];
 		}
-		
-		public T GetOrCreate(int id)
+
+		public T GetOrCreate(PlayerId id)
 		{
 			return GetOrCreate(id, defaultData);
 		}
 
-		public void Create(int id, T data)
+		public void Create(PlayerId id, T data)
 		{
-			if (!createdData.TryAdd(id, data))
-			{
-				createdData[id] = data;
-			}
+			if (!createdData.TryAdd(id, data)) createdData[id] = data;
 		}
-		
-		public void Create(int id)
+
+		public void Create(PlayerId id)
 		{
 			Create(id, defaultData);
 		}
 
 		public void Reset()
 		{
-			createdData = new();
+			createdData = new Dictionary<int, T>();
 		}
 
 		public IEnumerator<KeyValuePair<int, T>> GetEnumerator()

@@ -151,7 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sharedScriptable: {fileID: 11400000, guid: f6146a3121d1a5f42b694bc897662674, type: 2}
   expectedGameMode: {fileID: 11400000, guid: 2e73f2f1db3c2dc4ebc84717ac242db6, type: 2}
-  gameplayContext: {fileID: 11400000, guid: f98b2f47dcf95bb4495fa9814517352e, type: 2}
   clockGO: {fileID: 317300357}
 --- !u!4 &317300356
 Transform:
