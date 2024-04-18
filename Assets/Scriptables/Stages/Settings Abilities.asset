@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e8f852bf9d4ec4b8170173bdc224ef, type: 3}
+  m_Name: Settings Abilities
+  m_EditorClassIdentifier: 
+  stageController:
+    rid: 400975775424839725
+  sceneToLoad:
+    sceneIndex: 1
+    sceneReference: {fileID: 102900000, guid: 0fe8a933eec00b04da85b187150845f2, type: 3}
+  objectToLoad: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 400975775424839725
+      type: {class: SettingAbilitiesStageController, ns: MagicCombat.SettingAbilities, asm: MagicCombat}
+      data:
+        startAbilitiesData: {fileID: 11400000, guid: c4d40fdcf3cdc864688e86aec07ff31e, type: 2}

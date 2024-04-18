@@ -7,6 +7,7 @@ using MagicCombat.Shared.Data;
 using MagicCombat.Shared.Extension;
 using MagicCombat.Shared.GameState;
 using MagicCombat.Shared.Interfaces;
+using MagicCombat.Shared.StageFlow;
 using MagicCombat.Shared.Time;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,6 +16,9 @@ namespace MagicCombat.Gameplay
 {
 	public class GameplayManager : BaseManager
 	{
+		[SerializeField]
+		private StageData abilitiesStage;
+
 		[SerializeField]
 		private ClockGameObject clockGO;
 
@@ -28,13 +32,12 @@ namespace MagicCombat.Gameplay
 
 		public event Action OnGameStarted;
 		public event Action<PlayerAvatar> OnPlayerDeath;
-		public event Action<PlayerAvatar> OnGameEnd;
 
 		public AbilitiesContext AbilitiesContext => GameModeData.AbilitiesContext;
 		public List<PlayerAvatar> AlivePlayers => alivePlayers;
 		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.GameModeData;
 
-		public void StartGame()
+		protected override void OnAwake()
 		{
 			clockGO.Init(AbilitiesContext.clockManager);
 			isPlaying = true;
@@ -87,10 +90,16 @@ namespace MagicCombat.Gameplay
 				clockManager.DynamicClock.CurrentSpeed = 1f;
 				clockManager.FixedClock.CurrentSpeed = 1f;
 
-				OnGameEnd?.Invoke(winner);
+				OnGameEnd(winner);
 			});
 
 			s.Play();
+		}
+
+		private void OnGameEnd(PlayerAvatar winner)
+		{
+			GameModeData.points[winner.Id]++;
+			sharedScriptable.StagesManager.GoToStage(abilitiesStage);
 		}
 
 		public void CreatePlayer(StaticPlayerData staticData, IGameplayInputController input, PlayerId id)

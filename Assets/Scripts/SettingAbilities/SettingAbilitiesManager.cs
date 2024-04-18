@@ -11,7 +11,7 @@ namespace MagicCombat.SettingAbilities
 
 		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.GameModeData;
 
-		public void Init()
+		protected override void OnAwake()
 		{
 			foreach (var playerId in sharedScriptable.PlayerProvider.PlayersEnumerator)
 			{
@@ -21,7 +21,7 @@ namespace MagicCombat.SettingAbilities
 
 		public void Next()
 		{
-			sharedScriptable.ProjectScenes.GoToGameplay();
+			sharedScriptable.StagesManager.NextStage();
 		}
 	}
 }

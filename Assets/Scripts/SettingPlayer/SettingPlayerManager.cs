@@ -1,5 +1,6 @@
 using System;
 using MagicCombat.Gameplay;
+using MagicCombat.Shared.Data;
 using MagicCombat.Shared.GameState;
 using UnityEngine;
 
@@ -20,9 +21,10 @@ namespace MagicCombat.SettingPlayer
 		protected override void OnAwake()
 		{
 			GameModeData?.Reset();
+			sharedScriptable.PlayerProvider.OnPlayerChanged += RefreshPlayers;
 		}
 
-		public void RefreshPlayers()
+		public void RefreshPlayers(PlayerId player)
 		{
 			OnRefreshPlayers?.Invoke();
 		}
@@ -33,7 +35,7 @@ namespace MagicCombat.SettingPlayer
 			if (currentPlayers < minPlayers || currentPlayers > maxPlayers)
 				return;
 
-			sharedScriptable.ProjectScenes.GoToSettingAbilities();
+			sharedScriptable.StagesManager.NextStage();
 		}
 	}
 }
