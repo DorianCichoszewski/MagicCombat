@@ -9,7 +9,7 @@ namespace MagicCombat.SettingAbilities
 		[Required]
 		public StartAbilitiesData startAbilities;
 
-		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.GameModeData;
+		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
 
 		protected override void OnAwake()
 		{

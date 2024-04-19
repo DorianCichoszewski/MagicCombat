@@ -4,7 +4,6 @@ using MagicCombat.Shared.GameState;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
 
 namespace MagicCombat.Shared.StageFlow
 {
@@ -13,6 +12,8 @@ namespace MagicCombat.Shared.StageFlow
 	public class StagesManager
 	{
 		[SerializeField]
+		[InlineProperty]
+		[HideLabel]
 		private StageOrderedList stages;
 
 		private SharedScriptable sharedScriptable;
@@ -28,6 +29,7 @@ namespace MagicCombat.Shared.StageFlow
 				var loadedScene = SceneManager.GetSceneAt(0);
 				SceneManager.UnloadSceneAsync(loadedScene, UnloadSceneOptions.None);
 			}
+
 			RunStage(stages[0]);
 		}
 
@@ -36,7 +38,7 @@ namespace MagicCombat.Shared.StageFlow
 			var nextStage = stages.GetNextScene(currentStage);
 
 			// Close all unrelated parent stages
-			while (currentStage != null || currentStage != nextStage.ParentStage)
+			while (currentStage != null && currentStage != nextStage.ParentStage)
 			{
 				ExitStage(currentStage);
 				currentStage = currentStage.ParentStage;
@@ -45,6 +47,7 @@ namespace MagicCombat.Shared.StageFlow
 			RunStage(nextStage);
 		}
 
+		[Button]
 		public void GoToStage(StageData targetStage)
 		{
 			int currentStageIndex = -1;
@@ -58,22 +61,21 @@ namespace MagicCombat.Shared.StageFlow
 
 				// Exit to stage beeing child of common parent
 				if (currentStage != commonParent)
-				{
 					while (currentStage.ParentStage != commonParent)
 					{
 						ExitStage(currentStage);
 						currentStage = currentStage.ParentStage;
 					}
-				}
 			}
 
 			// Get all intermediate parents for target
-			Stack<StageData> intermediateStages = new ();
+			Stack<StageData> intermediateStages = new();
 			while (targetStage != commonParent)
 			{
 				intermediateStages.Push(targetStage);
 				targetStage = targetStage.ParentStage;
 			}
+
 			targetStage ??= intermediateStages.Pop();
 
 			if (currentStage != null)
@@ -86,7 +88,7 @@ namespace MagicCombat.Shared.StageFlow
 					return;
 				}
 			}
-			
+
 			// Run intermediate stages and skip required ones
 			while (intermediateStages.Count > 0)
 			{
@@ -96,6 +98,7 @@ namespace MagicCombat.Shared.StageFlow
 					RunStage(currentStage);
 					targetStage = intermediateStages.Pop();
 				}
+
 				// Skip intermediate stages if they aren't root stages
 				else if (currentStage.ParentStage == targetStage.ParentStage && targetStage.ParentStage != null)
 				{
@@ -114,7 +117,7 @@ namespace MagicCombat.Shared.StageFlow
 				currentStage.Controller.Return(sharedScriptable);
 			}
 		}
-		
+
 
 		private void RunStage(StageData stage)
 		{
@@ -123,15 +126,13 @@ namespace MagicCombat.Shared.StageFlow
 				NextStage();
 				return;
 			}
-			
+
 			currentStage = stage;
-			
+
 			if (stage.HasScene)
-				SceneManager.LoadScene(stage.SceneIndex, stage.HasRootScene ? LoadSceneMode.Single :LoadSceneMode.Additive);
-			
-			if (stage.ObjectToLoad != null)
-				Object.Instantiate(stage.ObjectToLoad);
-			
+				SceneManager.LoadScene(stage.SceneIndex,
+					stage.HasRootScene ? LoadSceneMode.Single : LoadSceneMode.Additive);
+
 			stage.Controller?.Run(sharedScriptable);
 		}
 
@@ -142,9 +143,9 @@ namespace MagicCombat.Shared.StageFlow
 
 		private void ExitStage(StageData stage)
 		{
-			if (!stage.HasScene)
+			if (stage.HasScene)
 				SceneManager.UnloadSceneAsync(stage.SceneIndex);
-			
+
 			stage.Controller?.Exit(sharedScriptable);
 		}
 	}

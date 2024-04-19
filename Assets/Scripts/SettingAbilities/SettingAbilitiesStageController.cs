@@ -26,7 +26,7 @@ namespace MagicCombat.SettingAbilities
 
 		private void InitAbilities(SharedScriptable sharedScriptable)
 		{
-			var gameModeData = (GameplayRuntimeData)sharedScriptable.GameModeData;
+			var gameModeData = (GameplayRuntimeData)sharedScriptable.ModeData;
 			foreach (var playerId in sharedScriptable.PlayerProvider.PlayersEnumerator)
 			{
 				gameModeData.playerData.Create(playerId, new GameplayPlayerData(startAbilitiesData));

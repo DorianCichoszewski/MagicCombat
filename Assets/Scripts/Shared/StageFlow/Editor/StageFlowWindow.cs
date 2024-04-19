@@ -1,6 +1,9 @@
-using System;
+#if UNITY_EDITOR
+using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
+using UnityEngine;
 
 namespace MagicCombat.Shared.StageFlow.Editor
 {
@@ -11,6 +14,37 @@ namespace MagicCombat.Shared.StageFlow.Editor
 		{
 			StageFlowEditorUtil.Instance.window = GetWindow<StageFlowWindow>();
 			StageFlowEditorUtil.Instance.window.Show();
+		}
+
+		public void Refresh()
+		{
+			if (MenuTree.Selection.Count > 0)
+			{
+				var selectionName = MenuTree.Selection[0].Name;
+				ForceMenuTreeRebuild();
+				MenuTree.Selection.Clear();
+				SelectPrevious(MenuTree.MenuItems);
+				
+				bool SelectPrevious(List<OdinMenuItem> items)
+				{
+					foreach (var item in items)
+					{
+						if (item.Name == selectionName)
+						{
+							MenuTree.Selection.Add(item);
+							return true;
+						}
+						else if (item.ChildMenuItems != null && SelectPrevious(item.ChildMenuItems))
+							return true;
+					}
+
+					return false;
+				}
+			}
+			else
+			{
+				ForceMenuTreeRebuild();
+			}
 		}
 
 		private void OnFocus()
@@ -24,8 +58,14 @@ namespace MagicCombat.Shared.StageFlow.Editor
 			{
 				Selection =
 				{
-					SupportsMultiSelect = false
+					SupportsMultiSelect = false,
 				}
+			};
+
+			tree.Selection.SelectionConfirmed += selection =>
+			{
+				Debug.Log("Selected " + selection[0].Value, selection[0].Value as Object);
+				EditorGUIUtility.PingObject(selection[0].Value as Object);
 			};
 
 			foreach (var stage in StageFlowEditorUtil.Instance.EditorList)
@@ -33,9 +73,8 @@ namespace MagicCombat.Shared.StageFlow.Editor
 				tree.Add(stage.FullName, stage);
 			}
 			
-			StageFlowEditorUtil.Instance.tree = tree;
-			
 			return tree;
 		}
 	}
 }
+#endif

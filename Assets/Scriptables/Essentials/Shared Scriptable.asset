@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc2b8f4414d4e978d26865c6995c363, type: 3}
   m_Name: Shared Scriptable
   m_EditorClassIdentifier: 
-  essentialsPrefab: {fileID: 2917655620817472049, guid: 96ac924e040bcee488d907b36797d2fe,
-    type: 3}
-  projectScenes:
-    settingPlayers: {fileID: 102900000, guid: 28ca8f5aa20f41a42b951bc24baf287f, type: 3}
-    settingAbilities: {fileID: 102900000, guid: 0fe8a933eec00b04da85b187150845f2,
-      type: 3}
-    gameplay: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-    settingPlayersName: SettingPlayers
-    settingAbilitiesName: SettingAbilities
-    gameplayName: Gameplay
+  essentialsPrefab: {fileID: 2917655620817472049, guid: 96ac924e040bcee488d907b36797d2fe, type: 3}
+  stagesManager:
+    stages:
+      orderedStages:
+      - {fileID: 11400000, guid: 2643ae2137ed58a43ba785f393c9a464, type: 2}
+      - {fileID: 11400000, guid: 63e13d1b193df62438439ff80f7b9130, type: 2}
+      - {fileID: 11400000, guid: 1f6a6eda9d015b04080e558e4c8d92bc, type: 2}
+      - {fileID: 11400000, guid: 113a7260895b5464daa65897a6ac9209, type: 2}

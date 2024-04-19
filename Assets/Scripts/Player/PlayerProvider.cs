@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MagicCombat.Shared.Data;
 using MagicCombat.Shared.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace MagicCombat.Player
 {
@@ -35,6 +37,19 @@ namespace MagicCombat.Player
 		public void ClearCallbacks()
 		{
 			OnPlayerChanged = null;
+		}
+
+		public PlayerId GetRandomPlayer()
+		{
+			int randomIndex = Random.Range(0, inputControllers.Count());
+			var enumerator = inputControllers.GetEnumerator();
+			while (randomIndex > 0)
+			{
+				enumerator.MoveNext();
+				randomIndex--;
+			}
+
+			return enumerator.Current.Key;
 		}
 
 		public StaticPlayerData StaticData(PlayerId id)

@@ -20,7 +20,7 @@ namespace MagicCombat.Gameplay.UI
 
 		private void RefreshUI()
 		{
-			foreach (var player in gameplayManager.AlivePlayers)
+			foreach (var player in gameplayManager.Mode.AlivePlayers)
 			{
 				var playerUI = playersUI[player.Id.OrderedId];
 				playerUI.Init(player);

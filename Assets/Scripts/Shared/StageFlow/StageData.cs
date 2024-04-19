@@ -1,48 +1,46 @@
 using UnityEngine;
-
 #if UNITY_EDITOR
 using System.IO;
 using Sirenix.OdinInspector;
 using UnityEditor;
+using MagicCombat.Shared.StageFlow.Editor;
 #endif
 
 namespace MagicCombat.Shared.StageFlow
 {
-	[CreateAssetMenu(fileName = "Stage", menuName = "Magic Combat/Stage")]
+	[CreateAssetMenu(menuName = "Magic Combat/Stage", fileName = "Stage")]
 	public class StageData : ScriptableObject
 	{
 		public const string StagesPath = "Assets/Scriptables/Stages/";
-		
-		private StageData parentStage;
-		
-		[SerializeReference]
-		private IStageController controller;
 
 		[Space]
 		[SerializeField]
-		private SceneReference sceneToLoad;
-		
+		private SceneReference sceneToLoad = new(-1);
+
 		[SerializeField]
-		private GameObject objectToLoad;
-		
-		public StageData ParentStage => parentStage;
-		public IStageController Controller => controller;
+		[HideInInspector]
+		private StageData parentStage;
+
+		[SerializeReference]
+		private IStageController controller;
+
 		public bool HasScene => sceneToLoad.SceneIndex > -1;
 		public int SceneIndex => sceneToLoad.SceneIndex;
-		public GameObject ObjectToLoad => objectToLoad;
+		public StageData ParentStage => parentStage;
+		public IStageController Controller => controller;
 
 		public float Order { get; set; } = 999;
-		
+
 		public string FullName
 		{
 			get
 			{
-				string parentName = parentStage == null ? "" : parentStage.FullName + "/";
+				string parentName = ParentStage == null ? "" : ParentStage.FullName + "/";
 				return parentName + name;
 			}
 		}
 
-		public bool IsEmptyStage => controller == null && objectToLoad == null && sceneToLoad.SceneIndex < 0;
+		public bool IsEmptyStage => Controller == null && sceneToLoad.SceneIndex < 0;
 
 		public bool HasRootScene
 		{
@@ -96,34 +94,36 @@ namespace MagicCombat.Shared.StageFlow
 				Debug.LogError($"Stage with name {newStageName} already exists");
 				return;
 			}
+
 			var newStage = CreateInstance<StageData>();
 			newStage.name = newStageName;
 			newStage.parentStage = this;
 			AssetDatabase.CreateAsset(newStage, path);
+			StageFlowEditorUtil.Instance.Refresh();
 		}
-		
+
 		[Button]
 		public void SetParent(StageData newParent)
 		{
 			if (this == newParent) return;
-			
+
 			parentStage = newParent;
 			Order = 999;
-			Editor.StageFlowEditorUtil.Instance.Refresh();
+			StageFlowEditorUtil.Instance.Refresh();
 		}
 
 		[Button]
 		public void MoveUp()
 		{
 			Order -= 1.5f;
-			Editor.StageFlowEditorUtil.Instance.Refresh();
+			StageFlowEditorUtil.Instance.Refresh();
 		}
 
 		[Button]
 		public void MoveDown()
 		{
 			Order += 1.5f;
-			Editor.StageFlowEditorUtil.Instance.Refresh();
+			StageFlowEditorUtil.Instance.Refresh();
 		}
 #endif
 	}

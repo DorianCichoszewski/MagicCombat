@@ -12,14 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e8f852bf9d4ec4b8170173bdc224ef, type: 3}
   m_Name: Setting players
   m_EditorClassIdentifier: 
-  stageController:
-    rid: -2
   sceneToLoad:
     sceneIndex: 0
     sceneReference: {fileID: 102900000, guid: 28ca8f5aa20f41a42b951bc24baf287f, type: 3}
-  objectToLoad: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+  parentStage: {fileID: 11400000, guid: 2643ae2137ed58a43ba785f393c9a464, type: 2}

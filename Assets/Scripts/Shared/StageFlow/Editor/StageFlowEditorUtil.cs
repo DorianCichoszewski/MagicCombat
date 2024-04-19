@@ -1,6 +1,4 @@
-using Sirenix.OdinInspector.Editor;
-using UnityEditor;
-
+#if UNITY_EDITOR
 namespace MagicCombat.Shared.StageFlow.Editor
 {
 	internal class StageFlowEditorUtil
@@ -22,9 +20,8 @@ namespace MagicCombat.Shared.StageFlow.Editor
 				return instance;
 			}
 		}
-		
+
 		public StageFlowWindow window;
-		public OdinMenuTree tree;
 		public StageOrderedList list;
 
 		public StageOrderedList EditorList
@@ -39,8 +36,9 @@ namespace MagicCombat.Shared.StageFlow.Editor
 		public void Refresh()
 		{
 			list.Refresh();
-			
-			window?.ForceMenuTreeRebuild();
+
+			window?.Refresh();
 		}
 	}
 }
+#endif

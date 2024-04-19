@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MagicCombat.Player
 {
-	[CreateAssetMenu(menuName = "Magic Combat/Static Player Data Group", fileName = "Static Player Data")]
+	[CreateAssetMenu(menuName = "Magic Combat/One Time/Static Player Data Group", fileName = "Static Player Data")]
 	public class StaticPlayerDataGroup : ScriptableObject
 	{
 		public List<StaticPlayerData> staticPlayerDatas;

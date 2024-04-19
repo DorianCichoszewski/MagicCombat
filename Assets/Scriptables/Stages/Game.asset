@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e8f852bf9d4ec4b8170173bdc224ef, type: 3}
   m_Name: Game
   m_EditorClassIdentifier: 
-  stageController:
-    rid: -2
   sceneToLoad:
-    sceneIndex: 2
-    sceneReference: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-  objectToLoad: {fileID: 0}
+    sceneIndex: 3
+    sceneReference: {fileID: 102900000, guid: 2573c63323b0cb94da89a39ee90ae98b, type: 3}
+  parentStage: {fileID: 0}
+  controller:
+    rid: 400975839840436268
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 400975839840436268
+      type: {class: GameplayGlobalController, ns: MagicCombat.Gameplay, asm: MagicCombat.Gameplay}
+      data:
+        gameplayRuntimeData: {fileID: 11400000, guid: 2e73f2f1db3c2dc4ebc84717ac242db6, type: 2}

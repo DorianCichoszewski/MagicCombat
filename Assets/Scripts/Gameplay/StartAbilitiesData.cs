@@ -2,7 +2,7 @@ using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Abilities.Base;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Magic Combat/StartData")]
+[CreateAssetMenu(menuName = "Magic Combat/One Time/StartData")]
 public class StartAbilitiesData : ScriptableObject
 {
 	[SerializeField]
@@ -14,8 +14,10 @@ public class StartAbilitiesData : ScriptableObject
 
 	[SerializeField]
 	private BaseAbility startSkill1;
+
 	[SerializeField]
 	private BaseAbility startSkill2;
+
 	[SerializeField]
 	private BaseAbility startSkill3;
 
@@ -35,10 +37,7 @@ public class StartAbilitiesData : ScriptableObject
 
 		void CheckAbility(ref BaseAbility ability)
 		{
-			if (ability != null &&!abilitiesGroup.Abilities.Contains(ability))
-			{
-				ability = null;
-			}
+			if (ability != null && !abilitiesGroup.Abilities.Contains(ability)) ability = null;
 		}
 	}
 }

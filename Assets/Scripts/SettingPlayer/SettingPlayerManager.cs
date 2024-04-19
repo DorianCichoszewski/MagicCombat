@@ -14,7 +14,7 @@ namespace MagicCombat.SettingPlayer
 		[SerializeField]
 		private int maxPlayers = 4;
 
-		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.GameModeData;
+		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
 
 		public event Action OnRefreshPlayers;
 

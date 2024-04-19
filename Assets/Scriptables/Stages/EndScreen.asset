@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e8f852bf9d4ec4b8170173bdc224ef, type: 3}
   m_Name: EndScreen
   m_EditorClassIdentifier: 
+  sceneToLoad:
+    sceneIndex: -1
+    sceneReference: {fileID: 0}
+  parentStage: {fileID: 11400000, guid: 2643ae2137ed58a43ba785f393c9a464, type: 2}
   controller:
     rid: -2
-  sceneToLoad:
-    sceneIndex: 0
-    sceneReference: {fileID: 0}
-  objectToLoad: {fileID: 0}
   references:
     version: 2
     RefIds:

@@ -65,7 +65,7 @@ namespace MagicCombat.Gameplay.Player
 		{
 			OnDeath?.Invoke();
 			Controller = null;
-			gameplayManager.PlayerDeath(this);
+			gameplayManager.PlayerHit(this);
 		}
 
 		public void Kill()

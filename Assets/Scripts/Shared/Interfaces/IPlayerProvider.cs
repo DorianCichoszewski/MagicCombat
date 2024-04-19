@@ -14,6 +14,8 @@ namespace MagicCombat.Shared.Interfaces
 
 		public IEnumerable<PlayerId> PlayersEnumerator { get; }
 
+		public PlayerId GetRandomPlayer();
+
 		public StaticPlayerData StaticData(PlayerId id);
 
 		public IPlayerInputController InputController(PlayerId id);
