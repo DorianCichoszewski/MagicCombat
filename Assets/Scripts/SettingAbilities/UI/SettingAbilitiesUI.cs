@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MagicCombat.UI.Shared;
 using UnityEngine;
 
 namespace MagicCombat.SettingAbilities.UI
@@ -6,37 +7,15 @@ namespace MagicCombat.SettingAbilities.UI
 	public class SettingAbilitiesUI : MonoBehaviour
 	{
 		[SerializeField]
-		private AbilitiesPlayerWindow windowPrefab;
-
-		[SerializeField]
-		private Transform windowsParent;
+		private PerPlayerWindowsController windowsController;
 
 		[SerializeField]
 		private SettingAbilitiesManager manager;
 
-		private readonly List<AbilitiesPlayerWindow> spawnedWindows = new();
-
 		public void Start()
 		{
 			var playerProvider = manager.SharedScriptable.PlayerProvider;
-			foreach (var id in playerProvider.PlayersEnumerator)
-			{
-				var window = Instantiate(windowPrefab, windowsParent);
-				window.Init(playerProvider, manager.GameModeData, id, this);
-				spawnedWindows.Add(window);
-			}
-		}
-
-		public void OnPlayerReady()
-		{
-			bool allReady = true;
-			foreach (var window in spawnedWindows)
-			{
-				allReady &= window.IsReady;
-			}
-
-			if (allReady)
-				manager.Next();
+			windowsController.CreateWindows(manager.SharedScriptable, manager.Next);
 		}
 	}
 }

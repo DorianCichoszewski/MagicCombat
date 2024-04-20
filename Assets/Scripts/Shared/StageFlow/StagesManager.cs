@@ -121,13 +121,13 @@ namespace MagicCombat.Shared.StageFlow
 
 		private void RunStage(StageData stage)
 		{
+			currentStage = stage;
+
 			if (stage.IsEmptyStage)
 			{
 				NextStage();
 				return;
 			}
-
-			currentStage = stage;
 
 			if (stage.HasScene)
 				SceneManager.LoadScene(stage.SceneIndex,

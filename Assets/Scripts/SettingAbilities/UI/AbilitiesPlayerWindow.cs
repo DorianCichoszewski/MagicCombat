@@ -9,19 +9,11 @@ using UnityEngine.UI;
 
 namespace MagicCombat.SettingAbilities.UI
 {
-	public class AbilitiesPlayerWindow : MonoBehaviour
+	public class AbilitiesPlayerWindow : PerPlayerWindow
 	{
 		[SerializeField]
 		[Required]
-		private Selectable firstElement;
-
-		[SerializeField]
-		[Required]
 		private PlayerHeader header;
-
-		[SerializeField]
-		[Required]
-		private ReadyToggle readyToggle;
 
 		[SerializeField]
 		[Required]
@@ -40,40 +32,23 @@ namespace MagicCombat.SettingAbilities.UI
 		[Required]
 		private AbilityPicker skill3Picker;
 
-		private SettingAbilitiesUI settingAbilitiesUI;
-
-		public bool IsReady => readyToggle.isOn;
-
-		public void Init(IPlayerProvider playerProvider, GameplayRuntimeData gameplayData, PlayerId id,
-			SettingAbilitiesUI ui)
+		protected override void OnInit()
 		{
-			settingAbilitiesUI = ui;
-			var inputController = playerProvider.InputController(id);
-			inputController.SetUIFocus(gameObject, firstElement.gameObject);
+			header.Init(PlayerProvider.StaticData(playerId));
 
-			header.Init(playerProvider.StaticData(id));
-			readyToggle.onValueChanged.AddListener(VerifyWindowData);
+			var gameplayData = (GameplayRuntimeData)sharedScriptable.ModeData;
 
-			int points = gameplayData.points.GetOrCreate(id);
+			int points = gameplayData.points.GetOrCreate(playerId);
 
 			pointsText.text = points > 0 ? $"Current points: {points}" : string.Empty;
 
-			var playerData = gameplayData.playerData.GetOrCreate(id);
+			var playerData = gameplayData.playerData.GetOrCreate(playerId);
 			skill1Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill1Index = newSkill,
 				playerData.Skill1Index);
 			skill2Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill2Index = newSkill,
 				playerData.Skill2Index);
 			skill3Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill3Index = newSkill,
 				playerData.Skill3Index);
-		}
-
-		private void VerifyWindowData(bool isReady)
-		{
-			if (!isReady) return;
-
-			// TODO: Check for empty / null skills
-
-			settingAbilitiesUI.OnPlayerReady();
 		}
 	}
 }
