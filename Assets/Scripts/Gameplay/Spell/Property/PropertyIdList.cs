@@ -13,18 +13,18 @@ namespace MagicCombat.Gameplay.Spell.Property
 
 		public PropertyIdList()
 		{
-			list = new();
+			list = new List<PropertyId>();
 		}
-		
+
 		public PropertyIdList(PropertyId id)
 		{
-			list = new(1){id};
+			list = new List<PropertyId>(1) { id };
 		}
 
 		public PropertyIdList(PropertyGroup group)
 		{
 			if (group == null) return;
-			
+
 			foreach (var property in group.Keys)
 			{
 				list.Add(property);
@@ -33,10 +33,7 @@ namespace MagicCombat.Gameplay.Spell.Property
 
 		public PropertyIdList Add(PropertyId id)
 		{
-			if (!list.Contains(id))
-			{
-				list.Add(id);
-			}
+			if (!list.Contains(id)) list.Add(id);
 
 			return this;
 		}
@@ -49,7 +46,7 @@ namespace MagicCombat.Gameplay.Spell.Property
 		public PropertyIdList Add(PropertyIdList propertyList)
 		{
 			if (propertyList == null) return this;
-			
+
 			foreach (var id in propertyList.list)
 			{
 				Add(id);
@@ -61,10 +58,10 @@ namespace MagicCombat.Gameplay.Spell.Property
 		public PropertyIdList Add(ISpellPropertiesUser value)
 		{
 			if (value == null) return this;
-			
+
 			return Add(value.RequiredProperties);
 		}
-		
+
 		public PropertyIdList Add(IEnumerable<ISpellPropertiesUser> values)
 		{
 			foreach (var value in values)
@@ -74,7 +71,7 @@ namespace MagicCombat.Gameplay.Spell.Property
 
 			return this;
 		}
-		
+
 		public IEnumerator<PropertyId> GetEnumerator()
 		{
 			return list.GetEnumerator();

@@ -10,12 +10,10 @@ namespace MagicCombat.Shared.StageFlow.Editor
 			get
 			{
 				if (instance == null)
-				{
 					instance = new StageFlowEditorUtil
 					{
 						list = new StageOrderedList()
 					};
-				}
 
 				return instance;
 			}

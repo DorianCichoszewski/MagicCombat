@@ -15,12 +15,13 @@ MonoBehaviour:
   sceneToLoad:
     sceneIndex: 2
     sceneReference: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-  parentStage: {fileID: 11400000, guid: 2643ae2137ed58a43ba785f393c9a464, type: 2}
   controller:
-    rid: 400975839840436267
+    rid: 400975929572851757
+  parentStage: {fileID: 11400000, guid: 2643ae2137ed58a43ba785f393c9a464, type: 2}
+  order: 2
   references:
     version: 2
     RefIds:
-    - rid: 400975839840436267
+    - rid: 400975929572851757
       type: {class: GameplayStageController, ns: MagicCombat.Gameplay, asm: MagicCombat.Gameplay}
       data: 

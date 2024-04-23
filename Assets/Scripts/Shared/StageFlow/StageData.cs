@@ -17,19 +17,29 @@ namespace MagicCombat.Shared.StageFlow
 		[SerializeField]
 		private SceneReference sceneToLoad = new(-1);
 
+		[SerializeReference]
+		private IStageController controller;
+
 		[SerializeField]
 		[HideInInspector]
 		private StageData parentStage;
 
-		[SerializeReference]
-		private IStageController controller;
+		[SerializeField]
+		[HideInInspector]
+		private float order = 999;
 
 		public bool HasScene => sceneToLoad.SceneIndex > -1;
 		public int SceneIndex => sceneToLoad.SceneIndex;
 		public StageData ParentStage => parentStage;
+
+		// ReSharper disable once ConvertToAutoProperty
 		public IStageController Controller => controller;
 
-		public float Order { get; set; } = 999;
+		public float Order
+		{
+			get => order;
+			set => order = value;
+		}
 
 		public string FullName
 		{

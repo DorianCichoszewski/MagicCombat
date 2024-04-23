@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using MagicCombat.Gameplay.Player;
 using MagicCombat.Shared.GameState;
@@ -10,7 +8,6 @@ using UnityEngine;
 namespace MagicCombat.Gameplay.Mode
 {
 	[CreateAssetMenu(menuName = "Magic Combat/One Time/Basic Game Mode", fileName = "Basic Game Mode")]
-	
 	public class BasicGameMode : GameMode
 	{
 		[SerializeField]
@@ -26,7 +23,7 @@ namespace MagicCombat.Gameplay.Mode
 
 		private SharedScriptable sharedScriptable;
 		private GameplayManager manager;
-		
+
 		private GameplayRuntimeData GameplayData => (GameplayRuntimeData)sharedScriptable.ModeData;
 
 		public override bool GameInProgress => isPlaying;
@@ -35,7 +32,7 @@ namespace MagicCombat.Gameplay.Mode
 		{
 			sharedScriptable = shared;
 			this.manager = manager;
-			
+
 			var playerProvider = sharedScriptable.PlayerProvider;
 
 			foreach (var index in playerProvider.PlayersEnumerator)

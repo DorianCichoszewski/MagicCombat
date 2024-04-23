@@ -10,7 +10,7 @@ namespace MagicCombat.Gameplay
 	{
 		[SerializeField]
 		private GameplayRuntimeData gameplayRuntimeData;
-		
+
 		public void Run(SharedScriptable sharedScriptable)
 		{
 			gameplayRuntimeData.Reset();
@@ -18,13 +18,9 @@ namespace MagicCombat.Gameplay
 			sharedScriptable.StagesManager.NextStage();
 		}
 
-		public void Return(SharedScriptable sharedScriptable)
-		{
-		}
+		public void Return(SharedScriptable sharedScriptable) { }
 
-		public void Skip(SharedScriptable sharedScriptable)
-		{
-		}
+		public void Skip(SharedScriptable sharedScriptable) { }
 
 		public void Exit(SharedScriptable sharedScriptable)
 		{

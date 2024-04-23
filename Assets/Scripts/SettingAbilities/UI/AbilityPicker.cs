@@ -10,7 +10,7 @@ namespace MagicCombat.SettingAbilities.UI
 	{
 		[SerializeField]
 		private TMP_Dropdown dropdown;
-		
+
 		private AbilitiesGroup abilitiesGroup;
 
 		public void Init(AbilitiesGroup group, Action<int> onAbilityChanged, int startAbility = -1)

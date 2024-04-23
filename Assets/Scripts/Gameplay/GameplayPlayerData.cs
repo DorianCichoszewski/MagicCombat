@@ -7,7 +7,7 @@ namespace MagicCombat.Gameplay
 	public class GameplayPlayerData
 	{
 		public AbilitiesGroup AbilitiesGroup { get; }
-		
+
 		// Current Abilities
 		public int UtilityIndex { get; set; }
 		public int Skill1Index { get; set; }

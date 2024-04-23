@@ -8,54 +8,54 @@ using UnityEngine.UI;
 
 namespace MagicCombat.UI.Shared
 {
-    public class PerPlayerWindow : MonoBehaviour
-    {
-        [SerializeField]
-        [Required]
-        private Selectable firstElement;
-        
-        [SerializeField]
-        private ReadyToggle readyToggle;
+	public class PerPlayerWindow : MonoBehaviour
+	{
+		[SerializeField]
+		[Required]
+		private Selectable firstElement;
 
-        protected SharedScriptable sharedScriptable;
-        protected PlayerId playerId;
+		[SerializeField]
+		private ReadyToggle readyToggle;
 
-        private Action onReady;
+		protected SharedScriptable sharedScriptable;
+		protected PlayerId playerId;
 
-        public bool IsReady => readyToggle?.isOn ?? true;
-        public PlayerId PlayerId => playerId;
-        protected IPlayerProvider PlayerProvider => sharedScriptable.PlayerProvider;
+		private Action onReady;
 
-        public void Init(SharedScriptable shared, PlayerId id, Action onReady)
-        {
-            sharedScriptable = shared;
-            playerId = id;
-            this.onReady = onReady;
-            
-            var inputController = PlayerProvider.InputController(id);
-            inputController.SetUIFocus(gameObject, firstElement.gameObject);
-            
-            readyToggle?.onValueChanged.AddListener(PressedReady);
-        }
+		public bool IsReady => readyToggle?.isOn ?? true;
+		public PlayerId PlayerId => playerId;
+		protected IPlayerProvider PlayerProvider => sharedScriptable.PlayerProvider;
 
-        protected virtual void OnInit() { }
+		public void Init(SharedScriptable shared, PlayerId id, Action onReady)
+		{
+			sharedScriptable = shared;
+			playerId = id;
+			this.onReady = onReady;
 
-        protected virtual bool CanBeReady()
-        {
-            return true;
-        }
+			var inputController = PlayerProvider.InputController(id);
+			inputController.SetUIFocus(gameObject, firstElement.gameObject);
 
-        private void PressedReady(bool newValue)
-        {
-            if (!newValue) return;
+			readyToggle?.onValueChanged.AddListener(PressedReady);
+		}
 
-            if (!CanBeReady())
-            {
-                readyToggle.SetIsOnWithoutNotify(false);
-                return;
-            }
+		protected virtual void OnInit() { }
 
-            onReady();
-        }
-    }
+		protected virtual bool CanBeReady()
+		{
+			return true;
+		}
+
+		private void PressedReady(bool newValue)
+		{
+			if (!newValue) return;
+
+			if (!CanBeReady())
+			{
+				readyToggle.SetIsOnWithoutNotify(false);
+				return;
+			}
+
+			onReady();
+		}
+	}
 }

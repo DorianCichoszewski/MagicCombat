@@ -95,10 +95,7 @@ namespace MagicCombat.Shared.StageFlow
 
 		public StageData GetNextScene(StageData currentStage)
 		{
-			if (currentStage == null)
-			{
-				return orderedStages[0];
-			}
+			if (currentStage == null) return orderedStages[0];
 			int currentIndex = IndexOf(currentStage);
 			if (currentIndex > orderedStages.Count - 1)
 				return null;

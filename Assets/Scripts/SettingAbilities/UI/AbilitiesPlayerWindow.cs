@@ -1,11 +1,8 @@
 using MagicCombat.Gameplay;
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.Interfaces;
 using MagicCombat.UI.Shared;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MagicCombat.SettingAbilities.UI
 {

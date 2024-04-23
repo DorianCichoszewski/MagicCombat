@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using MagicCombat.UI.Shared;
 using UnityEngine;
 

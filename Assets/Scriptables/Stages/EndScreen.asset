@@ -15,9 +15,10 @@ MonoBehaviour:
   sceneToLoad:
     sceneIndex: -1
     sceneReference: {fileID: 0}
-  parentStage: {fileID: 11400000, guid: 2643ae2137ed58a43ba785f393c9a464, type: 2}
   controller:
     rid: -2
+  parentStage: {fileID: 11400000, guid: 2643ae2137ed58a43ba785f393c9a464, type: 2}
+  order: 3
   references:
     version: 2
     RefIds:

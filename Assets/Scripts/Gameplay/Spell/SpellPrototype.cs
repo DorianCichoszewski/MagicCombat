@@ -31,7 +31,7 @@ namespace MagicCombat.Gameplay.Spell
 
 		[ShowIf(nameof(useTimers))]
 		public List<SpellTimer> timers = new();
-		
+
 		[Space]
 		public bool useInputEvents;
 

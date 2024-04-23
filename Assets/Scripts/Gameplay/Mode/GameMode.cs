@@ -11,11 +11,11 @@ namespace MagicCombat.Gameplay.Mode
 		[ShowInInspector]
 		[ReadOnly]
 		protected List<PlayerAvatar> alivePlayers = new();
-		
+
 		public List<PlayerAvatar> AlivePlayers => alivePlayers;
 
 		public abstract bool GameInProgress { get; }
-		
+
 		public abstract void Init(SharedScriptable shared, GameplayManager manager);
 		public abstract void PlayerHit(PlayerAvatar player);
 

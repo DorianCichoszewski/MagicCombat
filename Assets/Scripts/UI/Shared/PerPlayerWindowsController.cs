@@ -5,51 +5,52 @@ using MagicCombat.Shared.Data;
 using MagicCombat.Shared.GameState;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace MagicCombat.UI.Shared
 {
-    [Serializable]
-    [InlineProperty]
-    [HideLabel]
-    public class PerPlayerWindowsController
-    {
-        [SerializeField]
-        [Required]
-        private PerPlayerWindow windowPrefab;
+	[Serializable]
+	[InlineProperty]
+	[HideLabel]
+	public class PerPlayerWindowsController
+	{
+		[SerializeField]
+		[Required]
+		private PerPlayerWindow windowPrefab;
 
-        [SerializeField]
-        [Required]
-        private Transform windowsParent;
+		[SerializeField]
+		[Required]
+		private Transform windowsParent;
 
-        private List<PerPlayerWindow> createdWindows;
-        private Action onReady;
+		private List<PerPlayerWindow> createdWindows;
+		private Action onReady;
 
-        public void CreateWindows(SharedScriptable shared, Action onAllWindowsReady)
-        {
-            onReady = onAllWindowsReady;
+		public void CreateWindows(SharedScriptable shared, Action onAllWindowsReady)
+		{
+			onReady = onAllWindowsReady;
 
-            foreach (var id in shared.PlayerProvider.PlayersEnumerator)
-            {
-                var newWindow = GameObject.Instantiate(windowPrefab, windowsParent);
-                createdWindows.Add(newWindow);
-                newWindow.Init(shared, id, CheckWindowsReady);
-            }
-        }
+			foreach (var id in shared.PlayerProvider.PlayersEnumerator)
+			{
+				var newWindow = Object.Instantiate(windowPrefab, windowsParent);
+				createdWindows.Add(newWindow);
+				newWindow.Init(shared, id, CheckWindowsReady);
+			}
+		}
 
-        public PerPlayerWindow GetWindow(PlayerId id)
-        {
-            return createdWindows.FirstOrDefault(x => x.PlayerId == id);
-        }
+		public PerPlayerWindow GetWindow(PlayerId id)
+		{
+			return createdWindows.FirstOrDefault(x => x.PlayerId == id);
+		}
 
-        private void CheckWindowsReady()
-        {
-            foreach (var window in createdWindows)
-            {
-                if (!window.IsReady)
-                    return;
-            }
+		private void CheckWindowsReady()
+		{
+			foreach (var window in createdWindows)
+			{
+				if (!window.IsReady)
+					return;
+			}
 
-            onReady();
-        }
-    }
+			onReady();
+		}
+	}
 }

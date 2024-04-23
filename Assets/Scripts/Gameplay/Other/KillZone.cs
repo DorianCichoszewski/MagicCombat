@@ -1,3 +1,4 @@
+using MagicCombat.Gameplay.Avatar;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Other
@@ -6,15 +7,15 @@ namespace MagicCombat.Gameplay.Other
 	{
 		private void OnCollisionEnter(Collision other)
 		{
-			KillPlayer(other.gameObject.GetComponentInParent<Avatar.BaseAvatar>());
+			KillPlayer(other.gameObject.GetComponentInParent<BaseAvatar>());
 		}
 
 		private void OnTriggerEnter(Collider other)
 		{
-			KillPlayer(other.gameObject.GetComponentInParent<Avatar.BaseAvatar>());
+			KillPlayer(other.gameObject.GetComponentInParent<BaseAvatar>());
 		}
 
-		private void KillPlayer(Avatar.BaseAvatar avatar)
+		private void KillPlayer(BaseAvatar avatar)
 		{
 			if (avatar == null) return;
 			avatar.Kill();

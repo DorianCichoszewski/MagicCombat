@@ -6,7 +6,7 @@ namespace MagicCombat.Shared.StageFlow
 	{
 		// At entering stage
 		public void Run(SharedScriptable sharedScriptable);
-		
+
 		// At closing child stage and returning focus
 		public void Return(SharedScriptable sharedScriptable);
 

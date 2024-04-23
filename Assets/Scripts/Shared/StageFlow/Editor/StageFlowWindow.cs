@@ -1,6 +1,5 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
@@ -20,11 +19,11 @@ namespace MagicCombat.Shared.StageFlow.Editor
 		{
 			if (MenuTree.Selection.Count > 0)
 			{
-				var selectionName = MenuTree.Selection[0].Name;
+				string selectionName = MenuTree.Selection[0].Name;
 				ForceMenuTreeRebuild();
 				MenuTree.Selection.Clear();
 				SelectPrevious(MenuTree.MenuItems);
-				
+
 				bool SelectPrevious(List<OdinMenuItem> items)
 				{
 					foreach (var item in items)
@@ -34,8 +33,11 @@ namespace MagicCombat.Shared.StageFlow.Editor
 							MenuTree.Selection.Add(item);
 							return true;
 						}
-						else if (item.ChildMenuItems != null && SelectPrevious(item.ChildMenuItems))
+
+						if (item.ChildMenuItems != null && SelectPrevious(item.ChildMenuItems))
+						{
 							return true;
+						}
 					}
 
 					return false;
@@ -58,7 +60,7 @@ namespace MagicCombat.Shared.StageFlow.Editor
 			{
 				Selection =
 				{
-					SupportsMultiSelect = false,
+					SupportsMultiSelect = false
 				}
 			};
 
@@ -72,7 +74,7 @@ namespace MagicCombat.Shared.StageFlow.Editor
 			{
 				tree.Add(stage.FullName, stage);
 			}
-			
+
 			return tree;
 		}
 	}
