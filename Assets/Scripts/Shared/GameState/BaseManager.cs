@@ -10,13 +10,5 @@ namespace MagicCombat.Shared.GameState
 		protected SharedScriptable sharedScriptable;
 
 		public SharedScriptable SharedScriptable => sharedScriptable;
-
-		private void Awake()
-		{
-			sharedScriptable.EnsureEssentials();
-			OnAwake();
-		}
-
-		protected virtual void OnAwake() { }
 	}
 }

@@ -24,12 +24,6 @@ namespace MagicCombat.Shared.StageFlow
 			sharedScriptable = shared;
 			stages.Refresh();
 
-			while (SceneManager.loadedSceneCount > 0)
-			{
-				var loadedScene = SceneManager.GetSceneAt(0);
-				SceneManager.UnloadSceneAsync(loadedScene, UnloadSceneOptions.None);
-			}
-
 			RunStage(stages[0]);
 		}
 

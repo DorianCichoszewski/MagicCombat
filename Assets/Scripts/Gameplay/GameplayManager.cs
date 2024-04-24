@@ -22,7 +22,7 @@ namespace MagicCombat.Gameplay
 		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
 		public GameMode Mode => GameModeData.GameMode;
 
-		protected override void OnAwake()
+		protected void Awake()
 		{
 			clockGO.Init(AbilitiesContext.clockManager);
 			OnGameStarted?.Invoke();

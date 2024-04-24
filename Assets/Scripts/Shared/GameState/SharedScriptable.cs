@@ -6,7 +6,7 @@ using UnityEngine;
 namespace MagicCombat.Shared.GameState
 {
 	[CreateAssetMenu(menuName = "Magic Combat/One Time/Shared Scriptable", fileName = "Shared Scriptable")]
-	public class SharedScriptable : ScriptableObject
+	public class SharedScriptable : StartupScriptable
 	{
 		[SerializeField]
 		[AssetsOnly]
@@ -34,10 +34,9 @@ namespace MagicCombat.Shared.GameState
 
 		public EssentialsObject Essentials { get; private set; }
 
-
-		public void EnsureEssentials()
+		public override void GameStart()
 		{
-			if (Essentials != null) return;
+			if (Essentials != null) Debug.LogError("SharedScriptable was already run!", Essentials);
 
 			Essentials = Instantiate(essentialsPrefab);
 			Essentials.Init(this);

@@ -16,9 +16,9 @@ namespace MagicCombat.SettingPlayer
 
 		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
 
-		public event Action OnRefreshPlayers;
+		public event Action<PlayerId> OnRefreshPlayers;
 
-		protected override void OnAwake()
+		protected void Awake()
 		{
 			GameModeData?.Reset();
 			sharedScriptable.PlayerProvider.OnPlayerChanged += RefreshPlayers;
@@ -26,7 +26,7 @@ namespace MagicCombat.SettingPlayer
 
 		public void RefreshPlayers(PlayerId player)
 		{
-			OnRefreshPlayers?.Invoke();
+			OnRefreshPlayers?.Invoke(player);
 		}
 
 		public void ConfirmPlayers()

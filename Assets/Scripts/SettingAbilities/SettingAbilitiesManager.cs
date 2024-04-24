@@ -11,7 +11,7 @@ namespace MagicCombat.SettingAbilities
 
 		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
 
-		protected override void OnAwake()
+		protected void Awake()
 		{
 			foreach (var playerId in sharedScriptable.PlayerProvider.PlayersEnumerator)
 			{

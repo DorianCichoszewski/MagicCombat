@@ -115,9 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6468350eadfd41d681977107c5151db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowPrefab: {fileID: 7133162682346967229, guid: 9b1bed64f55756e419170664824d65ad,
-    type: 3}
-  windowParent: {fileID: 511570132333590112}
+  windowsController:
+    windowPrefab: {fileID: 7133162682346967229, guid: 9b1bed64f55756e419170664824d65ad, type: 3}
+    windowsParent: {fileID: 511570132333590112}
   manager: {fileID: 0}
 --- !u!1 &5422753285937053391
 GameObject:

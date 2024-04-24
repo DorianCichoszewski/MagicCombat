@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Game
   m_EditorClassIdentifier: 
   sceneToLoad:
-    sceneIndex: 3
-    sceneReference: {fileID: 102900000, guid: 2573c63323b0cb94da89a39ee90ae98b, type: 3}
+    sceneIndex: -1
+    sceneReference: {fileID: 0}
   controller:
     rid: 400975929572851755
   parentStage: {fileID: 0}

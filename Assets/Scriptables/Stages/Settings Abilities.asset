@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Settings Abilities
   m_EditorClassIdentifier: 
   sceneToLoad:
-    sceneIndex: 1
+    sceneIndex: 2
     sceneReference: {fileID: 102900000, guid: 0fe8a933eec00b04da85b187150845f2, type: 3}
   controller:
     rid: 400975929572851756

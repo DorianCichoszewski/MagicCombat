@@ -23,7 +23,6 @@ namespace MagicCombat.UI.Shared
 		private Action onReady;
 
 		public bool IsReady => readyToggle?.isOn ?? true;
-		public PlayerId PlayerId => playerId;
 		protected IPlayerProvider PlayerProvider => sharedScriptable.PlayerProvider;
 
 		public void Init(SharedScriptable shared, PlayerId id, Action onReady)
