@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e8f852bf9d4ec4b8170173bdc224ef, type: 3}
   m_Name: Game
   m_EditorClassIdentifier: 
-  sceneToLoad:
-    sceneIndex: -1
-    sceneReference: {fileID: 0}
+  sceneReference:
+    sceneAssetReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   controller:
     rid: 400975929572851755
   parentStage: {fileID: 0}

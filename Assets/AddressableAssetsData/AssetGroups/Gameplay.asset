@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Packed Assets
+  m_Name: Gameplay
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Gameplay
   m_Data:
     m_SerializedData: []
-  m_GUID: 72dc5b692d706f84a81de6dc88573fbe
-  m_SerializeEntries: []
+  m_GUID: 9a8aa55d3635313489f016dc19703fd8
+  m_SerializeEntries:
+  - m_GUID: c86b457f01adb6c45aac9b2ec8f8dae5
+    m_Address: Assets/Scriptables/Gameplay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f5226fec1e722b244a5975e3dac74204, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 0999228b42098864f9af2e5e37f9d07a, type: 2}
-    - {fileID: 11400000, guid: 42a1520fed3e89e47b68fee2c587611c, type: 2}
+    - {fileID: 11400000, guid: 4750ecf57196c69489b5dea226548d96, type: 2}
+    - {fileID: 11400000, guid: d0942f0d7c483fc41a718c81c1932808, type: 2}

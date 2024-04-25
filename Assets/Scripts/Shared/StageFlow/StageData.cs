@@ -11,11 +11,12 @@ namespace MagicCombat.Shared.StageFlow
 	[CreateAssetMenu(menuName = "Magic Combat/Stage", fileName = "Stage")]
 	public class StageData : ScriptableObject
 	{
+		// For creating new Stage
 		public const string StagesPath = "Assets/Scriptables/Stages/";
 
 		[Space]
 		[SerializeField]
-		private SceneReference sceneToLoad = new(-1);
+		private SceneReference sceneReference;
 
 		[SerializeReference]
 		private IStageController controller;
@@ -28,8 +29,8 @@ namespace MagicCombat.Shared.StageFlow
 		[HideInInspector]
 		private float order = 999;
 
-		public bool HasScene => sceneToLoad.SceneIndex > -1;
-		public int SceneIndex => sceneToLoad.SceneIndex;
+		public bool HasScene => sceneReference.HasScene;
+		internal SceneReference SceneReference => sceneReference;
 		public StageData ParentStage => parentStage;
 
 		// ReSharper disable once ConvertToAutoProperty
@@ -50,7 +51,7 @@ namespace MagicCombat.Shared.StageFlow
 			}
 		}
 
-		public bool IsEmptyStage => Controller == null && sceneToLoad.SceneIndex < 0;
+		public bool IsEmptyStage => Controller == null && !sceneReference.HasScene;
 
 		public bool HasRootScene
 		{
@@ -85,7 +86,7 @@ namespace MagicCombat.Shared.StageFlow
 						return true;
 					}
 
-					otherStage = other.ParentStage;
+					otherStage = otherStage.ParentStage;
 				}
 			}
 

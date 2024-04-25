@@ -7,17 +7,18 @@ namespace MagicCombat.Shared.GameState
 	{
 		const string StartupScriptableLabel = "{StartupScriptable}";
 		
-		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
 		public static void RunStartupScriptables()
 		{
 			AssetLabelReference label = new AssetLabelReference
 			{
 				labelString = StartupScriptableLabel
 			};
-			var operationHandle = Addressables.LoadAssetsAsync<StartupScriptable>(label, scriptable =>
+			var startups = Addressables.LoadAssetsAsync<StartupScriptable>(label, _ => { }).WaitForCompletion();
+			foreach (var startup in startups)
 			{
-				scriptable.GameStart();
-			});
+				startup.GameStart();
+			}
 		}
 	}
 }

@@ -1,48 +1,50 @@
 using System;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
 namespace MagicCombat.Shared.StageFlow
 {
 	[Serializable]
 	[InlineProperty]
-	internal struct SceneReference
+	internal class SceneReference
 	{
 		[SerializeField]
-		[ReadOnly]
-		private int sceneIndex;
+		[HideLabel]
+		private AssetReferenceScene sceneAssetReference;
 
-		public int SceneIndex => sceneIndex;
+		private AsyncOperationHandle<SceneInstance> loadedSceneHandle;
+		
+		public bool HasScene => !string.IsNullOrWhiteSpace(sceneAssetReference.AssetGUID);
 
-		public SceneReference(int startIndex)
+		public void LoadScene(Action callback)
 		{
-#if UNITY_EDITOR
-			sceneReference = null;
-#endif
-			sceneIndex = startIndex;
+			loadedSceneHandle = Addressables.LoadSceneAsync(sceneAssetReference, LoadSceneMode.Additive);
+			loadedSceneHandle.Completed += _ => callback();
 		}
 
-#if UNITY_EDITOR
-		[SerializeField]
-		[OnValueChanged(nameof(SetSceneIndex))]
-		[HideLabel]
-		[PropertyOrder(-1)]
-		private SceneAsset sceneReference;
-
-		[OnInspectorInit]
-		private void SetSceneIndex()
+		public void UnloadScene()
 		{
-			if (!sceneReference)
+			if (!loadedSceneHandle.IsDone)
 			{
-				sceneIndex = -1;
-				return;
+				// No abort in addressable :(
+				loadedSceneHandle.WaitForCompletion();
 			}
 
-			string scenePath = AssetDatabase.GetAssetPath(sceneReference);
-			sceneIndex = SceneUtility.GetBuildIndexByScenePath(scenePath);
+			Addressables.UnloadSceneAsync(loadedSceneHandle, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 		}
+		
+		[Serializable]
+#if UNITY_EDITOR
+//		public class AssetReferenceScene : AssetReferenceT<UnityEditor.SceneAsset>
+//#else
+		public class AssetReferenceScene : AssetReferenceT<UnityEngine.Object>
 #endif
+		{
+			public AssetReferenceScene(string guid) : base(guid) { }
+		}
 	}
 }

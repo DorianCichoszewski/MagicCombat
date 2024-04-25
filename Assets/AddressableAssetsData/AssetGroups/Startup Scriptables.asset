@@ -10,21 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Startup Scriptables
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: Startup Scriptables
   m_Data:
     m_SerializedData: []
-  m_GUID: 6e246e0553937f34687ed6c3b5bf4594
+  m_GUID: 59294d2c685268849b7523da37b55652
   m_SerializeEntries:
-  - m_GUID: 9c457c1e1ec69ed4db75044fe65b206d
-    m_Address: Assets/Scenes/Addressable
+  - m_GUID: ffedf842b3b612844ace3e30a9f8d819
+    m_Address: Assets/Scriptables/Stages
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Stage
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee538525326e8554789b9b6e736e9719
+    m_Address: Assets/Scriptables/Startup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - '{StartupScriptable}'
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f5226fec1e722b244a5975e3dac74204, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 8d6dd83d0af750545a3745d057bb93f1, type: 2}
-    - {fileID: 11400000, guid: f3aee0664cc794b41a0e319695ad8d0b, type: 2}
+    - {fileID: 11400000, guid: 463372f3037abc44a887c2c42d94fa57, type: 2}
+    - {fileID: 11400000, guid: 6b22ac3e9bdf41546bbb4efd80923631, type: 2}

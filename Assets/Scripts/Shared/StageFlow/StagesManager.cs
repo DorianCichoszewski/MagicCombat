@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MagicCombat.Shared.GameState;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
 
 namespace MagicCombat.Shared.StageFlow
 {
@@ -12,6 +12,10 @@ namespace MagicCombat.Shared.StageFlow
 	public class StagesManager
 	{
 		[SerializeField]
+		[Required]
+		private AssetLabelReference stagesLabel;
+
+		[ShowInInspector]
 		[InlineProperty]
 		[HideLabel]
 		private StageOrderedList stages;
@@ -19,12 +23,27 @@ namespace MagicCombat.Shared.StageFlow
 		private SharedScriptable sharedScriptable;
 		private StageData currentStage;
 
+		internal StageOrderedList Stages => stages;
+
 		public void Init(SharedScriptable shared)
 		{
 			sharedScriptable = shared;
-			stages.Refresh();
+
+#if UNITY_EDITOR
+			UnityEngine.SceneManagement.SceneManager.LoadScene(0, UnityEngine.SceneManagement.LoadSceneMode.Single);
+#endif
+
+			SetupStages();
 
 			RunStage(stages[0]);
+		}
+
+		// Load Stages scriptable data - should be small
+		public async void SetupStages()
+		{
+			var unorderedStages = Addressables.LoadAssetsAsync<StageData>(stagesLabel, _ => { })
+				.WaitForCompletion();
+			stages = new(unorderedStages);
 		}
 
 		public void NextStage()
@@ -53,7 +72,7 @@ namespace MagicCombat.Shared.StageFlow
 
 				currentStage.HasCommonParent(targetStage, out commonParent);
 
-				// Exit to stage beeing child of common parent
+				// Exit to stage being child of common parent
 				if (currentStage != commonParent)
 					while (currentStage.ParentStage != commonParent)
 					{
@@ -124,10 +143,13 @@ namespace MagicCombat.Shared.StageFlow
 			}
 
 			if (stage.HasScene)
-				SceneManager.LoadScene(stage.SceneIndex,
-					stage.HasRootScene ? LoadSceneMode.Single : LoadSceneMode.Additive);
-
-			stage.Controller?.Run(sharedScriptable);
+			{
+				stage.SceneReference.LoadScene(() => stage.Controller?.Run(sharedScriptable));
+			}
+			else
+			{
+				stage.Controller?.Run(sharedScriptable);
+			}
 		}
 
 		private void SkipStage(StageData stage)
@@ -138,7 +160,9 @@ namespace MagicCombat.Shared.StageFlow
 		private void ExitStage(StageData stage)
 		{
 			if (stage.HasScene)
-				SceneManager.UnloadSceneAsync(stage.SceneIndex);
+			{
+				stage.SceneReference.UnloadScene();
+			}
 
 			stage.Controller?.Exit(sharedScriptable);
 		}

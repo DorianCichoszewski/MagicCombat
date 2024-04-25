@@ -1,3 +1,6 @@
+using MagicCombat.Shared.GameState;
+using UnityEngine.AddressableAssets;
+
 #if UNITY_EDITOR
 namespace MagicCombat.Shared.StageFlow.Editor
 {
@@ -5,36 +8,31 @@ namespace MagicCombat.Shared.StageFlow.Editor
 	{
 		private static StageFlowEditorUtil instance;
 
-		public static StageFlowEditorUtil Instance
-		{
-			get
-			{
-				if (instance == null)
-					instance = new StageFlowEditorUtil
-					{
-						list = new StageOrderedList()
-					};
-
-				return instance;
-			}
-		}
+		public static StageFlowEditorUtil Instance => instance ??= new();
 
 		public StageFlowWindow window;
-		public StageOrderedList list;
+		private StagesManager stagesManager;
 
 		public StageOrderedList EditorList
 		{
 			get
 			{
-				list.Refresh();
-				return list;
+				if (stagesManager == null)
+				{
+					Addressables.LoadAssetsAsync<SharedScriptable>("{StartupScriptable}", candidate =>
+					{
+						if (candidate == null) return;
+						stagesManager = candidate.StagesManager;
+					}).WaitForCompletion();
+				}
+
+				stagesManager.SetupStages();
+				return stagesManager.Stages;
 			}
 		}
 
 		public void Refresh()
 		{
-			list.Refresh();
-
 			window?.Refresh();
 		}
 	}
