@@ -14,7 +14,6 @@ namespace MagicCombat.Gameplay.UI
 		private void Start()
 		{
 			gameObject.SetActive(false);
-			gameplayManager.OnGameStarted += RefreshUI;
 			RefreshUI();
 		}
 

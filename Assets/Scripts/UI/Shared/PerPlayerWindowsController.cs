@@ -21,7 +21,7 @@ namespace MagicCombat.UI.Shared
 		[Required]
 		private Transform windowsParent;
 
-		private Dictionary<PlayerId, PerPlayerWindow> createdWindows;
+		private Dictionary<PlayerId, PerPlayerWindow> createdWindows = new ();
 		private SharedScriptable sharedScriptable;
 		private Action onReady;
 

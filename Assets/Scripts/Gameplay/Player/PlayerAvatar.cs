@@ -67,16 +67,5 @@ namespace MagicCombat.Gameplay.Player
 			Controller = null;
 			gameplayManager.PlayerHit(this);
 		}
-
-		public void Kill()
-		{
-			avatar.Kill();
-			OnAvatarDeath();
-		}
-
-		public void AddForce(Vector2 force, float forceDuration = 0)
-		{
-			avatar.AddForce(force, forceDuration);
-		}
 	}
 }

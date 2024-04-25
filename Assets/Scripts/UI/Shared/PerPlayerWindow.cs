@@ -35,6 +35,8 @@ namespace MagicCombat.UI.Shared
 			inputController.SetUIFocus(gameObject, firstElement.gameObject);
 
 			readyToggle?.onValueChanged.AddListener(PressedReady);
+			
+			OnInit();
 		}
 
 		protected virtual void OnInit() { }

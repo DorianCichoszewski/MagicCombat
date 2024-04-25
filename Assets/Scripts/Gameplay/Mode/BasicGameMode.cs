@@ -41,6 +41,8 @@ namespace MagicCombat.Gameplay.Mode
 					playerProvider.GameplayInputController(index), index);
 				alivePlayers.Add(newPlayer);
 			}
+
+			isPlaying = true;
 		}
 
 		public override void PlayerHit(PlayerAvatar player)
@@ -50,7 +52,7 @@ namespace MagicCombat.Gameplay.Mode
 
 			alivePlayers.Remove(player);
 
-			if (alivePlayers.Count > 2) return;
+			if (alivePlayers.Count > 1) return;
 
 			// End game
 			isPlaying = false;

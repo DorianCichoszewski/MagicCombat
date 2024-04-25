@@ -16,8 +16,6 @@ namespace MagicCombat.Gameplay
 		[SerializeField]
 		private ClockGameObject clockGO;
 
-		public event Action OnGameStarted;
-
 		public AbilitiesContext AbilitiesContext => GameModeData.AbilitiesContext;
 		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
 		public GameMode Mode => GameModeData.GameMode;
@@ -25,15 +23,8 @@ namespace MagicCombat.Gameplay
 		protected void Awake()
 		{
 			clockGO.Init(AbilitiesContext.clockManager);
-			OnGameStarted?.Invoke();
 
-			var playerProvider = sharedScriptable.PlayerProvider;
-
-			foreach (var index in playerProvider.PlayersEnumerator)
-			{
-				CreatePlayer(playerProvider.StaticData(index),
-					playerProvider.GameplayInputController(index), index);
-			}
+			Mode.Init(sharedScriptable, this);
 		}
 
 		public void PlayerHit(PlayerAvatar player)
