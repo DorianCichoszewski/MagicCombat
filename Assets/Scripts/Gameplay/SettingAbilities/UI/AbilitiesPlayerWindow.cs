@@ -34,18 +34,20 @@ namespace MagicCombat.SettingAbilities.UI
 			header.Init(PlayerProvider.StaticData(playerId));
 
 			var gameplayData = (GameplayRuntimeData)sharedScriptable.ModeData;
+			var abilitiesContext = gameplayData.AbilitiesContext;
 
 			int points = gameplayData.points.GetOrCreate(playerId);
-
 			pointsText.text = points > 0 ? $"Current points: {points}" : string.Empty;
-
-			var playerData = gameplayData.playerData.GetOrCreate(playerId);
-			skill1Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill1Index = newSkill,
-				playerData.Skill1Index);
-			skill2Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill2Index = newSkill,
-				playerData.Skill2Index);
-			skill3Picker.Init(playerData.AbilitiesGroup, newSkill => playerData.Skill3Index = newSkill,
-				playerData.Skill3Index);
+			
+			var collection = abilitiesContext.AbilitiesCollection;
+			var abilitiesData = gameplayData.abilitiesData;
+			var playerAbilities = abilitiesData.GetOrCreate(playerId);
+			skill1Picker.Init(collection, newSkill => abilitiesData[playerId].Skill1Key = collection.GetKey(newSkill),
+				collection.GetIndex(playerAbilities.Skill1Key));
+			skill2Picker.Init(collection, newSkill => abilitiesData[playerId].Skill2Key = collection.GetKey(newSkill),
+				collection.GetIndex(playerAbilities.Skill2Key));
+			skill3Picker.Init(collection, newSkill => abilitiesData[playerId].Skill3Key = collection.GetKey(newSkill),
+				collection.GetIndex(playerAbilities.Skill3Key));
 		}
 	}
 }

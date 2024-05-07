@@ -10,7 +10,7 @@ namespace MagicCombat.Gameplay.Mode
 	{
 		[ShowInInspector]
 		[ReadOnly]
-		protected List<PlayerAvatar> alivePlayers = new();
+		protected List<PlayerAvatar> alivePlayers;
 
 		public List<PlayerAvatar> AlivePlayers => alivePlayers;
 

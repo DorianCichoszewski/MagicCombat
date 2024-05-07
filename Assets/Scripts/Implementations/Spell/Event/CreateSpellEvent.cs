@@ -15,7 +15,7 @@ namespace MagicCombat.Implementations.Spell.Event
 		{
 			var spellData = (SpellData)spell.Data;
 			var newData = spellData.Copy();
-			spellData.AbilitiesContext.spellCrafter.CreateNew(prototype, newData);
+			spellData.AbilitiesContext.SpellCrafter.CreateNew(prototype, newData);
 		}
 
 		public PropertyIdList RequiredProperties => new(prototype.properties);

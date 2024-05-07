@@ -1,5 +1,6 @@
 using MagicCombat.Gameplay.Abilities.Limiters;
 using MagicCombat.Gameplay.Avatar;
+using Sirenix.OdinInspector;
 
 namespace MagicCombat.Gameplay.Abilities.Base
 {
@@ -19,7 +20,9 @@ namespace MagicCombat.Gameplay.Abilities.Base
 			Reset();
 		}
 
+		[ShowInInspector]
 		public BaseAbility Ability { get; }
+		[ShowInInspector]
 		public AbilityState State { get; }
 		public ILimiter Limiter { get; }
 		public AbilitiesContext AbilitiesContext { get; }

@@ -7,9 +7,6 @@ namespace MagicCombat.SettingAbilities
 {
 	public class SettingAbilitiesStageController : IStageController
 	{
-		[SerializeField]
-		private StartAbilitiesData startAbilitiesData;
-
 		public void Run(SharedScriptable sharedScriptable)
 		{
 			InitAbilities(sharedScriptable);
@@ -27,9 +24,10 @@ namespace MagicCombat.SettingAbilities
 		private void InitAbilities(SharedScriptable sharedScriptable)
 		{
 			var gameModeData = (GameplayRuntimeData)sharedScriptable.ModeData;
+			var abilitiesContext = gameModeData.AbilitiesContext;
 			foreach (var playerId in sharedScriptable.PlayerProvider.PlayersEnumerator)
 			{
-				gameModeData.playerData.Create(playerId, new GameplayPlayerData(startAbilitiesData));
+				gameModeData.abilitiesData.Create(playerId, new AbilityPlayerData(abilitiesContext.StartAbilitiesData));
 			}
 		}
 	}

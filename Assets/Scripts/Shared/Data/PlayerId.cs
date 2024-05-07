@@ -1,9 +1,11 @@
 using System;
+using Sirenix.OdinInspector;
 
 namespace MagicCombat.Shared.Data
 {
 	public class PlayerId : IComparable<PlayerId>
 	{
+		[ShowInInspector]
 		private readonly int internalId;
 
 		// In range [0, playerCount)

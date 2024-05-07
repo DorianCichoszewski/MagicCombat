@@ -109,6 +109,8 @@ namespace MagicCombat.Gameplay.Spell
 			{
 				fragment.Tick(this, deltaTime);
 			}
+
+			Data.Position = transform.position;
 		}
 
 		private void HitEvent(GameObject other)

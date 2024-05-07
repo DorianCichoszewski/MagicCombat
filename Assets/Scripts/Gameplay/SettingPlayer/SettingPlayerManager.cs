@@ -1,5 +1,4 @@
 using System;
-using MagicCombat.Gameplay;
 using MagicCombat.Shared.Data;
 using MagicCombat.Shared.GameState;
 using UnityEngine;
@@ -14,13 +13,10 @@ namespace MagicCombat.SettingPlayer
 		[SerializeField]
 		private int maxPlayers = 4;
 
-		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
-
 		public event Action<PlayerId> OnRefreshPlayers;
 
 		protected void Awake()
 		{
-			GameModeData?.Reset();
 			sharedScriptable.PlayerProvider.OnPlayerChanged += RefreshPlayers;
 		}
 

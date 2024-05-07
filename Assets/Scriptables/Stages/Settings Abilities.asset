@@ -19,13 +19,12 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   controller:
-    rid: 400975929572851756
+    rid: 400976095289540659
   parentStage: {fileID: 11400000, guid: 2643ae2137ed58a43ba785f393c9a464, type: 2}
   order: 1
   references:
     version: 2
     RefIds:
-    - rid: 400975929572851756
-      type: {class: SettingAbilitiesStageController, ns: MagicCombat.SettingAbilities, asm: MagicCombat}
-      data:
-        startAbilitiesData: {fileID: 11400000, guid: c4d40fdcf3cdc864688e86aec07ff31e, type: 2}
+    - rid: 400976095289540659
+      type: {class: SettingAbilitiesStageController, ns: MagicCombat.SettingAbilities, asm: MagicCombat.Gameplay}
+      data: 

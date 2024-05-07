@@ -19,12 +19,8 @@ namespace MagicCombat.Gameplay
 		[Required]
 		private PlayerAvatar playerPrefab;
 
-		[SerializeField]
-		[Required]
-		private StartAbilitiesData startAbilitiesData;
-
 		[Space]
-		public PerPlayerData<GameplayPlayerData> playerData = new();
+		public PerPlayerData<AbilityPlayerData> abilitiesData;
 
 		public PerPlayerData<int> points;
 
@@ -36,13 +32,11 @@ namespace MagicCombat.Gameplay
 
 		public GameMode GameMode => gameMode;
 
-		public AbilitiesGroup AbilitiesGroup => startAbilitiesData.AbilitiesGroup;
-
 		public void Reset()
 		{
 			abilitiesContext.Reset();
 
-			playerData.Reset();
+			abilitiesData = new (new AbilityPlayerData(abilitiesContext.StartAbilitiesData));
 			points.Reset();
 		}
 	}

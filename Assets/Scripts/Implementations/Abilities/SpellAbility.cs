@@ -23,6 +23,8 @@ namespace MagicCombat.Implementations.Abilities
 		[InlineEditor]
 		private SpellPrototype spellPrototype;
 
+		protected override AbilityType Type => AbilityType.Basic;
+
 		public override void Perform(AbilityCaster caster, AbilityState state)
 		{
 			var avatar = caster.Avatar;
@@ -36,7 +38,7 @@ namespace MagicCombat.Implementations.Abilities
 
 			spellData.position += (spellData.direction * offset).ToVec3();
 
-			caster.AbilitiesContext.spellCrafter.CreateNew(spellPrototype, spellData);
+			caster.AbilitiesContext.SpellCrafter.CreateNew(spellPrototype, spellData);
 
 			state.onPerform?.Invoke();
 

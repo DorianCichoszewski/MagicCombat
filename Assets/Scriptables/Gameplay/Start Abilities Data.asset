@@ -12,8 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc059093102ad443a6b5334458ebe03, type: 3}
   m_Name: Start Abilities Data
   m_EditorClassIdentifier: 
-  abilitiesGroup: {fileID: 11400000, guid: e4207bd62a6e49c4b9c0234be04d7ce6, type: 2}
-  startUtility: {fileID: 11400000, guid: 253ec5697a280e94bafe6f8ad4693ea1, type: 2}
-  startSkill1: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
-  startSkill2: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
-  startSkill3: {fileID: 11400000, guid: d50906f14da48b643b8595448eea847c, type: 2}
+  startUtility:
+    m_AssetGUID: 253ec5697a280e94bafe6f8ad4693ea1
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  startSkill1:
+    m_AssetGUID: d50906f14da48b643b8595448eea847c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  startSkill2:
+    m_AssetGUID: d50906f14da48b643b8595448eea847c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  startSkill3:
+    m_AssetGUID: 1b1bcc34ddb39784a9e1a27b87d960ad
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

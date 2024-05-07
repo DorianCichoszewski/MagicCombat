@@ -14,19 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 11400000, guid: bc45e5f5f396eb348ad69862db11b497, type: 2}
   playerPrefab: {fileID: 8962357724235189018, guid: 4f6425c4858c4ff4c84014377a0ab781, type: 3}
-  startAbilitiesData: {fileID: 11400000, guid: c4d40fdcf3cdc864688e86aec07ff31e, type: 2}
-  playerData: {}
-  points:
-    defaultData: 0
   abilitiesContext:
-    clockManager:
-      dynamicClock:
-        currentSpeed: 1
-        currentTime: 0
-        currentTimers: []
-      fixedClock:
-        currentSpeed: 1
-        currentTime: 0
-        currentTimers: []
     spellCrafter:
       spellPrototype: {fileID: -3462427614092873681, guid: af95a7ed65af6394fb7a507b805cf7db, type: 3}
+    startAbilitiesData: {fileID: 11400000, guid: c4d40fdcf3cdc864688e86aec07ff31e, type: 2}
+    abilitiesLabel:
+      m_LabelString: Ability

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b38816271940dfb78d57c3321d490d, type: 3}
   m_Name: Basic Game Mode
   m_EditorClassIdentifier: 
+  abilitiesLabel:
+    m_LabelString: Ability
   endRoundStage: {fileID: 11400000, guid: 113a7260895b5464daa65897a6ac9209, type: 2}
   pointsTarget: 3

@@ -8,15 +8,21 @@ namespace MagicCombat.Shared.Data
 	[Serializable]
 	public class PerPlayerData<T> : IEnumerable<KeyValuePair<int, T>>
 	{
-		public T defaultData;
+		private T defaultData;
 
 		[ShowInInspector]
+		[ReadOnly]
 		private Dictionary<int, T> createdData = new();
 
 		public T this[PlayerId id]
 		{
 			get => createdData[id];
 			set => createdData[id] = value;
+		}
+
+		public PerPlayerData(T defaultData)
+		{
+			this.defaultData = defaultData;
 		}
 
 		public T GetOrCreate(int id, T defaultData)
@@ -39,6 +45,11 @@ namespace MagicCombat.Shared.Data
 		public void Create(PlayerId id)
 		{
 			Create(id, defaultData);
+		}
+		
+		public void Set(PlayerId id, T data)
+		{
+			createdData[id] = data;
 		}
 
 		public void Reset()

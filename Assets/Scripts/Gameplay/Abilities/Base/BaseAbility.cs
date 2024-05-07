@@ -8,6 +8,8 @@ namespace MagicCombat.Gameplay.Abilities.Base
 	{
 		protected const string AbilitiesPath = "Abilities/";
 		protected const string UtilitiesPath = "Abilities/Utilities/";
+		
+		protected abstract AbilityType Type { get; }
 
 		[SerializeField]
 		[HorizontalGroup(Width = 100)]

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Player;
 using MagicCombat.Shared.GameState;
 using MagicCombat.Shared.StageFlow;
@@ -11,6 +12,7 @@ namespace MagicCombat.Gameplay.Mode
 	public class BasicGameMode : GameMode
 	{
 		[SerializeField]
+		[Required]
 		private StageData endRoundStage;
 
 		[SerializeField]
@@ -22,8 +24,8 @@ namespace MagicCombat.Gameplay.Mode
 		private bool isPlaying;
 
 		private SharedScriptable sharedScriptable;
-		private GameplayManager manager;
 
+		[ShowInInspector]
 		private GameplayRuntimeData GameplayData => (GameplayRuntimeData)sharedScriptable.ModeData;
 
 		public override bool GameInProgress => isPlaying;
@@ -31,7 +33,7 @@ namespace MagicCombat.Gameplay.Mode
 		public override void Init(SharedScriptable shared, GameplayManager manager)
 		{
 			sharedScriptable = shared;
-			this.manager = manager;
+			alivePlayers = new();
 
 			var playerProvider = sharedScriptable.PlayerProvider;
 
@@ -74,7 +76,7 @@ namespace MagicCombat.Gameplay.Mode
 
 		private void EndGameAnimation(PlayerAvatar winner)
 		{
-			var clockManager = GameplayData.AbilitiesContext.clockManager;
+			var clockManager = GameplayData.AbilitiesContext.ClockManager;
 			clockManager.DynamicClock.CurrentSpeed = 0f;
 			clockManager.FixedClock.CurrentSpeed = 0f;
 

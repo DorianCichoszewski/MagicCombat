@@ -13,7 +13,6 @@ namespace MagicCombat.SettingAbilities.UI
 
 		public void Start()
 		{
-			var playerProvider = manager.SharedScriptable.PlayerProvider;
 			windowsController.CreateWindows(manager.SharedScriptable, manager.Next);
 		}
 	}

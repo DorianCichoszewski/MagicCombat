@@ -11,14 +11,6 @@ namespace MagicCombat.SettingAbilities
 
 		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
 
-		protected void Awake()
-		{
-			foreach (var playerId in sharedScriptable.PlayerProvider.PlayersEnumerator)
-			{
-				GameModeData.playerData.Create(playerId, new GameplayPlayerData(startAbilities));
-			}
-		}
-
 		public void Next()
 		{
 			sharedScriptable.StagesManager.NextStage();

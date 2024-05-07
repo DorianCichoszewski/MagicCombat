@@ -35,7 +35,7 @@ namespace MagicCombat.Gameplay.Abilities.Limiters
 			return new CooldownLimiter
 			{
 				duration = duration,
-				clockManager = abilitiesContext.clockManager
+				clockManager = abilitiesContext.ClockManager
 			};
 		}
 

@@ -1,4 +1,3 @@
-using System;
 using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Mode;
 using MagicCombat.Gameplay.Player;
@@ -22,7 +21,7 @@ namespace MagicCombat.Gameplay
 
 		protected void Awake()
 		{
-			clockGO.Init(AbilitiesContext.clockManager);
+			clockGO.Init(AbilitiesContext.ClockManager);
 
 			Mode.Init(sharedScriptable, this);
 		}
@@ -36,7 +35,7 @@ namespace MagicCombat.Gameplay
 		{
 			var playerPrefab = GameModeData.PlayerPrefab;
 			var player = Instantiate(playerPrefab, staticData.spawnPos.ToVec3(), Quaternion.identity);
-			player.Init(GameModeData.playerData.GetOrCreate(id), staticData, this, input, id);
+			player.Init(GameModeData.abilitiesData.GetOrCreate(id), staticData, this, input, id);
 			return player;
 		}
 	}

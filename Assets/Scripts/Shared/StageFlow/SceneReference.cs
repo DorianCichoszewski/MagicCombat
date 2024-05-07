@@ -20,9 +20,9 @@ namespace MagicCombat.Shared.StageFlow
 		
 		public bool HasScene => !string.IsNullOrWhiteSpace(sceneAssetReference.AssetGUID);
 
-		public void LoadScene(Action callback)
+		public void LoadScene(Action callback, LoadSceneMode loadMode)
 		{
-			loadedSceneHandle = Addressables.LoadSceneAsync(sceneAssetReference, LoadSceneMode.Additive);
+			loadedSceneHandle = Addressables.LoadSceneAsync(sceneAssetReference, loadMode);
 			loadedSceneHandle.Completed += _ => callback();
 		}
 
@@ -39,8 +39,8 @@ namespace MagicCombat.Shared.StageFlow
 		
 		[Serializable]
 #if UNITY_EDITOR
-//		public class AssetReferenceScene : AssetReferenceT<UnityEditor.SceneAsset>
-//#else
+		public class AssetReferenceScene : AssetReferenceT<UnityEditor.SceneAsset>
+#else
 		public class AssetReferenceScene : AssetReferenceT<UnityEngine.Object>
 #endif
 		{

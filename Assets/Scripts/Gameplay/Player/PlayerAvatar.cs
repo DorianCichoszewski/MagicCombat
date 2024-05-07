@@ -20,9 +20,13 @@ namespace MagicCombat.Gameplay.Player
 
 		private GameplayManager gameplayManager;
 
+		[ShowInInspector]
 		public AbilityCaster skill1;
+		[ShowInInspector]
 		public AbilityCaster skill2;
+		[ShowInInspector]
 		public AbilityCaster skill3;
+		[ShowInInspector]
 		public AbilityCaster utility;
 
 		public PlayerController Controller { get; private set; }
@@ -34,25 +38,25 @@ namespace MagicCombat.Gameplay.Player
 
 		public event Action OnDeath;
 
-		public void Init(GameplayPlayerData gameplayPlayerData, StaticPlayerData staticData, GameplayManager manager,
+		public void Init(AbilityPlayerData abilityPlayerData, StaticPlayerData staticData, GameplayManager manager,
 			IGameplayInputController input, PlayerId id)
 		{
 			gameplayManager = manager;
 			Id = id;
-			avatar.Init(staticData, gameplayManager.AbilitiesContext.clockManager);
+			avatar.Init(staticData, gameplayManager.AbilitiesContext.ClockManager);
 			avatar.OnDeath += OnAvatarDeath;
 
 			var abilitiesData = gameplayManager.AbilitiesContext;
 
-			var abilitiesGroup = gameplayManager.GameModeData.AbilitiesGroup;
-
-			utility = new AbilityCaster(avatar, abilitiesGroup.GetAbility(gameplayPlayerData.UtilityIndex),
+			var abilitiesContext = gameplayManager.GameModeData.AbilitiesContext;
+			
+			utility = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.UtilityKey],
 				abilitiesData);
-			skill1 = new AbilityCaster(avatar, abilitiesGroup.GetAbility(gameplayPlayerData.Skill1Index),
+			skill1 = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.Skill1Key],
 				abilitiesData);
-			skill2 = new AbilityCaster(avatar, abilitiesGroup.GetAbility(gameplayPlayerData.Skill2Index),
+			skill2 = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.Skill2Key],
 				abilitiesData);
-			skill3 = new AbilityCaster(avatar, abilitiesGroup.GetAbility(gameplayPlayerData.Skill3Index),
+			skill3 = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.Skill3Key],
 				abilitiesData);
 
 			Controller = new PlayerController(this, input)

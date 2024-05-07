@@ -11,22 +11,19 @@ namespace MagicCombat.SettingAbilities.UI
 		[SerializeField]
 		private TMP_Dropdown dropdown;
 
-		private AbilitiesGroup abilitiesGroup;
-
-		public void Init(AbilitiesGroup group, Action<int> onAbilityChanged, int startAbility = -1)
+		public void Init(AbilitiesCollection abilitiesCollection, Action<int> onAbilityChanged, int startAbility = -1)
 		{
-			abilitiesGroup = group;
-			dropdown.options = AbilitiesOptions(abilitiesGroup);
+			dropdown.options = AbilitiesOptions(abilitiesCollection);
 			dropdown.SetValueWithoutNotify(startAbility);
 
 			dropdown.onValueChanged.AddListener(index => onAbilityChanged(index));
 		}
 
-		private List<TMP_Dropdown.OptionData> AbilitiesOptions(AbilitiesGroup group)
+		private List<TMP_Dropdown.OptionData> AbilitiesOptions(AbilitiesCollection collection)
 		{
 			List<TMP_Dropdown.OptionData> options = new();
 
-			foreach (var ability in group.Abilities)
+			foreach (var ability in collection.Abilities)
 			{
 				options.Add(new TMP_Dropdown.OptionData(ability.name, ability.DefaultIcon, Color.white));
 			}

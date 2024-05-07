@@ -1,18 +1,17 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.Shared.Time
 {
-	[Serializable]
 	public class ClockManager
 	{
-		[SerializeField]
-		private Clock dynamicClock;
+		private readonly Clock dynamicClock = new();
+		private readonly Clock fixedClock = new();
 
-		[SerializeField]
-		private Clock fixedClock;
-
+		[ShowInInspector]
 		public Clock DynamicClock => dynamicClock;
+		[ShowInInspector]
 		public Clock FixedClock => fixedClock;
 
 		public void Reset()

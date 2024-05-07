@@ -4,6 +4,7 @@ using MagicCombat.Shared.GameState;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
 namespace MagicCombat.Shared.StageFlow
 {
@@ -39,7 +40,7 @@ namespace MagicCombat.Shared.StageFlow
 		}
 
 		// Load Stages scriptable data - should be small
-		public async void SetupStages()
+		public void SetupStages()
 		{
 			var unorderedStages = Addressables.LoadAssetsAsync<StageData>(stagesLabel, _ => { })
 				.WaitForCompletion();
@@ -144,7 +145,8 @@ namespace MagicCombat.Shared.StageFlow
 
 			if (stage.HasScene)
 			{
-				stage.SceneReference.LoadScene(() => stage.Controller?.Run(sharedScriptable));
+				var loadMode = stage.HasRootScene ? LoadSceneMode.Single : LoadSceneMode.Additive;
+				stage.SceneReference.LoadScene(() => stage.Controller?.Run(sharedScriptable), loadMode);
 			}
 			else
 			{
@@ -159,7 +161,7 @@ namespace MagicCombat.Shared.StageFlow
 
 		private void ExitStage(StageData stage)
 		{
-			if (stage.HasScene)
+			if (stage.HasScene && !stage.HasRootScene)
 			{
 				stage.SceneReference.UnloadScene();
 			}
