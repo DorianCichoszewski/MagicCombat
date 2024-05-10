@@ -208,6 +208,5 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 2317702963342344235
-      type: {class: SelfDestroySpellEvent, ns: MagicCombat.Implementations.Spell.Event,
-        asm: MagicCombat.Implementations}
+      type: {class: SelfDestroySpellEvent, ns: MagicCombat.Implementations.Spell.Event, asm: MagicCombat.Implementations}
       data: 

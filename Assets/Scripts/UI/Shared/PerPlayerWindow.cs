@@ -32,7 +32,7 @@ namespace MagicCombat.UI.Shared
 			this.onReady = onReady;
 
 			var inputController = PlayerProvider.InputController(id);
-			inputController.SetUIFocus(gameObject, firstElement.gameObject);
+			inputController.SetUIFocus(gameObject, firstElement.gameObject, readyToggle.gameObject);
 
 			readyToggle?.onValueChanged.AddListener(PressedReady);
 			

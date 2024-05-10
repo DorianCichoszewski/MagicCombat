@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MagicCombat.Player.Bot;
 using MagicCombat.Shared.Data;
 using MagicCombat.Shared.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 namespace MagicCombat.Player
@@ -14,11 +16,15 @@ namespace MagicCombat.Player
 	{
 		[SerializeField]
 		[Required]
+		private BotInputController botController;
+		
+		[SerializeField]
+		[Required]
 		private StaticPlayerDataGroup defaultStaticData;
 
 		private Dictionary<PlayerId, IPlayerInputController> inputControllers = new();
 
-		public void AddNewPlayer(PlayerInputController inputController)
+		public void AddNewPlayer(IPlayerInputController inputController)
 		{
 			inputControllers.TryAdd(inputController.Id, inputController);
 			OnPlayerChanged?.Invoke(inputController.Id);
@@ -32,6 +38,12 @@ namespace MagicCombat.Player
 
 		public int PlayersCount => inputControllers.Count;
 		public event Action<PlayerId> OnPlayerChanged;
+		public void AddBot()
+		{
+			// Automatically add bot thanks to Input System
+			Instantiate(botController);
+		}
+
 		public IEnumerable<PlayerId> PlayersEnumerator => inputControllers.Keys;
 
 		public void ClearCallbacks()

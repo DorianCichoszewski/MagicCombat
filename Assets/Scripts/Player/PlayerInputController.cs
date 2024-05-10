@@ -20,6 +20,7 @@ namespace MagicCombat.Player
 		public PlayerId Id { get; private set; }
 		public IGameplayInputController GameplayInputController => playerGameplayInput;
 		public string InputName => input.devices[0].name;
+		
 
 		public void SetId(PlayerId playerId)
 		{
@@ -40,12 +41,17 @@ namespace MagicCombat.Player
 				if (eventSystem.currentSelectedGameObject == null)
 					eventSystem.SetSelectedGameObject(eventSystem.firstSelectedGameObject);
 		}
-
-		public void SetUIFocus(GameObject root, GameObject firstSelected)
+		
+		public void SetUIFocus(GameObject root, GameObject firstSelected, GameObject readyToggle = null)
 		{
 			eventSystem.playerRoot = root;
 			eventSystem.firstSelectedGameObject = firstSelected;
 			eventSystem.SetSelectedGameObject(firstSelected);
+		}
+
+		public void Destroy()
+		{
+			Destroy(gameObject);
 		}
 	}
 }

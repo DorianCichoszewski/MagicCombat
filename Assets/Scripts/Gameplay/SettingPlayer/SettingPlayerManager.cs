@@ -1,6 +1,7 @@
 using System;
 using MagicCombat.Shared.Data;
 using MagicCombat.Shared.GameState;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.SettingPlayer
@@ -8,10 +9,8 @@ namespace MagicCombat.SettingPlayer
 	public class SettingPlayerManager : BaseManager
 	{
 		[SerializeField]
+		[MinValue(1)]
 		private int minPlayers = 2;
-
-		[SerializeField]
-		private int maxPlayers = 4;
 
 		public event Action<PlayerId> OnRefreshPlayers;
 
@@ -27,9 +26,10 @@ namespace MagicCombat.SettingPlayer
 
 		public void ConfirmPlayers()
 		{
-			int currentPlayers = sharedScriptable.PlayerProvider.PlayersCount;
-			if (currentPlayers < minPlayers || currentPlayers > maxPlayers)
-				return;
+			while (sharedScriptable.PlayerProvider.PlayersCount < minPlayers)
+			{
+				sharedScriptable.PlayerProvider.AddBot();
+			}
 
 			sharedScriptable.StagesManager.NextStage();
 		}

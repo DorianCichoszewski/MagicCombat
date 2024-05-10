@@ -67,10 +67,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 3344732327343044904, guid: d368503575b066945aeb1ef3f42713f5,
-      type: 3}
-  m_PlayerPrefab: {fileID: 3026820925650153144, guid: c9a99cdb7ed1d13459e554678cfa1e4b,
-    type: 3}
+    m_Reference: {fileID: 3344732327343044904, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_PlayerPrefab: {fileID: 3026820925650153144, guid: c9a99cdb7ed1d13459e554678cfa1e4b, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -92,8 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f3370e09344fe7ab0871a3470dba47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataGroup: {fileID: 11400000, guid: 0caa7db094bdeb849867fafd224896b3, type: 2}
-  players: []
 --- !u!114 &1170185727944131265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,4 +102,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a55c007fde40cc96e303c5d24fd7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botController: {fileID: 7239048907957736660, guid: fe88c0786191759438b5416f380b2f29, type: 3}
   defaultStaticData: {fileID: 11400000, guid: 0caa7db094bdeb849867fafd224896b3, type: 2}

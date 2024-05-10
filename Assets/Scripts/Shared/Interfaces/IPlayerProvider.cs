@@ -12,6 +12,8 @@ namespace MagicCombat.Shared.Interfaces
 
 		public void ClearCallbacks();
 
+		public void AddBot();
+
 		public IEnumerable<PlayerId> PlayersEnumerator { get; }
 
 		public PlayerId GetRandomPlayer();

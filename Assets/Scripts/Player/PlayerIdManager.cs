@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MagicCombat.Shared.Data;
+using MagicCombat.Shared.Interfaces;
 
 namespace MagicCombat.Player
 {
@@ -10,7 +11,7 @@ namespace MagicCombat.Player
 
 		private int nextId;
 
-		public void AddPlayer(PlayerInputController player)
+		public void AddPlayer(IPlayerInputController player)
 		{
 			var newId = GetId();
 			player.SetId(newId);
@@ -19,7 +20,7 @@ namespace MagicCombat.Player
 			SetOrder();
 		}
 
-		public void RemovePlayer(PlayerInputController player)
+		public void RemovePlayer(IPlayerInputController player)
 		{
 			var id = player.Id;
 			id.ChangeControllerStatus(false);

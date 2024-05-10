@@ -1,3 +1,4 @@
+using MagicCombat.Player.Bot;
 using MagicCombat.Shared.GameState;
 using MagicCombat.Shared.Interfaces;
 using UnityEngine;
@@ -32,7 +33,7 @@ namespace MagicCombat.Player
 
 		private void PlayerJoined(PlayerInput input)
 		{
-			var controller = input.GetComponent<PlayerInputController>();
+			var controller = input.GetComponent<IPlayerInputController>();
 			playerIdManager.AddPlayer(controller);
 			playerProvider.AddNewPlayer(controller);
 			input.transform.SetParent(transform);
@@ -40,10 +41,10 @@ namespace MagicCombat.Player
 
 		private void PlayerLeft(PlayerInput input)
 		{
-			var controller = input.GetComponent<PlayerInputController>();
+			var controller = input.GetComponent<IPlayerInputController>();
 			playerIdManager.RemovePlayer(controller);
 			playerProvider.RemovePlayer(controller.Id);
-			Destroy(controller.gameObject);
+			controller.Destroy();
 		}
 	}
 }

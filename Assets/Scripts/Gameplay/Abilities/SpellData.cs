@@ -12,8 +12,18 @@ namespace MagicCombat.Gameplay.Abilities
 		public AbilityCaster caster;
 		public AbilitiesContext AbilitiesContext;
 
-		public Vector2 Direction => direction;
-		public Vector3 Position => position;
+		public Vector2 Direction
+		{
+			get => direction;
+			set => direction = value;
+		}
+
+		public Vector3 Position
+		{
+			get => position;
+			set => position = value;
+		}
+
 		public ISpellTarget CasterSpellTarget => caster.Avatar;
 
 		public ISpellData Copy()
