@@ -11,9 +11,6 @@ namespace MagicCombat.Shared.StageFlow
 	[CreateAssetMenu(menuName = "Magic Combat/Stage", fileName = "Stage")]
 	public class StageData : ScriptableObject
 	{
-		// For creating new Stage
-		public const string StagesPath = "Assets/Scriptables/Stages/";
-
 		[Space]
 		[SerializeField]
 		private SceneReference sceneReference;
@@ -77,7 +74,7 @@ namespace MagicCombat.Shared.StageFlow
 			var thisStage = this;
 			while (thisStage.ParentStage != null)
 			{
-				var otherStage = other.ParentStage;
+				var otherStage = other.parentStage;
 				while (otherStage != null)
 				{
 					if (thisStage == otherStage)
@@ -88,6 +85,8 @@ namespace MagicCombat.Shared.StageFlow
 
 					otherStage = otherStage.ParentStage;
 				}
+
+				thisStage = thisStage.parentStage;
 			}
 
 			commonParent = null;
@@ -99,7 +98,8 @@ namespace MagicCombat.Shared.StageFlow
 		[Button]
 		public void CreateNew(string newStageName)
 		{
-			string path = StagesPath + newStageName + ".asset";
+			string directory = Path.GetDirectoryName(AssetDatabase.GetAssetPath(this));
+			string path = directory + newStageName + ".asset";
 			if (File.Exists(path))
 			{
 				Debug.LogError($"Stage with name {newStageName} already exists");

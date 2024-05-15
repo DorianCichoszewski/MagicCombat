@@ -13,14 +13,18 @@ namespace MagicCombat.Gameplay
 
 		public void Run(SharedScriptable sharedScriptable)
 		{
-			gameplayRuntimeData.Reset();
-			sharedScriptable.ModeData = gameplayRuntimeData;
+			Skip(sharedScriptable);
+
 			sharedScriptable.StagesManager.NextStage();
 		}
 
 		public void Return(SharedScriptable sharedScriptable) { }
 
-		public void Skip(SharedScriptable sharedScriptable) { }
+		public void Skip(SharedScriptable sharedScriptable)
+		{
+			gameplayRuntimeData.Reset();
+			sharedScriptable.ModeData = gameplayRuntimeData;
+		}
 
 		public void Exit(SharedScriptable sharedScriptable)
 		{

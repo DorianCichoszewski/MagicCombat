@@ -12,6 +12,8 @@ namespace MagicCombat.Shared.StageFlow
 	[InlineProperty]
 	public class StagesManager
 	{
+		public const string PlayerPrefsKey = "StageGUIDToLoad";
+
 		[SerializeField]
 		[Required]
 		private AssetLabelReference stagesLabel;
@@ -29,14 +31,32 @@ namespace MagicCombat.Shared.StageFlow
 		public void Init(SharedScriptable shared)
 		{
 			sharedScriptable = shared;
+			currentStage = null;
 
 #if UNITY_EDITOR
-			UnityEngine.SceneManagement.SceneManager.LoadScene(0, UnityEngine.SceneManagement.LoadSceneMode.Single);
+			SceneManager.LoadScene(0, LoadSceneMode.Single);
 #endif
 
 			SetupStages();
 
-			RunStage(stages[0]);
+#if UNITY_EDITOR
+			if (PlayerPrefs.HasKey(PlayerPrefsKey))
+			{
+				string guid = PlayerPrefs.GetString(PlayerPrefsKey);
+				foreach (var stage in stages)
+				{
+					if (stage.SceneReference.SceneGUID == guid)
+					{
+						GoToStage(stage);
+
+						PlayerPrefs.DeleteKey(PlayerPrefsKey);
+						PlayerPrefs.Save();
+						return;
+					}
+				}
+			}
+#endif
+			RunStageDirectly(stages[0]);
 		}
 
 		// Load Stages scriptable data - should be small
@@ -44,7 +64,7 @@ namespace MagicCombat.Shared.StageFlow
 		{
 			var unorderedStages = Addressables.LoadAssetsAsync<StageData>(stagesLabel, _ => { })
 				.WaitForCompletion();
-			stages = new(unorderedStages);
+			stages = new StageOrderedList(unorderedStages);
 		}
 
 		public void NextStage()
@@ -58,7 +78,7 @@ namespace MagicCombat.Shared.StageFlow
 				currentStage = currentStage.ParentStage;
 			}
 
-			RunStage(nextStage);
+			RunStageDirectly(nextStage);
 		}
 
 		[Button]
@@ -90,15 +110,13 @@ namespace MagicCombat.Shared.StageFlow
 				targetStage = targetStage.ParentStage;
 			}
 
-			targetStage ??= intermediateStages.Pop();
-
 			if (currentStage != null)
 			{
 				// Run target scene directly if 
-				int targetIndex = stages.IndexOf(targetStage);
+				int targetIndex = stages.IndexOf(intermediateStages.Peek());
 				if (commonParent != null && targetIndex < currentStageIndex)
 				{
-					RunStage(targetStage);
+					RunStageDirectly(targetStage);
 					return;
 				}
 			}
@@ -107,14 +125,19 @@ namespace MagicCombat.Shared.StageFlow
 			while (intermediateStages.Count > 0)
 			{
 				currentStage = stages.GetNextScene(currentStage);
-				if (currentStage == targetStage)
+				if (currentStage == intermediateStages.Peek())
 				{
-					RunStage(currentStage);
-					targetStage = intermediateStages.Pop();
+					if (intermediateStages.Count == 1)
+						RunStageDirectly(currentStage);
+					else
+						SkipStage(currentStage);
+
+					intermediateStages.Pop();
 				}
 
 				// Skip intermediate stages if they aren't root stages
-				else if (currentStage.ParentStage == targetStage.ParentStage && targetStage.ParentStage != null)
+				else if (currentStage.ParentStage == intermediateStages.Peek().ParentStage &&
+						 intermediateStages.Peek().ParentStage != null)
 				{
 					SkipStage(currentStage);
 				}
@@ -132,8 +155,7 @@ namespace MagicCombat.Shared.StageFlow
 			}
 		}
 
-
-		private void RunStage(StageData stage)
+		private void RunStageDirectly(StageData stage)
 		{
 			currentStage = stage;
 
@@ -161,10 +183,7 @@ namespace MagicCombat.Shared.StageFlow
 
 		private void ExitStage(StageData stage)
 		{
-			if (stage.HasScene && !stage.HasRootScene)
-			{
-				stage.SceneReference.UnloadScene();
-			}
+			if (stage.HasScene && !stage.HasRootScene) stage.SceneReference.UnloadScene();
 
 			stage.Controller?.Exit(sharedScriptable);
 		}

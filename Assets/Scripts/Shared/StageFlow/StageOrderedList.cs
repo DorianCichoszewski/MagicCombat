@@ -14,11 +14,13 @@ namespace MagicCombat.Shared.StageFlow
 
 		public StageData this[int index] => orderedStages[index];
 
+		public int Count => orderedStages.Count;
+
 		public int IndexOf(StageData stage)
 		{
 			return orderedStages.IndexOf(stage);
 		}
-		
+
 		public StageOrderedList(IList<StageData> unorderedStages)
 		{
 			Dictionary<StageData, List<StageData>> stagesWithParent = new();
