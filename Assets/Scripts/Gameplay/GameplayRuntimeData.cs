@@ -32,12 +32,18 @@ namespace MagicCombat.Gameplay
 
 		public GameMode GameMode => gameMode;
 
-		public void Reset()
+		public void Init()
 		{
-			abilitiesContext.Reset();
+			abilitiesContext.Init();
 
-			abilitiesData = new (new AbilityPlayerData(abilitiesContext.StartAbilitiesData));
+			abilitiesData =
+				new PerPlayerData<AbilityPlayerData>(new AbilityPlayerData(abilitiesContext.StartAbilitiesData));
 			points.Reset();
+		}
+
+		public void Disable()
+		{
+			abilitiesContext.Dispose();
 		}
 	}
 }

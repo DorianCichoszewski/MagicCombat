@@ -16,7 +16,8 @@ namespace MagicCombat.Gameplay.Mode
 
 		public abstract bool GameInProgress { get; }
 
-		public abstract void Init(SharedScriptable shared, GameplayManager manager);
+		public abstract void Run(SharedScriptable shared, GameplayManager manager);
+
 		public abstract void PlayerHit(PlayerAvatar player);
 
 		public abstract void SimulateGame();

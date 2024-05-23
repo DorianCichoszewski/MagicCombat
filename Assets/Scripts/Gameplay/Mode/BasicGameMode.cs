@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using DG.Tweening;
-using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Player;
 using MagicCombat.Shared.GameState;
 using MagicCombat.Shared.StageFlow;
@@ -30,10 +30,10 @@ namespace MagicCombat.Gameplay.Mode
 
 		public override bool GameInProgress => isPlaying;
 
-		public override void Init(SharedScriptable shared, GameplayManager manager)
+		public override void Run(SharedScriptable shared, GameplayManager manager)
 		{
 			sharedScriptable = shared;
-			alivePlayers = new();
+			alivePlayers = new List<PlayerAvatar>();
 
 			var playerProvider = sharedScriptable.PlayerProvider;
 
@@ -76,27 +76,20 @@ namespace MagicCombat.Gameplay.Mode
 
 		private void EndGameAnimation(PlayerAvatar winner)
 		{
-			var clockManager = GameplayData.AbilitiesContext.ClockManager;
-			clockManager.DynamicClock.CurrentSpeed = 0f;
-			clockManager.FixedClock.CurrentSpeed = 0f;
+			var abilitiesClock = GameplayData.AbilitiesContext.AbilitiesClock;
+			abilitiesClock.Speed = 0f;
 
 			var s = DOTween.Sequence();
 
-			s.Append(DOTween.To(() => clockManager.DynamicClock.CurrentSpeed,
-				x => clockManager.DynamicClock.CurrentSpeed = x,
+			s.Append(DOTween.To(() => abilitiesClock.Speed,
+				x => abilitiesClock.Speed = x,
 				1f, 2f).SetEase(Ease.InCubic).Done());
-			s.Join(DOTween.To(() => clockManager.FixedClock.CurrentSpeed,
-					x => clockManager.FixedClock.CurrentSpeed = x,
-					1f, 2f)
-				.SetEase(Ease.InCubic).Done());
 
 			s.AppendInterval(1f);
 
 			s.OnComplete(() =>
 			{
-				clockManager.DynamicClock.CurrentSpeed = 1f;
-				clockManager.FixedClock.CurrentSpeed = 1f;
-
+				abilitiesClock.Speed = 1f;
 				OnGameEnd(winner);
 			});
 

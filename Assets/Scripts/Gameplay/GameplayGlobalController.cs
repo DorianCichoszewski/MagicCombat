@@ -22,13 +22,14 @@ namespace MagicCombat.Gameplay
 
 		public void Skip(SharedScriptable sharedScriptable)
 		{
-			gameplayRuntimeData.Reset();
+			gameplayRuntimeData.Init();
 			sharedScriptable.ModeData = gameplayRuntimeData;
 		}
 
 		public void Exit(SharedScriptable sharedScriptable)
 		{
 			sharedScriptable.ModeData = null;
+			gameplayRuntimeData.Disable();
 		}
 	}
 }

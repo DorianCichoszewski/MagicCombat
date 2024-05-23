@@ -3,7 +3,7 @@ using MagicCombat.Gameplay.Avatar.Movement;
 using MagicCombat.Shared.Data;
 using MagicCombat.Shared.Extension;
 using MagicCombat.Shared.Interfaces;
-using MagicCombat.Shared.Time;
+using MagicCombat.Shared.TimeSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -25,15 +25,13 @@ namespace MagicCombat.Gameplay.Avatar
 
 		public Vector2 Position => transform.position.ToVec2();
 
-		public ClockManager ClockManager { get; private set; }
 		public StaticPlayerData InitData { get; private set; }
 
 		public event Action OnDeath;
 
-		public void Init(StaticPlayerData initData, ClockManager clockManager)
+		public void Init(StaticPlayerData initData, ClockFixedUpdate clockManager)
 		{
 			InitData = initData;
-			ClockManager = clockManager;
 			skin.SetSkin(initData);
 			movement.Init(clockManager);
 			Alive = true;

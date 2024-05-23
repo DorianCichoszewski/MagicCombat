@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
-using MagicCombat.Shared.Time;
+using MagicCombat.Shared.TimeSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,11 +14,6 @@ namespace MagicCombat.Gameplay.Spell
 		[SerializeField]
 		[HorizontalGroup("Clock", Gap = 10)]
 		private SpellBuilderValue duration;
-
-		[SerializeField]
-		[HorizontalGroup("Clock")]
-		[HideLabel]
-		private ClockType clockType;
 
 		[SerializeField]
 		[HideInInspector]
@@ -35,10 +30,11 @@ namespace MagicCombat.Gameplay.Spell
 
 		public PropertyIdList RequiredProperties => new PropertyIdList().Add(duration);
 
-		public Timer Start(SpellObject spell, ClockManager clockManager)
+		public Timer Start(SpellObject spell, Clock clock)
 		{
-			return new Timer(name, duration.Evaluate(spell.Properties), () => PerformEvents(spell),
-				clockManager);
+			return clock.CreateTimer(() => PerformEvents(spell),
+				duration.Evaluate(spell.Properties),
+				$"{spell.name}'s timer");
 		}
 
 		private void PerformEvents(SpellObject spell)

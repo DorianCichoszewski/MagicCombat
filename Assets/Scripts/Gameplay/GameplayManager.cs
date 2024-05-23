@@ -5,26 +5,15 @@ using MagicCombat.Shared.Data;
 using MagicCombat.Shared.Extension;
 using MagicCombat.Shared.GameState;
 using MagicCombat.Shared.Interfaces;
-using MagicCombat.Shared.Time;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay
 {
 	public class GameplayManager : BaseManager
 	{
-		[SerializeField]
-		private ClockGameObject clockGO;
-
 		public AbilitiesContext AbilitiesContext => GameModeData.AbilitiesContext;
 		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
 		public GameMode Mode => GameModeData.GameMode;
-
-		protected void Awake()
-		{
-			clockGO.Init(AbilitiesContext.ClockManager);
-
-			Mode.Init(sharedScriptable, this);
-		}
 
 		public void PlayerHit(PlayerAvatar player)
 		{

@@ -22,10 +22,13 @@ namespace MagicCombat.Gameplay.Player
 
 		[ShowInInspector]
 		public AbilityCaster skill1;
+
 		[ShowInInspector]
 		public AbilityCaster skill2;
+
 		[ShowInInspector]
 		public AbilityCaster skill3;
+
 		[ShowInInspector]
 		public AbilityCaster utility;
 
@@ -43,13 +46,13 @@ namespace MagicCombat.Gameplay.Player
 		{
 			gameplayManager = manager;
 			Id = id;
-			avatar.Init(staticData, gameplayManager.AbilitiesContext.ClockManager);
+			avatar.Init(staticData, gameplayManager.AbilitiesContext.PhysicClock);
 			avatar.OnDeath += OnAvatarDeath;
 
 			var abilitiesData = gameplayManager.AbilitiesContext;
 
 			var abilitiesContext = gameplayManager.GameModeData.AbilitiesContext;
-			
+
 			utility = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.UtilityKey],
 				abilitiesData);
 			skill1 = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.Skill1Key],

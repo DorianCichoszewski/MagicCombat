@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
 using MagicCombat.Shared.Interfaces;
-using MagicCombat.Shared.Time;
+using MagicCombat.Shared.TimeSystem;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Spell
@@ -12,7 +12,7 @@ namespace MagicCombat.Gameplay.Spell
 		private readonly List<ISpellFragment> createdFragments = new();
 
 		private readonly List<Timer> usedTimers = new();
-		private ClockManager clockManager;
+		private Clock clock;
 
 		public PropertyGroup Properties => Prototype.properties;
 		public SpellPrototype Prototype { get; private set; }
@@ -29,17 +29,17 @@ namespace MagicCombat.Gameplay.Spell
 			HitEvent(other.gameObject);
 		}
 
-		public void Init(SpellPrototype spellPrototype, ISpellData spellData, ClockManager clock)
+		public void Init(SpellPrototype spellPrototype, ISpellData spellData, Clock clock)
 		{
 			Prototype = spellPrototype;
 			Data = spellData;
-			clockManager = clock;
+			this.clock = clock;
 			gameObject.name = Prototype.Name;
 
 			InitFragments();
 			InitTimers();
 
-			clock.DynamicClock.ClockUpdate += Tick;
+			clock.OnTick += Tick;
 		}
 
 		public void Destroy()
@@ -57,10 +57,10 @@ namespace MagicCombat.Gameplay.Spell
 
 			foreach (var timer in usedTimers)
 			{
-				timer.Cancel();
+				timer.Dispose();
 			}
 
-			clockManager.DynamicClock.ClockUpdate -= Tick;
+			clock.OnTick -= Tick;
 
 			Destroy(gameObject);
 		}
@@ -99,7 +99,7 @@ namespace MagicCombat.Gameplay.Spell
 
 			foreach (var timer in Prototype.timers)
 			{
-				usedTimers.Add(timer.Start(this, clockManager));
+				usedTimers.Add(timer.Start(this, clock));
 			}
 		}
 

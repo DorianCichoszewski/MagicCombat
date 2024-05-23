@@ -1,4 +1,4 @@
-using MagicCombat.Shared.Time;
+using MagicCombat.Shared.TimeSystem;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Avatar.Movement
@@ -25,7 +25,7 @@ namespace MagicCombat.Gameplay.Avatar.Movement
 
 			dashDirection = movementController.lastMoveDirection;
 
-			timer = new Timer("Dash", duration, EndDash, movementController.ClockManager);
+			timer = movementController.Clock.CreateTimer(EndDash, duration, "Dash");
 		}
 
 		public Vector2 Update(float deltaTime)
@@ -37,7 +37,7 @@ namespace MagicCombat.Gameplay.Avatar.Movement
 
 		public void ChangeMovement()
 		{
-			timer.Cancel();
+			timer.Dispose();
 		}
 
 		private void EndDash()

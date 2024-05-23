@@ -1,5 +1,5 @@
 using System;
-using MagicCombat.Shared.Time;
+using MagicCombat.Shared.TimeSystem;
 
 namespace MagicCombat.Gameplay.Abilities.Limiters
 {
@@ -8,21 +8,22 @@ namespace MagicCombat.Gameplay.Abilities.Limiters
 	{
 		public float duration = 1f;
 
-		private ClockManager clockManager;
+		private Clock clock;
 
-		public Timer Timer { get; private set; }
+		public CountdownTimer Timer { get; private set; }
 
-		public float RemainingTime => Timer?.RemainingTime ?? 0f;
-		public float RemainingPercent => Timer?.RemainingPercent ?? 0f;
+		public float RemainingTime => Timer?.RemainingTime ?? duration;
+		public float RemainingPercent => Timer?.RemainingPercent ?? 1f;
 
 		public bool CanPerform()
 		{
-			return Timer == null || Timer.Completed;
+			return Timer == null || Timer.IsFinished;
 		}
 
 		public void Start()
 		{
-			Timer = new Timer($"Cooldown {duration}s", duration, EndCooldown, clockManager);
+			Timer =
+				clock.CreateTimer(EndCooldown, duration, $"Cooldown {duration}s") as CountdownTimer;
 		}
 
 		public void Reset()
@@ -35,7 +36,7 @@ namespace MagicCombat.Gameplay.Abilities.Limiters
 			return new CooldownLimiter
 			{
 				duration = duration,
-				clockManager = abilitiesContext.ClockManager
+				clock = abilitiesContext.AbilitiesClock
 			};
 		}
 

@@ -18,7 +18,7 @@ namespace MagicCombat.Gameplay.Abilities
 		{
 			var spell = Object.Instantiate(spellPrototype, data.Position, data.Direction.ToRotation());
 			spell.transform.SetPositionAndRotation(data.Position, data.Direction.ToRotation());
-			spell.Init(prototype, data, ((SpellData)data).AbilitiesContext.ClockManager);
+			spell.Init(prototype, data, ((SpellData)data).AbilitiesContext.AbilitiesClock);
 			return spell;
 		}
 	}

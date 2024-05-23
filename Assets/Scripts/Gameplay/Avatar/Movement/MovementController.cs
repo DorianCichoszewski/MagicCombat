@@ -1,5 +1,5 @@
 using MagicCombat.Shared.Extension;
-using MagicCombat.Shared.Time;
+using MagicCombat.Shared.TimeSystem;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Avatar.Movement
@@ -30,18 +30,18 @@ namespace MagicCombat.Gameplay.Avatar.Movement
 		private float targetRotationAngle;
 		private bool useStickRotation;
 
-		public ClockManager ClockManager { get; private set; }
+		public ClockFixedUpdate Clock { get; private set; }
 
 		public Vector2 LookDirection => rotationInput != Vector2.zero ? rotationInput : lastMoveDirection;
 
-		public void Init(ClockManager clockManager)
+		public void Init(ClockFixedUpdate clock)
 		{
 			ResetMovement();
 			externalController = new MovementExternal();
 
-			ClockManager = clockManager;
+			Clock = clock;
 
-			clockManager.FixedClock.ClockUpdate += HandleMovement;
+			clock.OnTick += HandleMovement;
 		}
 
 		public void Move(Vector2 value)
