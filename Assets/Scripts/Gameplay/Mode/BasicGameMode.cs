@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using MagicCombat.Gameplay.Notifications;
 using MagicCombat.Gameplay.Player;
 using Shared.GameState;
-using Shared.Notification;
 using Shared.StageFlow;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,11 +13,11 @@ namespace MagicCombat.Gameplay.Mode
 	public class BasicGameMode : GameMode
 	{
 		[SerializeField]
-		private EventChannelPlayer playerCreatedChannel;
-		
+		private EventChannelPlayerAvatar playerCreatedChannel;
+
 		[SerializeField]
-		private EventChannelPlayer playerDeadChannel;
-		
+		private EventChannelPlayerAvatar playerDeadChannel;
+
 		[SerializeField]
 		[Required]
 		private StageData endRoundStage;
@@ -49,7 +49,7 @@ namespace MagicCombat.Gameplay.Mode
 				var newPlayer = manager.CreatePlayer(playerProvider.StaticData(index),
 					playerProvider.GameplayInputController(index), index);
 				alivePlayers.Add(newPlayer);
-				playerCreatedChannel.Invoke(index);
+				playerCreatedChannel.Invoke(newPlayer);
 			}
 
 			isPlaying = true;
@@ -60,7 +60,7 @@ namespace MagicCombat.Gameplay.Mode
 			if (!isPlaying) return;
 			if (!alivePlayers.Contains(player)) return;
 
-			playerDeadChannel.Invoke(player.Id);
+			playerDeadChannel.Invoke(player);
 			alivePlayers.Remove(player);
 
 			if (alivePlayers.Count > 1) return;

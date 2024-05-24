@@ -2,7 +2,7 @@ using MagicCombat.UI.Shared;
 using TMPro;
 using UnityEngine;
 
-namespace MagicCombat.SettingPlayer.UI
+namespace MagicCombat.Gameplay.SettingPlayer.UI
 {
 	public class PlayerConfigWindow : PerPlayerWindow
 	{

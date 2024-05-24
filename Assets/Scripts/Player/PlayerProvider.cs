@@ -4,9 +4,9 @@ using System.Linq;
 using MagicCombat.Player.Bot;
 using Shared.Data;
 using Shared.Interfaces;
+using Shared.Notification;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 namespace MagicCombat.Player
@@ -15,9 +15,15 @@ namespace MagicCombat.Player
 	public class PlayerProvider : MonoBehaviour, IPlayerProvider
 	{
 		[SerializeField]
+		private EventChannelPlayer addedPlayerChannel;
+
+		[SerializeField]
+		private EventChannelPlayer removedPlayerChannel;
+
+		[SerializeField]
 		[Required]
 		private BotInputController botController;
-		
+
 		[SerializeField]
 		[Required]
 		private StaticPlayerDataGroup defaultStaticData;
@@ -27,17 +33,17 @@ namespace MagicCombat.Player
 		public void AddNewPlayer(IPlayerInputController inputController)
 		{
 			inputControllers.TryAdd(inputController.Id, inputController);
-			OnPlayerChanged?.Invoke(inputController.Id);
+			addedPlayerChannel.Invoke(inputController.Id);
 		}
 
 		public void RemovePlayer(PlayerId id)
 		{
 			inputControllers.Remove(id);
-			OnPlayerChanged?.Invoke(id);
+			removedPlayerChannel.Invoke(id);
 		}
 
 		public int PlayersCount => inputControllers.Count;
-		public event Action<PlayerId> OnPlayerChanged;
+
 		public void AddBot()
 		{
 			// Automatically add bot thanks to Input System
@@ -48,7 +54,7 @@ namespace MagicCombat.Player
 
 		public void ClearCallbacks()
 		{
-			OnPlayerChanged = null;
+			addedPlayerChannel.Clear();
 		}
 
 		public PlayerId GetRandomPlayer()

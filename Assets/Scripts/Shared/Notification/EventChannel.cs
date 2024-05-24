@@ -20,8 +20,21 @@ namespace Shared.Notification
 			}
 		}
 
-		public void Register(EventListener<T> observer) => monoObservers.Add(observer);
-		public void Deregister(EventListener<T> observer) => monoObservers.Remove(observer);
+		public void Clear()
+		{
+			OnRaised = delegate { };
+			monoObservers.Clear();
+		}
+
+		public void Register(EventListener<T> observer)
+		{
+			monoObservers.Add(observer);
+		}
+
+		public void Deregister(EventListener<T> observer)
+		{
+			monoObservers.Remove(observer);
+		}
 	}
 
 	public readonly struct Empty { }

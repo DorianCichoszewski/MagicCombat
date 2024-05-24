@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Basic Game Mode
   m_EditorClassIdentifier: 
   playerCreatedChannel: {fileID: 11400000, guid: c689acb2c1789cd43916adb3a528dcd4, type: 2}
-  playerDeadChannel: {fileID: 11400000, guid: 9286cbf08be10c64894d98e277e695c3, type: 2}
+  playerDeadChannel: {fileID: 11400000, guid: 74529a3beb253f248ac0e280a0221986, type: 2}
   endRoundStage: {fileID: 11400000, guid: 113a7260895b5464daa65897a6ac9209, type: 2}
   pointsTarget: 3

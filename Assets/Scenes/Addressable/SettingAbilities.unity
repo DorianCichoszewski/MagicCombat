@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedScriptable: {fileID: 11400000, guid: f6146a3121d1a5f42b694bc897662674, type: 2}
-  startAbilities: {fileID: 11400000, guid: c4d40fdcf3cdc864688e86aec07ff31e, type: 2}
 --- !u!1 &961983596
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,8 +313,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settings Abilities Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3046318360519485148, guid: 7d1bd9961b859be4f83b8400c176e295, type: 3}
-      propertyPath: manager
+    - target: {fileID: 3916481427374457038, guid: 7d1bd9961b859be4f83b8400c176e295, type: 3}
+      propertyPath: onReadyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 569148755}
     - target: {fileID: 7409890371874578558, guid: 7d1bd9961b859be4f83b8400c176e295, type: 3}

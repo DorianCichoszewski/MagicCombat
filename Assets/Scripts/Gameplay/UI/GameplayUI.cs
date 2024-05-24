@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Shared.Data;
-using Shared.Notification;
+using MagicCombat.Gameplay.Notifications;
+using MagicCombat.Gameplay.Player;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.UI
@@ -8,17 +8,14 @@ namespace MagicCombat.Gameplay.UI
 	public class GameplayUI : MonoBehaviour
 	{
 		[SerializeField]
-		private EventChannelPlayer playerCreatedChannel;
-		
-		[SerializeField]
-		private EventChannelPlayer playerDeadChannel;
+		private EventChannelPlayerAvatar playerCreatedChannel;
 
-		
+		[SerializeField]
+		private EventChannelPlayerAvatar playerDeadChannel;
+
+
 		[SerializeField]
 		private List<PlayerUI> playersUI = new();
-
-		[SerializeField]
-		private GameplayManager gameplayManager;
 
 		private void Awake()
 		{
@@ -39,16 +36,16 @@ namespace MagicCombat.Gameplay.UI
 			playerDeadChannel.OnRaised -= DisablePlayer;
 		}
 
-		private void RefreshPlayer(PlayerId id)
+		private void RefreshPlayer(PlayerAvatar player)
 		{
-			var playerUI = playersUI[id.OrderedId];
-			playerUI.Init(gameplayManager.Mode.GetPlayer(id));
+			var playerUI = playersUI[player.Id.OrderedId];
+			playerUI.Init(player);
 			playerUI.gameObject.SetActive(true);
 		}
-		
-		private void DisablePlayer(PlayerId id)
+
+		private void DisablePlayer(PlayerAvatar player)
 		{
-			var playerUI = playersUI[id.OrderedId];
+			var playerUI = playersUI[player.Id.OrderedId];
 			playerUI.gameObject.SetActive(false);
 		}
 	}

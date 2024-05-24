@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Shared.Data;
 
@@ -7,8 +6,6 @@ namespace Shared.Interfaces
 	public interface IPlayerProvider
 	{
 		public int PlayersCount { get; }
-
-		public event Action<PlayerId> OnPlayerChanged;
 
 		public void ClearCallbacks();
 
