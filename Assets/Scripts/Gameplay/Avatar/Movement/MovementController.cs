@@ -72,7 +72,7 @@ namespace MagicCombat.Gameplay.Avatar.Movement
 
 			for (int i = 0; i < movementSegmentCount; i++)
 			{
-				transform.Translate2(movementSegment);
+				transform.Translate2D(movementSegment);
 				AvoidObstacles();
 			}
 		}
