@@ -526,6 +526,18 @@ PrefabInstance:
       propertyPath: gameplayManager
       value: 
       objectReference: {fileID: 317300355}
+    - target: {fileID: 4601728441124512337, guid: 8d60f2e9135a44f4fa5e0496e43c10b0, type: 3}
+      propertyPath: playerDeadChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 9286cbf08be10c64894d98e277e695c3, type: 2}
+    - target: {fileID: 4601728441124512337, guid: 8d60f2e9135a44f4fa5e0496e43c10b0, type: 3}
+      propertyPath: playerCreatedChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: c689acb2c1789cd43916adb3a528dcd4, type: 2}
+    - target: {fileID: 4601728441124512337, guid: 8d60f2e9135a44f4fa5e0496e43c10b0, type: 3}
+      propertyPath: playerRemovedChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 9286cbf08be10c64894d98e277e695c3, type: 2}
     - target: {fileID: 5301707428517007639, guid: 8d60f2e9135a44f4fa5e0496e43c10b0, type: 3}
       propertyPath: m_Name
       value: Gameplay Canvas

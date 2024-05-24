@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b38816271940dfb78d57c3321d490d, type: 3}
   m_Name: Basic Game Mode
   m_EditorClassIdentifier: 
-  abilitiesLabel:
-    m_LabelString: Ability
+  playerCreatedChannel: {fileID: 11400000, guid: c689acb2c1789cd43916adb3a528dcd4, type: 2}
+  playerDeadChannel: {fileID: 11400000, guid: 9286cbf08be10c64894d98e277e695c3, type: 2}
   endRoundStage: {fileID: 11400000, guid: 113a7260895b5464daa65897a6ac9209, type: 2}
   pointsTarget: 3

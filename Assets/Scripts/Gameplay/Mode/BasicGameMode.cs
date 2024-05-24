@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using MagicCombat.Gameplay.Player;
 using Shared.GameState;
+using Shared.Notification;
 using Shared.StageFlow;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,6 +12,12 @@ namespace MagicCombat.Gameplay.Mode
 	[CreateAssetMenu(menuName = "Magic Combat/One Time/Basic Game Mode", fileName = "Basic Game Mode")]
 	public class BasicGameMode : GameMode
 	{
+		[SerializeField]
+		private EventChannelPlayer playerCreatedChannel;
+		
+		[SerializeField]
+		private EventChannelPlayer playerDeadChannel;
+		
 		[SerializeField]
 		[Required]
 		private StageData endRoundStage;
@@ -26,7 +33,7 @@ namespace MagicCombat.Gameplay.Mode
 		private SharedScriptable sharedScriptable;
 
 		[ShowInInspector]
-		private GameplayRuntimeData GameplayData => (GameplayRuntimeData)sharedScriptable.ModeData;
+		private GameplayRuntimeData GameplayData => (GameplayRuntimeData)sharedScriptable?.ModeData;
 
 		public override bool GameInProgress => isPlaying;
 
@@ -42,6 +49,7 @@ namespace MagicCombat.Gameplay.Mode
 				var newPlayer = manager.CreatePlayer(playerProvider.StaticData(index),
 					playerProvider.GameplayInputController(index), index);
 				alivePlayers.Add(newPlayer);
+				playerCreatedChannel.Invoke(index);
 			}
 
 			isPlaying = true;
@@ -52,6 +60,7 @@ namespace MagicCombat.Gameplay.Mode
 			if (!isPlaying) return;
 			if (!alivePlayers.Contains(player)) return;
 
+			playerDeadChannel.Invoke(player.Id);
 			alivePlayers.Remove(player);
 
 			if (alivePlayers.Count > 1) return;
