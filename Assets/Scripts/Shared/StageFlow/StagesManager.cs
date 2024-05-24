@@ -26,7 +26,7 @@ namespace MagicCombat.Shared.StageFlow
 		private SharedScriptable sharedScriptable;
 		private StageData currentStage;
 
-		internal StageOrderedList Stages => stages;
+		public StageOrderedList Stages => stages;
 
 		public void Init(SharedScriptable shared)
 		{

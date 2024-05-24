@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 namespace MagicCombat.Shared.StageFlow
 {
 	[Serializable]
-	internal class StageOrderedList : IEnumerable<StageData>
+	public class StageOrderedList : IEnumerable<StageData>
 	{
 		[ReadOnly]
 		[ShowInInspector]

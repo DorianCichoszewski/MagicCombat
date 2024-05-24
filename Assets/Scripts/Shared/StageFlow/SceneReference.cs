@@ -11,7 +11,7 @@ namespace MagicCombat.Shared.StageFlow
 {
 	[Serializable]
 	[InlineProperty]
-	internal class SceneReference
+	public class SceneReference
 	{
 		[SerializeField]
 		[HideLabel]
