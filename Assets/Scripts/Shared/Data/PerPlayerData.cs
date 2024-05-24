@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
-namespace MagicCombat.Shared.Data
+namespace Shared.Data
 {
 	[Serializable]
 	public class PerPlayerData<T> : IEnumerable<KeyValuePair<int, T>>

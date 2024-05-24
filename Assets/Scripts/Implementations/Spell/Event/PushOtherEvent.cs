@@ -2,8 +2,8 @@ using System;
 using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
-using MagicCombat.Shared.Extension;
-using MagicCombat.Shared.Interfaces;
+using Shared.Extension;
+using Shared.Interfaces;
 using UnityEngine;
 
 namespace MagicCombat.Implementations.Spell.Event

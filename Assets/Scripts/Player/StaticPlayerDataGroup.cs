@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using MagicCombat.Shared.Data;
+using Shared.Data;
 using UnityEngine;
 
 namespace MagicCombat.Player

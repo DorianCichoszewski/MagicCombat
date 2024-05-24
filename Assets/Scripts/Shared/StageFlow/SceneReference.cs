@@ -7,7 +7,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-namespace MagicCombat.Shared.StageFlow
+namespace Shared.StageFlow
 {
 	[Serializable]
 	[InlineProperty]

@@ -1,9 +1,9 @@
 using System;
 using MagicCombat.Gameplay.Avatar.Movement;
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.Extension;
-using MagicCombat.Shared.Interfaces;
-using MagicCombat.Shared.TimeSystem;
+using Shared.Data;
+using Shared.Extension;
+using Shared.Interfaces;
+using Shared.TimeSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

@@ -1,5 +1,5 @@
 using System;
-using MagicCombat.Shared.TimeSystem;
+using Shared.TimeSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;

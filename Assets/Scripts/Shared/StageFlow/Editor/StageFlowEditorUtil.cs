@@ -1,10 +1,10 @@
-using MagicCombat.Shared.GameState;
+using Shared.GameState;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 #if UNITY_EDITOR
-namespace MagicCombat.Shared.StageFlow.Editor
+namespace Shared.StageFlow.Editor
 {
 	internal class StageFlowEditorUtil
 	{

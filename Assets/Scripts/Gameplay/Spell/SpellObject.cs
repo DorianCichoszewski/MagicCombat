@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
-using MagicCombat.Shared.Interfaces;
-using MagicCombat.Shared.TimeSystem;
+using Shared.Interfaces;
+using Shared.TimeSystem;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Spell

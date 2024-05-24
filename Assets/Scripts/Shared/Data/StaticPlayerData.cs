@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MagicCombat.Shared.Data
+namespace Shared.Data
 {
 	[Serializable]
 	public class StaticPlayerData

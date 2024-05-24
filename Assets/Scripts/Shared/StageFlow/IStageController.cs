@@ -1,6 +1,6 @@
-using MagicCombat.Shared.GameState;
+using Shared.GameState;
 
-namespace MagicCombat.Shared.StageFlow
+namespace Shared.StageFlow
 {
 	public interface IStageController
 	{

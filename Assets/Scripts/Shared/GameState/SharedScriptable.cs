@@ -1,9 +1,9 @@
-using MagicCombat.Shared.Interfaces;
-using MagicCombat.Shared.StageFlow;
+using Shared.Interfaces;
+using Shared.StageFlow;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MagicCombat.Shared.GameState
+namespace Shared.GameState
 {
 	[CreateAssetMenu(menuName = "Magic Combat/One Time/Shared Scriptable", fileName = "Shared Scriptable")]
 	public class SharedScriptable : StartupScriptable

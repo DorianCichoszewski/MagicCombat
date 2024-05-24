@@ -3,7 +3,7 @@ using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
-using MagicCombat.Shared.Interfaces;
+using Shared.Interfaces;
 using UnityEngine;
 
 namespace MagicCombat.Implementations.Spell.Event

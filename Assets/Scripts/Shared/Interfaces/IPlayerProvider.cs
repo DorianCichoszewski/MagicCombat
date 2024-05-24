@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using MagicCombat.Shared.Data;
+using Shared.Data;
 
-namespace MagicCombat.Shared.Interfaces
+namespace Shared.Interfaces
 {
 	public interface IPlayerProvider
 	{

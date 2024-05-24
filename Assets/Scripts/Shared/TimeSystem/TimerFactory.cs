@@ -1,6 +1,7 @@
 using System;
+using Shared.TimeSystem.Timers;
 
-namespace MagicCombat.Shared.TimeSystem
+namespace Shared.TimeSystem
 {
 	internal static class TimerFactory
 	{

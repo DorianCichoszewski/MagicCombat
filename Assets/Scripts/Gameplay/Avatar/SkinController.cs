@@ -1,4 +1,4 @@
-using MagicCombat.Shared.Data;
+using Shared.Data;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Avatar

@@ -1,8 +1,8 @@
 using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Mode;
 using MagicCombat.Gameplay.Player;
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.Interfaces;
+using Shared.Data;
+using Shared.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

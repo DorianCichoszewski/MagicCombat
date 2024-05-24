@@ -1,6 +1,6 @@
 using System;
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.GameState;
+using Shared.Data;
+using Shared.GameState;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

@@ -1,5 +1,5 @@
 using MagicCombat.Gameplay.Abilities.Limiters;
-using MagicCombat.Shared.Extension;
+using Shared.Extension;
 using TMPro;
 using UnityEngine;
 

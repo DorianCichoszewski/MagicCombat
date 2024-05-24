@@ -3,7 +3,7 @@
 using System;
 using UnityEngine;
 
-namespace MagicCombat.Shared.TimeSystem
+namespace Shared.TimeSystem
 {
 	public abstract class TimerBase : IDisposable
 	{

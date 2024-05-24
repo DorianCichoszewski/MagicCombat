@@ -1,7 +1,7 @@
 using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
-using MagicCombat.Shared.Interfaces;
+using Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.Scripting;
 

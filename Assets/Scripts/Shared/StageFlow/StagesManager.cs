@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using MagicCombat.Shared.GameState;
+using Shared.GameState;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
-namespace MagicCombat.Shared.StageFlow
+namespace Shared.StageFlow
 {
 	[Serializable]
 	[InlineProperty]

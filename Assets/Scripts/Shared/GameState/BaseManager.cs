@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MagicCombat.Shared.GameState
+namespace Shared.GameState
 {
 	public abstract class BaseManager : MonoBehaviour
 	{

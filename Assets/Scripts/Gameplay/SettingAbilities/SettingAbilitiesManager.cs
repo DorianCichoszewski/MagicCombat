@@ -1,5 +1,5 @@
 using MagicCombat.Gameplay;
-using MagicCombat.Shared.GameState;
+using Shared.GameState;
 using Sirenix.OdinInspector;
 
 namespace MagicCombat.SettingAbilities

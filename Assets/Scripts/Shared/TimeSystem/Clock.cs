@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.LowLevel;
 using UnityEngine.PlayerLoop;
 
-namespace MagicCombat.Shared.TimeSystem
+namespace Shared.TimeSystem
 {
 	public abstract class Clock
 	{

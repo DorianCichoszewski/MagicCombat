@@ -1,7 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 
-namespace MagicCombat.Shared.Data
+namespace Shared.Data
 {
 	public class PlayerId : IComparable<PlayerId>
 	{

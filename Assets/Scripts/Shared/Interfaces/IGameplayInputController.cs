@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MagicCombat.Shared.Interfaces
+namespace Shared.Interfaces
 {
 	public interface IGameplayInputController
 	{

@@ -1,7 +1,7 @@
-using MagicCombat.Shared.Data;
+using Shared.Data;
 using UnityEngine;
 
-namespace MagicCombat.Shared.Interfaces
+namespace Shared.Interfaces
 {
 	public interface IPlayerInputController
 	{

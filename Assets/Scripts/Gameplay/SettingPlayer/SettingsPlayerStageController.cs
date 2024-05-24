@@ -1,5 +1,5 @@
-using MagicCombat.Shared.GameState;
-using MagicCombat.Shared.StageFlow;
+using Shared.GameState;
+using Shared.StageFlow;
 
 namespace MagicCombat.SettingPlayer
 {

@@ -1,6 +1,6 @@
 using MagicCombat.Gameplay.Abilities.Base;
 using MagicCombat.Gameplay.Spell.Interface;
-using MagicCombat.Shared.Interfaces;
+using Shared.Interfaces;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Abilities

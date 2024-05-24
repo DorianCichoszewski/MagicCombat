@@ -1,7 +1,7 @@
-using MagicCombat.Shared.Interfaces;
+using Shared.Interfaces;
 using UnityEngine;
 
-namespace MagicCombat.Shared.GameState
+namespace Shared.GameState
 {
 	public class EssentialsObject : MonoBehaviour
 	{

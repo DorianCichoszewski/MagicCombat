@@ -2,8 +2,8 @@ using System;
 using MagicCombat.Gameplay.Abilities.Base;
 using MagicCombat.Gameplay.Avatar;
 using MagicCombat.Gameplay.Avatar.Movement;
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.Interfaces;
+using Shared.Data;
+using Shared.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

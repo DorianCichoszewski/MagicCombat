@@ -1,5 +1,5 @@
-using MagicCombat.Shared.Extension;
-using MagicCombat.Shared.TimeSystem;
+using Shared.Extension;
+using Shared.TimeSystem;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Avatar.Movement

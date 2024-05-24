@@ -1,4 +1,4 @@
-namespace MagicCombat.Shared.Interfaces
+namespace Shared.Interfaces
 {
 	public interface IModeData { }
 }

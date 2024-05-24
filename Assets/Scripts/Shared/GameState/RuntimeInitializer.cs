@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace MagicCombat.Shared.GameState
+namespace Shared.GameState
 {
 	public class RuntimeInitializer
 	{

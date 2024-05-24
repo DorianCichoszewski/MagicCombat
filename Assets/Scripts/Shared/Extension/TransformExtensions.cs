@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MagicCombat.Shared.Extension
+namespace Shared.Extension
 {
 	public static class TransformExtensions
 	{

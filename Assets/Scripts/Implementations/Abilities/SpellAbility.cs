@@ -1,7 +1,7 @@
 using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Abilities.Base;
 using MagicCombat.Gameplay.Spell;
-using MagicCombat.Shared.Extension;
+using Shared.Extension;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

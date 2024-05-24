@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
-namespace MagicCombat.Shared.StageFlow
+namespace Shared.StageFlow
 {
 	[Serializable]
 	public class StageOrderedList : IEnumerable<StageData>

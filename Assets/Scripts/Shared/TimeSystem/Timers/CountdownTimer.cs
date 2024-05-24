@@ -1,4 +1,4 @@
-namespace MagicCombat.Shared.TimeSystem
+namespace Shared.TimeSystem.Timers
 {
 	public class CountdownTimer : Timer
 	{

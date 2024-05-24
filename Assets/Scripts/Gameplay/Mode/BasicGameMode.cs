@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using MagicCombat.Gameplay.Player;
-using MagicCombat.Shared.GameState;
-using MagicCombat.Shared.StageFlow;
+using Shared.GameState;
+using Shared.StageFlow;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

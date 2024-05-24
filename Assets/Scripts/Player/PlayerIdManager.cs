@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.Interfaces;
+using Shared.Data;
+using Shared.Interfaces;
 
 namespace MagicCombat.Player
 {

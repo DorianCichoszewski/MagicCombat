@@ -1,5 +1,5 @@
 using System;
-using MagicCombat.Shared.Interfaces;
+using Shared.Interfaces;
 using UnityEngine;
 
 namespace MagicCombat.Player.Bot

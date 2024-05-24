@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MagicCombat.Gameplay.Spell.Interface;
 using MagicCombat.Gameplay.Spell.Property;
-using MagicCombat.Shared.TimeSystem;
+using Shared.TimeSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

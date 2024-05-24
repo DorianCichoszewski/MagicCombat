@@ -1,4 +1,4 @@
-namespace MagicCombat.Shared.TimeSystem
+namespace Shared.TimeSystem
 {
 	public enum TimerType
 	{

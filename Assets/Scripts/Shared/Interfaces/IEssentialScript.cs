@@ -1,6 +1,6 @@
-using MagicCombat.Shared.GameState;
+using Shared.GameState;
 
-namespace MagicCombat.Shared.Interfaces
+namespace Shared.Interfaces
 {
 	public interface IEssentialScript
 	{

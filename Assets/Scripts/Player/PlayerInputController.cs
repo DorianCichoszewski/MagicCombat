@@ -1,5 +1,5 @@
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.Interfaces;
+using Shared.Data;
+using Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;

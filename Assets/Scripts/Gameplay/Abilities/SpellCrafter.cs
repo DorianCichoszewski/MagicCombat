@@ -1,7 +1,7 @@
 using System;
 using MagicCombat.Gameplay.Spell;
 using MagicCombat.Gameplay.Spell.Interface;
-using MagicCombat.Shared.Extension;
+using Shared.Extension;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

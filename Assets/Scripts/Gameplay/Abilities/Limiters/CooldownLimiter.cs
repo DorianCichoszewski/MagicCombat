@@ -1,5 +1,6 @@
 using System;
-using MagicCombat.Shared.TimeSystem;
+using Shared.TimeSystem;
+using Shared.TimeSystem.Timers;
 
 namespace MagicCombat.Gameplay.Abilities.Limiters
 {

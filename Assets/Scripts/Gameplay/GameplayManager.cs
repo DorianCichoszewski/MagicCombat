@@ -1,10 +1,10 @@
 using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Mode;
 using MagicCombat.Gameplay.Player;
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.Extension;
-using MagicCombat.Shared.GameState;
-using MagicCombat.Shared.Interfaces;
+using Shared.Data;
+using Shared.Extension;
+using Shared.GameState;
+using Shared.Interfaces;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay

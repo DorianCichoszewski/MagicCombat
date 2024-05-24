@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityToolbarExtender;
 
-namespace MagicCombat.Shared.StageFlow.Editor
+namespace Shared.StageFlow.Editor
 {
 	[InitializeOnLoad]
     internal static class EditorToolbarSceneSwitcher

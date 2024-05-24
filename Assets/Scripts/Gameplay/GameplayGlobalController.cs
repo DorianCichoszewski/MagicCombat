@@ -1,6 +1,6 @@
 using System;
-using MagicCombat.Shared.GameState;
-using MagicCombat.Shared.StageFlow;
+using Shared.GameState;
+using Shared.StageFlow;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay

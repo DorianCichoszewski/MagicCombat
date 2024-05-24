@@ -1,7 +1,7 @@
 using System;
-using MagicCombat.Shared.Data;
-using MagicCombat.Shared.GameState;
-using MagicCombat.Shared.Interfaces;
+using Shared.Data;
+using Shared.GameState;
+using Shared.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;

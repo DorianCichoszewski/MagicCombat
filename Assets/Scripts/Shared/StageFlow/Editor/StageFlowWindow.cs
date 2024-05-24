@@ -4,7 +4,7 @@ using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace MagicCombat.Shared.StageFlow.Editor
+namespace Shared.StageFlow.Editor
 {
 	internal class StageFlowWindow : OdinMenuEditorWindow
 	{

@@ -1,6 +1,6 @@
 using MagicCombat.Player.Bot;
-using MagicCombat.Shared.GameState;
-using MagicCombat.Shared.Interfaces;
+using Shared.GameState;
+using Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

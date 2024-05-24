@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MagicCombat.Shared.StageFlow
+namespace Shared.StageFlow
 {
 	[CreateAssetMenu(menuName = "Magic Combat/Stage", fileName = "Stage")]
 	public class StageData : ScriptableObject

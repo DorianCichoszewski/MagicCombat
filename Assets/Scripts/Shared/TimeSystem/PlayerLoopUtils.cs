@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.LowLevel;
 
-namespace MagicCombat.Shared.TimeSystem
+namespace Shared.TimeSystem
 {
 	public static class PlayerLoopUtils
 	{
