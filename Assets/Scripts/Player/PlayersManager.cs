@@ -1,26 +1,27 @@
-using MagicCombat.Player.Bot;
-using Shared.GameState;
 using Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace MagicCombat.Player
 {
-	[RequireComponent(typeof(PlayerInputManager), typeof(PlayerProvider))]
-	public class PlayersManager : MonoBehaviour, IEssentialScript
+	[RequireComponent(typeof(PlayerInputManager))]
+	public class PlayersManager : MonoBehaviour
 	{
-		private PlayerProvider playerProvider;
+		private PlayerProviderCouch playerProvider;
 		private PlayerInputManager inputManager;
 		private PlayerIdManager playerIdManager;
 
-		public void Init(SharedScriptable sharedScriptable)
+		public void Init(PlayerProviderCouch playerProvider)
 		{
 			playerIdManager = new PlayerIdManager();
 			inputManager = GetComponent<PlayerInputManager>();
-			playerProvider = GetComponent<PlayerProvider>();
+			this.playerProvider = playerProvider;
 
 			inputManager.onPlayerJoined += PlayerJoined;
 			inputManager.onPlayerLeft += PlayerLeft;
+			
+			transform.SetParent(null);
+			DontDestroyOnLoad(gameObject);
 		}
 
 		public void SetJoining(bool value)

@@ -1,16 +1,19 @@
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using MagicCombat.Gameplay.Notifications;
 using MagicCombat.Gameplay.Player;
+using Shared.Data;
 using Shared.GameState;
+using Shared.Services;
 using Shared.StageFlow;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MagicCombat.Gameplay.Mode
+namespace MagicCombat.Gameplay
 {
-	[CreateAssetMenu(menuName = "Magic Combat/One Time/Basic Game Mode", fileName = "Basic Game Mode")]
-	public class BasicGameMode : GameMode
+	[CreateAssetMenu(menuName = "Single/Data/Game Mode", fileName = "Basic Game Mode")]
+	public class BasicGameMode : ScriptableService
 	{
 		[SerializeField]
 		private EventChannelPlayerAvatar playerCreatedChannel;
@@ -29,20 +32,25 @@ namespace MagicCombat.Gameplay.Mode
 		[ShowInInspector]
 		[ReadOnly]
 		private bool isPlaying;
-
-		private SharedScriptable sharedScriptable;
-
+		
 		[ShowInInspector]
-		private GameplayRuntimeData GameplayData => (GameplayRuntimeData)sharedScriptable?.ModeData;
+		[ReadOnly]
+		protected List<PlayerAvatar> alivePlayers;
 
-		public override bool GameInProgress => isPlaying;
+		private GameplayRuntimeData runtimeData;
 
-		public override void Run(SharedScriptable shared, GameplayManager manager)
+		public List<PlayerAvatar> AlivePlayers => alivePlayers;
+		
+		public PlayerAvatar GetPlayer(PlayerId id) => alivePlayers.First(player => player.Id == id);
+
+		public bool GameInProgress => isPlaying;
+
+		public void Run(GameplayManager manager)
 		{
-			sharedScriptable = shared;
 			alivePlayers = new List<PlayerAvatar>();
 
-			var playerProvider = sharedScriptable.PlayerProvider;
+			runtimeData = ScriptableLocator.Get<GameplayRuntimeData>();
+			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
 
 			foreach (var index in playerProvider.PlayersEnumerator)
 			{
@@ -55,7 +63,7 @@ namespace MagicCombat.Gameplay.Mode
 			isPlaying = true;
 		}
 
-		public override void PlayerHit(PlayerAvatar player)
+		public void PlayerHit(PlayerAvatar player)
 		{
 			if (!isPlaying) return;
 			if (!alivePlayers.Contains(player)) return;
@@ -68,24 +76,25 @@ namespace MagicCombat.Gameplay.Mode
 			// End game
 			isPlaying = false;
 			var winner = alivePlayers[0];
-			GameplayData.points[winner.Id]++;
+			runtimeData.points[winner.Id]++;
 			EndGameAnimation(winner);
 		}
 
-		public override void SimulateGame()
+		public void SimulateGame()
 		{
+			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
 			while (true)
 			{
-				var randomPlayerIndex = sharedScriptable.PlayerProvider.GetRandomPlayer();
-				GameplayData.points[randomPlayerIndex]++;
-				if (GameplayData.points[randomPlayerIndex] >= pointsTarget)
+				var randomPlayerIndex = playerProvider.GetRandomPlayer();
+				runtimeData.points[randomPlayerIndex]++;
+				if (runtimeData.points[randomPlayerIndex] >= pointsTarget)
 					break;
 			}
 		}
 
 		private void EndGameAnimation(PlayerAvatar winner)
 		{
-			var abilitiesClock = GameplayData.AbilitiesContext.AbilitiesClock;
+			var abilitiesClock = runtimeData.AbilitiesContext.AbilitiesClock;
 			abilitiesClock.Speed = 0f;
 
 			var s = DOTween.Sequence();
@@ -107,8 +116,8 @@ namespace MagicCombat.Gameplay.Mode
 
 		private void OnGameEnd(PlayerAvatar winner)
 		{
-			GameplayData.points[winner.Id]++;
-			sharedScriptable.StagesManager.GoToStage(endRoundStage);
+			runtimeData.points[winner.Id]++;
+			ScriptableLocator.Get<StagesManager>().GoToStage(endRoundStage);
 		}
 	}
 }

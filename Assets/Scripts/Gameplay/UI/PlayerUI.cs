@@ -35,11 +35,9 @@ namespace MagicCombat.Gameplay.UI
 			skill3Indicator.SetupAbilityCaster(player.skill3);
 
 			gameObject.SetActive(true);
-
-			player.OnDeath += PlayerDeath;
 		}
 
-		private void PlayerDeath()
+		public void PlayerDeath()
 		{
 			gameObject.SetActive(false);
 		}

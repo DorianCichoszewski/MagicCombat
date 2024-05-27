@@ -25,6 +25,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 400976095289540659
       type: {class: SettingAbilitiesStageController, ns: MagicCombat.SettingAbilities, asm: MagicCombat.Gameplay}
-      data: 

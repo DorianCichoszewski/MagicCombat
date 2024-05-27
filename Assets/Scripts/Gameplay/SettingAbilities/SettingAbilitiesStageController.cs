@@ -1,33 +1,30 @@
-using MagicCombat.Gameplay;
 using Shared.GameState;
+using Shared.Services;
 using Shared.StageFlow;
-using UnityEngine;
 
-namespace MagicCombat.SettingAbilities
+namespace MagicCombat.Gameplay.SettingAbilities
 {
-	public class SettingAbilitiesStageController : IStageController
+	public class SettingAbilitiesStageController : StageController
 	{
-		public void Run(SharedScriptable sharedScriptable)
+		public override void Run()
 		{
-			InitAbilities(sharedScriptable);
+			InitAbilities();
 		}
 
-		public void Return(SharedScriptable sharedScriptable) { }
-
-		public void Skip(SharedScriptable sharedScriptable)
+		public override void Skip()
 		{
-			InitAbilities(sharedScriptable);
+			InitAbilities();
 		}
 
-		public void Exit(SharedScriptable sharedScriptable) { }
+		public override void Exit() { }
 
-		private void InitAbilities(SharedScriptable sharedScriptable)
+		private void InitAbilities()
 		{
-			var gameModeData = (GameplayRuntimeData)sharedScriptable.ModeData;
-			var abilitiesContext = gameModeData.AbilitiesContext;
-			foreach (var playerId in sharedScriptable.PlayerProvider.PlayersEnumerator)
+			var gameModeData = ScriptableLocator.Get<GameplayRuntimeData>();
+			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
+			foreach (var playerId in playerProvider.PlayersEnumerator)
 			{
-				gameModeData.abilitiesData.Create(playerId, new AbilityPlayerData(abilitiesContext.StartAbilitiesData));
+				gameModeData.abilitiesData.Create(playerId, new AbilityPlayerData());
 			}
 		}
 	}

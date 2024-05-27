@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a55c007fde40cc96e303c5d24fd7d3, type: 3}
+  m_Name: Player Provider Couch Multiplayer
+  m_EditorClassIdentifier: 
+  addedPlayerChannel: {fileID: 11400000, guid: 16dec8509b26bf04b8745de05aac187d, type: 2}
+  removedPlayerChannel: {fileID: 11400000, guid: a924ae777031cb249a01351129b858ae, type: 2}
+  playersManager: {fileID: 4183613940911826937, guid: 4aaeac55362ab544abea1fc47a66985b, type: 3}
+  botController: {fileID: 7239048907957736660, guid: fe88c0786191759438b5416f380b2f29, type: 3}

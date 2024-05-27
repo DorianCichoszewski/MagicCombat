@@ -10,7 +10,7 @@ namespace Shared.StageFlow
 		private SceneReference sceneReference;
 
 		[SerializeReference]
-		private IStageController controller;
+		private StageController controller;
 
 		[SerializeField]
 		[HideInInspector]
@@ -25,7 +25,7 @@ namespace Shared.StageFlow
 		public StageData ParentStage => parentStage;
 
 		// ReSharper disable once ConvertToAutoProperty
-		public IStageController Controller => controller;
+		public StageController Controller => controller;
 
 		public float Order
 		{

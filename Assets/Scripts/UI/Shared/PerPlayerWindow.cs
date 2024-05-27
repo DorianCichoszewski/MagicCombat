@@ -2,6 +2,7 @@ using System;
 using Shared.Data;
 using Shared.GameState;
 using Shared.Interfaces;
+using Shared.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,19 +18,20 @@ namespace MagicCombat.UI.Shared
 		[SerializeField]
 		private ReadyToggle readyToggle;
 
-		protected SharedScriptable sharedScriptable;
 		protected PlayerId playerId;
 
 		private Action onReady;
+		private PlayerProvider playerProvider;
 
 		public bool IsReady => readyToggle?.isOn ?? true;
-		protected IPlayerProvider PlayerProvider => sharedScriptable.PlayerProvider;
+		public PlayerProvider PlayerProvider => playerProvider;
 
-		public void Init(SharedScriptable shared, PlayerId id, Action onReady)
+		public void Init(PlayerId id, Action onReady)
 		{
-			sharedScriptable = shared;
 			playerId = id;
 			this.onReady = onReady;
+			
+			playerProvider = ScriptableLocator.Get<PlayerProvider>();
 
 			var inputController = PlayerProvider.InputController(id);
 			inputController.SetUIFocus(gameObject, firstElement.gameObject, readyToggle.gameObject);

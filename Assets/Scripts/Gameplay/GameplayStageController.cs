@@ -1,29 +1,22 @@
-using Shared.GameState;
+using System;
+using Shared.Services;
 using Shared.StageFlow;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace MagicCombat.Gameplay
 {
-	public class GameplayStageController : IStageController
+	[Serializable]
+	public class GameplayStageController : StageController
 	{
-		public void Run(SharedScriptable sharedScriptable)
+		public override void Enter()
 		{
 			var manager = Object.FindAnyObjectByType<GameplayManager>();
-			var gameplayData = (GameplayRuntimeData)sharedScriptable.ModeData;
-			gameplayData.GameMode.Run(sharedScriptable, manager);
+			ScriptableLocator.Get<BasicGameMode>().Run(manager);
 		}
 
-		public void Return(SharedScriptable sharedScriptable)
+		public override void Skip()
 		{
-			// ToDo: unpause
+			ScriptableLocator.Get<BasicGameMode>().SimulateGame();
 		}
-
-		public void Skip(SharedScriptable sharedScriptable)
-		{
-			var gameplayRuntimeData = (GameplayRuntimeData)sharedScriptable.ModeData;
-			gameplayRuntimeData.GameMode.SimulateGame();
-		}
-
-		public void Exit(SharedScriptable sharedScriptable) { }
 	}
 }

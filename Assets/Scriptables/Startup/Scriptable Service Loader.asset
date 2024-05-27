@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc2b8f4414d4e978d26865c6995c363, type: 3}
-  m_Name: Shared Scriptable
+  m_Script: {fileID: 11500000, guid: 9e151d3a457f4f0486cc3a8903c457a8, type: 3}
+  m_Name: Scriptable Service Loader
   m_EditorClassIdentifier: 
-  essentialsPrefab: {fileID: 2917655620817472049, guid: 96ac924e040bcee488d907b36797d2fe, type: 3}
-  stagesManager:
-    stagesLabel:
-      m_LabelString: Stage
+  servicesLabel:
+    m_LabelString: Scriptable Service

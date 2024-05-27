@@ -1,5 +1,6 @@
 using MagicCombat.Gameplay;
 using MagicCombat.UI.Shared;
+using Shared.Services;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -33,7 +34,7 @@ namespace MagicCombat.SettingAbilities.UI
 		{
 			header.Init(PlayerProvider.StaticData(playerId));
 
-			var gameplayData = (GameplayRuntimeData)sharedScriptable.ModeData;
+			var gameplayData = ScriptableLocator.Get<GameplayRuntimeData>();
 			var abilitiesContext = gameplayData.AbilitiesContext;
 
 			int points = gameplayData.points.GetOrCreate(playerId);

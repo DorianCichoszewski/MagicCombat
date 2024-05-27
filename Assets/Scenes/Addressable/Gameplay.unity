@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b079a2528e84b0c8f6d91e9d5814edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedScriptable: {fileID: 11400000, guid: f6146a3121d1a5f42b694bc897662674, type: 2}
 --- !u!4 &317300356
 Transform:
   m_ObjectHideFlags: 0
@@ -624,5 +623,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1430038647}
-  - {fileID: 317300356}
   - {fileID: 8098356672178612712}
+  - {fileID: 317300356}

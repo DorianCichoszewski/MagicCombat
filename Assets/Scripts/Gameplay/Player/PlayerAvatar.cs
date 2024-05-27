@@ -1,7 +1,7 @@
-using System;
 using MagicCombat.Gameplay.Abilities.Base;
 using MagicCombat.Gameplay.Avatar;
 using MagicCombat.Gameplay.Avatar.Movement;
+using MagicCombat.Gameplay.Notifications;
 using Shared.Data;
 using Shared.Interfaces;
 using Sirenix.OdinInspector;
@@ -11,6 +11,9 @@ namespace MagicCombat.Gameplay.Player
 {
 	public class PlayerAvatar : MonoBehaviour
 	{
+		[SerializeField]
+		private EventChannelPlayerAvatar playerHitChannel;
+		
 		[SerializeField]
 		private BaseAvatar avatar;
 
@@ -39,8 +42,6 @@ namespace MagicCombat.Gameplay.Player
 
 		public bool Alive => avatar.Alive;
 
-		public event Action OnDeath;
-
 		public void Init(AbilityPlayerData abilityPlayerData, StaticPlayerData staticData, GameplayManager manager,
 			IGameplayInputController input, PlayerId id)
 		{
@@ -51,7 +52,7 @@ namespace MagicCombat.Gameplay.Player
 
 			var abilitiesData = gameplayManager.AbilitiesContext;
 
-			var abilitiesContext = gameplayManager.GameModeData.AbilitiesContext;
+			var abilitiesContext = gameplayManager.GameplayRuntimeData.AbilitiesContext;
 
 			utility = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.UtilityKey],
 				abilitiesData);
@@ -70,9 +71,8 @@ namespace MagicCombat.Gameplay.Player
 
 		private void OnAvatarDeath()
 		{
-			OnDeath?.Invoke();
 			Controller = null;
-			gameplayManager.PlayerHit(this);
+			playerHitChannel.Invoke(this);
 		}
 	}
 }

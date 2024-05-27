@@ -1,8 +1,12 @@
+using System;
 using Shared.GameState;
+using Shared.Interfaces;
+using Shared.Services;
+using Shared.StageFlow;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MagicCombat.SettingPlayer
+namespace MagicCombat.Gameplay.SettingPlayer
 {
 	public class SettingPlayerManager : BaseManager
 	{
@@ -10,14 +14,21 @@ namespace MagicCombat.SettingPlayer
 		[MinValue(1)]
 		private int minPlayers = 2;
 
+		private PlayerProvider playerProvider;
+
+		private void Awake()
+		{
+			playerProvider = ScriptableLocator.Get<PlayerProvider>();
+		}
+
 		public void ConfirmPlayers()
 		{
-			while (sharedScriptable.PlayerProvider.PlayersCount < minPlayers)
+			while (playerProvider.PlayersCount < minPlayers)
 			{
-				sharedScriptable.PlayerProvider.AddBot();
+				playerProvider.AddBot();
 			}
 
-			sharedScriptable.StagesManager.NextStage();
+			ScriptableLocator.Get<StagesManager>().NextStage();
 		}
 	}
 }

@@ -20,14 +20,16 @@ namespace Shared.StageFlow.Editor
 			get
 			{
 				if (stagesManager == null)
-					Addressables.LoadAssetsAsync<SharedScriptable>("{StartupScriptable}", candidate =>
+					Addressables.LoadAssetsAsync<StartupScriptable>("{StartupScriptable}", candidate =>
 					{
-						if (candidate == null) return;
-						stagesManager = candidate.StagesManager;
+						if (candidate is StagesManager manager)
+						{
+							stagesManager = manager;
+						}
 					}).WaitForCompletion();
 
-				stagesManager.SetupStages();
-				return stagesManager.Stages;
+				stagesManager?.SetupStages();
+				return stagesManager?.Stages;
 			}
 		}
 

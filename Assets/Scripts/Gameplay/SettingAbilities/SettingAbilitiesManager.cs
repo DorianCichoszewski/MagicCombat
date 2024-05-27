@@ -1,15 +1,14 @@
-using MagicCombat.Gameplay;
 using Shared.GameState;
+using Shared.Services;
+using Shared.StageFlow;
 
-namespace MagicCombat.SettingAbilities
+namespace MagicCombat.Gameplay.SettingAbilities
 {
 	public class SettingAbilitiesManager : BaseManager
 	{
-		public GameplayRuntimeData GameModeData => (GameplayRuntimeData)sharedScriptable.ModeData;
-
 		public void Next()
 		{
-			sharedScriptable.StagesManager.NextStage();
+			ScriptableLocator.Get<StagesManager>().NextStage();
 		}
 	}
 }

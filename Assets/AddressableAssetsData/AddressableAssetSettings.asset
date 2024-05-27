@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 6e246e0553937f34687ed6c3b5bf4594
   m_currentHash:
     serializedVersion: 2
-    Hash: 1ae3c66f6caee01f9516c028fd963634
+    Hash: 9796f9bd2c14b714688fc2eac2ea17fb
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -91,6 +91,7 @@ MonoBehaviour:
     - '{StartupScriptable}'
     - Stage
     - Ability
+    - Scriptable Service
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d3f8631935f845248bc7435e2724b5c9, type: 2}

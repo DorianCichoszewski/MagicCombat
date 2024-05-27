@@ -38,15 +38,12 @@ namespace MagicCombat.Gameplay.UI
 
 		private void RefreshPlayer(PlayerAvatar player)
 		{
-			var playerUI = playersUI[player.Id.OrderedId];
-			playerUI.Init(player);
-			playerUI.gameObject.SetActive(true);
+			playersUI[player.Id.OrderedId].Init(player);
 		}
 
 		private void DisablePlayer(PlayerAvatar player)
 		{
-			var playerUI = playersUI[player.Id.OrderedId];
-			playerUI.gameObject.SetActive(false);
+			playersUI[player.Id.OrderedId].PlayerDeath();
 		}
 	}
 }

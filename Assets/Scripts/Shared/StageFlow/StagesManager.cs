@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Shared.GameState;
 using Sirenix.OdinInspector;
@@ -8,9 +7,8 @@ using UnityEngine.SceneManagement;
 
 namespace Shared.StageFlow
 {
-	[Serializable]
-	[InlineProperty]
-	public class StagesManager
+	[CreateAssetMenu(menuName = "Single/Startup/Stages Manager", fileName = "Stages Manager")]
+	public class StagesManager : StartupScriptable
 	{
 		public const string PlayerPrefsKey = "StageGUIDToLoad";
 
@@ -19,18 +17,16 @@ namespace Shared.StageFlow
 		private AssetLabelReference stagesLabel;
 
 		[ShowInInspector]
-		[InlineProperty]
+		[ReadOnly]
 		[HideLabel]
 		private StageOrderedList stages;
-
-		private SharedScriptable sharedScriptable;
+		
 		private StageData currentStage;
 
 		public StageOrderedList Stages => stages;
 
-		public void Init(SharedScriptable shared)
+		public override void GameStart()
 		{
-			sharedScriptable = shared;
 			currentStage = null;
 
 #if UNITY_EDITOR
@@ -130,7 +126,7 @@ namespace Shared.StageFlow
 					if (intermediateStages.Count == 1)
 						RunStageDirectly(currentStage);
 					else
-						SkipStage(currentStage);
+						EnterStage(currentStage);
 
 					intermediateStages.Pop();
 				}
@@ -151,7 +147,7 @@ namespace Shared.StageFlow
 			if (currentStage.ParentStage != null)
 			{
 				currentStage = currentStage.ParentStage;
-				currentStage.Controller.Return(sharedScriptable);
+				currentStage.Controller.Return();
 			}
 		}
 
@@ -168,24 +164,29 @@ namespace Shared.StageFlow
 			if (stage.HasScene)
 			{
 				var loadMode = stage.HasRootScene ? LoadSceneMode.Single : LoadSceneMode.Additive;
-				stage.SceneReference.LoadScene(() => stage.Controller?.Run(sharedScriptable), loadMode);
+				stage.SceneReference.LoadScene(() => stage.Controller?.Run(), loadMode);
 			}
 			else
 			{
-				stage.Controller?.Run(sharedScriptable);
+				stage.Controller?.Run();
 			}
+		}
+		
+		private void EnterStage(StageData stage)
+		{
+			stage.Controller?.Enter();
 		}
 
 		private void SkipStage(StageData stage)
 		{
-			stage.Controller?.Skip(sharedScriptable);
+			stage.Controller?.Skip();
 		}
 
 		private void ExitStage(StageData stage)
 		{
 			if (stage.HasScene && !stage.HasRootScene) stage.SceneReference.UnloadScene();
 
-			stage.Controller?.Exit(sharedScriptable);
+			stage.Controller?.Exit();
 		}
 	}
 }

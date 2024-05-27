@@ -1,22 +1,22 @@
 using Shared.GameState;
+using Shared.Services;
 using Shared.StageFlow;
 
 namespace MagicCombat.SettingPlayer
 {
-	public class SettingsPlayerStageController : IStageController
+	public class SettingsPlayerStageController : StageController
 	{
-		public void Run(SharedScriptable sharedScriptable) { }
+		public override void Run() { }
 
-		public void Return(SharedScriptable sharedScriptable) { }
-
-		public void Skip(SharedScriptable sharedScriptable)
+		public override void Skip()
 		{
+			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
 			for (int i = 0; i < 2; i++)
 			{
-				sharedScriptable.PlayerProvider.AddBot();
+				playerProvider.AddBot();
 			}
 		}
 
-		public void Exit(SharedScriptable sharedScriptable) { }
+		public override void Exit() { }
 	}
 }

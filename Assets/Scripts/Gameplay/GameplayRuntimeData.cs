@@ -1,20 +1,15 @@
 using MagicCombat.Gameplay.Abilities;
-using MagicCombat.Gameplay.Mode;
 using MagicCombat.Gameplay.Player;
 using Shared.Data;
-using Shared.Interfaces;
+using Shared.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay
 {
-	[CreateAssetMenu(menuName = "Magic Combat/One Time/Gameplay Runtime Data", fileName = "Gameplay Runtime Data")]
-	public class GameplayRuntimeData : ScriptableObject, IModeData
+	[CreateAssetMenu(menuName = "Single/Data/Gameplay Runtime", fileName = "Gameplay Runtime Data")]
+	public class GameplayRuntimeData : ScriptableService
 	{
-		[SerializeField]
-		[Required]
-		private GameMode gameMode;
-
 		[SerializeField]
 		[Required]
 		private PlayerAvatar playerPrefab;
@@ -30,9 +25,7 @@ namespace MagicCombat.Gameplay
 		public AbilitiesContext AbilitiesContext => abilitiesContext;
 		public PlayerAvatar PlayerPrefab => playerPrefab;
 
-		public GameMode GameMode => gameMode;
-
-		public void Init()
+		public override void OnRegister()
 		{
 			abilitiesContext.Init();
 
@@ -41,7 +34,7 @@ namespace MagicCombat.Gameplay
 			points.Reset();
 		}
 
-		public void Disable()
+		public override void OnDeregister()
 		{
 			abilitiesContext.Dispose();
 		}

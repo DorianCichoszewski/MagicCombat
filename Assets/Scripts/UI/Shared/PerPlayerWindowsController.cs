@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Shared.Data;
 using Shared.GameState;
 using Shared.Notification;
+using Shared.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,14 +33,13 @@ namespace MagicCombat.UI.Shared
 		private UnityEvent onReadyEvent;
 
 		private readonly Dictionary<PlayerId, PerPlayerWindow> createdWindows = new();
-		private SharedScriptable sharedScriptable;
 		private Action onReady;
 
 		private void Awake()
 		{
 			var manager = FindFirstObjectByType<BaseManager>();
 			if (manager)
-				CreateWindows(manager.SharedScriptable, delegate { });
+				CreateWindows(delegate { });
 
 			addedPlayerChannel.OnRaised += UpdateWindow;
 			removedPlayerChannel.OnRaised += UpdateWindow;
@@ -51,16 +51,17 @@ namespace MagicCombat.UI.Shared
 			removedPlayerChannel.OnRaised -= UpdateWindow;
 		}
 
-		public void CreateWindows(SharedScriptable shared, Action onAllWindowsReady)
+		public void CreateWindows(Action onAllWindowsReady)
 		{
-			sharedScriptable = shared;
 			onReady += onAllWindowsReady;
+			
+			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
 
-			foreach (var id in shared.PlayerProvider.PlayersEnumerator)
+			foreach (var id in playerProvider.PlayersEnumerator)
 			{
 				var newWindow = Instantiate(windowPrefab, windowsParent);
 				createdWindows.Add(id, newWindow);
-				newWindow.Init(shared, id, CheckWindowsReady);
+				newWindow.Init(id, CheckWindowsReady);
 			}
 		}
 
@@ -78,7 +79,7 @@ namespace MagicCombat.UI.Shared
 				// Refresh window
 				else
 				{
-					playerWindow.Init(sharedScriptable, changedPlayer, onReady);
+					playerWindow.Init(changedPlayer, onReady);
 				}
 			}
 			else
@@ -86,7 +87,7 @@ namespace MagicCombat.UI.Shared
 				// Create new window for new / reconnected player
 				var newWindow = Instantiate(windowPrefab, windowsParent);
 				createdWindows.Add(changedPlayer, newWindow);
-				newWindow.Init(sharedScriptable, changedPlayer, CheckWindowsReady);
+				newWindow.Init(changedPlayer, CheckWindowsReady);
 			}
 		}
 
