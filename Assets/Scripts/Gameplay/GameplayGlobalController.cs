@@ -1,4 +1,5 @@
 using System;
+using MagicCombat.Gameplay.Abilities;
 using Shared.Services;
 using Shared.StageFlow;
 using UnityEngine;
@@ -10,9 +11,9 @@ namespace MagicCombat.Gameplay
 	{
 		[SerializeField]
 		private GameplayRuntimeData gameplayRuntimeData;
-		
+
 		[SerializeField]
-		private BasicGameMode gameMode;
+		private AbilitiesContext abilitiesContext;
 
 		public override void Run()
 		{
@@ -24,7 +25,7 @@ namespace MagicCombat.Gameplay
 		public override void Enter()
 		{
 			LoadScriptable(gameplayRuntimeData);
-			LoadScriptable(gameMode);
+			LoadScriptable(abilitiesContext);
 		}
 	}
 }

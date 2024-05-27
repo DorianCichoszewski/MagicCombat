@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cc345c05664eec9de30b3b19e9d31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHitChannel: {fileID: 11400000, guid: a10cc869468888643b8859c55678f8bf, type: 2}
   avatar: {fileID: -4811875505925921764}
 --- !u!114 &-4811875505925921764
 MonoBehaviour:

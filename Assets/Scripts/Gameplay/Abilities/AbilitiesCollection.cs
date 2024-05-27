@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
 using MagicCombat.Gameplay.Abilities.Base;
+using Sirenix.OdinInspector;
 using UnityEngine.AddressableAssets;
 
 namespace MagicCombat.Gameplay.Abilities
 {
+	[Serializable]
 	public class AbilitiesCollection
 	{
 		private Dictionary<string, BaseAbility> abilitiesCache;
 
+		[ShowInInspector]
+		[ReadOnly]
 		private List<BaseAbility> loadedAbilities;
 		private List<string> loadedAbilityKeys;
 		

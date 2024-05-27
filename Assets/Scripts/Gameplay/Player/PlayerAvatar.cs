@@ -1,9 +1,11 @@
+using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Abilities.Base;
 using MagicCombat.Gameplay.Avatar;
 using MagicCombat.Gameplay.Avatar.Movement;
 using MagicCombat.Gameplay.Notifications;
 using Shared.Data;
 using Shared.Interfaces;
+using Shared.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,15 +15,13 @@ namespace MagicCombat.Gameplay.Player
 	{
 		[SerializeField]
 		private EventChannelPlayerAvatar playerHitChannel;
-		
+
 		[SerializeField]
 		private BaseAvatar avatar;
 
 		[ReadOnly]
 		[ShowInInspector]
 		public PlayerId Id { get; private set; }
-
-		private GameplayManager gameplayManager;
 
 		[ShowInInspector]
 		public AbilityCaster skill1;
@@ -42,26 +42,23 @@ namespace MagicCombat.Gameplay.Player
 
 		public bool Alive => avatar.Alive;
 
-		public void Init(AbilityPlayerData abilityPlayerData, StaticPlayerData staticData, GameplayManager manager,
+		public void Init(AbilityPlayerData abilityPlayerData, StaticPlayerData staticData,
 			IGameplayInputController input, PlayerId id)
 		{
-			gameplayManager = manager;
 			Id = id;
-			avatar.Init(staticData, gameplayManager.AbilitiesContext.PhysicClock);
+
+			var abilitiesContext = ScriptableLocator.Get<AbilitiesContext>();
+			avatar.Init(staticData, abilitiesContext.PhysicClock);
 			avatar.OnDeath += OnAvatarDeath;
 
-			var abilitiesData = gameplayManager.AbilitiesContext;
-
-			var abilitiesContext = gameplayManager.GameplayRuntimeData.AbilitiesContext;
-
 			utility = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.UtilityKey],
-				abilitiesData);
+				abilitiesContext);
 			skill1 = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.Skill1Key],
-				abilitiesData);
+				abilitiesContext);
 			skill2 = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.Skill2Key],
-				abilitiesData);
+				abilitiesContext);
 			skill3 = new AbilityCaster(avatar, abilitiesContext.AbilitiesCollection[abilityPlayerData.Skill3Key],
-				abilitiesData);
+				abilitiesContext);
 
 			Controller = new PlayerController(this, input)
 			{

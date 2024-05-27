@@ -11,17 +11,14 @@ namespace MagicCombat.Gameplay
 {
 	public class GameplayManager : BaseManager
 	{
-		private GameplayRuntimeData gameplayRuntimeData;
-		
-		public AbilitiesContext AbilitiesContext => gameplayRuntimeData.AbilitiesContext;
-		public GameplayRuntimeData GameplayRuntimeData => gameplayRuntimeData;
 
 		public PlayerAvatar CreatePlayer(StaticPlayerData staticData, IGameplayInputController input, PlayerId id)
 		{
-			gameplayRuntimeData = ScriptableLocator.Get<GameplayRuntimeData>();
+			var gameplayRuntimeData = ScriptableLocator.Get<GameplayRuntimeData>();
+			var abilitiesContext = ScriptableLocator.Get<AbilitiesContext>();
 			var playerPrefab = gameplayRuntimeData.PlayerPrefab;
 			var player = Instantiate(playerPrefab, staticData.spawnPos.ToVec3(), Quaternion.identity);
-			player.Init(gameplayRuntimeData.abilitiesData.GetOrCreate(id), staticData, this, input, id);
+			player.Init(abilitiesContext.AbilitiesData.GetOrCreate(id), staticData, input, id);
 			return player;
 		}
 	}

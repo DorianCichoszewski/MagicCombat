@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using MagicCombat.Gameplay.Abilities;
 using MagicCombat.Gameplay.Notifications;
 using MagicCombat.Gameplay.Player;
 using Shared.Data;
@@ -16,22 +17,12 @@ namespace MagicCombat.Gameplay
 	public class BasicGameMode : ScriptableService
 	{
 		[SerializeField]
-		private EventChannelPlayerAvatar playerCreatedChannel;
-
-		[SerializeField]
-		private EventChannelPlayerAvatar playerDeadChannel;
-
-		[SerializeField]
-		[Required]
-		private StageData endRoundStage;
-
-		[SerializeField]
-		private int pointsTarget;
-
+		private EventChannelPlayerAvatar playerHitChannel;
+		
 		[Header("Debug view")]
 		[ShowInInspector]
 		[ReadOnly]
-		private bool isPlaying;
+		private bool isPlaying = false;
 		
 		[ShowInInspector]
 		[ReadOnly]
@@ -48,6 +39,7 @@ namespace MagicCombat.Gameplay
 		public void Run(GameplayManager manager)
 		{
 			alivePlayers = new List<PlayerAvatar>();
+			playerHitChannel.OnRaised += PlayerHit;
 
 			runtimeData = ScriptableLocator.Get<GameplayRuntimeData>();
 			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
@@ -57,7 +49,7 @@ namespace MagicCombat.Gameplay
 				var newPlayer = manager.CreatePlayer(playerProvider.StaticData(index),
 					playerProvider.GameplayInputController(index), index);
 				alivePlayers.Add(newPlayer);
-				playerCreatedChannel.Invoke(newPlayer);
+				runtimeData.PlayerCreatedChannel.Invoke(newPlayer);
 			}
 
 			isPlaying = true;
@@ -68,7 +60,7 @@ namespace MagicCombat.Gameplay
 			if (!isPlaying) return;
 			if (!alivePlayers.Contains(player)) return;
 
-			playerDeadChannel.Invoke(player);
+			runtimeData.PlayerDeadChannel.Invoke(player);
 			alivePlayers.Remove(player);
 
 			if (alivePlayers.Count > 1) return;
@@ -80,21 +72,10 @@ namespace MagicCombat.Gameplay
 			EndGameAnimation(winner);
 		}
 
-		public void SimulateGame()
-		{
-			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
-			while (true)
-			{
-				var randomPlayerIndex = playerProvider.GetRandomPlayer();
-				runtimeData.points[randomPlayerIndex]++;
-				if (runtimeData.points[randomPlayerIndex] >= pointsTarget)
-					break;
-			}
-		}
-
 		private void EndGameAnimation(PlayerAvatar winner)
 		{
-			var abilitiesClock = runtimeData.AbilitiesContext.AbilitiesClock;
+			var abilitiesContext = ScriptableLocator.Get<AbilitiesContext>();
+			var abilitiesClock = abilitiesContext.AbilitiesClock;
 			abilitiesClock.Speed = 0f;
 
 			var s = DOTween.Sequence();
@@ -117,7 +98,7 @@ namespace MagicCombat.Gameplay
 		private void OnGameEnd(PlayerAvatar winner)
 		{
 			runtimeData.points[winner.Id]++;
-			ScriptableLocator.Get<StagesManager>().GoToStage(endRoundStage);
+			ScriptableLocator.Get<StagesManager>().NextStage();
 		}
 	}
 }

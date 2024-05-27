@@ -1,6 +1,7 @@
-using MagicCombat.Gameplay.Abilities;
+using MagicCombat.Gameplay.Notifications;
 using MagicCombat.Gameplay.Player;
 using Shared.Data;
+using Shared.GameState;
 using Shared.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,30 +14,39 @@ namespace MagicCombat.Gameplay
 		[SerializeField]
 		[Required]
 		private PlayerAvatar playerPrefab;
-
-		[Space]
-		public PerPlayerData<AbilityPlayerData> abilitiesData;
-
-		public PerPlayerData<int> points;
+		
+		[SerializeField]
+		private EventChannelPlayerAvatar playerCreatedChannel;
 
 		[SerializeField]
-		private AbilitiesContext abilitiesContext;
+		private EventChannelPlayerAvatar playerDeadChannel;
+		
+		[Space]
+		[SerializeField]
+		private int pointsTarget;
 
-		public AbilitiesContext AbilitiesContext => abilitiesContext;
+		[Space]
+		public PerPlayerData<int> points;
+		
 		public PlayerAvatar PlayerPrefab => playerPrefab;
+		public EventChannelPlayerAvatar PlayerCreatedChannel => playerCreatedChannel;
+		public EventChannelPlayerAvatar PlayerDeadChannel => playerDeadChannel;
 
 		public override void OnRegister()
 		{
-			abilitiesContext.Init();
-
-			abilitiesData =
-				new PerPlayerData<AbilityPlayerData>(new AbilityPlayerData(abilitiesContext.StartAbilitiesData));
 			points.Reset();
 		}
-
-		public override void OnDeregister()
+		
+		public void SimulateGame()
 		{
-			abilitiesContext.Dispose();
+			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
+			while (true)
+			{
+				var randomPlayerIndex = playerProvider.GetRandomPlayer();
+				points[randomPlayerIndex]++;
+				if (points[randomPlayerIndex] >= pointsTarget)
+					break;
+			}
 		}
 	}
 }

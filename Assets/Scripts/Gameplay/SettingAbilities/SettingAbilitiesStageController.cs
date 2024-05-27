@@ -1,3 +1,4 @@
+using MagicCombat.Gameplay.Abilities;
 using Shared.GameState;
 using Shared.Services;
 using Shared.StageFlow;
@@ -20,11 +21,11 @@ namespace MagicCombat.Gameplay.SettingAbilities
 
 		private void InitAbilities()
 		{
-			var gameModeData = ScriptableLocator.Get<GameplayRuntimeData>();
+			var abilitiesContext = ScriptableLocator.Get<AbilitiesContext>();
 			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
 			foreach (var playerId in playerProvider.PlayersEnumerator)
 			{
-				gameModeData.abilitiesData.Create(playerId, new AbilityPlayerData());
+				abilitiesContext.AbilitiesData.Create(playerId, new AbilityPlayerData(abilitiesContext.InitialAbilities));
 			}
 		}
 	}

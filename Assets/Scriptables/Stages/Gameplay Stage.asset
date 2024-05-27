@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22e8f852bf9d4ec4b8170173bdc224ef, type: 3}
-  m_Name: Gameplay
+  m_Name: Gameplay Stage
   m_EditorClassIdentifier: 
   sceneReference:
     sceneAssetReference:
@@ -27,4 +27,6 @@ MonoBehaviour:
     RefIds:
     - rid: 400975929572851757
       type: {class: GameplayStageController, ns: MagicCombat.Gameplay, asm: MagicCombat.Gameplay}
-      data: 
+      data:
+        basicGameMode: {fileID: 11400000, guid: bc45e5f5f396eb348ad69862db11b497, type: 2}
+        abilitiesContext: {fileID: 11400000, guid: 959affe4aeaabba46a51d474176dafff, type: 2}

@@ -1,11 +1,11 @@
-using Shared.Services;
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MagicCombat.Gameplay.Abilities
 {
-	[CreateAssetMenu(menuName = "Single/Data/Initial Abilities")]
-	public class StartAbilitiesData : ScriptableService
+	[Serializable]
+	public class InitialAbilities
 	{
 		[SerializeField]
 		[Required]

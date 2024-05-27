@@ -13,7 +13,6 @@ namespace MagicCombat.Gameplay.Abilities
 		[SerializeField]
 		private SpellObject spellPrototype;
 
-
 		public SpellObject CreateNew(SpellPrototype prototype, ISpellData data)
 		{
 			var spell = Object.Instantiate(spellPrototype, data.Position, data.Direction.ToRotation());

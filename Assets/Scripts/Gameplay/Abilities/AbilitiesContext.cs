@@ -1,4 +1,5 @@
-using System;
+using Shared.Data;
+using Shared.Services;
 using Shared.TimeSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -6,8 +7,8 @@ using UnityEngine.AddressableAssets;
 
 namespace MagicCombat.Gameplay.Abilities
 {
-	[Serializable]
-	public class AbilitiesContext : IDisposable
+	[CreateAssetMenu(menuName = "Single/Data/Abilities Context", fileName = "Abilities Context")]
+	public class AbilitiesContext : ScriptableService
 	{
 		[SerializeField]
 		[Required]
@@ -16,14 +17,18 @@ namespace MagicCombat.Gameplay.Abilities
 
 		[SerializeField]
 		[Required]
-		private StartAbilitiesData startAbilitiesData;
-
-		[SerializeField]
-		[Required]
 		private AssetLabelReference abilitiesLabel;
+		
+		[SerializeField]
+		private InitialAbilities initialAbilities;
 
-		[Required]
+		[ShowInInspector]
+		[ReadOnly]
 		private AbilitiesCollection abilitiesCollection;
+		
+		[ShowInInspector]
+		[ReadOnly]
+		private PerPlayerData<AbilityPlayerData> abilitiesData;
 
 		[ShowInInspector]
 		private ClockUpdate abilitiesClock;
@@ -35,20 +40,30 @@ namespace MagicCombat.Gameplay.Abilities
 		public ClockFixedUpdate PhysicClock => physicClock;
 		public SpellCrafter SpellCrafter => spellCrafter;
 		public AbilitiesCollection AbilitiesCollection => abilitiesCollection;
-		public StartAbilitiesData StartAbilitiesData => startAbilitiesData;
+		public PerPlayerData<AbilityPlayerData> AbilitiesData => abilitiesData;
+		public InitialAbilities InitialAbilities => initialAbilities;
 
-		public void Init()
+		public override void OnRegister()
 		{
-			abilitiesClock = new ClockUpdate();
-
-			physicClock = new ClockFixedUpdate();
 			abilitiesCollection = new AbilitiesCollection(abilitiesLabel);
+			abilitiesData = new PerPlayerData<AbilityPlayerData>(new AbilityPlayerData(initialAbilities));
+			abilitiesClock ??= new ClockUpdate();
+			abilitiesClock.Clear();
+
+			physicClock ??= new ClockFixedUpdate();
+			physicClock.Clear();
+		}
+		
+		public void ResetClocks()
+		{
+			abilitiesClock.Clear();
+			physicClock.Clear();
 		}
 
-		public void Dispose()
+		public override void OnDeregister()
 		{
-			abilitiesClock?.Dispose();
-			physicClock?.Dispose();
+			abilitiesClock.Clear();
+			physicClock.Clear();
 		}
 	}
 }
