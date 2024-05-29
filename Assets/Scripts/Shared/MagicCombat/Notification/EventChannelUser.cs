@@ -4,5 +4,5 @@ using UnityEngine;
 namespace Shared.Notification
 {
 	[CreateAssetMenu(menuName = "Events/Player Event Channel")]
-	public class EventChannelPlayer : EventChannel<PlayerId> { }
+	public class EventChannelUser : EventChannel<UserId> { }
 }

@@ -25,11 +25,11 @@ namespace MagicCombat.Gameplay.Avatar
 
 		public Vector2 Position => transform.position.ToVec2();
 
-		public StaticPlayerData InitData { get; private set; }
+		public StaticUserData InitData { get; private set; }
 
 		public event Action OnDeath;
 
-		public void Init(StaticPlayerData initData, ClockFixedUpdate clockManager)
+		public void Init(StaticUserData initData, ClockFixedUpdate clockManager)
 		{
 			InitData = initData;
 			skin.SetSkin(initData);

@@ -14,7 +14,7 @@ namespace MagicCombat.Gameplay.SettingPlayer.UI
 
 		protected override void OnInit()
 		{
-			var staticData = PlayerProvider.StaticData(playerId);
+			var staticData = StaticUserData;
 			header.Init(staticData);
 			controllerType.text = staticData.name;
 		}

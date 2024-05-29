@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Shared.Data
 {
 	[Serializable]
-	public class StaticPlayerData
+	public class StaticUserData
 	{
 		public string name;
 		public Material material;

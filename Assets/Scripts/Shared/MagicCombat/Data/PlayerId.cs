@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 
 namespace Shared.Data
 {
-	public class PlayerId : IComparable<PlayerId>
+	public class UserId : IComparable<UserId>
 	{
 		[ShowInInspector]
 		private readonly int internalId;
@@ -11,19 +11,17 @@ namespace Shared.Data
 		// In range [0, playerCount)
 		public int OrderedId { get; private set; }
 
-		public bool IsControllerConnected { get; private set; }
-
-		public static implicit operator int(PlayerId id)
+		public static implicit operator int(UserId id)
 		{
 			return id.internalId;
 		}
 
-		public PlayerId(int id)
+		public UserId(int id)
 		{
 			internalId = id;
 		}
 
-		public int CompareTo(PlayerId other)
+		public int CompareTo(UserId other)
 		{
 			if (ReferenceEquals(this, other)) return 0;
 			if (ReferenceEquals(null, other)) return 1;
@@ -33,11 +31,6 @@ namespace Shared.Data
 		public void ChangeOrderId(int newId)
 		{
 			OrderedId = newId;
-		}
-
-		public void ChangeControllerStatus(bool isConnected)
-		{
-			IsControllerConnected = isConnected;
 		}
 	}
 }

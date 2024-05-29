@@ -3,15 +3,12 @@ using UnityEngine;
 
 namespace Shared.Interfaces
 {
-	public interface IPlayerInputController
+	public interface IUser
 	{
-		public IGameplayInputController GameplayInputController { get; }
-
 		public string InputName { get; }
-		
-		public PlayerId Id { get; }
+		public UserId Id { get; }
 
-		public void SetId(PlayerId playerId);
+		public GameplayInputMapping GameplayInputMapping { get; }
 
 		public void SetUIFocus(GameObject root, GameObject firstSelected, GameObject readyToggle = null);
 

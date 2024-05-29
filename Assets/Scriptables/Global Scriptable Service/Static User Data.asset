@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94f2ebc8c1e5441596b5015054b79d41, type: 3}
-  m_Name: Static Player Data
+  m_Name: Static User Data
   m_EditorClassIdentifier: 
-  staticPlayerDatas:
+  staticUserDatas:
   - name: Player 1
     material: {fileID: 2100000, guid: 0bf284a12f0fafd43adc5205658370df, type: 2}
     color: {r: 0.26666668, g: 0.20392157, b: 0.79607844, a: 1}

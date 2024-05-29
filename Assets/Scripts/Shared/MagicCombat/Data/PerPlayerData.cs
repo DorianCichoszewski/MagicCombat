@@ -14,7 +14,7 @@ namespace Shared.Data
 		[ReadOnly]
 		private Dictionary<int, T> createdData;
 
-		public T this[PlayerId id]
+		public T this[UserId id]
 		{
 			get => createdData[id];
 			set => createdData[id] = value;
@@ -23,39 +23,39 @@ namespace Shared.Data
 		public PerPlayerData(T defaultData)
 		{
 			this.defaultData = defaultData;
-			createdData = new();
+			createdData = new Dictionary<int, T>();
 		}
 
-		public T GetOrCreate(PlayerId id, T defaultData)
+		public T GetOrCreate(UserId id, T defaultData)
 		{
 			createdData.TryAdd(id, defaultData);
 
 			return createdData[id];
 		}
 
-		public T GetOrCreate(PlayerId id)
+		public T GetOrCreate(UserId id)
 		{
 			return GetOrCreate(id, defaultData);
 		}
 
-		public void Create(PlayerId id, T data)
+		public void Create(UserId id, T data)
 		{
 			if (!createdData.TryAdd(id, data)) createdData[id] = data;
 		}
 
-		public void Create(PlayerId id)
+		public void Create(UserId id)
 		{
 			Create(id, defaultData);
 		}
-		
-		public void Set(PlayerId id, T data)
+
+		public void Set(UserId id, T data)
 		{
 			createdData[id] = data;
 		}
 
 		public void Reset()
 		{
-			createdData = new ();
+			createdData = new Dictionary<int, T>();
 		}
 
 		public IEnumerator<KeyValuePair<int, T>> GetEnumerator()

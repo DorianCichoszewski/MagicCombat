@@ -1,72 +1,58 @@
-using System;
 using Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MagicCombat.Player
+namespace MagicCombat.User
 {
-	public class PlayerGameplayInput : MonoBehaviour, IGameplayInputController
+	internal class PlayerGameplayInputHandler : MonoBehaviour
 	{
-		[SerializeField]
-		private PlayerInputController controller;
+		private GameplayInputMapping gameplayInputMapping;
 
-		public event Action<Vector2> OnMove;
-		public event Action<Vector2> OnRotate;
-		public event Action OnUtility;
-		public event Action OnSkill1;
-		public event Action OnSkill2;
-		public event Action OnSkill3;
-
-		public void Clear()
+		public void InitMapping(GameplayInputMapping mapping)
 		{
-			OnMove = null;
-			OnRotate = null;
-			OnUtility = null;
-			OnSkill1 = null;
-			OnSkill2 = null;
-			OnSkill3 = null;
+			gameplayInputMapping = mapping;
 		}
 
 		public void Move(InputAction.CallbackContext ctx)
 		{
 			var value = ctx.ReadValue<Vector2>();
 
-			OnMove?.Invoke(value);
+			gameplayInputMapping.Move(value);
 		}
 
 		public void Rotate(InputAction.CallbackContext ctx)
 		{
 			var value = ctx.ReadValue<Vector2>();
 
-			OnRotate?.Invoke(value);
+			gameplayInputMapping.Rotate(value);
 		}
 
 		public void Utility(InputAction.CallbackContext ctx)
 		{
 			if (!ctx.performed) return;
 
-			OnUtility?.Invoke();
+			gameplayInputMapping.CastUtility();
 		}
 
 		public void Skill1(InputAction.CallbackContext ctx)
 		{
 			if (!ctx.performed) return;
 
-			OnSkill1?.Invoke();
+			gameplayInputMapping.CastSkill1();
 		}
 
 		public void Skill2(InputAction.CallbackContext ctx)
 		{
 			if (!ctx.performed) return;
 
-			OnSkill2?.Invoke();
+			gameplayInputMapping.CastSkill2();
 		}
 
 		public void Skill3(InputAction.CallbackContext ctx)
 		{
 			if (!ctx.performed) return;
 
-			OnSkill3?.Invoke();
+			gameplayInputMapping.CastSkill3();
 		}
 	}
 }

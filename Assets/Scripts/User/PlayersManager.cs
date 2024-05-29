@@ -1,25 +1,22 @@
-using Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MagicCombat.Player
+namespace MagicCombat.User
 {
 	[RequireComponent(typeof(PlayerInputManager))]
-	public class PlayersManager : MonoBehaviour
+	internal class PlayersManager : MonoBehaviour
 	{
 		private PlayerProviderCouch playerProvider;
 		private PlayerInputManager inputManager;
-		private PlayerIdManager playerIdManager;
 
 		public void Init(PlayerProviderCouch playerProvider)
 		{
-			playerIdManager = new PlayerIdManager();
 			inputManager = GetComponent<PlayerInputManager>();
 			this.playerProvider = playerProvider;
 
 			inputManager.onPlayerJoined += PlayerJoined;
 			inputManager.onPlayerLeft += PlayerLeft;
-			
+
 			transform.SetParent(null);
 			DontDestroyOnLoad(gameObject);
 		}
@@ -34,17 +31,16 @@ namespace MagicCombat.Player
 
 		private void PlayerJoined(PlayerInput input)
 		{
-			var controller = input.GetComponent<IPlayerInputController>();
-			playerIdManager.AddPlayer(controller);
-			playerProvider.AddNewPlayer(controller);
+			var controller = input.GetComponent<PlayerInputController>();
 			input.transform.SetParent(transform);
+
+			playerProvider.AddNewPlayer(controller);
 		}
 
 		private void PlayerLeft(PlayerInput input)
 		{
-			var controller = input.GetComponent<IPlayerInputController>();
-			playerIdManager.RemovePlayer(controller);
-			playerProvider.RemovePlayer(controller.Id);
+			var controller = input.GetComponent<PlayerInputController>();
+			playerProvider.RemoveUser(controller.Id);
 			controller.Destroy();
 		}
 	}

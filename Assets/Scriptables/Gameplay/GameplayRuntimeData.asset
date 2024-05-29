@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: GameplayRuntimeData
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 8962357724235189018, guid: 4f6425c4858c4ff4c84014377a0ab781, type: 3}
-  initialAbilities: {fileID: 11400000, guid: be548c24557bb434092521a3a46d293d, type: 2}
-  playerCreatedChannel: {fileID: 0}
-  playerDeadChannel: {fileID: 0}
-  pointsTarget: 0
+  playerCreatedChannel: {fileID: 11400000, guid: c689acb2c1789cd43916adb3a528dcd4, type: 2}
+  playerDeadChannel: {fileID: 11400000, guid: 74529a3beb253f248ac0e280a0221986, type: 2}
+  pointsTarget: 3

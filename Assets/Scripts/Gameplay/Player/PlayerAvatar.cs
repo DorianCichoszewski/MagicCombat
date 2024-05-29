@@ -21,7 +21,7 @@ namespace MagicCombat.Gameplay.Player
 
 		[ReadOnly]
 		[ShowInInspector]
-		public PlayerId Id { get; private set; }
+		public UserId Id { get; private set; }
 
 		[ShowInInspector]
 		public AbilityCaster skill1;
@@ -42,8 +42,8 @@ namespace MagicCombat.Gameplay.Player
 
 		public bool Alive => avatar.Alive;
 
-		public void Init(AbilityPlayerData abilityPlayerData, StaticPlayerData staticData,
-			IGameplayInputController input, PlayerId id)
+		public void Init(AbilityPlayerData abilityPlayerData, StaticUserData staticData,
+			GameplayInputMapping input, UserId id)
 		{
 			Id = id;
 
@@ -68,6 +68,7 @@ namespace MagicCombat.Gameplay.Player
 
 		private void OnAvatarDeath()
 		{
+			Controller.Clear();
 			Controller = null;
 			playerHitChannel.Invoke(this);
 		}

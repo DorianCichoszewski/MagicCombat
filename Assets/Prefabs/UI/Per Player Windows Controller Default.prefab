@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9413fcd4f633491183ba5b0d8a1200a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addedPlayerChannel: {fileID: 11400000, guid: 16dec8509b26bf04b8745de05aac187d, type: 2}
-  removedPlayerChannel: {fileID: 11400000, guid: a924ae777031cb249a01351129b858ae, type: 2}
+  addedUserChannel: {fileID: 11400000, guid: 16dec8509b26bf04b8745de05aac187d, type: 2}
+  removedUserChannel: {fileID: 11400000, guid: a924ae777031cb249a01351129b858ae, type: 2}
+  statusChangedChannel: {fileID: 11400000, guid: 72b3f31f2828adf418c25b40bbf94276, type: 2}
   windowPrefab: {fileID: 0}
   windowsParent: {fileID: 6025454061356146530}
   onReadyEvent:

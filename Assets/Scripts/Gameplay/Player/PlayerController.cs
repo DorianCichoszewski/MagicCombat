@@ -8,9 +8,9 @@ namespace MagicCombat.Gameplay.Player
 		public bool EnabledInput { get; set; } = true;
 
 		private readonly PlayerAvatar player;
-		private readonly IGameplayInputController input;
+		private readonly GameplayInputMapping input;
 
-		public PlayerController(PlayerAvatar player, IGameplayInputController input)
+		public PlayerController(PlayerAvatar player, GameplayInputMapping input)
 		{
 			this.input = input;
 			this.player = player;

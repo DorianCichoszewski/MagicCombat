@@ -16,3 +16,24 @@ MonoBehaviour:
     spellPrototype: {fileID: -3462427614092873681, guid: af95a7ed65af6394fb7a507b805cf7db, type: 3}
   abilitiesLabel:
     m_LabelString: Ability
+  initialAbilities:
+    startUtility:
+      m_AssetGUID: 253ec5697a280e94bafe6f8ad4693ea1
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    startSkill1:
+      m_AssetGUID: d50906f14da48b643b8595448eea847c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    startSkill2:
+      m_AssetGUID: 1b2bffbcc5a53264ba95ec075dce64ce
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    startSkill3:
+      m_AssetGUID: 1b1bcc34ddb39784a9e1a27b87d960ad
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

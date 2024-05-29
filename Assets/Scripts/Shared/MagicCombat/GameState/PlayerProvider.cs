@@ -12,14 +12,10 @@ namespace Shared.GameState
 
 		public abstract void AddBot();
 
-		public abstract IEnumerable<PlayerId> PlayersEnumerator { get; }
+		public abstract IEnumerable<UserId> PlayersEnumerator { get; }
 
-		public abstract PlayerId GetRandomPlayer();
+		public abstract UserId GetRandomUser();
 
-		public abstract StaticPlayerData StaticData(PlayerId id);
-
-		public abstract IPlayerInputController InputController(PlayerId id);
-
-		public abstract IGameplayInputController GameplayInputController(PlayerId id);
+		public abstract IUser GetUser(UserId id);
 	}
 }

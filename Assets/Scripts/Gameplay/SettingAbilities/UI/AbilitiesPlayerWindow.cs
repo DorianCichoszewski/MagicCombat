@@ -33,22 +33,22 @@ namespace MagicCombat.Gameplay.SettingAbilities.UI
 
 		protected override void OnInit()
 		{
-			header.Init(PlayerProvider.StaticData(playerId));
+			header.Init(StaticUserData);
 
 			var gameplayData = ScriptableLocator.Get<GameplayRuntimeData>();
 			var abilitiesContext = ScriptableLocator.Get<AbilitiesContext>();
 
-			int points = gameplayData.points.GetOrCreate(playerId);
+			int points = gameplayData.points.GetOrCreate(UserId);
 			pointsText.text = points > 0 ? $"Current points: {points}" : string.Empty;
-			
+
 			var collection = abilitiesContext.AbilitiesCollection;
 			var abilitiesData = abilitiesContext.AbilitiesData;
-			var playerAbilities = abilitiesData.GetOrCreate(playerId);
-			skill1Picker.Init(collection, newSkill => abilitiesData[playerId].Skill1Key = collection.GetKey(newSkill),
+			var playerAbilities = abilitiesData.GetOrCreate(UserId);
+			skill1Picker.Init(collection, newSkill => abilitiesData[UserId].Skill1Key = collection.GetKey(newSkill),
 				collection.GetIndex(playerAbilities.Skill1Key));
-			skill2Picker.Init(collection, newSkill => abilitiesData[playerId].Skill2Key = collection.GetKey(newSkill),
+			skill2Picker.Init(collection, newSkill => abilitiesData[UserId].Skill2Key = collection.GetKey(newSkill),
 				collection.GetIndex(playerAbilities.Skill2Key));
-			skill3Picker.Init(collection, newSkill => abilitiesData[playerId].Skill3Key = collection.GetKey(newSkill),
+			skill3Picker.Init(collection, newSkill => abilitiesData[UserId].Skill3Key = collection.GetKey(newSkill),
 				collection.GetIndex(playerAbilities.Skill3Key));
 		}
 	}

@@ -14,11 +14,15 @@ namespace MagicCombat.UI.Shared
 	{
 		[SerializeField]
 		[Required]
-		private EventChannelPlayer addedPlayerChannel;
+		private EventChannelUser addedUserChannel;
 
 		[SerializeField]
 		[Required]
-		private EventChannelPlayer removedPlayerChannel;
+		private EventChannelUser removedUserChannel;
+
+		[SerializeField]
+		[Required]
+		private EventChannelUser statusChangedChannel;
 
 		[SerializeField]
 		[Required]
@@ -32,7 +36,7 @@ namespace MagicCombat.UI.Shared
 		[Required]
 		private UnityEvent onReadyEvent;
 
-		private readonly Dictionary<PlayerId, PerPlayerWindow> createdWindows = new();
+		private readonly Dictionary<UserId, PerPlayerWindow> createdWindows = new();
 		private Action onReady;
 
 		private void Awake()
@@ -41,20 +45,22 @@ namespace MagicCombat.UI.Shared
 			if (manager)
 				CreateWindows(delegate { });
 
-			addedPlayerChannel.OnRaised += UpdateWindow;
-			removedPlayerChannel.OnRaised += UpdateWindow;
+			addedUserChannel.OnRaised += CreateWindow;
+			statusChangedChannel.OnRaised += UpdateWindow;
+			removedUserChannel.OnRaised += RemoveWindow;
 		}
 
 		private void OnDestroy()
 		{
-			addedPlayerChannel.OnRaised -= UpdateWindow;
-			removedPlayerChannel.OnRaised -= UpdateWindow;
+			addedUserChannel.OnRaised -= CreateWindow;
+			statusChangedChannel.OnRaised -= UpdateWindow;
+			removedUserChannel.OnRaised -= RemoveWindow;
 		}
 
 		public void CreateWindows(Action onAllWindowsReady)
 		{
 			onReady += onAllWindowsReady;
-			
+
 			var playerProvider = ScriptableLocator.Get<PlayerProvider>();
 
 			foreach (var id in playerProvider.PlayersEnumerator)
@@ -65,30 +71,24 @@ namespace MagicCombat.UI.Shared
 			}
 		}
 
-		public void UpdateWindow(PlayerId changedPlayer)
+		public void RemoveWindow(UserId changedUser)
 		{
-			if (createdWindows.TryGetValue(changedPlayer, out var playerWindow))
-			{
-				// Destroy window if player is disconnected
-				if (!changedPlayer.IsControllerConnected)
-				{
-					createdWindows.Remove(changedPlayer);
-					Destroy(playerWindow);
-				}
+			if (createdWindows.Remove(changedUser, out var playerWindow)) Destroy(playerWindow);
+		}
 
-				// Refresh window
-				else
-				{
-					playerWindow.Init(changedPlayer, onReady);
-				}
-			}
+		private void CreateWindow(UserId user)
+		{
+			var newWindow = Instantiate(windowPrefab, windowsParent);
+			createdWindows.Add(user, newWindow);
+			newWindow.Init(user, CheckWindowsReady);
+		}
+
+		private void UpdateWindow(UserId user)
+		{
+			if (createdWindows.TryGetValue(user, out var playerWindow))
+				playerWindow.Init(user, onReady);
 			else
-			{
-				// Create new window for new / reconnected player
-				var newWindow = Instantiate(windowPrefab, windowsParent);
-				createdWindows.Add(changedPlayer, newWindow);
-				newWindow.Init(changedPlayer, CheckWindowsReady);
-			}
+				Debug.LogError("Can't find window for user: " + user);
 		}
 
 		private void CheckWindowsReady()

@@ -8,7 +8,7 @@ namespace MagicCombat.Gameplay.Avatar
 		[SerializeField]
 		private MeshRenderer[] renderers;
 
-		public void SetSkin(StaticPlayerData data)
+		public void SetSkin(StaticUserData data)
 		{
 			foreach (var renderer in renderers)
 			{

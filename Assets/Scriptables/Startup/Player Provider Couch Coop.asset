@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85a55c007fde40cc96e303c5d24fd7d3, type: 3}
-  m_Name: Player Provider Couch Multiplayer
+  m_Name: Player Provider Couch Coop
   m_EditorClassIdentifier: 
-  addedPlayerChannel: {fileID: 11400000, guid: 16dec8509b26bf04b8745de05aac187d, type: 2}
-  removedPlayerChannel: {fileID: 11400000, guid: a924ae777031cb249a01351129b858ae, type: 2}
+  addedUserChannel: {fileID: 11400000, guid: 16dec8509b26bf04b8745de05aac187d, type: 2}
+  removedUserChannel: {fileID: 11400000, guid: a924ae777031cb249a01351129b858ae, type: 2}
+  changedUserStatus: {fileID: 11400000, guid: 72b3f31f2828adf418c25b40bbf94276, type: 2}
   playersManager: {fileID: 4183613940911826937, guid: 4aaeac55362ab544abea1fc47a66985b, type: 3}
-  botController: {fileID: 7239048907957736660, guid: fe88c0786191759438b5416f380b2f29, type: 3}

@@ -18,12 +18,12 @@ namespace MagicCombat.Gameplay
 	{
 		[SerializeField]
 		private EventChannelPlayerAvatar playerHitChannel;
-		
+
 		[Header("Debug view")]
 		[ShowInInspector]
 		[ReadOnly]
-		private bool isPlaying = false;
-		
+		private bool isPlaying;
+
 		[ShowInInspector]
 		[ReadOnly]
 		protected List<PlayerAvatar> alivePlayers;
@@ -32,7 +32,7 @@ namespace MagicCombat.Gameplay
 
 		public List<PlayerAvatar> AlivePlayers => alivePlayers;
 		
-		public PlayerAvatar GetPlayer(PlayerId id) => alivePlayers.First(player => player.Id == id);
+		public PlayerAvatar GetPlayer(UserId id) => alivePlayers.First(player => player.Id == id);
 
 		public bool GameInProgress => isPlaying;
 
@@ -46,8 +46,7 @@ namespace MagicCombat.Gameplay
 
 			foreach (var index in playerProvider.PlayersEnumerator)
 			{
-				var newPlayer = manager.CreatePlayer(playerProvider.StaticData(index),
-					playerProvider.GameplayInputController(index), index);
+				var newPlayer = manager.CreatePlayer(index);
 				alivePlayers.Add(newPlayer);
 				runtimeData.PlayerCreatedChannel.Invoke(newPlayer);
 			}

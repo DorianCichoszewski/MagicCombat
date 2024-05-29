@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b38816271940dfb78d57c3321d490d, type: 3}
-  m_Name: Basic Game Mode
+  m_Script: {fileID: 11500000, guid: 743893dd48bf496b8a9fe714a1cd9e61, type: 3}
+  m_Name: Player Status Changed
   m_EditorClassIdentifier: 
-  playerHitChannel: {fileID: 11400000, guid: a10cc869468888643b8859c55678f8bf, type: 2}

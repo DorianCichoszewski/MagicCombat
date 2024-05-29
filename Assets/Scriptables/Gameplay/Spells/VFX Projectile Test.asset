@@ -175,7 +175,6 @@ MonoBehaviour:
   ignoreCaster: 1
   graphicalFragments:
   - {fileID: 1295707596534830279, guid: 0e5b86e938d268e4eb06d6bd21bc57b2, type: 3}
-  - {fileID: 4809434087215691838, guid: 056334ee43763e24a8693739ef12b41c, type: 3}
   visualFragments: []
   useTimers: 1
   timers:
@@ -183,7 +182,6 @@ MonoBehaviour:
       useProperty: 1
       property: 2
       value: 5
-    clockType: 0
     name: 
     events:
     - rid: 400975983215378432

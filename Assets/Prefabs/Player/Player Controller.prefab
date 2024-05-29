@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 770979907605514163}
   - component: {fileID: 37862505883009145}
-  - component: {fileID: 1136740822994299477}
-  - component: {fileID: 4057654472088083729}
+  - component: {fileID: 2551056676875538294}
+  - component: {fileID: 4609865927344757352}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 7648444465480320318}
   m_DeviceLostEvent:
@@ -63,8 +62,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4057654472088083729}
-        m_TargetAssemblyTypeName: Gameplay.Player.PlayerInputMapper, Assembly-CSharp
+      - m_Target: {fileID: 4609865927344757352}
+        m_TargetAssemblyTypeName: MagicCombat.Player.PlayerGameplayInputHandler,
+          MagicCombat.Player
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -79,8 +79,9 @@ MonoBehaviour:
     m_ActionName: Character/Movement
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4057654472088083729}
-        m_TargetAssemblyTypeName: Gameplay.Player.PlayerInputMapper, Assembly-CSharp
+      - m_Target: {fileID: 4609865927344757352}
+        m_TargetAssemblyTypeName: MagicCombat.Player.PlayerGameplayInputHandler,
+          MagicCombat.Player
         m_MethodName: Rotate
         m_Mode: 0
         m_Arguments:
@@ -95,8 +96,9 @@ MonoBehaviour:
     m_ActionName: Character/LookRotation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4057654472088083729}
-        m_TargetAssemblyTypeName: Gameplay.Player.PlayerInputMapper, Assembly-CSharp
+      - m_Target: {fileID: 4609865927344757352}
+        m_TargetAssemblyTypeName: MagicCombat.Player.PlayerGameplayInputHandler,
+          MagicCombat.Player
         m_MethodName: Utility
         m_Mode: 0
         m_Arguments:
@@ -111,8 +113,9 @@ MonoBehaviour:
     m_ActionName: Character/Utility
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4057654472088083729}
-        m_TargetAssemblyTypeName: Gameplay.Player.PlayerInputMapper, Assembly-CSharp
+      - m_Target: {fileID: 4609865927344757352}
+        m_TargetAssemblyTypeName: MagicCombat.Player.PlayerGameplayInputHandler,
+          MagicCombat.Player
         m_MethodName: Skill1
         m_Mode: 0
         m_Arguments:
@@ -127,8 +130,9 @@ MonoBehaviour:
     m_ActionName: Character/Skill 1
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4057654472088083729}
-        m_TargetAssemblyTypeName: Gameplay.Player.PlayerInputMapper, Assembly-CSharp
+      - m_Target: {fileID: 4609865927344757352}
+        m_TargetAssemblyTypeName: MagicCombat.Player.PlayerGameplayInputHandler,
+          MagicCombat.Player
         m_MethodName: Skill2
         m_Mode: 0
         m_Arguments:
@@ -143,8 +147,9 @@ MonoBehaviour:
     m_ActionName: Character/Skill 2
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4057654472088083729}
-        m_TargetAssemblyTypeName: Gameplay.Player.PlayerInputMapper, Assembly-CSharp
+      - m_Target: {fileID: 4609865927344757352}
+        m_TargetAssemblyTypeName: MagicCombat.Player.PlayerGameplayInputHandler,
+          MagicCombat.Player
         m_MethodName: Skill3
         m_Mode: 0
         m_Arguments:
@@ -206,7 +211,7 @@ MonoBehaviour:
   m_DefaultActionMap: Character
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1136740822994299477
+--- !u!114 &2551056676875538294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,13 +220,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3026820925650153144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 148121adedd64a98bee23183bed72dcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2268b39a96d644439a722b4e9b89dac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 37862505883009145}
-  playerGameplayInput: {fileID: 4057654472088083729}
+  playerInput: {fileID: 37862505883009145}
+  playerGameplayInputHandler: {fileID: 4609865927344757352}
   eventSystem: {fileID: 4076194721782943548}
---- !u!114 &4057654472088083729
+--- !u!114 &4609865927344757352
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,10 +235,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3026820925650153144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f02b73370494a9eb4334a998b4b9a83, type: 3}
+  m_Script: {fileID: 11500000, guid: b7fe26c6d3544d818941bd6a588746f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1136740822994299477}
 --- !u!1 &5930828226064322197
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,28 +303,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_PointAction: {fileID: 6456846170851254162, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_MoveAction: {fileID: 7127920769185954925, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_SubmitAction: {fileID: -843570580475300936, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_CancelAction: {fileID: 3594157980224538387, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_LeftClickAction: {fileID: 7930126764066607688, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_MiddleClickAction: {fileID: 3551234102359450655, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_RightClickAction: {fileID: -4157995756323785467, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_ScrollWheelAction: {fileID: -4877584996487266296, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_TrackedDevicePositionAction: {fileID: -2706358725051294838, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 3109478880532845390, guid: d368503575b066945aeb1ef3f42713f5,
-    type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_PointAction: {fileID: 6456846170851254162, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_MoveAction: {fileID: 7127920769185954925, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_SubmitAction: {fileID: -843570580475300936, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_CancelAction: {fileID: 3594157980224538387, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_LeftClickAction: {fileID: 7930126764066607688, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_MiddleClickAction: {fileID: 3551234102359450655, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_RightClickAction: {fileID: -4157995756323785467, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_ScrollWheelAction: {fileID: -4877584996487266296, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -2706358725051294838, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 3109478880532845390, guid: d368503575b066945aeb1ef3f42713f5, type: 3}
   m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0

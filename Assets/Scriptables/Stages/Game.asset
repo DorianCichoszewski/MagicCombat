@@ -29,4 +29,4 @@ MonoBehaviour:
       type: {class: GameplayGlobalController, ns: MagicCombat.Gameplay, asm: MagicCombat.Gameplay}
       data:
         gameplayRuntimeData: {fileID: 11400000, guid: 2e73f2f1db3c2dc4ebc84717ac242db6, type: 2}
-        gameMode: {fileID: 11400000, guid: bc45e5f5f396eb348ad69862db11b497, type: 2}
+        abilitiesContext: {fileID: 11400000, guid: 959affe4aeaabba46a51d474176dafff, type: 2}

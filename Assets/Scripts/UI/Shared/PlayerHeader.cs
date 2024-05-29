@@ -9,7 +9,7 @@ namespace MagicCombat.UI.Shared
 		[SerializeField]
 		private TMP_Text text;
 
-		public void Init(StaticPlayerData data)
+		public void Init(StaticUserData data)
 		{
 			text.text = data.name;
 			text.color = data.color;
