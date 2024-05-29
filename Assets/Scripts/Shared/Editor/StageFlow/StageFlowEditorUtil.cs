@@ -1,10 +1,11 @@
 using Shared.GameState;
+using Shared.StageFlow;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 #if UNITY_EDITOR
-namespace Shared.StageFlow.Editor
+namespace Shared.Editor.StageFlow
 {
 	internal class StageFlowEditorUtil
 	{

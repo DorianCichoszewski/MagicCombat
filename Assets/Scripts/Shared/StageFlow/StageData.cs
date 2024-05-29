@@ -23,8 +23,6 @@ namespace Shared.StageFlow
 		public bool HasScene => sceneReference.HasScene;
 		public SceneReference SceneReference => sceneReference;
 		public StageData ParentStage => parentStage;
-
-		// ReSharper disable once ConvertToAutoProperty
 		public StageController Controller => controller;
 
 		public float Order
@@ -86,50 +84,15 @@ namespace Shared.StageFlow
 			commonParent = null;
 			return false;
 		}
-
-// #if UNITY_EDITOR
-// 		[PropertySpace(20)]
-// 		[Button]
-// 		public void CreateNew(string newStageName)
-// 		{
-// 			string directory = Path.GetDirectoryName(AssetDatabase.GetAssetPath(this));
-// 			string path = directory + newStageName + ".asset";
-// 			if (File.Exists(path))
-// 			{
-// 				Debug.LogError($"Stage with name {newStageName} already exists");
-// 				return;
-// 			}
-//
-// 			var newStage = CreateInstance<StageData>();
-// 			newStage.name = newStageName;
-// 			newStage.parentStage = this;
-// 			AssetDatabase.CreateAsset(newStage, path);
-// 			StageFlowEditorUtil.Instance.Refresh();
-// 		}
-//
-// 		[Button]
-// 		public void SetParent(StageData newParent)
-// 		{
-// 			if (this == newParent) return;
-//
-// 			parentStage = newParent;
-// 			Order = 999;
-// 			StageFlowEditorUtil.Instance.Refresh();
-// 		}
-//
-// 		[Button]
-// 		public void MoveUp()
-// 		{
-// 			Order -= 1.5f;
-// 			StageFlowEditorUtil.Instance.Refresh();
-// 		}
-//
-// 		[Button]
-// 		public void MoveDown()
-// 		{
-// 			Order += 1.5f;
-// 			StageFlowEditorUtil.Instance.Refresh();
-// 		}
-// #endif
+		
+		public void SetParent(StageData newParent)
+		{
+			parentStage = newParent;
+		}
+		
+		public void ChangeOrder(float newOrder)
+		{
+			order += newOrder;
+		}
 	}
 }

@@ -1,10 +1,11 @@
 using System;
+using Shared.StageFlow;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityToolbarExtender;
 
-namespace Shared.StageFlow.Editor
+namespace Shared.Editor.StageFlow
 {
 	[InitializeOnLoad]
     internal static class EditorToolbarSceneSwitcher

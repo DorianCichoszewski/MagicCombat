@@ -4,7 +4,7 @@ using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Shared.StageFlow.Editor
+namespace Shared.Editor.StageFlow
 {
 	internal class StageFlowWindow : OdinMenuEditorWindow
 	{
@@ -72,7 +72,7 @@ namespace Shared.StageFlow.Editor
 
 			foreach (var stage in StageFlowEditorUtil.Instance.EditorList)
 			{
-				tree.Add(stage.FullName, stage);
+				tree.Add(stage.FullName, new StageDataEditorWrapper(stage));
 			}
 
 			return tree;
