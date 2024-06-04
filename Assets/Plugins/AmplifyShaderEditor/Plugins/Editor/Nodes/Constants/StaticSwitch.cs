@@ -1009,46 +1009,35 @@ namespace AmplifyShaderEditor
 
 			if( node.KeywordModeTypeValue == KeywordModeType.KeywordEnum )
 			{
+				string[] allOutputs = new string[ node.KeywordEnumAmount ];
+				for ( int i = 0; i < node.KeywordEnumAmount; i++ )
+					allOutputs[ i ] = m_inputPorts[ i ].GeneratePortInstructions( ref dataCollector );
+
 				if ( m_multiCompile == ( int )KeywordType.DynamicBranch )
 				{
+					string defaultKey = "\t" + outType + " dynamicSwitch" + OutputId + " = " + m_inputPorts[ node.DefaultValue ].GeneratePortInstructions( ref dataCollector ) + ";";
+
 					dataCollector.AddLocalVariable( UniqueId, outType + " dynamicSwitch" + OutputId + " = ( " + outType + " )0;", true );
 					for ( int i = 0; i < node.KeywordEnumAmount; i++ )
 					{
 						string keyword = node.KeywordEnum( i );
 						if ( i == 0 )
-						{
 							dataCollector.AddLocalVariable( UniqueId, "UNITY_BRANCH if ( " + keyword + " )", true );
-						}
 						else
-						{
-							dataCollector.AddLocalVariable( UniqueId, "else UNITY_BRANCH if ( " + keyword + " )", true );
-						}
+							dataCollector.AddLocalVariable( UniqueId, "else if ( " + keyword + " )", true );
 
 						dataCollector.AddLocalVariable( UniqueId, "{", true );
-						UIUtils.ShaderIndentLevel++;
 
-						string branchOutput;
 						if ( node.DefaultValue == i )
-						{
-							branchOutput = m_inputPorts[ node.DefaultValue ].GeneratePortInstructions( ref dataCollector );
-							
-						}
+							dataCollector.AddLocalVariable( UniqueId, defaultKey, true );
 						else
-						{
-							branchOutput = m_inputPorts[ i ].GeneratePortInstructions( ref dataCollector );
-						}
-						dataCollector.AddLocalVariable( UniqueId, "\tdynamicSwitch" + OutputId + " = " + branchOutput + ";", true );
+							dataCollector.AddLocalVariable( UniqueId, "\tdynamicSwitch" + OutputId + " = " + allOutputs[ i ] + ";", true );
 
-						UIUtils.ShaderIndentLevel--;
 						dataCollector.AddLocalVariable( UniqueId, "}", true );
 					}
 				}
 				else
 				{
-					string[] allOutputs = new string[ node.KeywordEnumAmount ];
-					for( int i = 0; i < node.KeywordEnumAmount; i++ )
-						allOutputs[ i ] = m_inputPorts[ i ].GeneratePortInstructions( ref dataCollector );
-
 					string defaultKey = "\t" + outType + " staticSwitch" + OutputId + " = " + m_inputPorts[ node.DefaultValue ].GeneratePortInstructions( ref dataCollector ) + ";";					
 
 					for ( int i = 0; i < node.KeywordEnumAmount; i++ )

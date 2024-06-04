@@ -14,6 +14,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 68570
   packageName: Amplify Shader Editor
-  packageVersion: 1.9.4
+  packageVersion: 1.9.4.4
   assetPath: Assets/Plugins/AmplifyShaderEditor/Plugins/Editor/Nodes/Constants/ShaderVariables/Transform/InverseTranspMVMatrixNode.cs
-  uploadId: 665828
+  uploadId: 668809

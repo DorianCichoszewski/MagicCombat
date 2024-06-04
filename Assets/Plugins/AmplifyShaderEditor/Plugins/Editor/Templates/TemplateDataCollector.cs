@@ -1440,7 +1440,8 @@ namespace AmplifyShaderEditor
 		public string GenerateObjectBoundsMin( ref MasterNodeDataCollector dataCollector, int uniqueId )
 		{
 			string value = string.Empty;
-			if ( m_currentSRPType != TemplateSRPType.BiRP && ASEPackageManagerHelper.CurrentHDRPBaseline >= ASESRPBaseline.ASE_SRP_14 )
+			if ( m_currentSRPType != TemplateSRPType.BiRP && ( ASEPackageManagerHelper.CurrentHDRPBaseline >= ASESRPBaseline.ASE_SRP_14 || 
+				ASEPackageManagerHelper.CurrentURPBaseline >= ASESRPBaseline.ASE_SRP_14  ) )
 			{
 				value = "unity_RendererBounds_Min.xyz";
 			}
@@ -1455,7 +1456,8 @@ namespace AmplifyShaderEditor
 		public string GenerateObjectBoundsMax( ref MasterNodeDataCollector dataCollector, int uniqueId )
 		{
 			string value = string.Empty;
-			if ( m_currentSRPType != TemplateSRPType.BiRP && ASEPackageManagerHelper.CurrentHDRPBaseline >= ASESRPBaseline.ASE_SRP_14 )
+			if ( m_currentSRPType != TemplateSRPType.BiRP && ( ASEPackageManagerHelper.CurrentHDRPBaseline >= ASESRPBaseline.ASE_SRP_14 ||
+				ASEPackageManagerHelper.CurrentURPBaseline >= ASESRPBaseline.ASE_SRP_14 ) )
 			{
 				value = "unity_RendererBounds_Max.xyz";
 			}
@@ -1470,7 +1472,8 @@ namespace AmplifyShaderEditor
 		public string GenerateObjectBoundsSize( ref MasterNodeDataCollector dataCollector, int uniqueId )
 		{
 			string value = string.Empty;
-			if ( m_currentSRPType != TemplateSRPType.BiRP && ASEPackageManagerHelper.CurrentHDRPBaseline >= ASESRPBaseline.ASE_SRP_14 )
+			if ( m_currentSRPType != TemplateSRPType.BiRP && ( ASEPackageManagerHelper.CurrentHDRPBaseline >= ASESRPBaseline.ASE_SRP_14 ||
+				ASEPackageManagerHelper.CurrentURPBaseline >= ASESRPBaseline.ASE_SRP_14 ) )
 			{
 				value = "( unity_RendererBounds_Max.xyz - unity_RendererBounds_Min.xyz )";
 			}

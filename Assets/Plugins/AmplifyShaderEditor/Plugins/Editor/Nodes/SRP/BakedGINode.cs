@@ -104,6 +104,11 @@ namespace AmplifyShaderEditor
 					dataCollector.AddFunction( HDBakedGIBody[ 0 ], HDBakedGIBody, false );
 					RegisterLocalVariable( 0, string.Format( HDBakedGIHeader, positionWS, normalWS, uvStaticLightmap, uvDynamicLightmap ), ref dataCollector, localVarName );
 				}
+
+				if ( ASEPackageManagerHelper.CurrentHDRPBaseline >= ASESRPBaseline.ASE_SRP_14 )
+				{
+					dataCollector.AddToPragmas( UniqueId, "multi_compile_fragment _ PROBE_VOLUMES_L1 PROBE_VOLUMES_L2" );
+				}
 			}
 			else
 			{
