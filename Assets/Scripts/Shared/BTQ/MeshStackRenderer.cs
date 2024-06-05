@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace MagicCombat
 {
+	[ExecuteAlways]
 	[RequireComponent(typeof(CanvasRenderer))]
-	public class MeshStack : MonoBehaviour
+	public class MeshStackRenderer : MonoBehaviour
 	{
 		[SerializeField]
 		private int count = 1;
@@ -38,23 +39,19 @@ namespace MagicCombat
 		public CanvasRenderer CanvasRenderer => canvasRenderer ??= GetComponent<CanvasRenderer>();
 
 		public RectTransform RectTransform => rectTransform ??= GetComponent<RectTransform>();
+		
 
 		private void OnEnable()
 		{
-			GenerateMesh();
+			UpdateGeometry();
 		}
 
 		private void OnValidate()
 		{
-			GenerateMesh();
+			UpdateGeometry();
 		}
 
-		// private void OnRectTransformDimensionsChange()
-		// {
-		//     GenerateMesh();
-		// }
-
-		public void GenerateMesh()
+		protected void UpdateGeometry()
 		{
 			mesh = new Mesh();
 
@@ -63,8 +60,6 @@ namespace MagicCombat
 			var pivot = RectTransform.pivot;
 
 			Vector3[] vertices = new Vector3[4 * count];
-			Vector3[] normals = new Vector3[vertices.Length];
-			Vector2[] uv = new Vector2[vertices.Length];
 			Color[] colors = new Color[vertices.Length];
 			int[] tris = new int[6 * count];
 
@@ -80,16 +75,6 @@ namespace MagicCombat
 				vertices[4 * i + 2] = new Vector3(left, top, i * distance);
 				vertices[4 * i + 3] = new Vector3(right, top, i * distance);
 
-				normals[4 * i + 0] = Vector3.forward;
-				normals[4 * i + 1] = Vector3.forward;
-				normals[4 * i + 2] = Vector3.forward;
-				normals[4 * i + 3] = Vector3.forward;
-
-				uv[4 * i + 0] = new Vector2(0, 0);
-				uv[4 * i + 1] = new Vector2(1, 0);
-				uv[4 * i + 2] = new Vector2(0, 1);
-				uv[4 * i + 3] = new Vector2(1, 1);
-
 				float vertexTint = i / (float)(count - 1);
 				var color = new Color(vertexTint, vertexTint, vertexTint, 1);
 
@@ -97,20 +82,13 @@ namespace MagicCombat
 				colors[4 * i + 1] = color;
 				colors[4 * i + 2] = color;
 				colors[4 * i + 3] = color;
-
-				tris[6 * i + 0] = 4 * i + 0;
-				tris[6 * i + 1] = 4 * i + 1;
-				tris[6 * i + 2] = 4 * i + 2;
-				tris[6 * i + 3] = 4 * i + 2;
-				tris[6 * i + 4] = 4 * i + 1;
-				tris[6 * i + 5] = 4 * i + 3;
 			}
 
 			mesh.vertices = vertices;
-			mesh.normals = normals;
-			mesh.uv = uv;
-			mesh.triangles = tris;
 			mesh.colors = colors;
+			mesh.normals = QuadHelper.GetMultipleQuadNormals(count);
+			mesh.uv = QuadHelper.GetMultipleQuadUVs(count);
+			mesh.triangles = QuadHelper.GetMultipleQuadTriangles(count);
 
 			CanvasRenderer.SetMesh(mesh);
 			CanvasRenderer.SetMaterial(material ?? Canvas.GetDefaultCanvasMaterial(), null);
