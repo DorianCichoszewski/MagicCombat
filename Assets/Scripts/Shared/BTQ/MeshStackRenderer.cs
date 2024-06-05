@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MagicCombat
+namespace Shared.BTQ
 {
 	[ExecuteAlways]
 	[RequireComponent(typeof(CanvasRenderer))]

@@ -1,6 +1,6 @@
 {
     "name": "BTQ",
-    "rootNamespace": "BTQ",
+    "rootNamespace": "Shared",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MagicCombat
+namespace Shared.BTQ
 {
 	public static class QuadHelper
 	{

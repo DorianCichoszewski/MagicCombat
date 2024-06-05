@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MagicCombat
+namespace Shared.BTQ
 {
 	public class BTQQuadStacker : MonoBehaviour, IMeshModifier
 	{
@@ -20,7 +19,6 @@ namespace MagicCombat
 				graphic.SetVerticesDirty();
 			}
 		}
-
 
 		public void ModifyMesh(Mesh mesh)
 		{
@@ -59,38 +57,38 @@ namespace MagicCombat
 
 		public void ModifyMesh(VertexHelper verts)
 		{
-			var uv = QuadHelper.GetQuadUVs();
-
 			if (verts.currentVertCount == 4)
 			{
 				List<UIVertex> original = new();
 				verts.GetUIVertexStream(original);
 				// verts are in triangles order, but swapping one gives in vertices order
 				original[3] = original[4];
-				
 				verts.Clear();
+				
+				var quadVerts = new UIVertex[4];
 
 				for (int i = 0; i < quadsCount; i++)
 				{
 					float vertexTint = i / (float)(quadsCount - 1);
 					var color = new Color(vertexTint, vertexTint, vertexTint, 1);
 
-					var quadVerts = new UIVertex[4];
-
 					for (int j = 0; j < 4; j++)
 					{
 						var position = original[j].position;
 						position.z += i * quadDistance;
-						quadVerts[j] = new UIVertex()
+						quadVerts[j] = new UIVertex
 						{
 							position = position,
 							color = color,
-							uv1 = uv[j],
-							uv2 = uv[j],
+							uv0 = original[j].uv0,
+							uv1 = original[j].uv0,
+							uv2 = original[j].uv0,
+							uv3 = original[j].uv0,
 							normal = original[j].normal,
 							tangent = original[j].tangent
 						};
 					}
+					
 					verts.AddUIVertexQuad(quadVerts);
 				}
 			}
