@@ -14,10 +14,17 @@ namespace Shared.BTQ
 
 		private void OnValidate()
 		{
+			EnsureAdditionalChannels();
 			if (TryGetComponent(out Graphic graphic))
 			{
 				graphic.SetVerticesDirty();
 			}
+		}
+
+		private void EnsureAdditionalChannels()
+		{
+			var canvas = GetComponentInParent<Canvas>(false);
+			canvas.additionalShaderChannels |= AdditionalCanvasShaderChannels.TexCoord1;
 		}
 
 		public void ModifyMesh(Mesh mesh)
@@ -59,6 +66,11 @@ namespace Shared.BTQ
 		{
 			if (verts.currentVertCount == 4)
 			{
+				// Vector3 localPosition = new Vector3(transform.localPosition.x  * transform.lossyScale.x,
+				// 	transform.localPosition.y  * transform.lossyScale.y,
+				// 	transform.localPosition.z  * transform.lossyScale.z);
+				Vector3 localPosition = transform.localPosition;
+				
 				List<UIVertex> original = new();
 				verts.GetUIVertexStream(original);
 				// verts are in triangles order, but swapping one gives in vertices order
@@ -70,7 +82,6 @@ namespace Shared.BTQ
 				for (int i = 0; i < quadsCount; i++)
 				{
 					float vertexTint = i / (float)(quadsCount - 1);
-					var color = new Color(vertexTint, vertexTint, vertexTint, 1);
 
 					for (int j = 0; j < 4; j++)
 					{
@@ -79,13 +90,13 @@ namespace Shared.BTQ
 						quadVerts[j] = new UIVertex
 						{
 							position = position,
-							color = color,
+							color = original[j].color,
 							uv0 = original[j].uv0,
 							uv1 = original[j].uv0,
 							uv2 = original[j].uv0,
 							uv3 = original[j].uv0,
 							normal = original[j].normal,
-							tangent = original[j].tangent
+							tangent = new Vector4(localPosition.x, localPosition.y, localPosition.z, vertexTint),
 						};
 					}
 					
