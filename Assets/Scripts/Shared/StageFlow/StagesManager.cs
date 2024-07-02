@@ -28,16 +28,15 @@ namespace Shared.StageFlow
 		public override void GameStart()
 		{
 			currentStage = null;
-
-#if UNITY_EDITOR
-			SceneManager.LoadScene(0, LoadSceneMode.Single);
-#endif
-
+			
 			SetupStages();
 
 #if UNITY_EDITOR
+			
 			if (PlayerPrefs.HasKey(PlayerPrefsKey))
 			{
+				SceneManager.LoadScene(0, LoadSceneMode.Single);
+				
 				string guid = PlayerPrefs.GetString(PlayerPrefsKey);
 				foreach (var stage in stages)
 				{
@@ -50,6 +49,10 @@ namespace Shared.StageFlow
 						return;
 					}
 				}
+			}
+			else
+			{
+				return;
 			}
 #endif
 			RunStageDirectly(stages[0]);
