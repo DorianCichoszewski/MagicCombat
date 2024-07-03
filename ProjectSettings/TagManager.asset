@@ -11,7 +11,7 @@ TagManager:
   - Ethereal
   - Water
   - UI
-  - 
+  - UI Custom
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI Custom
+    uniqueID: 3443431327
     locked: 0
