@@ -81,7 +81,7 @@ namespace Shared.BTQ
 
 				for (int i = 0; i < quadsCount; i++)
 				{
-					float vertexTint = i / (float)(quadsCount - 1);
+					float vertexTint = i / (float)quadsCount;
 
 					for (int j = 0; j < 4; j++)
 					{

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_functionInfo: "// Made with Amplify Shader Editor v1.9.4.4\n// Available at the
     Unity Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=19404\nNode;AmplifyShaderEditor.FunctionInput;1;-704,-112;Inherit;False;Input;3;0;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.CustomExpressionNode;3;-528,-112;Inherit;False;uint3
-    v = (uint3) (int3) round(p)@$    v.x ^= 1103515245U@$    v.y ^= v.x + v.z@$   
-    v.y = v.y * 134775813@$    v.z += v.x ^ v.y@$    v.y += v.x ^ v.z@$    v.x +=
-    v.y * v.z@$    v.x = v.x * 0x27d4eb2du@$    v.z ^= v.x << 3@$    v.y += v.z <<
-    3@ $return v * (1.0 / float(0xffffffff))@;3;Create;1;True;p;FLOAT3;0,0,0;In;;Inherit;False;Hash
-    Vector3;True;False;0;;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;0;-336,-112;Inherit;True;True;-1;Output;0;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nWireConnection;3;0;1;0\nWireConnection;0;0;3;0\nASEEND*/\n//CHKSM=288DCC3AA02DF596C3AA02E24E96CEDD93458E88"
+    v = (uint3) (int3) p@$    v.x ^= 1103515245U@$    v.y ^= v.x + v.z@$    v.y =
+    v.y * 134775813@$    v.z += v.x ^ v.y@$    v.y += v.x ^ v.z@$    v.x += v.y *
+    v.z@$    v.x = v.x * 0x27d4eb2du@$    v.z ^= v.x << 3@$    v.y += v.z << 3@ $return
+    v * (1.0 / float(0xffffffff))@;3;Create;1;True;p;FLOAT3;0,0,0;In;;Inherit;False;Hash
+    Vector3;True;False;0;;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;0;-336,-112;Inherit;True;True;-1;Output;0;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nWireConnection;3;0;1;0\nWireConnection;0;0;3;0\nASEEND*/\n//CHKSM=80D83D67222AF01696F5300D59784FD5D5060A92"
   m_functionName: 
   m_description: 
   m_additionalIncludes:
