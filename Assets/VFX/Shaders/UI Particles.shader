@@ -146,8 +146,7 @@ Shader "UI Particles"
                 float3 Correct_Object_Position152 = appendResult150;
                 float dotResult4_g17 = dot( Hash_3_Quad97.xy , float2( 12.9898,78.233 ) );
                 float lerpResult10_g17 = lerp( _MinStartSize , _MaxStartSize , frac( ( sin( dotResult4_g17 ) * 43758.55 ) ));
-                float temp_output_117_0 = frac( temp_output_158_0 );
-                float lerpResult122 = lerp( _EndSize , _StartSize , temp_output_117_0);
+                float lerpResult122 = lerp( _EndSize , _StartSize , frac( temp_output_158_0 ));
                 
                 OUT.ase_tangent = v.ase_tangent;
 
@@ -182,7 +181,6 @@ Shader "UI Particles"
                 float temp_output_5_0_g18 = _FlipbookCells.y;
                 float Quad_Value153 = IN.ase_tangent.w;
                 float temp_output_158_0 = ( Quad_Value153 + ( _Time.y / _ParticleLifetime ) );
-                float temp_output_117_0 = frac( temp_output_158_0 );
                 // *** BEGIN Flipbook UV Animation vars ***
                 // Total tiles of Flipbook Texture
                 float fbtotaltiles246_g18 = min( temp_output_4_0_g18 * temp_output_5_0_g18, ( ( temp_output_4_0_g18 * temp_output_5_0_g18 ) - 0.0 ) + 1 );
@@ -190,7 +188,7 @@ Shader "UI Particles"
                 float fbcolsoffset246_g18 = 1.0f / temp_output_4_0_g18;
                 float fbrowsoffset246_g18 = 1.0f / temp_output_5_0_g18;
                 // Speed of animation
-                float fbspeed246_g18 = temp_output_117_0 * ( ( _FlipbookCells.x * _FlipbookCells.y ) * _FlipbbokSpeed );
+                float fbspeed246_g18 = temp_output_158_0 * ( ( _FlipbookCells.x * _FlipbookCells.y ) * _FlipbbokSpeed );
                 // UV Tiling (col and row offset)
                 float2 fbtiling246_g18 = float2(fbcolsoffset246_g18, fbrowsoffset246_g18);
                 // UV Offset - calculate current tile linear index, and convert it to (X * coloffset, Y * rowoffset)
@@ -233,7 +231,7 @@ Shader "UI Particles"
         ENDCG
         }
     }
-    CustomEditor "ASEMaterialInspector"
+    CustomEditor "Chroma"
 	
 	Fallback Off
 }
@@ -241,15 +239,15 @@ Shader "UI Particles"
 Version=19404
 Node;AmplifyShaderEditor.TangentVertexDataNode;147;-2400,144;Inherit;False;1;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.CommentaryNode;119;-1584,416;Inherit;False;740;314.8;Particle Lifetime;5;117;158;121;166;163;;0,0,0,1;0;0
-Node;AmplifyShaderEditor.CommentaryNode;112;-1584,128;Inherit;False;862;249.75;Particle Random Values;5;97;120;154;181;184;;0,0,0,1;0;0
+Node;AmplifyShaderEditor.CommentaryNode;112;-1584,128;Inherit;False;862;249.75;Particle Random Values;4;97;120;154;184;;0,0,0,1;0;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;153;-2176,272;Float;False;Quad Value;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleTimeNode;121;-1520,464;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.GetLocalVarNode;154;-1568,224;Inherit;False;153;Quad Value;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;163;-1520,560;Inherit;False;Property;_ParticleLifetime;Particle Lifetime;7;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.GetLocalVarNode;154;-1568,224;Inherit;False;153;Quad Value;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleDivideOpNode;166;-1296,512;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;181;-1472,48;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;16250;False;1;FLOAT;0
-Node;AmplifyShaderEditor.FloorOpNode;182;-1296,64;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;181;-1408,32;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;16250;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;158;-1120,464;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FloorOpNode;182;-1248,32;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;120;-1200,192;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.FunctionNode;184;-1088,192;Inherit;False;HashVector3;-1;;1;e08360d15330cbd429407eddabb4c325;0;1;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.CommentaryNode;100;-1676,752;Inherit;False;888.462;662.1794;Particle Start Size;6;98;90;91;92;80;84;;0,0,0,1;0;0
@@ -269,11 +267,11 @@ Node;AmplifyShaderEditor.Vector2Node;128;-864,-80;Inherit;False;Property;_Flipbo
 Node;AmplifyShaderEditor.RangedFloatNode;125;-768,928;Inherit;False;Property;_EndSize;End Size;4;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;124;-768,1008;Inherit;False;Property;_StartSize;Start Size;3;0;Create;True;0;0;0;False;0;False;0.1;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;149;-1888,752;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.FractNode;117;-1008,480;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;84;-1072,960;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;-1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;44;-448,512;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;2,2;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.RangedFloatNode;183;-688,112;Inherit;False;Property;_FlipbbokSpeed;Flipbbok Speed;8;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;176;-688,0;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FractNode;117;-1008,480;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateShaderPropertyNode;107;-528,-112;Inherit;False;0;0;_MainTex;Shader;True;0;5;SAMPLER2D;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.LerpOp;122;-576,928;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;80;-928,816;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
@@ -282,19 +280,19 @@ Node;AmplifyShaderEditor.Vector2Node;46;-432,608;Inherit;False;Property;_Emitter
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;188;-464,80;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;123;-320,896;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.VertexColorNode;162;-160,-336;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;175;-236,-112;Inherit;False;Flipbook;-1;;18;53c2488c220f6564ca6c90721ee16673;3,68,0,217,0,244,1;11;51;SAMPLER2D;0.0;False;167;SAMPLERSTATE;0;False;13;FLOAT2;0,0;False;24;FLOAT;0;False;210;FLOAT;4;False;4;FLOAT;4;False;5;FLOAT;4;False;130;FLOAT;4;False;2;FLOAT;0;False;55;FLOAT;0;False;70;FLOAT;0;False;5;COLOR;53;FLOAT2;0;FLOAT;47;FLOAT;48;INT;218
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;47;-144,512;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.FunctionNode;175;-236,-112;Inherit;False;Flipbook;-1;;18;53c2488c220f6564ca6c90721ee16673;3,68,0,217,0,244,1;11;51;SAMPLER2D;0.0;False;167;SAMPLERSTATE;0;False;13;FLOAT2;0,0;False;24;FLOAT;0;False;210;FLOAT;4;False;4;FLOAT;4;False;5;FLOAT;4;False;130;FLOAT;4;False;2;FLOAT;0;False;55;FLOAT;0;False;70;FLOAT;0;False;5;COLOR;53;FLOAT2;0;FLOAT;47;FLOAT;48;INT;218
 Node;AmplifyShaderEditor.RangedFloatNode;126;-768,1120;Inherit;False;Property;_DebugTime;Debug Time;5;0;Create;True;0;0;0;False;0;False;0.12;0.12;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;82;192,512;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;109;208,-240;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;368,144;Float;False;True;-1;2;ASEMaterialInspector;0;3;UI Particles;5056123faa0c79b47ab6ad7e8bf059a4;True;Default;0;0;Default;2;True;True;3;1;False;;10;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;True;True;True;True;True;True;0;True;_ColorMask;False;False;False;False;False;False;False;True;True;0;True;_Stencil;255;True;_StencilReadMask;255;True;_StencilWriteMask;0;True;_StencilComp;0;True;_StencilOp;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;0;True;unity_GUIZTestMode;False;True;5;Queue=Transparent=Queue=0;IgnoreProjector=True;RenderType=Transparent=RenderType;PreviewType=Plane;CanUseSpriteAtlas=True;False;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;0;;0;0;Standard;0;0;1;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;368,144;Float;False;True;-1;2;Chroma;0;3;UI Particles;5056123faa0c79b47ab6ad7e8bf059a4;True;Default;0;0;Default;2;True;True;3;1;False;;10;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;True;True;True;True;True;True;0;True;_ColorMask;False;False;False;False;False;False;False;True;True;0;True;_Stencil;255;True;_StencilReadMask;255;True;_StencilWriteMask;0;True;_StencilComp;0;True;_StencilOp;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;0;True;unity_GUIZTestMode;False;True;5;Queue=Transparent=Queue=0;IgnoreProjector=True;RenderType=Transparent=RenderType;PreviewType=Plane;CanUseSpriteAtlas=True;False;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;0;;0;0;Standard;0;0;1;True;False;;False;0
 WireConnection;153;0;147;4
 WireConnection;166;0;121;0
 WireConnection;166;1;163;0
 WireConnection;181;0;154;0
-WireConnection;182;0;181;0
 WireConnection;158;0;154;0
 WireConnection;158;1;166;0
+WireConnection;182;0;181;0
 WireConnection;120;0;182;0
 WireConnection;120;1;158;0
 WireConnection;184;1;120;0
@@ -309,11 +307,11 @@ WireConnection;90;2;91;0
 WireConnection;90;3;92;0
 WireConnection;149;0;83;0
 WireConnection;149;1;155;0
-WireConnection;117;0;158;0
 WireConnection;84;0;90;0
 WireConnection;44;0;43;0
 WireConnection;176;0;128;1
 WireConnection;176;1;128;2
+WireConnection;117;0;158;0
 WireConnection;122;0;125;0
 WireConnection;122;1;124;0
 WireConnection;122;2;117;0
@@ -324,13 +322,13 @@ WireConnection;188;0;176;0
 WireConnection;188;1;183;0
 WireConnection;123;0;80;0
 WireConnection;123;1;122;0
+WireConnection;47;0;45;0
+WireConnection;47;1;46;0
 WireConnection;175;51;107;0
 WireConnection;175;4;128;1
 WireConnection;175;5;128;2
 WireConnection;175;130;188;0
-WireConnection;175;2;117;0
-WireConnection;47;0;45;0
-WireConnection;47;1;46;0
+WireConnection;175;2;158;0
 WireConnection;82;0;47;0
 WireConnection;82;1;123;0
 WireConnection;109;0;162;0
@@ -338,4 +336,4 @@ WireConnection;109;1;175;53
 WireConnection;0;0;109;0
 WireConnection;0;1;82;0
 ASEEND*/
-//CHKSM=11F944003893778000682D224B36F21104BB2ADE
+//CHKSM=0D0AEBB4FEC4B41BD46C2DBFD228486DF6C7794D

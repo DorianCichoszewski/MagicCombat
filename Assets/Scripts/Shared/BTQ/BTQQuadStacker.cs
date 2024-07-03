@@ -24,7 +24,7 @@ namespace Shared.BTQ
 		private void EnsureAdditionalChannels()
 		{
 			var canvas = GetComponentInParent<Canvas>(false);
-			canvas.additionalShaderChannels |= AdditionalCanvasShaderChannels.TexCoord1;
+			canvas.additionalShaderChannels |= AdditionalCanvasShaderChannels.Tangent;
 		}
 
 		public void ModifyMesh(Mesh mesh)
