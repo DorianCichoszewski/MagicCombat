@@ -59,7 +59,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _COLORTYPE_FADEINOUT
-  - _SIZETYPE_LINEAR
+  - _SIZETYPE_CURVE
   - _USEGRADIENT_YES
   m_InvalidKeywords:
   - _SIZETYPE1_FADEINOUT
@@ -186,14 +186,14 @@ Material:
     - _Lifetime: 5
     - _MaxStartSize: 1
     - _MinStartSize: 0.1
-    - _ParticleLifetime: 2
+    - _ParticleLifetime: 180
     - _ParticleLifetime1: 1
     - _ScaleCurve: 1
     - _ScaleCurve1: 1
     - _Size: 0.962
     - _SizeFadeInPower: 0
     - _SizeFadeOutPower: 0
-    - _SizeType: 0
+    - _SizeType: 2
     - _SizeType1: 1
     - _StartSize: 1
     - _Stencil: 0
@@ -230,14 +230,19 @@ Material:
     - _si_USESCALECURVE_ONfalseFadeInPower: 0
     - _t: 0
     m_Colors:
+    - _Acceleration: {r: -0.15, g: -0.1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmitterDimensions: {r: 30, g: 30, b: 0, a: 0}
     - _EndColor: {r: 1, g: 1, b: 1, a: 1}
     - _EndColorsi_USEGRADIENTNo: {r: 1, g: 1, b: 1, a: 1}
     - _FlipbookCells: {r: 2, g: 2, b: 0, a: 0}
     - _FlipbookCellssi_USEFLIPBOOK_ON: {r: 1, g: 1, b: 0, a: 0}
+    - _Gravity: {r: -0.3, g: 0, b: 0, a: 0}
+    - _Speed: {r: 20, g: 15.37, b: 0, a: 0}
     - _StartColor: {r: 1, g: 1, b: 1, a: 0}
     - _StartColorsi_USEGRADIENTNo: {r: 0, g: 0, b: 0, a: 0}
+    - _Vector0: {r: 11, g: 0, b: 0, a: 0}
+    - _Vector1: {r: 11, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!28 &4577711535568996399
@@ -281,6 +286,52 @@ Texture2D:
   m_PlatformBlob: 
   image data: 512
   _typelessdata: 000045201926de29ba2cdc2ea63000327733833455352e360b37ec376638d5384139a9390d3a6b3ac13a0f3b533b8c3bb83bd73be83bf13bf93b003c033c063c093c0b3c0c3c0d3c0e3c0f3c0f3c0f3c0e3c0d3c0c3c0a3c083c063c043c013cfb3bf53bed3be63bdd3bd43bcb3bc13bb73bad3ba23b963b8a3b7e3b713b653b573b4a3b3c3b2e3b1f3b113b023bf33ae43ad43ac43ab53aa53a953a843a743a643a533a433a323a223a113a013af039e039cf39bf39af399f398f397f396f396039503941393239233915390739f938eb38de38d038c438b738ab38a03894388a387f3875386c3863385a3852384a3843383d38373832382d3829382538233821382138233827382d3835383f384a3857386538743885389838ab38c038d538ec3803391b3934394d39673982399d39b839d339ef390a3a263a413a5c3a783a923aad3ac63ae03af83a103b273b3d3b533b673b7a3b8c3b9d3bac3bba3bc63bd13bda3be13be73bea3bec3bec3be93be63be13bdb3bd43bcc3bc33bb83bac3b9f3b923b833b733b623b503b3d3b2a3b153b003be93ad23abb3aa23a893a6f3a543a393a1d3a003ae339c639a83989396a394a392a390a39e938c838a7388638643842381f38fa37b4376f372937e4369e3658361236cc3586354035fb34b63471342d34d1334a33c4323f32bc313a31b9303a30782f812e8d2d9d2c642b9529
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
+--- !u!28 &5312765257251727092
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: z__cLifetimeSizesi_SIZETYPECurveTex
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 256
+  m_Height: 1
+  m_CompleteImageSize: 512
+  m_MipsStripped: 0
+  m_TextureFormat: 15
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_IsPreProcessed: 0
+  m_IgnoreMipmapLimit: 1
+  m_MipmapLimitGroupName: 
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_VTOnly: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  m_PlatformBlob: 
+  image data: 512
+  _typelessdata: cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd
   m_StreamData:
     serializedVersion: 2
     offset: 0
