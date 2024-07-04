@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: f2c66fe0cb46a8c4699ee17e663ce536, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _USESCALECURVE_ON
   m_InvalidKeywords:
   - _TOGGLESWITCH0_ON
   m_LightmapFlags: 4
@@ -24,12 +25,28 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _CurveTextureSample0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GradientTextureSample0:
+        m_Texture: {fileID: 7683130647966851701}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
         m_Texture: {fileID: 2800000, guid: 89c031e376e79314e973652b1c1a99b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _cLifetimeSizeCurve:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tcLifetimeSizeCurve:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -41,24 +58,122 @@ Material:
     - _ColorMask: 15
     - _DebugTime: 1
     - _EndSize: 1
+    - _FadeInPower: 1
+    - _FadeOutPower: 0
     - _FlipbbokSpeed: 1
     - _Lifetime: 5
     - _MaxStartSize: 1
-    - _MinStartSize: 1
+    - _MinStartSize: 0.1
     - _ParticleLifetime: 2
     - _ParticleLifetime1: 1
     - _Size: 0.962
-    - _StartSize: 1
+    - _StartSize: 0
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _ToggleSwitch0: 1
+    - _UseScaleCurve: 1
     - _UseUIAlphaClip: 0
+    - _fSizelifetime: 0
+    - _fUnrealated: 0
+    - _hSizelifetime: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmitterDimensions: {r: 100, g: 100, b: 0, a: 0}
+    - _EmitterDimensions: {r: 30, g: 30, b: 0, a: 0}
     - _FlipbookCells: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+--- !u!28 &4577711535568996399
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: z__tcLifetimeSizeCurveTex
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 256
+  m_Height: 1
+  m_CompleteImageSize: 512
+  m_MipsStripped: 0
+  m_TextureFormat: 15
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_IsPreProcessed: 0
+  m_IgnoreMipmapLimit: 1
+  m_MipmapLimitGroupName: 
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_VTOnly: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  m_PlatformBlob: 
+  image data: 512
+  _typelessdata: cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
+--- !u!28 &7683130647966851701
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: z__GradientTextureSample0Tex{"mode":0,"colorKeys":[{"color":{"r":0.16078431904315949,"g":0.8235294222831726,"b":0.8941176533699036,"a":1.0},"time":0.1250019073486328},{"color":{"r":0.07450980693101883,"g":0.5098039507865906,"b":0.6078431606292725,"a":1.0},"time":0.37500572204589846},{"color":{"r":0.9882352948188782,"g":0.7607843279838562,"b":0.6039215922355652,"a":1.0},"time":0.6249942779541016},{"color":{"r":0.9921568632125855,"g":0.9137254953384399,"b":0.7882353067398071,"a":1.0},"time":0.8749980926513672}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 256
+  m_Height: 1
+  m_CompleteImageSize: 1024
+  m_MipsStripped: 0
+  m_TextureFormat: 5
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_IsPreProcessed: 0
+  m_IgnoreMipmapLimit: 1
+  m_MipmapLimitGroupName: 
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_VTOnly: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  m_PlatformBlob: 
+  image data: 1024
+  _typelessdata: ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d2e4ff29d1e3ff28cfe2ff28cee0ff28cddfff27ccdeff27caddff27c9dcff26c8dbff26c7daff26c5d8ff25c4d7ff25c3d6ff24c2d5ff24c0d4ff24bfd3ff23bed2ff23bdd0ff23bbcfff22baceff22b9cdff22b7ccff21b6cbff21b5caff21b4c8ff20b2c7ff20b1c6ff20b0c5ff1fafc4ff1fadc3ff1facc2ff1eabc0ff1eaabfff1ea8beff1da7bdff1da6bcff1da5bbff1ca3b9ff1ca2b8ff1ba1b7ff1ba0b6ff1b9eb5ff1a9db4ff1a9cb3ff1a9bb1ff1999b0ff1998afff1997aeff1896adff1894acff1893abff1792a9ff1791a8ff178fa7ff168ea6ff168da5ff168ca4ff158aa3ff1589a1ff1588a0ff14879fff14859eff14849dff13839cff14829bff18839bff1c849bff1f859bff23869bff27879bff2a889bff2e899bff328a9bff358b9bff398c9bff3d8d9bff408e9bff448f9bff48909bff4b919bff4f929bff53939bff56949bff5a959bff5d969bff61979bff65989bff68999bff6c9a9bff709b9bff739c9bff779d9bff7b9e9bff7e9f9bff82a09bff86a19bff89a39aff8da49aff91a59aff94a69aff98a79aff9ca89aff9fa99affa3aa9affa7ab9affaaac9affaead9affb2ae9affb5af9affb9b09affbcb19affc0b29affc4b39affc7b49affcbb59affcfb69affd2b79affd6b89affdab99affddba9affe1bb9affe5bc9affe8bd9affecbe9afff0bf9afff3c09afff7c19afffbc29afffcc29afffcc39bfffcc49cfffcc49dfffcc59dfffcc59efffcc69ffffcc7a0fffcc7a0fffcc8a1fffcc9a2fffcc9a3fffccaa3fffccaa4fffccba5fffccca6fffccca6fffccda7fffccda8fffccea8fffccfa9fffccfaafffcd0abfffcd0abfffcd1acfffcd2adfffcd2aefffcd3aefffcd4affffcd4b0fffcd5b1fffcd5b1fffdd6b2fffdd7b3fffdd7b4fffdd8b4fffdd8b5fffdd9b6fffddab6fffddab7fffddbb8fffddbb9fffddcb9fffdddbafffdddbbfffddebcfffddfbcfffddfbdfffde0befffde0bffffde1bffffde2c0fffde2c1fffde3c2fffde3c2fffde4c3fffde5c4fffde5c4fffde6c5fffde6c6fffde7c7fffde8c7fffde8c8fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9fffde9c9
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
