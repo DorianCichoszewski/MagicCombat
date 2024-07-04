@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _USESCALECURVE_ON
+  - _USEUNITYTIME_ON
   m_InvalidKeywords:
   - _TOGGLESWITCH0_ON
   m_LightmapFlags: 4
@@ -46,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _tcLifetimeSizeCurve:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 4577711535568996399}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -56,11 +57,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
+    - _CustomTIme: 0
     - _DebugTime: 1
     - _EndSize: 1
     - _FadeInPower: 1
     - _FadeOutPower: 0
     - _FlipbbokSpeed: 1
+    - _Float1: 0
     - _Lifetime: 5
     - _MaxStartSize: 1
     - _MinStartSize: 0.1
@@ -73,12 +76,19 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _TIme: 0
     - _ToggleSwitch0: 1
     - _UseScaleCurve: 1
     - _UseUIAlphaClip: 0
+    - _UseUnityTime: 1
+    - _Whatever: 0
+    - _f0SizeLifetime: 0
+    - _fFlipbook: 0
+    - _fSizeLifetime: 0
     - _fSizelifetime: 0
     - _fUnrealated: 0
     - _hSizelifetime: 0
+    - _hTime: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmitterDimensions: {r: 30, g: 30, b: 0, a: 0}
@@ -91,7 +101,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: z__tcLifetimeSizeCurveTex
+  m_Name: z__tcLifetimeSizeCurveTex{"keys":[{"time":0.0,"value":0.0,"inTangent":1.1654901504516602,"outTangent":1.1654901504516602,"inWeight":0.0,"outWeight":0.1366666853427887,"weightedMode":0},{"time":0.6405588388442993,"value":0.5975517630577087,"inTangent":-0.16836749017238618,"outTangent":-0.16836749017238618,"inWeight":0.3333333432674408,"outWeight":0.3333333432674408,"weightedMode":0},{"time":1.0119669437408448,"value":0.002361784689128399,"inTangent":-3.3286917209625246,"outTangent":-3.3286917209625246,"inWeight":0.03223644569516182,"outWeight":0.0,"weightedMode":0}]}
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -125,7 +135,7 @@ Texture2D:
   m_ColorSpace: 1
   m_PlatformBlob: 
   image data: 512
-  _typelessdata: cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd
+  _typelessdata: 0000b21cb6201723be24f22527272f28cc286929082aa62a462be62b442c942ce62c372d892ddb2d2d2e802ed22e252f782fcc2f10303a3063308e30b830e2300c31363161318b31b531e0310a3234325f328932b432de32093333335d338733b233dc33033418342d34423457346c3481349534aa34bf34d334e834fc341135253539354e35623576358a359e35b135c535d835ec35ff351236263639364b365e36713683369636a836ba36cc36de36ef360137123723373437453756376737773787379737a737b737c637d537e437f337013808380f3816381d3824382b38313838383e3844384a38503856385c38623867386d38723877387c38813886388a388f38933897389b389f38a338a638aa38ad38b038b338b638b938bb38bd38c038c238c338c538c738c838c938ca38cb38cc38cc38cc38cd38cd38cc38cc38cb38ca38c938c838c738c538c438c238bf38bd38ba38b838b538b138ae38aa38a738a3389e389a38953890388b38863880387a3874386e38683861385a3853384b3844383c3834382b3823381a3811380738fb37e737d337be37a93793377d3766374f3737371e370537ec36d236b7369c3680366436473629360b36ed35ce35ae358e356d354c352a350735e434c0349c34773451342b340434b93369331733c53271321c32c5316e311531ba305f300230482f892ec72d032d3c2ce62a4d29
   m_StreamData:
     serializedVersion: 2
     offset: 0
