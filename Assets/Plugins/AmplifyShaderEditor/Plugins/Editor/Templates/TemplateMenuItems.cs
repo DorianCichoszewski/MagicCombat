@@ -61,6 +61,11 @@ namespace AmplifyShaderEditor
 		{
 			AmplifyShaderEditorWindow.CreateConfirmationTemplateShader( "5056123faa0c79b47ab6ad7e8bf059a4" );
 		}
+		[MenuItem( "Assets/Create/Amplify Shader/UI/Particle", false, 85 )]
+		public static void ApplyTemplateUIParticle()
+		{
+			AmplifyShaderEditorWindow.CreateConfirmationTemplateShader( "00b3cbd8988be574ebe41184dcb0544b" );
+		}
 		[MenuItem( "Assets/Create/Amplify Shader/Universal/2D Custom Lit", false, 85 )]
 		public static void ApplyTemplateUniversal2DCustomLit()
 		{
