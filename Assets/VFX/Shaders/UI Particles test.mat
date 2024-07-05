@@ -174,7 +174,7 @@ Material:
     - _CustomTIme: 0
     - _CustomTImesiUSECUSTOMTIME_ON: 0
     - _DebugTime: 1
-    - _EndSize: 1
+    - _EndSize: 6.05
     - _FadeInPower: 1
     - _FadeInPowersiUSESCALECURVE: 0
     - _FadeInPowersi_SIZETYPEFadeInOut: 0
@@ -183,10 +183,13 @@ Material:
     - _FlipbbokSpeed: 1
     - _FlipbbokSpeedsi_USEFLIPBOOK_ON: 1
     - _Float1: 0
+    - _HNoise: 0
     - _Lifetime: 5
     - _MaxStartSize: 1
     - _MinStartSize: 0.1
-    - _ParticleLifetime: 1
+    - _Movement: 0
+    - _NoiseScale: 2
+    - _ParticleLifetime: 15
     - _ParticleLifetime1: 1
     - _ScaleCurve: 1
     - _ScaleCurve1: 1
@@ -195,7 +198,7 @@ Material:
     - _SizeFadeOutPower: 0
     - _SizeType: 0
     - _SizeType1: 1
-    - _StartSize: 1
+    - _StartSize: 0.59
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -207,18 +210,25 @@ Material:
     - _UseCustomTime: 0
     - _UseFlipbook: 0
     - _UseGradient: 0
+    - _UseNoisePosition: 0
     - _UseScaleCurve: 0
     - _UseUIAlphaClip: 0
     - _UseUnityTime: 1
     - _Whatever: 0
     - _f0SizeLifetime: 0
+    - _f5Movement: 0
     - _fColorLifetime: 0
     - _fFlipbook: 0
+    - _fMovement: 0
+    - _fNoise: 0
+    - _fPosition: 0
     - _fSizeLifetime: 0
     - _fSizelifetime: 0
     - _fUnrealated: 0
+    - _ftNoise: 0
     - _hSizelifetime: 0
     - _hTime: 0
+    - _sUseNoisePosition: 0
     - _siUSECUSTOMTIME_ONCustomTIme: 0
     - _siUSESCALECURVEFadeInPower: 0
     - _siUSESCALECURVE_ONFadeInPower: 0
@@ -232,15 +242,17 @@ Material:
     m_Colors:
     - _Acceleration: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmitterDimensions: {r: 0, g: 0, b: 0, a: 0}
+    - _EmitterDimensions: {r: 50, g: 50, b: 0, a: 0}
     - _EndColor: {r: 1, g: 1, b: 1, a: 1}
     - _EndColorsi_USEGRADIENTNo: {r: 1, g: 1, b: 1, a: 1}
     - _FlipbookCells: {r: 2, g: 2, b: 0, a: 0}
     - _FlipbookCellssi_USEFLIPBOOK_ON: {r: 1, g: 1, b: 0, a: 0}
     - _Gravity: {r: -0.3, g: 0, b: 0, a: 0}
+    - _MaxNoiseMovment: {r: 30, g: 10, b: 0, a: 0}
+    - _MovementNoiseValue: {r: 100, g: 0, b: 0, a: 0}
     - _Speed: {r: 0, g: 0, b: 0, a: 0}
     - _StartColor: {r: 1, g: 1, b: 1, a: 0}
-    - _StartColorsi_USEGRADIENTNo: {r: 1, g: 1, b: 1, a: 0}
+    - _StartColorsi_USEGRADIENTNo: {r: 1, g: 1, b: 1, a: 1}
     - _Vector0: {r: 11, g: 0, b: 0, a: 0}
     - _Vector1: {r: 11, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
