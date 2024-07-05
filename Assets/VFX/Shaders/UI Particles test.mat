@@ -58,9 +58,9 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _COLORTYPE_FADEINOUT
-  - _SIZETYPE_CURVE
-  - _USEGRADIENT_YES
+  - _COLORTYPE_LINEAR
+  - _SIZETYPE_LINEAR
+  - _USEGRADIENT_NO
   m_InvalidKeywords:
   - _SIZETYPE1_FADEINOUT
   - _ScaleCurve
@@ -118,7 +118,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _cLifetimeSizesi_SIZETYPECurve:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 5312765257251727092}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ccsiLifetimeSizeCurve:
@@ -170,7 +170,7 @@ Material:
     - _ColorFadeInPower: 1
     - _ColorFadeOutPower: 0
     - _ColorMask: 15
-    - _ColorType: 1
+    - _ColorType: 0
     - _CustomTIme: 0
     - _CustomTImesiUSECUSTOMTIME_ON: 0
     - _DebugTime: 1
@@ -186,14 +186,14 @@ Material:
     - _Lifetime: 5
     - _MaxStartSize: 1
     - _MinStartSize: 0.1
-    - _ParticleLifetime: 180
+    - _ParticleLifetime: 1
     - _ParticleLifetime1: 1
     - _ScaleCurve: 1
     - _ScaleCurve1: 1
     - _Size: 0.962
-    - _SizeFadeInPower: 0
+    - _SizeFadeInPower: 0.72
     - _SizeFadeOutPower: 0
-    - _SizeType: 2
+    - _SizeType: 0
     - _SizeType1: 1
     - _StartSize: 1
     - _Stencil: 0
@@ -206,7 +206,7 @@ Material:
     - _ToggleSwitch0: 1
     - _UseCustomTime: 0
     - _UseFlipbook: 0
-    - _UseGradient: 1
+    - _UseGradient: 0
     - _UseScaleCurve: 0
     - _UseUIAlphaClip: 0
     - _UseUnityTime: 1
@@ -230,17 +230,17 @@ Material:
     - _si_USESCALECURVE_ONfalseFadeInPower: 0
     - _t: 0
     m_Colors:
-    - _Acceleration: {r: -0.15, g: -0.1, b: 0, a: 0}
+    - _Acceleration: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmitterDimensions: {r: 30, g: 30, b: 0, a: 0}
+    - _EmitterDimensions: {r: 0, g: 0, b: 0, a: 0}
     - _EndColor: {r: 1, g: 1, b: 1, a: 1}
     - _EndColorsi_USEGRADIENTNo: {r: 1, g: 1, b: 1, a: 1}
     - _FlipbookCells: {r: 2, g: 2, b: 0, a: 0}
     - _FlipbookCellssi_USEFLIPBOOK_ON: {r: 1, g: 1, b: 0, a: 0}
     - _Gravity: {r: -0.3, g: 0, b: 0, a: 0}
-    - _Speed: {r: 20, g: 15.37, b: 0, a: 0}
+    - _Speed: {r: 0, g: 0, b: 0, a: 0}
     - _StartColor: {r: 1, g: 1, b: 1, a: 0}
-    - _StartColorsi_USEGRADIENTNo: {r: 0, g: 0, b: 0, a: 0}
+    - _StartColorsi_USEGRADIENTNo: {r: 1, g: 1, b: 1, a: 0}
     - _Vector0: {r: 11, g: 0, b: 0, a: 0}
     - _Vector1: {r: 11, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
@@ -297,7 +297,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: z__cLifetimeSizesi_SIZETYPECurveTex
+  m_Name: z__cLifetimeSizesi_SIZETYPECurveTex{"keys":[{"time":0.0,"value":0.0,"inTangent":0.0,"outTangent":0.0,"inWeight":0.0,"outWeight":0.0,"weightedMode":0},{"time":0.5167874097824097,"value":1.0172500610351563,"inTangent":0.0,"outTangent":0.0,"inWeight":0.0,"outWeight":0.0,"weightedMode":0},{"time":1.0033334493637086,"value":-0.017907574772834779,"inTangent":0.0,"outTangent":0.0,"inWeight":0.0,"outWeight":0.0,"weightedMode":0}]}
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -331,7 +331,7 @@ Texture2D:
   m_ColorSpace: 1
   m_PlatformBlob: 
   image data: 512
-  _typelessdata: cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd
+  _typelessdata: 0000bb09b3116116a419631c481e41208621f5224524242516261a271928ad284b29f129a02a572b0b2c6f2cd62c422db12d242e9a2e142f922f09304b308e30d3301a316231ab31f63142328f32de322d337e33d03311343b3466349134bc34e834143540356d359a35c835f635243652368036af36de360d373c376b379a37ca37f93714382c3844385b3873388b38a238ba38d138e838003917392e3944395b39723988399e39b439ca39e039f5390a3a1f3a343a483a5c3a703a843a973aaa3abd3acf3ae13af23a033b143b253b353b443b533b623b703b7e3b8b3b983ba53bb03bbc3bc73bd13bdb3be43bec3bf43bfc3b013c043c073c0a3c0c3c0e3c0f3c103c113c123c123c113c113c103c0e3c0c3c0a3c073c043c013cfb3bf23bea3be03bd63bcb3bc03bb43ba83b9a3b8d3b7f3b703b603b513b403b2f3b1e3b0c3bfa3ae73ad43ac13aad3a983a843a6f3a593a443a2e3a173a013aea39d339bb39a4398c3974395c3943392b391239f938e038c738ad3894387b38613847382e381438f537c2378f375c372837f636c33690365e362b36f935c8359635653534350435d434a434753447341834d6337c332333cb3275322032cd317b312a31db308d304230ef2f5f2fd22e492ec32d422dc52c4b2cad2bcc2af429262960284927e5259624b6226a20911c2a11da99259e80a0bfa1cda2aba32ca469a48ca4
   m_StreamData:
     serializedVersion: 2
     offset: 0
