@@ -12,16 +12,13 @@ namespace MagicCombat.Implementations.Abilities
 	{
 		private const string Name = "Spell Cast";
 
-		[SerializeField]
-		private float offset = 5f;
-
-		[SerializeField]
-		private bool singleCast = true;
+		public float offset = 5f;
+		public bool singleCast = true;
 
 		[SerializeField]
 		[Required]
 		[InlineEditor]
-		private SpellPrototype spellPrototype;
+		public SpellPrototype spellPrototype;
 
 		protected override AbilityType Type => AbilityType.Basic;
 

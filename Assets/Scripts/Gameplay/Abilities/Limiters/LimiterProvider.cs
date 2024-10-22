@@ -11,6 +11,14 @@ namespace MagicCombat.Gameplay.Abilities.Limiters
 		[SerializeReference]
 		private ILimiter limiterData = new NoneLimiter();
 
+		public static LimiterProvider Create(ILimiter limiter)
+		{
+			return new LimiterProvider
+			{
+				limiterData = limiter
+			};
+		}
+
 		public ILimiter Limiter(AbilitiesContext abilitiesContext)
 		{
 			return limiterData.Copy(abilitiesContext);

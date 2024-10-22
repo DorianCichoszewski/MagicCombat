@@ -21,7 +21,11 @@ namespace MagicCombat.Gameplay.Abilities.Base
 		[HideLabel]
 		public LimiterProvider limiterProvider;
 
-		public Sprite DefaultIcon => defaultIcon;
+		public Sprite DefaultIcon
+		{
+			get => defaultIcon;
+			set => defaultIcon = value;
+		}
 
 		public abstract void Perform(AbilityCaster caster, AbilityState state);
 	}

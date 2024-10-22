@@ -6,7 +6,7 @@ using UnityEngine.Scripting;
 namespace MagicCombat.Implementations.Spell.LogicalFragment
 {
 	[Preserve]
-	internal class StraightMoveSpellFragment : SpellLogicalFragment
+	public class StraightMoveSpellFragment : SpellLogicalFragment
 	{
 		private const PropertyId Speed = PropertyId.Speed;
 

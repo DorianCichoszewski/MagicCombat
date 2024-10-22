@@ -44,5 +44,31 @@ namespace MagicCombat.Gameplay.Spell
 				eventTrigger.Perform(spell);
 			}
 		}
+
+		public static SpellTimer Create(float duration, List<ISpellEventGeneric> events)
+		{
+			return new SpellTimer()
+			{
+				duration = new SpellBuilderValue()
+				{
+					useProperty = false,
+					value = duration
+				},
+				events = events
+			};
+		}
+		
+		public static SpellTimer Create(List<ISpellEventGeneric> events)
+		{
+			return new SpellTimer()
+			{
+				duration = new SpellBuilderValue()
+				{
+					useProperty = true,
+					property = PropertyId.Duration
+				},
+				events = events
+			};
+		}
 	}
 }
