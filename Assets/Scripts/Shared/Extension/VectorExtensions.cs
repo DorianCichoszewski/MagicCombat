@@ -14,10 +14,13 @@ namespace Shared.Extension
 			return new Vector3(vec.x, height, vec.y);
 		}
 
-		public static Vector2 ToVec2(this Vector3 vec)
-		{
-			return new Vector2(vec.x, vec.z);
-		}
+		public static Vector2 ToVec2(this Vector3 vec) => vec.XZ();
+
+		public static Vector2 XY(this Vector3 vec) => new Vector2(vec.x, vec.y);
+		public static Vector2 XZ(this Vector3 vec) => new Vector2(vec.x, vec.z);
+
+		public static Vector2 YZ(this Vector3 vec) => new Vector2(vec.y, vec.z);
+		
 
 		public static Quaternion ToRotation(this Vector2 vec)
 		{

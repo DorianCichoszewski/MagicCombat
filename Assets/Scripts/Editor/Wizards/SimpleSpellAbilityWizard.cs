@@ -66,7 +66,8 @@ namespace MagicCombat.Editor.Wizards
 		{
 			var spell = CreateInstance<SpellPrototype>();
 			spell.properties = new PropertyGroup();
-
+            spell.ignoreCaster = true;
+                
 			if (speed > 0)
 			{
 				spell.properties.Add(PropertyId.Speed, speed);

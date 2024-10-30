@@ -13,6 +13,26 @@ namespace Shared.Interfaces
 		public event Action OnSkill2;
 		public event Action OnSkill3;
 
+		private Transform originTransform;
+		private bool mouseRotation;
+
+		public bool MouseRotation
+		{
+			get => mouseRotation;
+			set => mouseRotation = value;
+		}
+		
+		public Transform OriginTransform
+		{
+			get => originTransform;
+			set => originTransform = value;
+		}
+
+		public GameplayInputMapping(bool useMouseRotation)
+		{
+			mouseRotation = useMouseRotation;
+		}
+
 		public void Clear()
 		{
 			OnMove = null;

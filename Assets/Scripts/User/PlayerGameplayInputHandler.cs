@@ -1,3 +1,4 @@
+using Shared.Extension;
 using Shared.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +24,17 @@ namespace MagicCombat.User
 		public void Rotate(InputAction.CallbackContext ctx)
 		{
 			var value = ctx.ReadValue<Vector2>();
+
+			if (gameplayInputMapping.MouseRotation && Camera.main != null)
+			{
+				if (!gameplayInputMapping.OriginTransform)
+				{
+					Debug.LogError("No origin transform when using mouse aiming!");
+					return;
+				}
+
+				value -= Camera.main.WorldToScreenPoint(gameplayInputMapping.OriginTransform.position).XY();
+			}
 
 			gameplayInputMapping.Rotate(value);
 		}

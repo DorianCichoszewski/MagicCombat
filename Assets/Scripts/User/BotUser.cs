@@ -14,13 +14,14 @@ namespace MagicCombat.User
 		public BotUser(UserId id)
 		{
 			Id = id;
-			GameplayInputMapping = new GameplayInputMapping();
+			GameplayInputMapping = new GameplayInputMapping(false);
 		}
 
 		internal BotUser(IUser previousUser)
 		{
 			Id = previousUser.Id;
 			GameplayInputMapping = previousUser.GameplayInputMapping;
+			GameplayInputMapping.MouseRotation = false;
 		}
 
 		public void SetUIFocus(GameObject root, GameObject firstSelected, GameObject readyToggle = null)

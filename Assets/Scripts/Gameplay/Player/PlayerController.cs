@@ -14,7 +14,8 @@ namespace MagicCombat.Gameplay.Player
 		{
 			this.input = input;
 			this.player = player;
-
+			
+			input.OriginTransform = player.transform;
 			input.OnMove += Move;
 			input.OnRotate += Rotate;
 			input.OnUtility += Utility;

@@ -15,8 +15,8 @@ namespace MagicCombat.User
 		{
 			InputController = inputController;
 			Id = id;
-
-			GameplayInputMapping = new GameplayInputMapping();
+			
+			GameplayInputMapping = new GameplayInputMapping(UseMouseRotation(inputController));
 			inputController.PlayerGameplayInputHandler.InitMapping(GameplayInputMapping);
 		}
 
@@ -26,6 +26,7 @@ namespace MagicCombat.User
 			Id = previousUser.Id;
 
 			GameplayInputMapping = previousUser.GameplayInputMapping;
+			GameplayInputMapping.MouseRotation = UseMouseRotation(inputController);
 			inputController.PlayerGameplayInputHandler.InitMapping(GameplayInputMapping);
 		}
 
@@ -37,6 +38,11 @@ namespace MagicCombat.User
 		public void Destroy()
 		{
 			Object.Destroy(InputController.gameObject);
+		}
+
+		private bool UseMouseRotation(PlayerInputController inputController)
+		{
+			return inputController.PlayerInput.currentControlScheme == "MouseKeyboard";
 		}
 	}
 }
