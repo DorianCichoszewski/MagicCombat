@@ -10,6 +10,9 @@ namespace Shared.Editor.StageFlow
 	[InitializeOnLoad]
     internal static class EditorToolbarSceneSwitcher
     {
+        private const string LastSelectedBuildSceneKey = "LastSelectedBuildSceneKey";
+        private const string LastSelectedBuildSceneName = "LastSelectedBuildSceneName";
+        
         static EditorToolbarSceneSwitcher()
         {
             ToolbarExtender.RightToolbarGUI.Add(OnRightToolbarGUI);
@@ -17,15 +20,24 @@ namespace Shared.Editor.StageFlow
 
         static void OnRightToolbarGUI()
         {
-            using (new GUIEnabled(EditorApplication.isPlaying == false))
+            //using (new GUIEnabled(!EditorApplication.isPlaying))
+            if (!EditorApplication.isPlaying)
             {
                 ShowPlayButton();
                 ShowMenu();
+            }
+            else
+            {
+                var content = new GUIContent($"Current: {StageFlowEditorUtil.Instance.CurrentStage?.FullNamePrintable}");
+                GUI.Label(GetThickArea(GUILayoutUtility.GetRect(content, new GUIStyle())), content);
             }
         }
 
         static void ShowPlayButton()
         {
+            string scenePath = SceneManager.GetActiveScene().path;
+            if (!CanRunScenePyPath(scenePath, out _)) return;
+            
             var tex = EditorGUIUtility.IconContent(@"PlayButton").image;
             
             using (new GUIColor(new Color(0.34f, 1f, 0.64f)))
@@ -36,14 +48,16 @@ namespace Shared.Editor.StageFlow
                 var rect = GetThickArea(GUILayoutUtility.GetRect(content, guiStyle));
                 if (GUI.Button(rect, content, guiStyle))
                 {
-                    GetScenePyPath(SceneManager.GetActiveScene().path);
+                    RunScenePyPath(scenePath);
                 }
             }
         }
 
         static void ShowMenu()
         {
-            var content = new GUIContent("Build Scenes ");
+            bool hasLastSelectedName = EditorPrefs.HasKey(LastSelectedBuildSceneName);
+            var lastSelectedName = EditorPrefs.GetString(LastSelectedBuildSceneName);
+            var content = new GUIContent(hasLastSelectedName ? lastSelectedName : "Run scene from build list");
             var guiStyle = (GUIStyle) "DropDown";
             var rect = GetThickArea(GUILayoutUtility.GetRect(content, guiStyle));
 
@@ -51,41 +65,66 @@ namespace Shared.Editor.StageFlow
 
             if (GUI.Button(rect, content, guiStyle))
             {
-                GenericMenu menu = new GenericMenu();
-
-                foreach (var stage in stages)
+                if (EditorPrefs.HasKey(LastSelectedBuildSceneKey) && Event.current.button == 0)
                 {
-                    menu.AddItem(new GUIContent(stage.FullName), false, StartScene, stage);
+                    int lastSelectedStageKey = EditorPrefs.GetInt(LastSelectedBuildSceneKey);
+                    StageFlowEditorUtil.Instance.RunStage(lastSelectedStageKey);
                 }
-                
-                menu.DropDown(new Rect(Event.current.mousePosition, new Vector2(150, stages.Count * 20)));
+                else
+                {
+                    GenericMenu menu = new GenericMenu();
+                    
+                    foreach (var stage in stages)
+                    {
+                        menu.AddItem(new GUIContent(stage.FullName.Replace("/", "\\")), false, StartScene, stage);
+                    }
+                    menu.DropDown(new Rect(Event.current.mousePosition, Vector2.zero));
+                }
             }
         }
-
-        static void GetScenePyPath(string path)
+        
+        static bool CanRunScenePyPath(string path, out StageData stageFromPath)
         {
             string guid = AssetDatabase.AssetPathToGUID(path);
             var stages = StageFlowEditorUtil.Instance.EditorList;
             foreach (var stage in stages)
             {
-                if (stage.SceneReference.SceneGUID == guid)
+                if (!stage.HasScene) continue;
+                
+                if (stage.SceneGUID == guid)
                 {
-                    StageFlowEditorUtil.Instance.RunStage(stage);
-                    return;
+                    stageFromPath = stage;
+                    return true;
                 }
             }
 
-            Debug.LogError("No stage with this scene found");
+            stageFromPath = null;
+            return false;
+        }
+
+        static void RunScenePyPath(string path)
+        {
+            if (CanRunScenePyPath(path, out var stage))
+            {
+                StageFlowEditorUtil.Instance.RunStage(stage.Key);
+            }
+            else
+            {
+                Debug.LogError("No stage with this scene found");
+            }
         }
 
         static void StartScene(object stageObj)
         {
-            StageFlowEditorUtil.Instance.RunStage(stageObj as StageData);
+            StageData stage = stageObj as StageData;
+            EditorPrefs.SetInt(LastSelectedBuildSceneKey, stage.Key);
+            EditorPrefs.SetString(LastSelectedBuildSceneName, stage.FullNamePrintable);
+            StageFlowEditorUtil.Instance.RunStage(stage.Key);
         }
         
         private static Rect GetThickArea(Rect pos)
         {
-            return new Rect(pos.x, 0f, Mathf.Min(pos.width, 150), 24f);
+            return new Rect(pos.x, 0f, Mathf.Min(pos.width, 180), 24f);
         }
     }
     

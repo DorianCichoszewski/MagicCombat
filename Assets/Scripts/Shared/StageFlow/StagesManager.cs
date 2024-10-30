@@ -10,7 +10,7 @@ namespace Shared.StageFlow
 	[CreateAssetMenu(menuName = "Single/Startup/Stages Manager", fileName = "Stages Manager")]
 	public class StagesManager : StartupScriptable
 	{
-		public const string PlayerPrefsKey = "StageGUIDToLoad";
+		public const string PlayerPrefsKey = "StageToLoad";
 
 		[SerializeField]
 		[Required]
@@ -24,6 +24,7 @@ namespace Shared.StageFlow
 		private StageData currentStage;
 
 		public StageOrderedList Stages => stages;
+		public StageData CurrentStage => currentStage;
 
 		public override void GameStart()
 		{
@@ -37,10 +38,10 @@ namespace Shared.StageFlow
 			{
 				SceneManager.LoadScene(0, LoadSceneMode.Single);
 				
-				string guid = PlayerPrefs.GetString(PlayerPrefsKey);
+				int stageKey = PlayerPrefs.GetInt(PlayerPrefsKey);
 				foreach (var stage in stages)
 				{
-					if (stage.SceneReference.SceneGUID == guid)
+					if (stage.Key == stageKey)
 					{
 						GoToStage(stage);
 

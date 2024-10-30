@@ -21,6 +21,8 @@ namespace Shared.StageFlow
 		private float order = 999;
 
 		public bool HasScene => sceneReference.HasScene;
+		public int Key => GetHashCode();
+		public string SceneGUID => SceneReference?.SceneGUID ?? string.Empty;
 		public SceneReference SceneReference => sceneReference;
 		public StageData ParentStage => parentStage;
 		public StageController Controller => controller;
@@ -39,6 +41,8 @@ namespace Shared.StageFlow
 				return parentName + name;
 			}
 		}
+		
+		public string FullNamePrintable => FullName.Replace("/", "\\");
 
 		public bool IsEmptyStage => Controller == null && !sceneReference.HasScene;
 

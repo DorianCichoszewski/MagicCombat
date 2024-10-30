@@ -15,6 +15,8 @@ namespace Shared.Editor.StageFlow
 
 		public StageFlowWindow window;
 		private StagesManager stagesManager;
+		
+		public StageData CurrentStage => stagesManager?.CurrentStage;
 
 		public StageOrderedList EditorList
 		{
@@ -33,10 +35,10 @@ namespace Shared.Editor.StageFlow
 				return stagesManager?.Stages;
 			}
 		}
-
-		public void RunStage(StageData stage)
+		
+		public void RunStage(int stageKey)
 		{
-			PlayerPrefs.SetString(StagesManager.PlayerPrefsKey, stage.SceneReference.SceneGUID);
+			PlayerPrefs.SetInt(StagesManager.PlayerPrefsKey, stageKey);
 			EditorApplication.EnterPlaymode();
 		}
 
